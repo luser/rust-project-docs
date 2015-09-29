@@ -1027,11 +1027,18 @@
 <span id="985">985</span>
 <span id="986">986</span>
 <span id="987">987</span>
+<span id="988">988</span>
+<span id="989">989</span>
+<span id="990">990</span>
+<span id="991">991</span>
+<span id="992">992</span>
+<span id="993">993</span>
 </pre><pre class='rust '>
 <span class='comment'>// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class='comment'>// file at the top-level directory of this distribution.</span>
 
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::<span class='ident'>prelude</span>::<span class='op'>*</span>;
+<span class='kw'>use</span> <span class='ident'>chrono</span>::<span class='ident'>NaiveDateTime</span>;
 <span class='kw'>use</span> <span class='ident'>encoding</span>::<span class='ident'>all</span>::<span class='ident'>UTF_16LE</span>;
 <span class='kw'>use</span> <span class='ident'>encoding</span>::{<span class='ident'>Encoding</span>, <span class='ident'>DecoderTrap</span>};
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>borrow</span>::<span class='ident'>Cow</span>;
@@ -1968,13 +1975,18 @@ pub struct MinidumpMemoryInfoList;
             }
         }
 
+        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>formatted_time</span> <span class='op'>=</span> <span class='ident'>String</span>::<span class='ident'>new</span>();
+        <span class='kw'>if</span> <span class='kw'>let</span> <span class='prelude-val'>Some</span>(<span class='ident'>datetime</span>) <span class='op'>=</span>
+            <span class='ident'>NaiveDateTime</span>::<span class='ident'>from_timestamp_opt</span>(<span class='self'>self</span>.<span class='ident'>header</span>.<span class='ident'>time_date_stamp</span> <span class='kw'>as</span> <span class='ident'>i64</span>, <span class='number'>0</span>) {
+                <span class='ident'>formatted_time</span> <span class='op'>=</span> <span class='ident'>datetime</span>.<span class='ident'>format</span>(<span class='string'>&quot;%Y-%m-%d %H:%M:%S&quot;</span>).<span class='ident'>to_string</span>();
+        }
         <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>r#&quot;MDRawHeader
   signature            = {:#x}
   version              = {:#x}
   stream_count         = {}
   stream_directory_rva = {:#x}
   checksum             = {:#x}
-  time_date_stamp      = {:#x}
+  time_date_stamp      = {:#x} {}
   flags                = {:#x}
 
 &quot;#</span>,
@@ -1984,7 +1996,7 @@ pub struct MinidumpMemoryInfoList;
                     <span class='self'>self</span>.<span class='ident'>header</span>.<span class='ident'>stream_directory_rva</span>,
                     <span class='self'>self</span>.<span class='ident'>header</span>.<span class='ident'>checksum</span>,
                     <span class='self'>self</span>.<span class='ident'>header</span>.<span class='ident'>time_date_stamp</span>,
-                    <span class='comment'>// TODO: strftime(self.header.time_date_stamp)</span>
+                    <span class='ident'>formatted_time</span>,
                     <span class='self'>self</span>.<span class='ident'>header</span>.<span class='ident'>flags</span>,
                     ));
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>streams</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>streams</span>.<span class='ident'>iter</span>().<span class='ident'>collect</span>::<span class='op'>&lt;</span><span class='ident'>Vec</span><span class='op'>&lt;</span>_<span class='op'>&gt;&gt;</span>();
