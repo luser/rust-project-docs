@@ -62,7 +62,49 @@
 <span id="20">20</span>
 <span id="21">21</span>
 <span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
 </pre><pre class='rust '>
+<span class='comment'>// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
+<span class='comment'>// file at the top-level directory of this distribution.</span>
+
+<span class='doccomment'>//! A parser for the minidump file format.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! The `minidump_processor` module provides a parser for the</span>
+<span class='doccomment'>//! [minidump][minidump] file format as produced by Microsoft&#39;s</span>
+<span class='doccomment'>//! [`MinidumpWriteDump`][minidumpwritedump] API and the</span>
+<span class='doccomment'>//! [Google Breakpad][breakpad] library.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! The primary API for this module is the [`Minidump`][struct_minidump]</span>
+<span class='doccomment'>//! struct, which can be instantiated by calling the [`Minidump::read`][read] or</span>
+<span class='doccomment'>//! [`Minidump::read_path`][read_path] methods.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! [minidump]: https://msdn.microsoft.com/en-us/library/windows/desktop/ms680369%28v=vs.85%29.aspx</span>
+<span class='doccomment'>//! [minidumpwritedump]: https://msdn.microsoft.com/en-us/library/windows/desktop/ms680360%28v=vs.85%29.aspx</span>
+<span class='doccomment'>//! [breakpad]: https://code.google.com/p/google-breakpad/</span>
+<span class='doccomment'>//! [struct_minidump]: struct.Minidump.html</span>
+<span class='doccomment'>//! [read]: struct.Minidump.html#method.read</span>
+<span class='doccomment'>//! [read_path]: struct.Minidump.html#method.read_path</span>
+
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>chrono</span>;
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>encoding</span>;
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>libc</span>;

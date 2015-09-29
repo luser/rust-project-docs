@@ -45,8 +45,18 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/minidump_processor/lib.rs.html#1-22' title='goto source code'>[src]</a></span></h1>
-<h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
+        </span><a id='src-0' class='srclink' href='../src/minidump_processor/lib.rs.html#4-43' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>A parser for the minidump file format.</p>
+
+<p>The <code>minidump_processor</code> module provides a parser for the
+<a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms680369%28v=vs.85%29.aspx">minidump</a> file format as produced by Microsoft&#39;s
+<a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms680360%28v=vs.85%29.aspx"><code>MinidumpWriteDump</code></a> API and the
+<a href="https://code.google.com/p/google-breakpad/">Google Breakpad</a> library.</p>
+
+<p>The primary API for this module is the <a href="struct.Minidump.html"><code>Minidump</code></a>
+struct, which can be instantiated by calling the <a href="struct.Minidump.html#method.read"><code>Minidump::read</code></a> or
+<a href="struct.Minidump.html#method.read_path"><code>Minidump::read_path</code></a> methods.</p>
+</div><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
 <table>
                     <tr class=' module-item'>
                         <td><a class='mod' href='minidump_format/index.html'
@@ -62,7 +72,8 @@
                         <td><a class='struct' href='struct.Minidump.html'
                                title='minidump_processor::Minidump'>Minidump</a></td>
                         <td class='docblock short'>
-                             
+                             <p>An index into the contents of a minidump.</p>
+
                         </td>
                     </tr>
                 

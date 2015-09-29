@@ -45,15 +45,37 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-11058' class='srclink' href='../src/minidump_processor/minidump.rs.html#18-23' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-11058' class='srclink' href='../src/minidump_processor/minidump.rs.html#44-49' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Minidump {
     // some fields omitted
-}</pre><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../minidump_processor/struct.Minidump.html' title='minidump_processor::Minidump'>Minidump</a></code></h3><div class='impl-items'><h4 id='method.read_path' class='method'><code>fn <a href='#method.read_path' class='fnname'>read_path</a>(path: &amp;<a class='struct' href='http://doc.rust-lang.org/nightly/std/path/struct.Path.html' title='std::path::Path'>Path</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../minidump_processor/struct.Minidump.html' title='minidump_processor::Minidump'>Minidump</a>, <a class='enum' href='../minidump_processor/enum.Error.html' title='minidump_processor::Error'>Error</a>&gt;</code></h4>
-<h4 id='method.read' class='method'><code>fn <a href='#method.read' class='fnname'>read</a>(f: <a class='struct' href='http://doc.rust-lang.org/nightly/std/fs/struct.File.html' title='std::fs::File'>File</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../minidump_processor/struct.Minidump.html' title='minidump_processor::Minidump'>Minidump</a>, <a class='enum' href='../minidump_processor/enum.Error.html' title='minidump_processor::Error'>Error</a>&gt;</code></h4>
-<h4 id='method.process' class='method'><code>fn <a href='#method.process' class='fnname'>process</a>(&amp;mut self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../minidump_processor/struct.ProcessState.html' title='minidump_processor::ProcessState'>ProcessState</a>, ProcessError&gt;</code></h4>
+}</pre><div class='docblock'><p>An index into the contents of a minidump.</p>
+
+<p>The <code>Minidump</code> struct represents the parsed header and
+indices contained at the start of a minidump file. It can be instantiated
+by calling the <a href="struct.Minidump.html#method.read"><code>Minidump::read</code></a> or
+<a href="struct.Minidump.html#method.read_path"><code>Minidump::read_path</code></a> methods.</p>
+
+<h1 id="examples" class='section-header'><a
+                           href="#examples">Examples</a></h1><pre class='rust rust-example-rendered'>
+<span class='kw'>use</span> <span class='ident'>minidump_processor</span>::<span class='ident'>Minidump</span>;
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>;
+
+<span class='kw'>let</span> <span class='ident'>file</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>File</span>::<span class='ident'>open</span>(<span class='string'>&quot;../testdata/test.dmp&quot;</span>));
+<span class='kw'>let</span> <span class='ident'>dump</span> <span class='op'>=</span> <span class='ident'>Minidump</span>::<span class='ident'>read</span>(<span class='ident'>file</span>);</pre>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../minidump_processor/struct.Minidump.html' title='minidump_processor::Minidump'>Minidump</a></code></h3><div class='impl-items'><h4 id='method.read_path' class='method'><code>fn <a href='#method.read_path' class='fnname'>read_path</a>(path: &amp;<a class='struct' href='http://doc.rust-lang.org/nightly/std/path/struct.Path.html' title='std::path::Path'>Path</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../minidump_processor/struct.Minidump.html' title='minidump_processor::Minidump'>Minidump</a>, <a class='enum' href='../minidump_processor/enum.Error.html' title='minidump_processor::Error'>Error</a>&gt;</code></h4>
+<div class='docblock'><p>Read a <code>Minidump</code> from a <code>Path</code> to a file on disk.</p>
+</div><h4 id='method.read' class='method'><code>fn <a href='#method.read' class='fnname'>read</a>(f: <a class='struct' href='http://doc.rust-lang.org/nightly/std/fs/struct.File.html' title='std::fs::File'>File</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../minidump_processor/struct.Minidump.html' title='minidump_processor::Minidump'>Minidump</a>, <a class='enum' href='../minidump_processor/enum.Error.html' title='minidump_processor::Error'>Error</a>&gt;</code></h4>
+<div class='docblock'><p>Read a <code>Minidump</code> from an open <code>File</code>.</p>
+</div><h4 id='method.process' class='method'><code>fn <a href='#method.process' class='fnname'>process</a>(&amp;mut self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../minidump_processor/struct.ProcessState.html' title='minidump_processor::ProcessState'>ProcessState</a>, ProcessError&gt;</code></h4>
 <h4 id='method.get_stream' class='method'><code>fn <a href='#method.get_stream' class='fnname'>get_stream</a>&lt;T: MinidumpStream&gt;(&amp;mut self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;T, <a class='enum' href='../minidump_processor/enum.Error.html' title='minidump_processor::Error'>Error</a>&gt;</code></h4>
-<h4 id='method.print' class='method'><code>fn <a href='#method.print' class='fnname'>print</a>&lt;T: <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>&gt;(&amp;self, f: &amp;mut T) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></h4>
-</div></section>
+<div class='docblock'><p>Get a known stream of data from the minidump.</p>
+
+<p>For streams known to this module whose types implement the
+<a href="trait.MinidumpStream.html"><code>MinidumpStream</code></a> trait, this method allows reading
+the stream data as a specific type.</p>
+</div><h4 id='method.print' class='method'><code>fn <a href='#method.print' class='fnname'>print</a>&lt;T: <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>&gt;(&amp;self, f: &amp;mut T) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></h4>
+<div class='docblock'><p>Write a verbose description of the <code>Minidump</code> to <code>f</code>.</p>
+</div></div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
