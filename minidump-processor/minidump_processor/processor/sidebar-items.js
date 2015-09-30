@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["ProcessError","An error encountered during minidump processing."]],"fn":[["process_minidump","Unwind all threads in `dump` and return a `ProcessState`."]]});

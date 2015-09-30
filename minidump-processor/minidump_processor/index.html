@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/minidump_processor/lib.rs.html#4-43' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-0' class='srclink' href='../src/minidump_processor/lib.rs.html#4-48' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>A parser for the minidump file format.</p>
 
 <p>The <code>minidump_processor</code> module provides a parser for the
@@ -113,7 +113,8 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                         <td><a class='struct' href='struct.MinidumpSystemInfo.html'
                                title='minidump_processor::MinidumpSystemInfo'>MinidumpSystemInfo</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Information about the system that generated the minidump.</p>
+
                         </td>
                     </tr>
                 
@@ -144,6 +145,15 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                 </table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
 <table>
                     <tr class=' module-item'>
+                        <td><a class='enum' href='enum.CPU.html'
+                               title='minidump_processor::CPU'>CPU</a></td>
+                        <td class='docblock short'>
+                             <p>Known CPU types.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='enum' href='enum.Error.html'
                                title='minidump_processor::Error'>Error</a></td>
                         <td class='docblock short'>
@@ -158,6 +168,24 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                              
                         </td>
                     </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='enum' href='enum.OS.html'
+                               title='minidump_processor::OS'>OS</a></td>
+                        <td class='docblock short'>
+                             <p>Known operating systems.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='enum' href='enum.ProcessError.html'
+                               title='minidump_processor::ProcessError'>ProcessError</a></td>
+                        <td class='docblock short'>
+                             <p>An error encountered during minidump processing.</p>
+
+                        </td>
+                    </tr>
                 </table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
 <table>
                     <tr class=' module-item'>
@@ -165,6 +193,16 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                title='minidump_processor::Module'>Module</a></td>
                         <td class='docblock short'>
                              
+                        </td>
+                    </tr>
+                </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.process_minidump.html'
+                               title='minidump_processor::process_minidump'>process_minidump</a></td>
+                        <td class='docblock short'>
+                             <p>Unwind all threads in <code>dump</code> and return a <code>ProcessState</code>.</p>
+
                         </td>
                     </tr>
                 </table></section>
