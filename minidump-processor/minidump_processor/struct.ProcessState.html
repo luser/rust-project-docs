@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-19758' class='srclink' href='../src/minidump_processor/process_state.rs.html#94-136' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-20233' class='srclink' href='../src/minidump_processor/process_state.rs.html#113-157' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct ProcessState {
     pub time: <a class='struct' href='../chrono/datetime/struct.DateTime.html' title='chrono::datetime::DateTime'>DateTime</a>&lt;<a class='struct' href='../chrono/offset/utc/struct.UTC.html' title='chrono::offset::utc::UTC'>UTC</a>&gt;,
     pub process_create_time: <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../chrono/datetime/struct.DateTime.html' title='chrono::datetime::DateTime'>DateTime</a>&lt;<a class='struct' href='../chrono/offset/utc/struct.UTC.html' title='chrono::offset::utc::UTC'>UTC</a>&gt;&gt;,
@@ -55,6 +55,7 @@
     pub requesting_thread: <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>&gt;,
     pub threads: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../minidump_processor/struct.CallStack.html' title='minidump_processor::CallStack'>CallStack</a>&gt;,
     pub system_info: <a class='struct' href='../minidump_processor/struct.SystemInfo.html' title='minidump_processor::SystemInfo'>SystemInfo</a>,
+    pub modules: <a class='struct' href='../minidump_processor/struct.MinidumpModuleList.html' title='minidump_processor::MinidumpModuleList'>MinidumpModuleList</a>,
 }</pre><div class='docblock'><p>The state of a process as recorded by a <code>Minidump</code>.</p>
 </div><h2 class='fields'>Fields</h2>
 <table><tr class='stab '>
@@ -92,6 +93,9 @@ extended Breakpad information is present, this field will be
 thread) at the time of the crash.</p>
 </div></td></tr><tr class='stab '>
                                   <td id='structfield.system_info'><code>system_info</code></td><td><div class='docblock'><p>Information about the system on which the minidump was written.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.modules'><code>modules</code></td><td><div class='docblock'><p>The modules that were loaded into the process represented by the
+<code>ProcessState</code>.</p>
 </div></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../minidump_processor/struct.ProcessState.html' title='minidump_processor::ProcessState'>ProcessState</a></code></h3><div class='impl-items'><h4 id='method.crashed' class='method'><code>fn <a href='#method.crashed' class='fnname'>crashed</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
 <div class='docblock'><p><code>true</code> if the minidump was written in response to a process crash.</p>
 </div><h4 id='method.print' class='method'><code>fn <a href='#method.print' class='fnname'>print</a>&lt;T: <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>&gt;(&amp;self, f: &amp;mut T) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></h4>

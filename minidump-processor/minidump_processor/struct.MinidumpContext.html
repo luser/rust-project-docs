@@ -45,10 +45,12 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-11180' class='srclink' href='../src/minidump_processor/minidump.rs.html#159-161' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-11292' class='srclink' href='../src/minidump_processor/minidump.rs.html#190-192' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct MinidumpContext {
     pub raw: <a class='enum' href='../minidump_processor/enum.MinidumpRawContext.html' title='minidump_processor::MinidumpRawContext'>MinidumpRawContext</a>,
-}</pre><div class='docblock'><p>MinidumpContext carries a CPU-specific MDRawContext structure, which
+}</pre><div class='docblock'><p>CPU context such as register states.</p>
+
+<p>MinidumpContext carries a CPU-specific MDRawContext structure, which
 contains CPU context such as register states.  Each thread has its
 own context, and the exception record, if present, also has its own
 context.  Note that if the exception record is present, the context it
@@ -64,6 +66,8 @@ user wants).</p>
 <h4 id='method.get_instruction_pointer' class='method'><code>fn <a href='#method.get_instruction_pointer' class='fnname'>get_instruction_pointer</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h4>
 <h4 id='method.get_stack_pointer' class='method'><code>fn <a href='#method.get_stack_pointer' class='fnname'>get_stack_pointer</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h4>
 <h4 id='method.print' class='method'><code>fn <a href='#method.print' class='fnname'>print</a>&lt;T: <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>&gt;(&amp;self, f: &amp;mut T) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></h4>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../minidump_processor/struct.MinidumpContext.html' title='minidump_processor::MinidumpContext'>MinidumpContext</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../minidump_processor/struct.MinidumpContext.html' title='minidump_processor::MinidumpContext'>MinidumpContext</a></code></h4>
+<h4 id='method.clone_from' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
 </div></section>
     <section id='search' class="content hidden"></section>
 

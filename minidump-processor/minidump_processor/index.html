@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/minidump_processor/lib.rs.html#4-55' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-0' class='srclink' href='../src/minidump_processor/lib.rs.html#4-56' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>A parser for the minidump file format.</p>
 
 <p>The <code>minidump_processor</code> module provides a parser for the
@@ -90,9 +90,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                         <td><a class='struct' href='struct.MinidumpBreakpadInfo.html'
                                title='minidump_processor::MinidumpBreakpadInfo'>MinidumpBreakpadInfo</a></td>
                         <td class='docblock short'>
-                             <p>MinidumpBreakpadInfo wraps MDRawBreakpadInfo, which is an optional stream
-in a minidump that provides additional information about the process state
-at the time the minidump was generated.</p>
+                             <p>Additional information about process state.</p>
 
                         </td>
                     </tr>
@@ -101,16 +99,7 @@ at the time the minidump was generated.</p>
                         <td><a class='struct' href='struct.MinidumpContext.html'
                                title='minidump_processor::MinidumpContext'>MinidumpContext</a></td>
                         <td class='docblock short'>
-                             <p>MinidumpContext carries a CPU-specific MDRawContext structure, which
-contains CPU context such as register states.  Each thread has its
-own context, and the exception record, if present, also has its own
-context.  Note that if the exception record is present, the context it
-refers to is probably what the user wants to use for the exception
-thread, instead of that thread&#39;s own context.  The exception thread&#39;s
-context (as opposed to the exception record&#39;s context) will contain
-context for the exception handler (which performs minidump generation),
-and not the context that caused the exception (which is probably what the
-user wants).</p>
+                             <p>CPU context such as register states.</p>
 
                         </td>
                     </tr>
@@ -136,7 +125,8 @@ user wants).</p>
                         <td><a class='struct' href='struct.MinidumpModule.html'
                                title='minidump_processor::MinidumpModule'>MinidumpModule</a></td>
                         <td class='docblock short'>
-                             
+                             <p>An executable or shared library loaded in the process at the time the <code>Minidump</code> was written.</p>
+
                         </td>
                     </tr>
                 
@@ -144,7 +134,8 @@ user wants).</p>
                         <td><a class='struct' href='struct.MinidumpModuleList.html'
                                title='minidump_processor::MinidumpModuleList'>MinidumpModuleList</a></td>
                         <td class='docblock short'>
-                             
+                             <p>A list of <code>MinidumpModule</code>s contained in a <code>Minidump</code>.</p>
+
                         </td>
                     </tr>
                 
@@ -211,6 +202,15 @@ user wants).</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='enum' href='enum.CallStackInfo.html'
+                               title='minidump_processor::CallStackInfo'>CallStackInfo</a></td>
+                        <td class='docblock short'>
+                             <p>Information about the results of unwinding a thread&#39;s stack.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='enum' href='enum.Error.html'
                                title='minidump_processor::Error'>Error</a></td>
                         <td class='docblock short'>
@@ -250,7 +250,8 @@ user wants).</p>
                         <td><a class='trait' href='trait.Module.html'
                                title='minidump_processor::Module'>Module</a></td>
                         <td class='docblock short'>
-                             
+                             <p>An executable or shared library loaded in a process.</p>
+
                         </td>
                     </tr>
                 </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>

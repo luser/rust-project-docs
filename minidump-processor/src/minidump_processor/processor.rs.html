@@ -144,13 +144,17 @@
 <span id="102">102</span>
 <span id="103">103</span>
 <span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
 </pre><pre class='rust '>
 <span class='comment'>// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class='comment'>// file at the top-level directory of this distribution.</span>
 
 <span class='kw'>use</span> <span class='ident'>chrono</span>::{<span class='ident'>TimeZone</span>,<span class='ident'>UTC</span>};
 <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='op'>*</span>;
-<span class='kw'>use</span> <span class='ident'>process_state</span>::{<span class='ident'>CallStack</span>,<span class='ident'>ProcessState</span>};
+<span class='kw'>use</span> <span class='ident'>process_state</span>::<span class='ident'>ProcessState</span>;
 <span class='kw'>use</span> <span class='ident'>stackwalker</span>;
 <span class='kw'>use</span> <span class='ident'>system_info</span>::<span class='ident'>SystemInfo</span>;
 
@@ -217,23 +221,26 @@
     <span class='comment'>// Get exception</span>
     <span class='comment'>// - Get crashing thread</span>
     <span class='comment'>// - Get crash reason</span>
+    <span class='comment'>// - Get exception context</span>
     <span class='kw'>let</span> <span class='ident'>crash_reason</span> <span class='op'>=</span> <span class='prelude-val'>None</span>;
     <span class='kw'>let</span> <span class='ident'>crash_address</span> <span class='op'>=</span> <span class='prelude-val'>None</span>;
     <span class='comment'>// Get assertion</span>
     <span class='kw'>let</span> <span class='ident'>assertion</span> <span class='op'>=</span> <span class='prelude-val'>None</span>;
-    <span class='comment'>// Get module list</span>
-    <span class='kw'>let</span> <span class='ident'>module_list</span> <span class='op'>=</span> <span class='ident'>dump</span>.<span class='ident'>get_stream</span>::<span class='op'>&lt;</span><span class='ident'>MinidumpModuleList</span><span class='op'>&gt;</span>().<span class='ident'>ok</span>();
+    <span class='kw'>let</span> <span class='ident'>modules</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='kw'>let</span> <span class='prelude-val'>Ok</span>(<span class='ident'>module_list</span>) <span class='op'>=</span> <span class='ident'>dump</span>.<span class='ident'>get_stream</span>::<span class='op'>&lt;</span><span class='ident'>MinidumpModuleList</span><span class='op'>&gt;</span>() {
+        <span class='ident'>module_list</span>.<span class='ident'>clone</span>()
+    } <span class='kw'>else</span> {
+        <span class='comment'>// Just give an empty list, simplifies things.</span>
+        <span class='ident'>MinidumpModuleList</span>::<span class='ident'>new</span>()
+    };
     <span class='comment'>// Get memory list</span>
     <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>threads</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>();
     <span class='kw'>for</span> <span class='ident'>thread</span> <span class='kw'>in</span> <span class='ident'>thread_list</span>.<span class='ident'>threads</span> {
         <span class='comment'>// - if dump thread, skip</span>
         <span class='comment'>// - if requesting thread and have exception, use exception context,</span>
         <span class='comment'>//   else use thread context</span>
-        <span class='comment'>// - walk stack using stackwalker</span>
-        <span class='kw'>let</span> <span class='ident'>frames</span> <span class='op'>=</span> <span class='ident'>stackwalker</span>::<span class='ident'>walk_stack</span>(<span class='kw-2'>&amp;</span><span class='ident'>thread</span>.<span class='ident'>context</span>,
-                                             <span class='kw-2'>&amp;</span><span class='ident'>thread</span>.<span class='ident'>stack</span>,
-                                             <span class='kw-2'>&amp;</span><span class='ident'>module_list</span>);
-        <span class='kw'>let</span> <span class='ident'>stack</span> <span class='op'>=</span> <span class='ident'>CallStack</span> { <span class='ident'>frames</span>: <span class='ident'>frames</span> };
+        <span class='kw'>let</span> <span class='ident'>stack</span> <span class='op'>=</span> <span class='ident'>stackwalker</span>::<span class='ident'>walk_stack</span>(<span class='kw-2'>&amp;</span><span class='ident'>thread</span>.<span class='ident'>context</span>,
+                                            <span class='kw-2'>&amp;</span><span class='ident'>thread</span>.<span class='ident'>stack</span>,
+                                            <span class='kw-2'>&amp;</span><span class='ident'>modules</span>);
         <span class='ident'>threads</span>.<span class='ident'>push</span>(<span class='ident'>stack</span>);
     }
     <span class='comment'>// if exploitability enabled, run exploitability analysis</span>
@@ -247,6 +254,7 @@
         <span class='ident'>requesting_thread</span>: <span class='prelude-val'>None</span>,
         <span class='ident'>system_info</span>: <span class='ident'>system_info</span>,
         <span class='ident'>threads</span>: <span class='ident'>threads</span>,
+        <span class='ident'>modules</span>: <span class='ident'>modules</span>,
     })
 }
 </pre>
