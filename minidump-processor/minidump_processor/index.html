@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/minidump_processor/lib.rs.html#4-50' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-0' class='srclink' href='../src/minidump_processor/lib.rs.html#4-52' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>A parser for the minidump file format.</p>
 
 <p>The <code>minidump_processor</code> module provides a parser for the
@@ -78,6 +78,17 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='struct' href='struct.MinidumpBreakpadInfo.html'
+                               title='minidump_processor::MinidumpBreakpadInfo'>MinidumpBreakpadInfo</a></td>
+                        <td class='docblock short'>
+                             <p>MinidumpBreakpadInfo wraps MDRawBreakpadInfo, which is an optional stream
+in a minidump that provides additional information about the process state
+at the time the minidump was generated.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='struct' href='struct.MinidumpContext.html'
                                title='minidump_processor::MinidumpContext'>MinidumpContext</a></td>
                         <td class='docblock short'>
@@ -90,6 +101,15 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                title='minidump_processor::MinidumpMemory'>MinidumpMemory</a></td>
                         <td class='docblock short'>
                              
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.MinidumpMiscInfo.html'
+                               title='minidump_processor::MinidumpMiscInfo'>MinidumpMiscInfo</a></td>
+                        <td class='docblock short'>
+                             <p>Miscellaneous information about the process that wrote the minidump.</p>
+
                         </td>
                     </tr>
                 

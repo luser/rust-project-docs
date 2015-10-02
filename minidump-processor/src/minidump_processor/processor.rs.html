@@ -105,11 +105,6 @@
 <span id="63">63</span>
 <span id="64">64</span>
 <span id="65">65</span>
-<span id="66">66</span>
-<span id="67">67</span>
-<span id="68">68</span>
-<span id="69">69</span>
-<span id="70">70</span>
 </pre><pre class='rust '>
 <span class='comment'>// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class='comment'>// file at the top-level directory of this distribution.</span>
@@ -130,12 +125,10 @@
 
 <span class='doccomment'>/// Unwind all threads in `dump` and return a `ProcessState`.</span>
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>process_minidump</span>(<span class='ident'>dump</span> : <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>Minidump</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>ProcessState</span>, <span class='ident'>ProcessError</span><span class='op'>&gt;</span> {
-    <span class='comment'>// Get process create time</span>
-    <span class='kw'>let</span> <span class='ident'>process_create_time</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='boolval'>true</span> {
-        <span class='prelude-val'>None</span>
+    <span class='kw'>let</span> <span class='ident'>process_create_time</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='kw'>let</span> <span class='prelude-val'>Ok</span>(<span class='ident'>misc_info</span>) <span class='op'>=</span> <span class='ident'>dump</span>.<span class='ident'>get_stream</span>::<span class='op'>&lt;</span><span class='ident'>MinidumpMiscInfo</span><span class='op'>&gt;</span>() {
+        <span class='ident'>misc_info</span>.<span class='ident'>process_create_time</span>
     } <span class='kw'>else</span> {
-        <span class='kw'>let</span> <span class='ident'>timestamp</span> <span class='op'>=</span> <span class='number'>0</span>;
-        <span class='prelude-val'>Some</span>(<span class='ident'>UTC</span>.<span class='ident'>timestamp</span>(<span class='ident'>timestamp</span>, <span class='number'>0</span>))
+        <span class='prelude-val'>None</span>
     };
     <span class='kw'>let</span> <span class='ident'>dump_system_info</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>dump</span>.<span class='ident'>get_stream</span>::<span class='op'>&lt;</span><span class='ident'>MinidumpSystemInfo</span><span class='op'>&gt;</span>().<span class='ident'>or</span>(<span class='prelude-val'>Err</span>(<span class='ident'>ProcessError</span>::<span class='ident'>MissingSystemInfo</span>)));
     <span class='kw'>let</span> <span class='ident'>system_info</span> <span class='op'>=</span> <span class='ident'>SystemInfo</span> {
@@ -169,9 +162,6 @@
     <span class='comment'>// - walk stack using stackwalker</span>
     <span class='comment'>// - save call stack</span>
     <span class='comment'>// if exploitability enabled, run exploitability analysis</span>
-    <span class='kw'>if</span> <span class='boolval'>true</span> {
-        <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ProcessError</span>::<span class='ident'>UnknownError</span>);
-    }
     <span class='prelude-val'>Ok</span>(<span class='ident'>ProcessState</span> {
         <span class='ident'>time</span>: <span class='ident'>UTC</span>.<span class='ident'>timestamp</span>(<span class='ident'>dump</span>.<span class='ident'>header</span>.<span class='ident'>time_date_stamp</span> <span class='kw'>as</span> <span class='ident'>i64</span>, <span class='number'>0</span>),
         <span class='ident'>process_create_time</span>: <span class='ident'>process_create_time</span>,
