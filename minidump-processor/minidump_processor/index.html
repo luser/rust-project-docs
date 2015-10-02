@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/minidump_processor/lib.rs.html#4-52' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-0' class='srclink' href='../src/minidump_processor/lib.rs.html#4-55' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>A parser for the minidump file format.</p>
 
 <p>The <code>minidump_processor</code> module provides a parser for the
@@ -68,6 +68,15 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                     </tr>
                 </table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.CallStack.html'
+                               title='minidump_processor::CallStack'>CallStack</a></td>
+                        <td class='docblock short'>
+                             <p>A stack of <code>StackFrame</code>s produced as a result of unwinding a thread.</p>
+
+                        </td>
+                    </tr>
+                
                     <tr class=' module-item'>
                         <td><a class='struct' href='struct.Minidump.html'
                                title='minidump_processor::Minidump'>Minidump</a></td>
@@ -92,7 +101,17 @@ at the time the minidump was generated.</p>
                         <td><a class='struct' href='struct.MinidumpContext.html'
                                title='minidump_processor::MinidumpContext'>MinidumpContext</a></td>
                         <td class='docblock short'>
-                             
+                             <p>MinidumpContext carries a CPU-specific MDRawContext structure, which
+contains CPU context such as register states.  Each thread has its
+own context, and the exception record, if present, also has its own
+context.  Note that if the exception record is present, the context it
+refers to is probably what the user wants to use for the exception
+thread, instead of that thread&#39;s own context.  The exception thread&#39;s
+context (as opposed to the exception record&#39;s context) will contain
+context for the exception handler (which performs minidump generation),
+and not the context that caused the exception (which is probably what the
+user wants).</p>
+
                         </td>
                     </tr>
                 
@@ -164,6 +183,15 @@ at the time the minidump was generated.</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='struct' href='struct.StackFrame.html'
+                               title='minidump_processor::StackFrame'>StackFrame</a></td>
+                        <td class='docblock short'>
+                             <p>A single stack frame produced from unwinding a thread&#39;s stack.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='struct' href='struct.SystemInfo.html'
                                title='minidump_processor::SystemInfo'>SystemInfo</a></td>
                         <td class='docblock short'>
@@ -194,7 +222,8 @@ at the time the minidump was generated.</p>
                         <td><a class='enum' href='enum.MinidumpRawContext.html'
                                title='minidump_processor::MinidumpRawContext'>MinidumpRawContext</a></td>
                         <td class='docblock short'>
-                             
+                             <p>The CPU-specific context structure.</p>
+
                         </td>
                     </tr>
                 

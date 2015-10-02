@@ -45,10 +45,20 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-11180' class='srclink' href='../src/minidump_processor/minidump.rs.html#148-150' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-11180' class='srclink' href='../src/minidump_processor/minidump.rs.html#159-161' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct MinidumpContext {
     pub raw: <a class='enum' href='../minidump_processor/enum.MinidumpRawContext.html' title='minidump_processor::MinidumpRawContext'>MinidumpRawContext</a>,
-}</pre><h2 class='fields'>Fields</h2>
+}</pre><div class='docblock'><p>MinidumpContext carries a CPU-specific MDRawContext structure, which
+contains CPU context such as register states.  Each thread has its
+own context, and the exception record, if present, also has its own
+context.  Note that if the exception record is present, the context it
+refers to is probably what the user wants to use for the exception
+thread, instead of that thread&#39;s own context.  The exception thread&#39;s
+context (as opposed to the exception record&#39;s context) will contain
+context for the exception handler (which performs minidump generation),
+and not the context that caused the exception (which is probably what the
+user wants).</p>
+</div><h2 class='fields'>Fields</h2>
 <table><tr class='stab '>
                                   <td id='structfield.raw'><code>raw</code></td><td></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../minidump_processor/struct.MinidumpContext.html' title='minidump_processor::MinidumpContext'>MinidumpContext</a></code></h3><div class='impl-items'><h4 id='method.read' class='method'><code>fn <a href='#method.read' class='fnname'>read</a>(f: &amp;<a class='struct' href='http://doc.rust-lang.org/nightly/std/fs/struct.File.html' title='std::fs::File'>File</a>, location: &amp;<a class='type' href='../minidump_processor/minidump_format/type.MDLocationDescriptor.html' title='minidump_processor::minidump_format::MDLocationDescriptor'>MDLocationDescriptor</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../minidump_processor/struct.MinidumpContext.html' title='minidump_processor::MinidumpContext'>MinidumpContext</a>, <a class='enum' href='../minidump_processor/enum.Error.html' title='minidump_processor::Error'>Error</a>&gt;</code></h4>
 <h4 id='method.get_instruction_pointer' class='method'><code>fn <a href='#method.get_instruction_pointer' class='fnname'>get_instruction_pointer</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h4>
