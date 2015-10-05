@@ -121,7 +121,7 @@
     }
 }
 
-<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>walk_stack</span>(<span class='ident'>maybe_context</span> : <span class='kw-2'>&amp;</span><span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>MinidumpContext</span><span class='op'>&gt;</span>,
+<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>walk_stack</span>(<span class='ident'>maybe_context</span> : <span class='kw-2'>&amp;</span><span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>MinidumpContext</span><span class='op'>&gt;</span>,
                   <span class='ident'>stack_memory</span> : <span class='kw-2'>&amp;</span><span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>MinidumpMemory</span><span class='op'>&gt;</span>,
                   <span class='ident'>modules</span> : <span class='kw-2'>&amp;</span><span class='ident'>MinidumpModuleList</span>) <span class='op'>-&gt;</span> <span class='ident'>CallStack</span> {
     <span class='comment'>// context, memory, modules, symbolizer</span>

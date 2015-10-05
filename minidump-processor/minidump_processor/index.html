@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/minidump_processor/lib.rs.html#4-56' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-0' class='srclink' href='../src/minidump_processor/lib.rs.html#4-57' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>A parser for the minidump file format.</p>
 
 <p>The <code>minidump_processor</code> module provides a parser for the
@@ -105,6 +105,15 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='struct' href='struct.MinidumpException.html'
+                               title='minidump_processor::MinidumpException'>MinidumpException</a></td>
+                        <td class='docblock short'>
+                             <p>Information about the exception that caused the minidump to be generated.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='struct' href='struct.MinidumpMemory.html'
                                title='minidump_processor::MinidumpMemory'>MinidumpMemory</a></td>
                         <td class='docblock short'>
@@ -152,7 +161,8 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                         <td><a class='struct' href='struct.MinidumpThread.html'
                                title='minidump_processor::MinidumpThread'>MinidumpThread</a></td>
                         <td class='docblock short'>
-                             
+                             <p>The state of a thread from the process when the minidump was written.</p>
+
                         </td>
                     </tr>
                 
@@ -160,7 +170,8 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                         <td><a class='struct' href='struct.MinidumpThreadList.html'
                                title='minidump_processor::MinidumpThreadList'>MinidumpThreadList</a></td>
                         <td class='docblock short'>
-                             
+                             <p>A list of <code>MinidumpThread</code>s contained in a <code>Minidump</code>.</p>
+
                         </td>
                     </tr>
                 
@@ -214,7 +225,8 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                         <td><a class='enum' href='enum.Error.html'
                                title='minidump_processor::Error'>Error</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Errors encountered while reading a <code>Minidump</code>.</p>
+
                         </td>
                     </tr>
                 

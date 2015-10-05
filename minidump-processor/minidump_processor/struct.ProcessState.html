@@ -45,11 +45,11 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-20233' class='srclink' href='../src/minidump_processor/process_state.rs.html#113-157' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-21880' class='srclink' href='../src/minidump_processor/process_state.rs.html#116-155' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct ProcessState {
     pub time: <a class='struct' href='../chrono/datetime/struct.DateTime.html' title='chrono::datetime::DateTime'>DateTime</a>&lt;<a class='struct' href='../chrono/offset/utc/struct.UTC.html' title='chrono::offset::utc::UTC'>UTC</a>&gt;,
     pub process_create_time: <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../chrono/datetime/struct.DateTime.html' title='chrono::datetime::DateTime'>DateTime</a>&lt;<a class='struct' href='../chrono/offset/utc/struct.UTC.html' title='chrono::offset::utc::UTC'>UTC</a>&gt;&gt;,
-    pub crash_reason: <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
+    pub crash_reason: <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;CrashReason&gt;,
     pub crash_address: <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>&gt;,
     pub assertion: <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
     pub requesting_thread: <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>&gt;,
@@ -63,12 +63,7 @@
 </div></td></tr><tr class='stab '>
                                   <td id='structfield.process_create_time'><code>process_create_time</code></td><td><div class='docblock'><p>When the process started, if available</p>
 </div></td></tr><tr class='stab '>
-                                  <td id='structfield.crash_reason'><code>crash_reason</code></td><td><div class='docblock'><p>If the process crashed, a <code>String</code> describing the crash reason.</p>
-
-<p>This is OS- and possibly CPU-specific.
-For example, &quot;EXCEPTION_ACCESS_VIOLATION&quot; (Windows),
-&quot;EXC_BAD_ACCESS / KERN_INVALID_ADDRESS&quot; (Mac OS X), &quot;SIGSEGV&quot;
-(other Unix).</p>
+                                  <td id='structfield.crash_reason'><code>crash_reason</code></td><td><div class='docblock'><p>If the process crashed, a <code>CrashReason</code> describing the crash reason.</p>
 </div></td></tr><tr class='stab '>
                                   <td id='structfield.crash_address'><code>crash_address</code></td><td><div class='docblock'><p>The memory address implicated in the crash.</p>
 
