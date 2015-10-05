@@ -102,8 +102,8 @@
 
 <span class='comment'>// TODO: this probably needs to be on a trait so we can have per-CPU</span>
 <span class='comment'>// implementations.</span>
-<span class='kw'>fn</span> <span class='ident'>get_caller_frame</span>(<span class='ident'>frame</span> : <span class='kw-2'>&amp;</span><span class='ident'>StackFrame</span>,
-                    <span class='ident'>stack_memory</span> : <span class='kw-2'>&amp;</span><span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>MinidumpMemory</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>StackFrame</span><span class='op'>&gt;</span> {
+<span class='kw'>fn</span> <span class='ident'>get_caller_frame</span>(<span class='ident'>_frame</span> : <span class='kw-2'>&amp;</span><span class='ident'>StackFrame</span>,
+                    <span class='ident'>_stack_memory</span> : <span class='kw-2'>&amp;</span><span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>MinidumpMemory</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>StackFrame</span><span class='op'>&gt;</span> {
     <span class='prelude-val'>None</span>
 }
 

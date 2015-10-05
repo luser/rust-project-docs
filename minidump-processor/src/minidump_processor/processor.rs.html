@@ -158,8 +158,6 @@
 <span id="116">116</span>
 <span id="117">117</span>
 <span id="118">118</span>
-<span id="119">119</span>
-<span id="120">120</span>
 </pre><pre class='rust '>
 <span class='comment'>// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class='comment'>// file at the top-level directory of this distribution.</span>
@@ -228,14 +226,12 @@
     <span class='comment'>// Get exception info if it exists.</span>
     <span class='kw'>let</span> <span class='ident'>exception_stream</span> <span class='op'>=</span> <span class='ident'>dump</span>.<span class='ident'>get_stream</span>::<span class='op'>&lt;</span><span class='ident'>MinidumpException</span><span class='op'>&gt;</span>().<span class='ident'>ok</span>();
     <span class='kw'>let</span> <span class='ident'>exception_ref</span> <span class='op'>=</span> <span class='ident'>exception_stream</span>.<span class='ident'>as_ref</span>();
-    <span class='kw'>let</span> (<span class='ident'>crashing_thread_id</span>,
-         <span class='ident'>crash_reason</span>,
+    <span class='kw'>let</span> (<span class='ident'>crash_reason</span>,
          <span class='ident'>crash_address</span>) <span class='op'>=</span> <span class='kw'>if</span> <span class='kw'>let</span> <span class='prelude-val'>Some</span>(<span class='ident'>exception</span>) <span class='op'>=</span> <span class='ident'>exception_ref</span> {
-        (<span class='prelude-val'>Some</span>(<span class='ident'>exception</span>.<span class='ident'>thread_id</span>),
-         <span class='prelude-val'>Some</span>(<span class='ident'>exception</span>.<span class='ident'>get_crash_reason</span>(<span class='ident'>system_info</span>.<span class='ident'>os</span>)),
+        (<span class='prelude-val'>Some</span>(<span class='ident'>exception</span>.<span class='ident'>get_crash_reason</span>(<span class='ident'>system_info</span>.<span class='ident'>os</span>)),
          <span class='prelude-val'>Some</span>(<span class='ident'>exception</span>.<span class='ident'>get_crash_address</span>(<span class='ident'>system_info</span>.<span class='ident'>os</span>)))
     } <span class='kw'>else</span> {
-        (<span class='prelude-val'>None</span>, <span class='prelude-val'>None</span>, <span class='prelude-val'>None</span>)
+        (<span class='prelude-val'>None</span>, <span class='prelude-val'>None</span>)
     };
     <span class='kw'>let</span> <span class='ident'>exception_context</span> <span class='op'>=</span> <span class='ident'>exception_ref</span>.<span class='ident'>and_then</span>(<span class='op'>|</span><span class='ident'>e</span><span class='op'>|</span> <span class='ident'>e</span>.<span class='ident'>context</span>.<span class='ident'>as_ref</span>());
     <span class='comment'>// Get assertion</span>

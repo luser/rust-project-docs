@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/minidump_processor/lib.rs.html#4-57' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-0' class='srclink' href='../src/minidump_processor/lib.rs.html#4-58' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>A parser for the minidump file format.</p>
 
 <p>The <code>minidump_processor</code> module provides a parser for the
@@ -227,6 +227,17 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                title='minidump_processor::Error'>Error</a></td>
                         <td class='docblock short'>
                              <p>Errors encountered while reading a <code>Minidump</code>.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='enum' href='enum.FrameTrust.html'
+                               title='minidump_processor::FrameTrust'>FrameTrust</a></td>
+                        <td class='docblock short'>
+                             <p>Indicates how well the instruction pointer derived during
+stack walking is trusted. Since the stack walker can resort to
+stack scanning, it can wind up with dubious frames.</p>
 
                         </td>
                     </tr>
