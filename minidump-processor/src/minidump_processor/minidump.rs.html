@@ -1486,6 +1486,10 @@
 <span id="1444">1444</span>
 <span id="1445">1445</span>
 <span id="1446">1446</span>
+<span id="1447">1447</span>
+<span id="1448">1448</span>
+<span id="1449">1449</span>
+<span id="1450">1450</span>
 </pre><pre class='rust '>
 <span class='comment'>// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class='comment'>// file at the top-level directory of this distribution.</span>
@@ -1691,9 +1695,13 @@ pub struct MinidumpMemoryInfoList;
     <span class='kw'>pub</span> <span class='ident'>raw</span> : <span class='ident'>MinidumpRawContext</span>,
 }
 
+<span class='doccomment'>/// A region of memory from the process that wrote the minidump.</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>MinidumpMemory</span> {
+    <span class='doccomment'>/// The starting address of this range of memory.</span>
     <span class='kw'>pub</span> <span class='ident'>base_address</span> : <span class='ident'>u64</span>,
+    <span class='doccomment'>/// The length of this range of memory.</span>
     <span class='kw'>pub</span> <span class='ident'>size</span> : <span class='ident'>u64</span>,
+    <span class='doccomment'>/// The contents of the memory.</span>
     <span class='kw'>pub</span> <span class='ident'>bytes</span> : <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>u8</span><span class='op'>&gt;</span>,
 }
 
