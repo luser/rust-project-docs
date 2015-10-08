@@ -1508,6 +1508,61 @@
 <span id="1466">1466</span>
 <span id="1467">1467</span>
 <span id="1468">1468</span>
+<span id="1469">1469</span>
+<span id="1470">1470</span>
+<span id="1471">1471</span>
+<span id="1472">1472</span>
+<span id="1473">1473</span>
+<span id="1474">1474</span>
+<span id="1475">1475</span>
+<span id="1476">1476</span>
+<span id="1477">1477</span>
+<span id="1478">1478</span>
+<span id="1479">1479</span>
+<span id="1480">1480</span>
+<span id="1481">1481</span>
+<span id="1482">1482</span>
+<span id="1483">1483</span>
+<span id="1484">1484</span>
+<span id="1485">1485</span>
+<span id="1486">1486</span>
+<span id="1487">1487</span>
+<span id="1488">1488</span>
+<span id="1489">1489</span>
+<span id="1490">1490</span>
+<span id="1491">1491</span>
+<span id="1492">1492</span>
+<span id="1493">1493</span>
+<span id="1494">1494</span>
+<span id="1495">1495</span>
+<span id="1496">1496</span>
+<span id="1497">1497</span>
+<span id="1498">1498</span>
+<span id="1499">1499</span>
+<span id="1500">1500</span>
+<span id="1501">1501</span>
+<span id="1502">1502</span>
+<span id="1503">1503</span>
+<span id="1504">1504</span>
+<span id="1505">1505</span>
+<span id="1506">1506</span>
+<span id="1507">1507</span>
+<span id="1508">1508</span>
+<span id="1509">1509</span>
+<span id="1510">1510</span>
+<span id="1511">1511</span>
+<span id="1512">1512</span>
+<span id="1513">1513</span>
+<span id="1514">1514</span>
+<span id="1515">1515</span>
+<span id="1516">1516</span>
+<span id="1517">1517</span>
+<span id="1518">1518</span>
+<span id="1519">1519</span>
+<span id="1520">1520</span>
+<span id="1521">1521</span>
+<span id="1522">1522</span>
+<span id="1523">1523</span>
 </pre><pre class='rust '>
 <span class='comment'>// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class='comment'>// file at the top-level directory of this distribution.</span>
@@ -1517,7 +1572,7 @@
 <span class='kw'>use</span> <span class='ident'>encoding</span>::<span class='ident'>all</span>::<span class='ident'>UTF_16LE</span>;
 <span class='kw'>use</span> <span class='ident'>encoding</span>::{<span class='ident'>Encoding</span>, <span class='ident'>DecoderTrap</span>};
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>borrow</span>::<span class='ident'>Cow</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>collections</span>::<span class='ident'>HashMap</span>;
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>collections</span>::{<span class='ident'>HashMap</span>,<span class='ident'>HashSet</span>};
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>;
@@ -1695,6 +1750,16 @@ pub struct MinidumpMemoryInfoList;
     <span class='ident'>MIPS</span>(<span class='ident'>md</span>::<span class='ident'>MDRawContextMIPS</span>),
 }
 
+<span class='doccomment'>/// Information about which registers are valid in a `MinidumpContext`.</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Debug</span>, <span class='ident'>PartialEq</span>)]</span>
+<span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>MinidumpContextValidity</span> {
+    <span class='comment'>// All registers are valid.</span>
+    <span class='ident'>All</span>,
+    <span class='comment'>// The registers in this set are valid.</span>
+    <span class='prelude-val'>Some</span>(<span class='ident'>HashSet</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span><span class='op'>&gt;</span>),
+}
+
+
 <span class='doccomment'>/// CPU context such as register states.</span>
 <span class='doccomment'>///</span>
 <span class='doccomment'>/// MinidumpContext carries a CPU-specific MDRawContext structure, which</span>
@@ -1709,7 +1774,10 @@ pub struct MinidumpMemoryInfoList;
 <span class='doccomment'>/// user wants).</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>MinidumpContext</span> {
+    <span class='doccomment'>/// The raw CPU register state.</span>
     <span class='kw'>pub</span> <span class='ident'>raw</span> : <span class='ident'>MinidumpRawContext</span>,
+    <span class='doccomment'>/// Which registers are valid in `raw`.</span>
+    <span class='kw'>pub</span> <span class='ident'>valid</span> : <span class='ident'>MinidumpContextValidity</span>,
 }
 
 <span class='doccomment'>/// A region of memory from the process that wrote the minidump.</span>
@@ -1772,18 +1840,18 @@ pub struct MinidumpMemoryInfoList;
     <span class='prelude-val'>Ok</span>(<span class='ident'>buf</span>)
 }
 
-<span class='kw'>fn</span> <span class='ident'>transmogrify</span><span class='op'>&lt;</span><span class='ident'>T</span> : <span class='ident'>Copy</span><span class='op'>&gt;</span>(<span class='ident'>bytes</span> : <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> [<span class='ident'>u8</span>]) <span class='op'>-&gt;</span> <span class='ident'>T</span> {
+<span class='kw'>fn</span> <span class='ident'>transmogrify</span><span class='op'>&lt;</span><span class='ident'>T</span> : <span class='ident'>Copy</span> <span class='op'>+</span> <span class='ident'>Sized</span><span class='op'>&gt;</span>(<span class='ident'>bytes</span> : <span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>]) <span class='op'>-&gt;</span> <span class='ident'>T</span> {
     <span class='kw'>unsafe</span> {
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>val</span> : <span class='ident'>T</span> <span class='op'>=</span> <span class='ident'>mem</span>::<span class='ident'>uninitialized</span>();
-        <span class='ident'>ptr</span>::<span class='ident'>copy</span>(<span class='ident'>bytes</span>.<span class='ident'>as_mut_ptr</span>(), <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>val</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>T</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span>, <span class='ident'>bytes</span>.<span class='ident'>len</span>());
+        <span class='ident'>ptr</span>::<span class='ident'>copy</span>(<span class='ident'>bytes</span>.<span class='ident'>as_ptr</span>(), <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>val</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>T</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span>, <span class='ident'>bytes</span>.<span class='ident'>len</span>());
         <span class='ident'>val</span>
     }
 }
 
-<span class='kw'>fn</span> <span class='ident'>read</span><span class='op'>&lt;</span><span class='ident'>T</span> : <span class='ident'>Copy</span><span class='op'>&gt;</span>(<span class='ident'>f</span> : <span class='kw-2'>&amp;</span><span class='ident'>File</span>) <span class='op'>-&gt;</span> <span class='ident'>io</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
+<span class='kw'>fn</span> <span class='ident'>read</span><span class='op'>&lt;</span><span class='ident'>T</span> : <span class='ident'>Copy</span> <span class='op'>+</span> <span class='ident'>Sized</span><span class='op'>&gt;</span>(<span class='ident'>f</span> : <span class='kw-2'>&amp;</span><span class='ident'>File</span>) <span class='op'>-&gt;</span> <span class='ident'>io</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
     <span class='kw'>let</span> <span class='ident'>size</span> <span class='op'>=</span> <span class='ident'>mem</span>::<span class='ident'>size_of</span>::<span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>();
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>buf</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>read_bytes</span>(<span class='ident'>f</span>, <span class='ident'>size</span>));
-    <span class='prelude-val'>Ok</span>(<span class='ident'>transmogrify</span>::<span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>buf</span>[..]))
+    <span class='kw'>let</span> <span class='ident'>buf</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>read_bytes</span>(<span class='ident'>f</span>, <span class='ident'>size</span>));
+    <span class='prelude-val'>Ok</span>(<span class='ident'>transmogrify</span>::<span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='ident'>buf</span>[..]))
 }
 
 <span class='kw'>fn</span> <span class='ident'>read_string_utf16</span>(<span class='kw-2'>mut</span> <span class='ident'>f</span> : <span class='kw-2'>&amp;</span><span class='ident'>File</span>, <span class='ident'>offset</span> : <span class='ident'>u64</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>String</span>, <span class='ident'>Error</span><span class='op'>&gt;</span> {
@@ -2150,6 +2218,15 @@ pub struct MinidumpMemoryInfoList;
 }
 
 <span class='kw'>impl</span> <span class='ident'>MinidumpContext</span> {
+    <span class='doccomment'>/// Return a MinidumpContext given a `MinidumpRawContext`.</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_raw</span>(<span class='ident'>raw</span> : <span class='ident'>MinidumpRawContext</span>) <span class='op'>-&gt;</span> <span class='ident'>MinidumpContext</span> {
+        <span class='ident'>MinidumpContext</span> {
+            <span class='ident'>raw</span>: <span class='ident'>raw</span>,
+            <span class='ident'>valid</span>: <span class='ident'>MinidumpContextValidity</span>::<span class='ident'>All</span>,
+        }
+    }
+
+    <span class='doccomment'>/// Read a `MinidumpContext` from a file.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>read</span>(<span class='kw-2'>mut</span> <span class='ident'>f</span> : <span class='kw-2'>&amp;</span><span class='ident'>File</span>, <span class='ident'>location</span> : <span class='kw-2'>&amp;</span><span class='ident'>md</span>::<span class='ident'>MDLocationDescriptor</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>MinidumpContext</span>, <span class='ident'>Error</span><span class='op'>&gt;</span> {
         <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>f</span>.<span class='ident'>seek</span>(<span class='ident'>SeekFrom</span>::<span class='ident'>Start</span>(<span class='ident'>location</span>.<span class='ident'>rva</span> <span class='kw'>as</span> <span class='ident'>u64</span>)).<span class='ident'>or</span>(<span class='prelude-val'>Err</span>(<span class='ident'>Error</span>::<span class='ident'>StreamReadFailure</span>)));
         <span class='kw'>let</span> <span class='ident'>expected_size</span> <span class='op'>=</span> <span class='ident'>location</span>.<span class='ident'>data_size</span> <span class='kw'>as</span> <span class='ident'>usize</span>;
@@ -2160,27 +2237,21 @@ pub struct MinidumpMemoryInfoList;
             <span class='kw'>if</span> <span class='ident'>ctx</span>.<span class='ident'>context_flags</span> <span class='kw-2'>&amp;</span> <span class='ident'>md</span>::<span class='ident'>MD_CONTEXT_CPU_MASK</span> <span class='op'>!=</span> <span class='ident'>md</span>::<span class='ident'>MD_CONTEXT_AMD64</span> {
                 <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>Error</span>::<span class='ident'>StreamReadFailure</span>);
             } <span class='kw'>else</span> {
-                <span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>MinidumpContext</span> {
-                    <span class='ident'>raw</span>: <span class='ident'>MinidumpRawContext</span>::<span class='ident'>AMD64</span>(<span class='ident'>ctx</span>)
-                })
+                <span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>MinidumpContext</span>::<span class='ident'>from_raw</span>(<span class='ident'>MinidumpRawContext</span>::<span class='ident'>AMD64</span>(<span class='ident'>ctx</span>)));
             }
         } <span class='kw'>else</span> <span class='kw'>if</span> <span class='ident'>expected_size</span> <span class='op'>==</span> <span class='ident'>mem</span>::<span class='ident'>size_of</span>::<span class='op'>&lt;</span><span class='ident'>md</span>::<span class='ident'>MDRawContextPPC64</span><span class='op'>&gt;</span>() {
             <span class='kw'>let</span> <span class='ident'>ctx</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>read</span>::<span class='op'>&lt;</span><span class='ident'>md</span>::<span class='ident'>MDRawContextPPC64</span><span class='op'>&gt;</span>(<span class='ident'>f</span>).<span class='ident'>or</span>(<span class='prelude-val'>Err</span>(<span class='ident'>Error</span>::<span class='ident'>StreamReadFailure</span>)));
             <span class='kw'>if</span> <span class='ident'>ctx</span>.<span class='ident'>context_flags</span> <span class='kw-2'>&amp;</span> (<span class='ident'>md</span>::<span class='ident'>MD_CONTEXT_CPU_MASK</span> <span class='kw'>as</span> <span class='ident'>u64</span>) <span class='op'>!=</span> <span class='ident'>md</span>::<span class='ident'>MD_CONTEXT_PPC64</span> <span class='kw'>as</span> <span class='ident'>u64</span> {
                 <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>Error</span>::<span class='ident'>StreamReadFailure</span>);
             } <span class='kw'>else</span> {
-                <span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>MinidumpContext</span> {
-                    <span class='ident'>raw</span>: <span class='ident'>MinidumpRawContext</span>::<span class='ident'>PPC64</span>(<span class='ident'>ctx</span>)
-                })
+                <span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>MinidumpContext</span>::<span class='ident'>from_raw</span>(<span class='ident'>MinidumpRawContext</span>::<span class='ident'>PPC64</span>(<span class='ident'>ctx</span>)));
             }
         } <span class='kw'>else</span> <span class='kw'>if</span> <span class='ident'>expected_size</span> <span class='op'>==</span> <span class='ident'>mem</span>::<span class='ident'>size_of</span>::<span class='op'>&lt;</span><span class='ident'>md</span>::<span class='ident'>MDRawContextARM64</span><span class='op'>&gt;</span>() {
             <span class='kw'>let</span> <span class='ident'>ctx</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>read</span>::<span class='op'>&lt;</span><span class='ident'>md</span>::<span class='ident'>MDRawContextARM64</span><span class='op'>&gt;</span>(<span class='ident'>f</span>).<span class='ident'>or</span>(<span class='prelude-val'>Err</span>(<span class='ident'>Error</span>::<span class='ident'>StreamReadFailure</span>)));
             <span class='kw'>if</span> <span class='ident'>ctx</span>.<span class='ident'>context_flags</span> <span class='kw-2'>&amp;</span> (<span class='ident'>md</span>::<span class='ident'>MD_CONTEXT_CPU_MASK</span> <span class='kw'>as</span> <span class='ident'>u64</span>) <span class='op'>!=</span> <span class='ident'>md</span>::<span class='ident'>MD_CONTEXT_ARM64</span> <span class='kw'>as</span> <span class='ident'>u64</span> {
                 <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>Error</span>::<span class='ident'>StreamReadFailure</span>);
             } <span class='kw'>else</span> {
-                <span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>MinidumpContext</span> {
-                    <span class='ident'>raw</span>: <span class='ident'>MinidumpRawContext</span>::<span class='ident'>ARM64</span>(<span class='ident'>ctx</span>)
-                })
+                <span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>MinidumpContext</span>::<span class='ident'>from_raw</span>(<span class='ident'>MinidumpRawContext</span>::<span class='ident'>ARM64</span>(<span class='ident'>ctx</span>)));
             }
         } <span class='kw'>else</span> {
             <span class='comment'>// For everything else, read the flags and determine context</span>
@@ -2213,7 +2284,7 @@ pub struct MinidumpMemoryInfoList;
                 },
                 _ <span class='op'>=&gt;</span> <span class='prelude-val'>None</span>,
             } {
-                <span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>MinidumpContext</span> { <span class='ident'>raw</span>: <span class='ident'>ctx</span> })
+                <span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>MinidumpContext</span>::<span class='ident'>from_raw</span>(<span class='ident'>ctx</span>));
             }
             <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>Error</span>::<span class='ident'>UnknownCPUContext</span>)
         }
@@ -2245,6 +2316,9 @@ pub struct MinidumpMemoryInfoList;
         }
     }
 
+    <span class='doccomment'>/// Write a human-readable description of this `MinidumpContext` to `f`.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// This is very verbose, it is the format used by `minidump_dump`.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>print</span><span class='op'>&lt;</span><span class='ident'>T</span> : <span class='ident'>Write</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>f</span> : <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='ident'>io</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span>()<span class='op'>&gt;</span> {
         <span class='kw'>match</span> <span class='self'>self</span>.<span class='ident'>raw</span> {
             <span class='ident'>MinidumpRawContext</span>::<span class='ident'>X86</span>(<span class='ident'>raw</span>) <span class='op'>=&gt;</span> {
@@ -2454,6 +2528,26 @@ pub struct MinidumpMemoryInfoList;
         })
     }
 
+    <span class='doccomment'>/// Get `mem::size_of::&lt;T&gt;()` bytes of memory at `addr` from this region.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// Return `None` if the requested address range falls out of the bounds</span>
+    <span class='doccomment'>/// of this memory region.</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_memory_at_address</span><span class='op'>&lt;</span><span class='ident'>T</span> : <span class='ident'>Copy</span> <span class='op'>+</span> <span class='ident'>Sized</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>addr</span> : <span class='ident'>u64</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
+        <span class='kw'>let</span> <span class='ident'>in_range</span> <span class='op'>=</span> <span class='op'>|</span><span class='ident'>a</span> : <span class='ident'>u64</span><span class='op'>|</span> {
+            <span class='ident'>a</span> <span class='op'>&gt;=</span> <span class='self'>self</span>.<span class='ident'>base_address</span> <span class='op'>&amp;&amp;</span> <span class='ident'>a</span> <span class='op'>&lt;</span> (<span class='self'>self</span>.<span class='ident'>base_address</span> <span class='op'>+</span> <span class='self'>self</span>.<span class='ident'>size</span>)
+        };
+        <span class='kw'>let</span> <span class='ident'>size</span> <span class='op'>=</span> <span class='ident'>mem</span>::<span class='ident'>size_of</span>::<span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>();
+        <span class='kw'>if</span> <span class='op'>!</span><span class='ident'>in_range</span>(<span class='ident'>addr</span>) <span class='op'>||</span> <span class='op'>!</span><span class='ident'>in_range</span>(<span class='ident'>addr</span> <span class='op'>+</span> <span class='ident'>size</span> <span class='kw'>as</span> <span class='ident'>u64</span> <span class='op'>-</span> <span class='number'>1</span>) {
+            <span class='kw'>return</span> <span class='prelude-val'>None</span>;
+        }
+        <span class='kw'>let</span> <span class='ident'>start</span> <span class='op'>=</span> (<span class='ident'>addr</span> <span class='op'>-</span> <span class='self'>self</span>.<span class='ident'>base_address</span>) <span class='kw'>as</span> <span class='ident'>usize</span>;
+        <span class='kw'>let</span> <span class='ident'>end</span> <span class='op'>=</span> <span class='ident'>start</span> <span class='op'>+</span> <span class='ident'>size</span>;
+        <span class='prelude-val'>Some</span>(<span class='ident'>transmogrify</span>::<span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>bytes</span>[<span class='ident'>start</span>..<span class='ident'>end</span>]))
+    }
+
+    <span class='doccomment'>/// Write a human-readable description of this `MinidumpMemory` to `f`.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// This is very verbose, it is the format used by `minidump_dump`.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>print</span><span class='op'>&lt;</span><span class='ident'>T</span> : <span class='ident'>Write</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>f</span> : <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='ident'>io</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span>()<span class='op'>&gt;</span> {
         <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;0x&quot;</span>));
         <span class='kw'>for</span> <span class='ident'>byte</span> <span class='kw'>in</span> <span class='self'>self</span>.<span class='ident'>bytes</span>.<span class='ident'>iter</span>() {
@@ -2465,6 +2559,9 @@ pub struct MinidumpMemoryInfoList;
 }
 
 <span class='kw'>impl</span> <span class='ident'>MinidumpThread</span> {
+    <span class='doccomment'>/// Write a human-readable description of this `MinidumpThread` to `f`.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// This is very verbose, it is the format used by `minidump_dump`.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>print</span><span class='op'>&lt;</span><span class='ident'>T</span> : <span class='ident'>Write</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>f</span> : <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='ident'>io</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span>()<span class='op'>&gt;</span> {
         <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>r#&quot;MDRawThread
   thread_id                   = {:#x}
@@ -2530,6 +2627,7 @@ pub struct MinidumpMemoryInfoList;
 }
 
 <span class='kw'>impl</span> <span class='ident'>MinidumpThreadList</span> {
+    <span class='doccomment'>/// Get the thread with id `id` from this thread list if it exists.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_thread</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>id</span> : <span class='ident'>u32</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>MinidumpThread</span><span class='op'>&gt;</span> {
         <span class='kw'>match</span> <span class='self'>self</span>.<span class='ident'>thread_ids</span>.<span class='ident'>get</span>(<span class='kw-2'>&amp;</span><span class='ident'>id</span>) {
             <span class='prelude-val'>None</span> <span class='op'>=&gt;</span> <span class='prelude-val'>None</span>,
@@ -2537,6 +2635,9 @@ pub struct MinidumpMemoryInfoList;
         }
     }
 
+    <span class='doccomment'>/// Write a human-readable description of this `MinidumpThreadList` to `f`.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// This is very verbose, it is the format used by `minidump_dump`.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>print</span><span class='op'>&lt;</span><span class='ident'>T</span> : <span class='ident'>Write</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>f</span> : <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='ident'>io</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span>()<span class='op'>&gt;</span> {
         <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>r#&quot;MinidumpThreadList
   thread_count = {}
@@ -2567,6 +2668,9 @@ pub struct MinidumpMemoryInfoList;
 }
 
 <span class='kw'>impl</span> <span class='ident'>MinidumpSystemInfo</span> {
+    <span class='doccomment'>/// Write a human-readable description of this `MinidumpSystemInfo` to `f`.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// This is very verbose, it is the format used by `minidump_dump`.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>print</span><span class='op'>&lt;</span><span class='ident'>T</span> : <span class='ident'>Write</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>f</span> : <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='ident'>io</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span>()<span class='op'>&gt;</span> {
         <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;MDRawSystemInfo
   processor_architecture                     = {:#x}
@@ -2609,7 +2713,7 @@ pub struct MinidumpMemoryInfoList;
             <span class='kw'>let</span> <span class='ident'>padding</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='number'>0</span>; <span class='ident'>mem</span>::<span class='ident'>size_of</span>::<span class='op'>&lt;</span><span class='ident'>md</span>::<span class='ident'>MDRawMiscInfo</span><span class='op'>&gt;</span>() <span class='op'>-</span> <span class='ident'>bytes</span>.<span class='ident'>len</span>()];
             <span class='ident'>bytes</span>.<span class='ident'>extend</span>(<span class='ident'>padding</span>.<span class='ident'>into_iter</span>());
         }
-        <span class='kw'>let</span> <span class='ident'>raw</span> <span class='op'>=</span> <span class='ident'>transmogrify</span>::<span class='op'>&lt;</span><span class='ident'>md</span>::<span class='ident'>MDRawMiscInfo</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>bytes</span>[..]);
+        <span class='kw'>let</span> <span class='ident'>raw</span> <span class='op'>=</span> <span class='ident'>transmogrify</span>::<span class='op'>&lt;</span><span class='ident'>md</span>::<span class='ident'>MDRawMiscInfo</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='ident'>bytes</span>[..]);
         <span class='kw'>let</span> <span class='ident'>process_create_time</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='ident'>flag</span>(<span class='ident'>raw</span>.<span class='ident'>flags1</span>, <span class='ident'>md</span>::<span class='ident'>MD_MISCINFO_FLAGS1_PROCESS_TIMES</span>) {
             <span class='prelude-val'>Some</span>(<span class='ident'>UTC</span>.<span class='ident'>timestamp</span>(<span class='ident'>raw</span>.<span class='ident'>process_create_time</span> <span class='kw'>as</span> <span class='ident'>i64</span>, <span class='number'>0</span>))
         } <span class='kw'>else</span> {
@@ -2623,43 +2727,46 @@ pub struct MinidumpMemoryInfoList;
 }
 
 <span class='kw'>impl</span> <span class='ident'>MinidumpMiscInfo</span> {
-     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>print</span><span class='op'>&lt;</span><span class='ident'>T</span> : <span class='ident'>Write</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>f</span> : <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='ident'>io</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span>()<span class='op'>&gt;</span> {
+    <span class='doccomment'>/// Write a human-readable description of this `MinidumpMiscInfo` to `f`.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// This is very verbose, it is the format used by `minidump_dump`.</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>print</span><span class='op'>&lt;</span><span class='ident'>T</span> : <span class='ident'>Write</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>f</span> : <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='ident'>io</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span>()<span class='op'>&gt;</span> {
         <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;MDRawMiscInfo
   size_of_info                 = {}
   flags1                       = {:#x}
   process_id                   = &quot;</span>,
                     <span class='self'>self</span>.<span class='ident'>raw</span>.<span class='ident'>size_of_info</span>,
                     <span class='self'>self</span>.<span class='ident'>raw</span>.<span class='ident'>flags1</span>));
-         <span class='kw'>if</span> <span class='ident'>flag</span>(<span class='self'>self</span>.<span class='ident'>raw</span>.<span class='ident'>flags1</span>, <span class='ident'>md</span>::<span class='ident'>MD_MISCINFO_FLAGS1_PROCESS_ID</span>) {
-             <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>writeln</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;{}&quot;</span>, <span class='self'>self</span>.<span class='ident'>raw</span>.<span class='ident'>process_id</span>));
-         } <span class='kw'>else</span> {
-             <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>writeln</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;(invalid)&quot;</span>));
-         }
-         <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;  process_create_time          = &quot;</span>));
-         <span class='kw'>if</span> <span class='ident'>flag</span>(<span class='self'>self</span>.<span class='ident'>raw</span>.<span class='ident'>flags1</span>, <span class='ident'>md</span>::<span class='ident'>MD_MISCINFO_FLAGS1_PROCESS_TIMES</span>) {
-             <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>writeln</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;{:#x} {}&quot;</span>,
-                           <span class='self'>self</span>.<span class='ident'>raw</span>.<span class='ident'>process_create_time</span>,
-                           <span class='ident'>format_time_t</span>(<span class='self'>self</span>.<span class='ident'>raw</span>.<span class='ident'>process_create_time</span>),
-                           ));
-         } <span class='kw'>else</span> {
-             <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>writeln</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;(invalid)&quot;</span>));
-         }
-         <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;  process_user_time            = &quot;</span>));
-         <span class='kw'>if</span> <span class='ident'>flag</span>(<span class='self'>self</span>.<span class='ident'>raw</span>.<span class='ident'>flags1</span>, <span class='ident'>md</span>::<span class='ident'>MD_MISCINFO_FLAGS1_PROCESS_TIMES</span>) {
-             <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>writeln</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;{}&quot;</span>, <span class='self'>self</span>.<span class='ident'>raw</span>.<span class='ident'>process_user_time</span>));
-         } <span class='kw'>else</span> {
-             <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>writeln</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;(invalid)&quot;</span>));
-         }
-         <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;  process_kernel_time          = &quot;</span>));
-         <span class='kw'>if</span> <span class='ident'>flag</span>(<span class='self'>self</span>.<span class='ident'>raw</span>.<span class='ident'>flags1</span>, <span class='ident'>md</span>::<span class='ident'>MD_MISCINFO_FLAGS1_PROCESS_TIMES</span>) {
-             <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>writeln</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;{}&quot;</span>, <span class='self'>self</span>.<span class='ident'>raw</span>.<span class='ident'>process_kernel_time</span>));
-         } <span class='kw'>else</span> {
-             <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>writeln</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;(invalid)&quot;</span>));
-         }
-         <span class='comment'>// TODO: version 2-4 fields</span>
-         <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>writeln</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;&quot;</span>));
-         <span class='prelude-val'>Ok</span>(())
-     }
+        <span class='kw'>if</span> <span class='ident'>flag</span>(<span class='self'>self</span>.<span class='ident'>raw</span>.<span class='ident'>flags1</span>, <span class='ident'>md</span>::<span class='ident'>MD_MISCINFO_FLAGS1_PROCESS_ID</span>) {
+            <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>writeln</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;{}&quot;</span>, <span class='self'>self</span>.<span class='ident'>raw</span>.<span class='ident'>process_id</span>));
+        } <span class='kw'>else</span> {
+            <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>writeln</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;(invalid)&quot;</span>));
+        }
+        <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;  process_create_time          = &quot;</span>));
+        <span class='kw'>if</span> <span class='ident'>flag</span>(<span class='self'>self</span>.<span class='ident'>raw</span>.<span class='ident'>flags1</span>, <span class='ident'>md</span>::<span class='ident'>MD_MISCINFO_FLAGS1_PROCESS_TIMES</span>) {
+            <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>writeln</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;{:#x} {}&quot;</span>,
+                          <span class='self'>self</span>.<span class='ident'>raw</span>.<span class='ident'>process_create_time</span>,
+                          <span class='ident'>format_time_t</span>(<span class='self'>self</span>.<span class='ident'>raw</span>.<span class='ident'>process_create_time</span>),
+                          ));
+        } <span class='kw'>else</span> {
+            <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>writeln</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;(invalid)&quot;</span>));
+        }
+        <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;  process_user_time            = &quot;</span>));
+        <span class='kw'>if</span> <span class='ident'>flag</span>(<span class='self'>self</span>.<span class='ident'>raw</span>.<span class='ident'>flags1</span>, <span class='ident'>md</span>::<span class='ident'>MD_MISCINFO_FLAGS1_PROCESS_TIMES</span>) {
+            <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>writeln</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;{}&quot;</span>, <span class='self'>self</span>.<span class='ident'>raw</span>.<span class='ident'>process_user_time</span>));
+        } <span class='kw'>else</span> {
+            <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>writeln</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;(invalid)&quot;</span>));
+        }
+        <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;  process_kernel_time          = &quot;</span>));
+        <span class='kw'>if</span> <span class='ident'>flag</span>(<span class='self'>self</span>.<span class='ident'>raw</span>.<span class='ident'>flags1</span>, <span class='ident'>md</span>::<span class='ident'>MD_MISCINFO_FLAGS1_PROCESS_TIMES</span>) {
+            <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>writeln</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;{}&quot;</span>, <span class='self'>self</span>.<span class='ident'>raw</span>.<span class='ident'>process_kernel_time</span>));
+        } <span class='kw'>else</span> {
+            <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>writeln</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;(invalid)&quot;</span>));
+        }
+        <span class='comment'>// TODO: version 2-4 fields</span>
+        <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>writeln</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;&quot;</span>));
+        <span class='prelude-val'>Ok</span>(())
+    }
 }
 
 <span class='kw'>impl</span> <span class='ident'>MinidumpStream</span> <span class='kw'>for</span> <span class='ident'>MinidumpBreakpadInfo</span> {
@@ -2695,7 +2802,10 @@ pub struct MinidumpMemoryInfoList;
 }
 
 <span class='kw'>impl</span> <span class='ident'>MinidumpBreakpadInfo</span> {
-     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>print</span><span class='op'>&lt;</span><span class='ident'>T</span> : <span class='ident'>Write</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>f</span> : <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='ident'>io</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span>()<span class='op'>&gt;</span> {
+    <span class='doccomment'>/// Write a human-readable description of this `MinidumpBreakpadInfo` to `f`.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// This is very verbose, it is the format used by `minidump_dump`.</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>print</span><span class='op'>&lt;</span><span class='ident'>T</span> : <span class='ident'>Write</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>f</span> : <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='ident'>io</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span>()<span class='op'>&gt;</span> {
         <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;MDRawBreakpadInfo
   validity             = {:#x}
   dump_thread_id       = {}
@@ -2705,8 +2815,8 @@ pub struct MinidumpMemoryInfoList;
                     <span class='ident'>option_or_invalid</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>dump_thread_id</span>),
                     <span class='ident'>option_or_invalid</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>requesting_thread_id</span>),
                     ));
-         <span class='prelude-val'>Ok</span>(())
-     }
+        <span class='prelude-val'>Ok</span>(())
+    }
 }
 
 <span class='kw'>impl</span> <span class='ident'>CrashReason</span> {

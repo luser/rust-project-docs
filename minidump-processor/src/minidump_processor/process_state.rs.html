@@ -381,6 +381,7 @@
 <span id="339">339</span>
 <span id="340">340</span>
 <span id="341">341</span>
+<span id="342">342</span>
 </pre><pre class='rust '>
 <span class='comment'>// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class='comment'>// file at the top-level directory of this distribution.</span>
@@ -398,7 +399,7 @@
 <span class='doccomment'>/// Indicates how well the instruction pointer derived during</span>
 <span class='doccomment'>/// stack walking is trusted. Since the stack walker can resort to</span>
 <span class='doccomment'>/// stack scanning, it can wind up with dubious frames.</span>
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>FrameTrust</span> {
     <span class='doccomment'>/// Unknown</span>
     <span class='prelude-val'>None</span>,
@@ -556,7 +557,8 @@
 
 <span class='kw'>impl</span> <span class='ident'>StackFrame</span> {
     <span class='doccomment'>/// Create a `StackFrame` from a `MinidumpContext`.</span>
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_context</span>(<span class='ident'>context</span> : <span class='kw-2'>&amp;</span><span class='ident'>MinidumpContext</span>) <span class='op'>-&gt;</span> <span class='ident'>StackFrame</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_context</span>(<span class='ident'>context</span> : <span class='ident'>MinidumpContext</span>,
+                        <span class='ident'>trust</span> : <span class='ident'>FrameTrust</span>) <span class='op'>-&gt;</span> <span class='ident'>StackFrame</span> {
         <span class='ident'>StackFrame</span> {
             <span class='ident'>instruction</span>: <span class='ident'>context</span>.<span class='ident'>get_instruction_pointer</span>(),
             <span class='ident'>module</span>: <span class='prelude-val'>None</span>,
@@ -565,8 +567,8 @@
             <span class='ident'>source_file_name</span>: <span class='prelude-val'>None</span>,
             <span class='ident'>source_line</span>: <span class='prelude-val'>None</span>,
             <span class='ident'>source_line_base</span>: <span class='prelude-val'>None</span>,
-            <span class='ident'>trust</span>: <span class='ident'>FrameTrust</span>::<span class='ident'>Context</span>,
-            <span class='ident'>context</span>: <span class='ident'>context</span>.<span class='ident'>clone</span>(),
+            <span class='ident'>trust</span>: <span class='ident'>trust</span>,
+            <span class='ident'>context</span>: <span class='ident'>context</span>,
         }
     }
 
