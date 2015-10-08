@@ -408,6 +408,55 @@
 <span id="366">366</span>
 <span id="367">367</span>
 <span id="368">368</span>
+<span id="369">369</span>
+<span id="370">370</span>
+<span id="371">371</span>
+<span id="372">372</span>
+<span id="373">373</span>
+<span id="374">374</span>
+<span id="375">375</span>
+<span id="376">376</span>
+<span id="377">377</span>
+<span id="378">378</span>
+<span id="379">379</span>
+<span id="380">380</span>
+<span id="381">381</span>
+<span id="382">382</span>
+<span id="383">383</span>
+<span id="384">384</span>
+<span id="385">385</span>
+<span id="386">386</span>
+<span id="387">387</span>
+<span id="388">388</span>
+<span id="389">389</span>
+<span id="390">390</span>
+<span id="391">391</span>
+<span id="392">392</span>
+<span id="393">393</span>
+<span id="394">394</span>
+<span id="395">395</span>
+<span id="396">396</span>
+<span id="397">397</span>
+<span id="398">398</span>
+<span id="399">399</span>
+<span id="400">400</span>
+<span id="401">401</span>
+<span id="402">402</span>
+<span id="403">403</span>
+<span id="404">404</span>
+<span id="405">405</span>
+<span id="406">406</span>
+<span id="407">407</span>
+<span id="408">408</span>
+<span id="409">409</span>
+<span id="410">410</span>
+<span id="411">411</span>
+<span id="412">412</span>
+<span id="413">413</span>
+<span id="414">414</span>
+<span id="415">415</span>
+<span id="416">416</span>
+<span id="417">417</span>
 </pre><pre class='rust '>
 <span class='comment'>// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class='comment'>// file at the top-level directory of this distribution.</span>
@@ -474,6 +523,10 @@
     <span class='doccomment'>/// Encountered an unknown CPU context.</span>
     <span class='ident'>UnknownCPUContext</span>,
 }
+
+<span class='doccomment'>/// General-purpose registers for x86.</span>
+<span class='kw'>static</span> <span class='ident'>X86_REGS</span> : [<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span>; <span class='number'>10</span>] <span class='op'>=</span>
+    [<span class='string'>&quot;eip&quot;</span>, <span class='string'>&quot;esp&quot;</span>, <span class='string'>&quot;ebp&quot;</span>, <span class='string'>&quot;ebx&quot;</span>, <span class='string'>&quot;esi&quot;</span>, <span class='string'>&quot;edi&quot;</span>, <span class='string'>&quot;eax&quot;</span>, <span class='string'>&quot;ecx&quot;</span>, <span class='string'>&quot;edx&quot;</span>, <span class='string'>&quot;efl&quot;</span>];
 
 <span class='comment'>//======================================================</span>
 <span class='comment'>// Implementations</span>
@@ -576,6 +629,51 @@
             <span class='ident'>MinidumpRawContext</span>::<span class='ident'>MIPS</span>(<span class='ident'>ctx</span>) <span class='op'>=&gt;</span> <span class='ident'>ctx</span>.<span class='ident'>iregs</span>[<span class='ident'>md</span>::<span class='ident'>MD_CONTEXT_MIPS_REG_SP</span> <span class='kw'>as</span> <span class='ident'>usize</span>],
         }
     }
+
+    <span class='comment'>//TODO: want an associated type to set register size per-context!</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_register</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>reg</span> : <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>u64</span><span class='op'>&gt;</span> {
+        <span class='kw'>if</span> <span class='kw'>let</span> <span class='ident'>MinidumpContextValidity</span>::<span class='prelude-val'>Some</span>(<span class='kw-2'>ref</span> <span class='ident'>which</span>) <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>valid</span> {
+            <span class='kw'>if</span> <span class='op'>!</span><span class='ident'>which</span>.<span class='ident'>contains</span>(<span class='ident'>reg</span>) {
+                <span class='kw'>return</span> <span class='prelude-val'>None</span>;
+            }
+        }
+        <span class='kw'>match</span> <span class='self'>self</span>.<span class='ident'>raw</span> {
+            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>AMD64</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
+            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>ARM</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
+            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>ARM64</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
+            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>PPC</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
+            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>PPC64</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
+            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>SPARC</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
+            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>X86</span>(<span class='ident'>raw</span>) <span class='op'>=&gt;</span> <span class='kw'>match</span> <span class='ident'>reg</span> {
+                <span class='string'>&quot;eip&quot;</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>raw</span>.<span class='ident'>eip</span>),
+                <span class='string'>&quot;esp&quot;</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>raw</span>.<span class='ident'>esp</span>),
+                <span class='string'>&quot;ebp&quot;</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>raw</span>.<span class='ident'>ebp</span>),
+                <span class='string'>&quot;ebx&quot;</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>raw</span>.<span class='ident'>ebx</span>),
+                <span class='string'>&quot;esi&quot;</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>raw</span>.<span class='ident'>esi</span>),
+                <span class='string'>&quot;edi&quot;</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>raw</span>.<span class='ident'>edi</span>),
+                <span class='string'>&quot;eax&quot;</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>raw</span>.<span class='ident'>eax</span>),
+                <span class='string'>&quot;ecx&quot;</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>raw</span>.<span class='ident'>ecx</span>),
+                <span class='string'>&quot;edx&quot;</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>raw</span>.<span class='ident'>edx</span>),
+                <span class='string'>&quot;efl&quot;</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>raw</span>.<span class='ident'>eflags</span>),
+                _ <span class='op'>=&gt;</span> <span class='prelude-val'>None</span>
+            }.<span class='ident'>and_then</span>(<span class='op'>|</span><span class='ident'>r</span><span class='op'>|</span> <span class='prelude-val'>Some</span>(<span class='ident'>r</span> <span class='kw'>as</span> <span class='ident'>u64</span>)),
+            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>MIPS</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
+        }
+    }
+
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>general_purpose_registers</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> [<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span>] {
+        <span class='kw'>match</span> <span class='self'>self</span>.<span class='ident'>raw</span> {
+            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>AMD64</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
+            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>ARM</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
+            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>ARM64</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
+            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>PPC</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
+            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>PPC64</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
+            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>SPARC</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
+            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>X86</span>(_) <span class='op'>=&gt;</span> <span class='kw-2'>&amp;</span><span class='ident'>X86_REGS</span>[..],
+            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>MIPS</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
+        }
+    }
+
 
     <span class='doccomment'>/// Write a human-readable description of this `MinidumpContext` to `f`.</span>
     <span class='doccomment'>///</span>
