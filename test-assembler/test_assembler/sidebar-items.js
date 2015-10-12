@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["DEFAULT_ENDIAN",""]],"enum":[["Endian","Possible byte orders"]],"struct":[["Section","A section is a sequence of bytes, constructed by appending bytes to the end."]]});
