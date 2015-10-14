@@ -908,6 +908,103 @@
 <span id="866">866</span>
 <span id="867">867</span>
 <span id="868">868</span>
+<span id="869">869</span>
+<span id="870">870</span>
+<span id="871">871</span>
+<span id="872">872</span>
+<span id="873">873</span>
+<span id="874">874</span>
+<span id="875">875</span>
+<span id="876">876</span>
+<span id="877">877</span>
+<span id="878">878</span>
+<span id="879">879</span>
+<span id="880">880</span>
+<span id="881">881</span>
+<span id="882">882</span>
+<span id="883">883</span>
+<span id="884">884</span>
+<span id="885">885</span>
+<span id="886">886</span>
+<span id="887">887</span>
+<span id="888">888</span>
+<span id="889">889</span>
+<span id="890">890</span>
+<span id="891">891</span>
+<span id="892">892</span>
+<span id="893">893</span>
+<span id="894">894</span>
+<span id="895">895</span>
+<span id="896">896</span>
+<span id="897">897</span>
+<span id="898">898</span>
+<span id="899">899</span>
+<span id="900">900</span>
+<span id="901">901</span>
+<span id="902">902</span>
+<span id="903">903</span>
+<span id="904">904</span>
+<span id="905">905</span>
+<span id="906">906</span>
+<span id="907">907</span>
+<span id="908">908</span>
+<span id="909">909</span>
+<span id="910">910</span>
+<span id="911">911</span>
+<span id="912">912</span>
+<span id="913">913</span>
+<span id="914">914</span>
+<span id="915">915</span>
+<span id="916">916</span>
+<span id="917">917</span>
+<span id="918">918</span>
+<span id="919">919</span>
+<span id="920">920</span>
+<span id="921">921</span>
+<span id="922">922</span>
+<span id="923">923</span>
+<span id="924">924</span>
+<span id="925">925</span>
+<span id="926">926</span>
+<span id="927">927</span>
+<span id="928">928</span>
+<span id="929">929</span>
+<span id="930">930</span>
+<span id="931">931</span>
+<span id="932">932</span>
+<span id="933">933</span>
+<span id="934">934</span>
+<span id="935">935</span>
+<span id="936">936</span>
+<span id="937">937</span>
+<span id="938">938</span>
+<span id="939">939</span>
+<span id="940">940</span>
+<span id="941">941</span>
+<span id="942">942</span>
+<span id="943">943</span>
+<span id="944">944</span>
+<span id="945">945</span>
+<span id="946">946</span>
+<span id="947">947</span>
+<span id="948">948</span>
+<span id="949">949</span>
+<span id="950">950</span>
+<span id="951">951</span>
+<span id="952">952</span>
+<span id="953">953</span>
+<span id="954">954</span>
+<span id="955">955</span>
+<span id="956">956</span>
+<span id="957">957</span>
+<span id="958">958</span>
+<span id="959">959</span>
+<span id="960">960</span>
+<span id="961">961</span>
+<span id="962">962</span>
+<span id="963">963</span>
+<span id="964">964</span>
+<span id="965">965</span>
 </pre><pre class='rust '>
 <span class='comment'>// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class='comment'>// file at the top-level directory of this distribution.</span>
@@ -960,6 +1057,23 @@
 <span class='doccomment'>//! l.set_const(0x12345678);</span>
 <span class='doccomment'>//! assert_eq!(s.get_contents().unwrap(),</span>
 <span class='doccomment'>//!            &amp;[0x78, 0x56, 0x34, 0x12]);</span>
+<span class='doccomment'>//! ```</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! `Label`s can also be set to the current length of the `Section` by calling</span>
+<span class='doccomment'>//! [`mark`][mark]:</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! [mark]: struct.Section.html#method.mark</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ```</span>
+<span class='doccomment'>//! use test_assembler::*;</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! let l = Label::new();</span>
+<span class='doccomment'>//! let s = Section::with_endian(Endian::Little);</span>
+<span class='doccomment'>//! let start = s.start();</span>
+<span class='doccomment'>//! s.append_repeated(0, 10)</span>
+<span class='doccomment'>//!     .mark(&amp;l)</span>
+<span class='doccomment'>//!     .append_repeated(0, 10);</span>
+<span class='doccomment'>//! assert_eq!(&amp;l - &amp;start, 10);</span>
 <span class='doccomment'>//! ```</span>
 
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>allow</span>(<span class='ident'>non_snake_case</span>)]</span>
@@ -1200,6 +1314,17 @@
     }
 }
 
+<span class='doccomment'>/// Subtract a `Label` from another `Label`, returning an `i64`.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// If the labels are unrelated this will panic.</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='ident'>Label</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='ident'>Label</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>i64</span>;
+
+    <span class='kw'>fn</span> <span class='ident'>sub</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='ident'>Label</span>) <span class='op'>-&gt;</span> <span class='ident'>i64</span> {
+        <span class='self'>self</span>.<span class='ident'>offset</span>(<span class='ident'>rhs</span>).<span class='ident'>unwrap</span>()
+    }
+}
+
 <span class='doccomment'>/// A marker trait for number types.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Num</span> {}
 
@@ -1273,7 +1398,10 @@
     <span class='kw'>pub</span> <span class='ident'>endian</span> : <span class='ident'>Endian</span>,
     <span class='doccomment'>/// The contents of the section.</span>
     <span class='ident'>contents</span>: <span class='ident'>Cursor</span><span class='op'>&lt;</span><span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>u8</span><span class='op'>&gt;&gt;</span>,
+    <span class='doccomment'>/// References to `Label`s that were added to this `Section`.</span>
     <span class='ident'>references</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>Reference</span><span class='op'>&gt;</span>,
+    <span class='doccomment'>/// A label representing the start of this `Section`.</span>
+    <span class='ident'>start_</span> : <span class='ident'>Label</span>,
 }
 
 <span class='kw'>impl</span> <span class='ident'>Section</span> {
@@ -1288,6 +1416,7 @@
             <span class='ident'>endian</span>: <span class='ident'>endian</span>,
             <span class='ident'>contents</span>: <span class='ident'>Cursor</span>::<span class='ident'>new</span>(<span class='macro'>vec</span><span class='macro'>!</span>()),
             <span class='ident'>references</span>: <span class='macro'>vec</span><span class='macro'>!</span>(),
+            <span class='ident'>start_</span>: <span class='ident'>Label</span>::<span class='ident'>new</span>(),
         }
     }
 
@@ -1320,6 +1449,29 @@
         }
     }
 
+    <span class='doccomment'>/// Return a label representing the start of the section.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// It is up to the user whether this label represents the section&#39;s</span>
+    <span class='doccomment'>/// position in an object file, the section&#39;s address in memory, or</span>
+    <span class='doccomment'>/// what have you; some applications may need both, in which case</span>
+    <span class='doccomment'>/// this simple-minded interface won&#39;t be enough. This class only</span>
+    <span class='doccomment'>/// provides a single start label, for use with the Here and Mark</span>
+    <span class='doccomment'>/// member functions.</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>start</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Label</span> {
+        <span class='self'>self</span>.<span class='ident'>start_</span>.<span class='ident'>clone</span>()
+    }
+
+    <span class='doccomment'>/// A label representing the point at which the next Appended item will appear in the section, relative to start().</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>here</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Label</span> {
+        <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>start_</span> <span class='op'>+</span> <span class='self'>self</span>.<span class='ident'>size</span>() <span class='kw'>as</span> <span class='ident'>i64</span>
+    }
+
+    <span class='doccomment'>/// Set `label` to Here, and return this section.</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>mark</span>(<span class='self'>self</span>, <span class='ident'>label</span> : <span class='kw-2'>&amp;</span><span class='ident'>Label</span>) <span class='op'>-&gt;</span> <span class='ident'>Section</span> {
+        <span class='ident'>label</span>.<span class='ident'>set</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>here</span>());
+        <span class='self'>self</span>
+    }
+
     <span class='doccomment'>/// Append `data` to the end of this section.</span>
     <span class='doccomment'>///</span>
     <span class='doccomment'>/// Return this section.</span>
@@ -1336,6 +1488,18 @@
             <span class='self'>self</span>.<span class='ident'>contents</span>.<span class='ident'>write_u8</span>(<span class='ident'>byte</span>).<span class='ident'>unwrap</span>();
         }
         <span class='self'>self</span>
+    }
+
+    <span class='doccomment'>/// Jump to the next location aligned on an `alignment`-byte boundary, relative to the start of the section.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// Fill the gap with zeroes. `alignment` must be a power of two.</span>
+    <span class='doccomment'>/// Return this section.</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>align</span>(<span class='self'>self</span>, <span class='ident'>alignment</span> : <span class='ident'>u64</span>) <span class='op'>-&gt;</span> <span class='ident'>Section</span> {
+        <span class='comment'>// `alignment` must be a power of two.</span>
+        <span class='macro'>assert</span><span class='macro'>!</span>(((<span class='ident'>alignment</span> <span class='op'>-</span> <span class='number'>1</span>) <span class='kw-2'>&amp;</span> <span class='ident'>alignment</span>) <span class='op'>==</span> <span class='number'>0</span>);
+        <span class='kw'>let</span> <span class='ident'>new_size</span> <span class='op'>=</span> (<span class='self'>self</span>.<span class='ident'>size</span>() <span class='op'>+</span> <span class='ident'>alignment</span> <span class='op'>-</span> <span class='number'>1</span>) <span class='kw-2'>&amp;</span> <span class='op'>!</span>(<span class='ident'>alignment</span> <span class='op'>-</span> <span class='number'>1</span>);
+        <span class='kw'>let</span> <span class='ident'>add</span> <span class='op'>=</span> <span class='ident'>new_size</span> <span class='op'>-</span> <span class='self'>self</span>.<span class='ident'>size</span>();
+        <span class='self'>self</span>.<span class='ident'>append_repeated</span>(<span class='number'>0</span>, <span class='ident'>add</span> <span class='kw'>as</span> <span class='ident'>usize</span>)
     }
 
     <span class='kw'>fn</span> <span class='ident'>store_label_value</span>(<span class='kw-2'>mut</span> <span class='self'>self</span>,
@@ -1632,6 +1796,13 @@
 }
 
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
+<span class='kw'>fn</span> <span class='ident'>label_sub_label</span>() {
+    <span class='kw'>let</span> <span class='ident'>l1</span> <span class='op'>=</span> <span class='ident'>Label</span>::<span class='ident'>new</span>();
+    <span class='kw'>let</span> <span class='ident'>l2</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='ident'>l1</span> <span class='op'>+</span> <span class='number'>10</span>;
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='kw-2'>&amp;</span><span class='ident'>l2</span> <span class='op'>-</span> <span class='kw-2'>&amp;</span><span class='ident'>l1</span>, <span class='number'>10</span>);
+}
+
+<span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>label_set_const</span>() {
     <span class='kw'>let</span> <span class='ident'>l</span> <span class='op'>=</span> <span class='ident'>Label</span>::<span class='ident'>new</span>();
     <span class='kw'>let</span> <span class='ident'>val</span> <span class='op'>=</span> <span class='number'>0x12345678</span>;
@@ -1776,6 +1947,29 @@
     <span class='ident'>l</span>.<span class='ident'>set_const</span>(<span class='number'>10</span>);
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>s</span>.<span class='ident'>get_contents</span>().<span class='ident'>unwrap</span>(),
                <span class='kw-2'>&amp;</span>[<span class='number'>10</span>, <span class='number'>10</span>, <span class='number'>10</span>]);
+}
+
+<span class='attribute'>#[<span class='ident'>test</span>]</span>
+<span class='kw'>fn</span> <span class='ident'>section_start_here</span>() {
+    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>s</span> <span class='op'>=</span> <span class='ident'>Section</span>::<span class='ident'>with_endian</span>(<span class='ident'>Endian</span>::<span class='ident'>Little</span>);
+    <span class='ident'>s</span> <span class='op'>=</span> <span class='ident'>s</span>.<span class='ident'>append_repeated</span>(<span class='number'>0</span>, <span class='number'>10</span>);
+    <span class='kw'>let</span> <span class='ident'>start</span> <span class='op'>=</span> <span class='ident'>s</span>.<span class='ident'>start</span>();
+    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>here</span> <span class='op'>=</span> <span class='ident'>s</span>.<span class='ident'>here</span>();
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>here</span>.<span class='ident'>offset</span>(<span class='kw-2'>&amp;</span><span class='ident'>start</span>).<span class='ident'>unwrap</span>(), <span class='number'>10</span>);
+    <span class='ident'>s</span> <span class='op'>=</span> <span class='ident'>s</span>.<span class='ident'>append_repeated</span>(<span class='number'>0</span>, <span class='number'>10</span>);
+    <span class='ident'>here</span> <span class='op'>=</span> <span class='ident'>s</span>.<span class='ident'>here</span>();
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>here</span>.<span class='ident'>offset</span>(<span class='kw-2'>&amp;</span><span class='ident'>start</span>).<span class='ident'>unwrap</span>(), <span class='number'>20</span>);
+}
+
+<span class='attribute'>#[<span class='ident'>test</span>]</span>
+<span class='kw'>fn</span> <span class='ident'>section_start_mark</span>() {
+    <span class='kw'>let</span> <span class='ident'>s</span> <span class='op'>=</span> <span class='ident'>Section</span>::<span class='ident'>with_endian</span>(<span class='ident'>Endian</span>::<span class='ident'>Little</span>);
+    <span class='kw'>let</span> <span class='ident'>start</span> <span class='op'>=</span> <span class='ident'>s</span>.<span class='ident'>start</span>();
+    <span class='kw'>let</span> <span class='ident'>marked</span> <span class='op'>=</span> <span class='ident'>Label</span>::<span class='ident'>new</span>();
+    <span class='ident'>s</span>.<span class='ident'>append_repeated</span>(<span class='number'>0</span>, <span class='number'>10</span>)
+        .<span class='ident'>mark</span>(<span class='kw-2'>&amp;</span><span class='ident'>marked</span>)
+        .<span class='ident'>append_repeated</span>(<span class='number'>0</span>, <span class='number'>10</span>);
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>marked</span>.<span class='ident'>offset</span>(<span class='kw-2'>&amp;</span><span class='ident'>start</span>).<span class='ident'>unwrap</span>(), <span class='number'>10</span>);
 }
 </pre>
 </section>

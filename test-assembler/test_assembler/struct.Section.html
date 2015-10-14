@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-933' class='srclink' href='../src/test_assembler/lib.rs.html#358-366' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-961' class='srclink' href='../src/test_assembler/lib.rs.html#386-397' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Section {
     pub endian: <a class='enum' href='../test_assembler/enum.Endian.html' title='test_assembler::Endian'>Endian</a>,
     // some fields omitted
@@ -82,6 +82,19 @@ non-constant values.</p>
 
 <p>Consumes the section. If there were still undefined labels,
 return <code>None</code>.</p>
+</div><h4 id='method.start' class='method'><code>fn <a href='#method.start' class='fnname'>start</a>(&amp;self) -&gt; <a class='struct' href='../test_assembler/struct.Label.html' title='test_assembler::Label'>Label</a></code></h4>
+<div class='docblock'><p>Return a label representing the start of the section.</p>
+
+<p>It is up to the user whether this label represents the section&#39;s
+position in an object file, the section&#39;s address in memory, or
+what have you; some applications may need both, in which case
+this simple-minded interface won&#39;t be enough. This class only
+provides a single start label, for use with the Here and Mark
+member functions.</p>
+</div><h4 id='method.here' class='method'><code>fn <a href='#method.here' class='fnname'>here</a>(&amp;self) -&gt; <a class='struct' href='../test_assembler/struct.Label.html' title='test_assembler::Label'>Label</a></code></h4>
+<div class='docblock'><p>A label representing the point at which the next Appended item will appear in the section, relative to start().</p>
+</div><h4 id='method.mark' class='method'><code>fn <a href='#method.mark' class='fnname'>mark</a>(self, label: &amp;<a class='struct' href='../test_assembler/struct.Label.html' title='test_assembler::Label'>Label</a>) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
+<div class='docblock'><p>Set <code>label</code> to Here, and return this section.</p>
 </div><h4 id='method.append_bytes' class='method'><code>fn <a href='#method.append_bytes' class='fnname'>append_bytes</a>(self, data: <a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a href='http://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
 <div class='docblock'><p>Append <code>data</code> to the end of this section.</p>
 
@@ -90,6 +103,11 @@ return <code>None</code>.</p>
 <div class='docblock'><p>Append <code>count</code> copies of <code>byte</code> to the end of this section.</p>
 
 <p>Return this section.</p>
+</div><h4 id='method.align' class='method'><code>fn <a href='#method.align' class='fnname'>align</a>(self, alignment: <a href='http://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
+<div class='docblock'><p>Jump to the next location aligned on an <code>alignment</code>-byte boundary, relative to the start of the section.</p>
+
+<p>Fill the gap with zeroes. <code>alignment</code> must be a power of two.
+Return this section.</p>
 </div><h4 id='method.D8' class='method'><code>fn <a href='#method.D8' class='fnname'>D8</a>&lt;'a, T: <a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a, <a href='http://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>&gt;&gt;(self, byte: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
 <div class='docblock'><p>Append <code>byte</code> with the Section&#39;s default endianness.</p>
 

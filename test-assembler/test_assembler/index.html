@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/test_assembler/lib.rs.html#4-868' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-0' class='srclink' href='../src/test_assembler/lib.rs.html#4-965' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>A set of types for building complex binary streams.</p>
 
 <p>For testing code that consumes binary data, it is necessary to
@@ -86,6 +86,19 @@ are not yet known using the same methods.</p>
 <span class='ident'>l</span>.<span class='ident'>set_const</span>(<span class='number'>0x12345678</span>);
 <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>s</span>.<span class='ident'>get_contents</span>().<span class='ident'>unwrap</span>(),
            <span class='kw-2'>&amp;</span>[<span class='number'>0x78</span>, <span class='number'>0x56</span>, <span class='number'>0x34</span>, <span class='number'>0x12</span>]);</pre>
+
+<p><code>Label</code>s can also be set to the current length of the <code>Section</code> by calling
+<a href="struct.Section.html#method.mark"><code>mark</code></a>:</p>
+<pre class='rust rust-example-rendered'>
+<span class='kw'>use</span> <span class='ident'>test_assembler</span>::<span class='op'>*</span>;
+
+<span class='kw'>let</span> <span class='ident'>l</span> <span class='op'>=</span> <span class='ident'>Label</span>::<span class='ident'>new</span>();
+<span class='kw'>let</span> <span class='ident'>s</span> <span class='op'>=</span> <span class='ident'>Section</span>::<span class='ident'>with_endian</span>(<span class='ident'>Endian</span>::<span class='ident'>Little</span>);
+<span class='kw'>let</span> <span class='ident'>start</span> <span class='op'>=</span> <span class='ident'>s</span>.<span class='ident'>start</span>();
+<span class='ident'>s</span>.<span class='ident'>append_repeated</span>(<span class='number'>0</span>, <span class='number'>10</span>)
+    .<span class='ident'>mark</span>(<span class='kw-2'>&amp;</span><span class='ident'>l</span>)
+    .<span class='ident'>append_repeated</span>(<span class='number'>0</span>, <span class='number'>10</span>);
+<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='kw-2'>&amp;</span><span class='ident'>l</span> <span class='op'>-</span> <span class='kw-2'>&amp;</span><span class='ident'>start</span>, <span class='number'>10</span>);</pre>
 </div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
                     <tr class=' module-item'>
