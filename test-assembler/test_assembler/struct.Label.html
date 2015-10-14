@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-616' class='srclink' href='../src/test_assembler/lib.rs.html#231' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-616' class='srclink' href='../src/test_assembler/lib.rs.html#242' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Label(pub <a class='struct' href='http://doc.rust-lang.org/nightly/alloc/rc/struct.Rc.html' title='alloc::rc::Rc'>Rc</a>&lt;<a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a>&gt;);</pre><div class='docblock'><p>A <code>Label</code> represents a value not yet known that is stored in a <code>Section</code>.</p>
 
 <p>As long as all the labels a section refers to are defined
@@ -102,6 +102,7 @@ other is permitted, and yields a constant.</p>
 <p>The new <code>Label</code> references the existing <code>Label</code>.</p>
 </div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = <a class='struct' href='../test_assembler/struct.Label.html' title='test_assembler::Label'>Label</a></code></h4>
 <h4 id='method.sub' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Sub.html#method.sub' class='fnname'>sub</a>(self, rhs: <a href='http://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>) -&gt; <a class='struct' href='../test_assembler/struct.Label.html' title='test_assembler::Label'>Label</a></code></h4>
+</div><h3 class='impl'><code>impl&lt;'a, T: <a class='trait' href='../test_assembler/trait.Num.html' title='test_assembler::Num'>Num</a>&gt; <a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a, T&gt; for &amp;'a <a class='struct' href='../test_assembler/struct.Label.html' title='test_assembler::Label'>Label</a></code></h3><div class='impl-items'><h4 id='method.to_labelornum' class='method'><code>fn <a href='../test_assembler/trait.ToLabelOrNum.html#method.to_labelornum' class='fnname'>to_labelornum</a>(self) -&gt; <a class='enum' href='../test_assembler/enum.LabelOrNum.html' title='test_assembler::LabelOrNum'>LabelOrNum</a>&lt;T&gt;</code></h4>
 </div><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../test_assembler/struct.Label.html' title='test_assembler::Label'>Label</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../test_assembler/struct.Label.html' title='test_assembler::Label'>Label</a></code></h4>
 <h4 id='method.clone_from' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
 </div></section>

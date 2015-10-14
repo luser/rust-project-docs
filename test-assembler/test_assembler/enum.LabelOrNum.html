@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `DEFAULT_ENDIAN` constant in crate `test_assembler`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, DEFAULT_ENDIAN">
+    <meta name="description" content="API documentation for the Rust `LabelOrNum` enum in crate `test_assembler`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, LabelOrNum">
 
-    <title>test_assembler::DEFAULT_ENDIAN - Rust</title>
+    <title>test_assembler::LabelOrNum - Rust</title>
 
     <link rel="stylesheet" type="text/css" href="../main.css">
 
@@ -26,7 +26,7 @@
 
     <section class="sidebar">
         
-        <p class='location'><a href='index.html'>test_assembler</a></p><script>window.sidebarCurrent = {name: 'DEFAULT_ENDIAN', ty: 'constant', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'><a href='index.html'>test_assembler</a></p><script>window.sidebarCurrent = {name: 'LabelOrNum', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </section>
 
     <nav class="sub">
@@ -40,14 +40,18 @@
         </form>
     </nav>
 
-    <section id='main' class="content constant">
-<h1 class='fqn'><span class='in-band'><a href='index.html'>test_assembler</a>::<wbr><a class='constant' href=''>DEFAULT_ENDIAN</a></span><span class='out-of-band'><span id='render-detail'>
+    <section id='main' class="content enum">
+<h1 class='fqn'><span class='in-band'>Enum <a href='index.html'>test_assembler</a>::<wbr><a class='enum' href=''>LabelOrNum</a></span><span class='out-of-band'><span id='render-detail'>
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-235' class='srclink' href='../src/test_assembler/lib.rs.html#78' title='goto source code'>[src]</a></span></h1>
-<pre class='rust const'>pub const DEFAULT_ENDIAN: <a class='enum' href='../test_assembler/enum.Endian.html' title='test_assembler::Endian'>Endian</a><code> = </code><code>Endian::Little</code></pre><div class='docblock'><p>The default endianness for this system.</p>
-</div></section>
+        </span><a id='src-814' class='srclink' href='../src/test_assembler/lib.rs.html#301-304' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum LabelOrNum&lt;T: <a class='trait' href='../test_assembler/trait.Num.html' title='test_assembler::Num'>Num</a>&gt; {
+    Label(<a class='struct' href='../test_assembler/struct.Label.html' title='test_assembler::Label'>Label</a>),
+    Num(T),
+}</pre><div class='docblock'><p>An enum to hold <code>Label</code>s or <code>Num</code>s.</p>
+</div><h2 class='variants'>Variants</h2>
+<table><tr><td id='variant.Label'><code>Label</code></td><td></td></tr><tr><td id='variant.Num'><code>Num</code></td><td></td></tr></table></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
