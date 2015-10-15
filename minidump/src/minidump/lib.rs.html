@@ -101,6 +101,8 @@
 <span id="59">59</span>
 <span id="60">60</span>
 <span id="61">61</span>
+<span id="62">62</span>
+<span id="63">63</span>
 </pre><pre class='rust '>
 <span class='comment'>// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class='comment'>// file at the top-level directory of this distribution.</span>
@@ -126,6 +128,8 @@
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>chrono</span>;
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>encoding</span>;
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>libc</span>;
+<span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>test</span>)]</span>
+<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>test_assembler</span>;
 
 <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>minidump_format</span>;
 <span class='kw'>mod</span> <span class='ident'>context</span>;

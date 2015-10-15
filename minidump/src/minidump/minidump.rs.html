@@ -1182,6 +1182,25 @@
 <span id="1140">1140</span>
 <span id="1141">1141</span>
 <span id="1142">1142</span>
+<span id="1143">1143</span>
+<span id="1144">1144</span>
+<span id="1145">1145</span>
+<span id="1146">1146</span>
+<span id="1147">1147</span>
+<span id="1148">1148</span>
+<span id="1149">1149</span>
+<span id="1150">1150</span>
+<span id="1151">1151</span>
+<span id="1152">1152</span>
+<span id="1153">1153</span>
+<span id="1154">1154</span>
+<span id="1155">1155</span>
+<span id="1156">1156</span>
+<span id="1157">1157</span>
+<span id="1158">1158</span>
+<span id="1159">1159</span>
+<span id="1160">1160</span>
+<span id="1161">1161</span>
 </pre><pre class='rust '>
 <span class='comment'>// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class='comment'>// file at the top-level directory of this distribution.</span>
@@ -1464,6 +1483,22 @@ pub struct MinidumpMemoryInfoList;
 }
 
 <span class='kw'>impl</span> <span class='ident'>MinidumpModule</span> {
+    <span class='doccomment'>/// Create a `MinidumpModule` with some basic info.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// Useful for testing.</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>base</span> : <span class='ident'>u64</span>, <span class='ident'>size</span> : <span class='ident'>u32</span>, <span class='ident'>name</span> : <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>MinidumpModule</span> {
+        <span class='ident'>MinidumpModule</span> {
+            <span class='ident'>raw</span>: <span class='ident'>md</span>::<span class='ident'>MDRawModule</span> {
+                <span class='ident'>base_of_image</span>: <span class='ident'>base</span>,
+                <span class='ident'>size_of_image</span>: <span class='ident'>size</span>,
+                .. <span class='ident'>md</span>::<span class='ident'>MDRawModule</span>::<span class='ident'>default</span>()
+            },
+            <span class='ident'>name</span>: <span class='ident'>String</span>::<span class='ident'>from</span>(<span class='ident'>name</span>),
+            <span class='ident'>codeview_info</span>: <span class='prelude-val'>None</span>,
+            <span class='ident'>misc_info</span>: <span class='prelude-val'>None</span>,
+        }
+    }
+
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>read</span>(<span class='ident'>f</span> : <span class='kw-2'>&amp;</span><span class='ident'>File</span>, <span class='ident'>raw</span> : <span class='ident'>md</span>::<span class='ident'>MDRawModule</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>MinidumpModule</span>, <span class='ident'>Error</span><span class='op'>&gt;</span> {
         <span class='kw'>let</span> <span class='ident'>name</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>read_string_utf16</span>(<span class='ident'>f</span>, <span class='ident'>raw</span>.<span class='ident'>module_name_rva</span> <span class='kw'>as</span> <span class='ident'>u64</span>)
                         .<span class='ident'>or</span>(<span class='prelude-val'>Err</span>(<span class='ident'>Error</span>::<span class='ident'>CodeViewReadFailure</span>)));
@@ -1669,12 +1704,22 @@ pub struct MinidumpMemoryInfoList;
 }
 
 <span class='kw'>impl</span> <span class='ident'>MinidumpModuleList</span> {
-    <span class='doccomment'>/// Return an empty MinidumpModuleList.</span>
+    <span class='doccomment'>/// Return an empty `MinidumpModuleList`.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>() <span class='op'>-&gt;</span> <span class='ident'>MinidumpModuleList</span> {
         <span class='ident'>MinidumpModuleList</span> {
             <span class='ident'>modules</span>: <span class='macro'>vec</span><span class='macro'>!</span>(),
             <span class='ident'>modules_by_addr</span>: <span class='ident'>range_map</span>::<span class='ident'>RangeMap</span>::<span class='op'>&lt;</span><span class='ident'>usize</span><span class='op'>&gt;</span>::<span class='ident'>new</span>()
         }
+    }
+    <span class='doccomment'>/// Create a `MinidumpModuleList` from a list of `MinidumpModule`s.</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>from_modules</span>(<span class='ident'>modules</span> : <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>MinidumpModule</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>MinidumpModuleList</span> {
+        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>map</span> <span class='op'>=</span> <span class='ident'>range_map</span>::<span class='ident'>RangeMap</span>::<span class='op'>&lt;</span><span class='ident'>usize</span><span class='op'>&gt;</span>::<span class='ident'>new</span>();
+        <span class='kw'>for</span> (<span class='ident'>i</span>, <span class='ident'>module</span>) <span class='kw'>in</span> <span class='ident'>modules</span>.<span class='ident'>iter</span>().<span class='ident'>enumerate</span>() {
+            <span class='kw'>if</span> <span class='kw'>let</span> <span class='prelude-val'>Err</span>(_) <span class='op'>=</span> <span class='ident'>map</span>.<span class='ident'>insert</span>((<span class='ident'>module</span>.<span class='ident'>base_address</span>(), <span class='ident'>module</span>.<span class='ident'>base_address</span>() <span class='op'>+</span> <span class='ident'>module</span>.<span class='ident'>size</span>()), <span class='ident'>i</span>) {
+                <span class='comment'>//TODO: Ignoring errors here from overlapping modules.</span>
+            }
+        }
+        <span class='ident'>MinidumpModuleList</span> { <span class='ident'>modules</span>: <span class='ident'>modules</span>, <span class='ident'>modules_by_addr</span>: <span class='ident'>map</span> }
     }
 
     <span class='doccomment'>/// Returns the module corresponding to the main executable.</span>
@@ -1726,23 +1771,16 @@ pub struct MinidumpMemoryInfoList;
         <span class='kw'>let</span> <span class='ident'>raw_modules</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>read_stream_list</span>::<span class='op'>&lt;</span><span class='ident'>md</span>::<span class='ident'>MDRawModule</span><span class='op'>&gt;</span>(<span class='ident'>f</span>, <span class='ident'>expected_size</span>));
         <span class='comment'>// read auxiliary data for each module</span>
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>modules</span> <span class='op'>=</span> <span class='ident'>Vec</span>::<span class='ident'>with_capacity</span>(<span class='ident'>raw_modules</span>.<span class='ident'>len</span>());
-        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>map</span> <span class='op'>=</span> <span class='ident'>range_map</span>::<span class='ident'>RangeMap</span>::<span class='op'>&lt;</span><span class='ident'>usize</span><span class='op'>&gt;</span>::<span class='ident'>new</span>();
         <span class='kw'>for</span> <span class='ident'>raw</span> <span class='kw'>in</span> <span class='ident'>raw_modules</span>.<span class='ident'>into_iter</span>() {
             <span class='comment'>// TODO: swap</span>
             <span class='kw'>if</span> <span class='ident'>raw</span>.<span class='ident'>size_of_image</span> <span class='op'>==</span> <span class='number'>0</span> <span class='op'>||</span> <span class='ident'>raw</span>.<span class='ident'>size_of_image</span> <span class='kw'>as</span> <span class='ident'>u64</span> <span class='op'>&gt;</span> (<span class='ident'>u64</span>::<span class='ident'>max_value</span>() <span class='op'>-</span> <span class='ident'>raw</span>.<span class='ident'>base_of_image</span>) {
                 <span class='comment'>// Bad image size.</span>
-                <span class='comment'>//println!(&quot;image {}: bad image size: {}&quot;, i, raw.size_of_image);</span>
-                <span class='comment'>// TODO: just drop this module, keep the rest?</span>
-                <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>Error</span>::<span class='ident'>ModuleReadFailure</span>);
-            }
-            <span class='kw'>if</span> <span class='kw'>let</span> <span class='prelude-val'>Err</span>(_) <span class='op'>=</span> <span class='ident'>map</span>.<span class='ident'>insert</span>((<span class='ident'>raw</span>.<span class='ident'>base_of_image</span>, <span class='ident'>raw</span>.<span class='ident'>base_of_image</span> <span class='op'>+</span> <span class='ident'>raw</span>.<span class='ident'>size_of_image</span> <span class='kw'>as</span> <span class='ident'>u64</span>), <span class='ident'>modules</span>.<span class='ident'>len</span>()) {
-                <span class='comment'>// Better error? Module overlaps existing module.</span>
                 <span class='comment'>// TODO: just drop this module, keep the rest?</span>
                 <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>Error</span>::<span class='ident'>ModuleReadFailure</span>);
             }
             <span class='ident'>modules</span>.<span class='ident'>push</span>(<span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>MinidumpModule</span>::<span class='ident'>read</span>(<span class='ident'>f</span>, <span class='ident'>raw</span>)));
         }
-        <span class='prelude-val'>Ok</span>(<span class='ident'>MinidumpModuleList</span> { <span class='ident'>modules</span>: <span class='ident'>modules</span>, <span class='ident'>modules_by_addr</span>: <span class='ident'>map</span> })
+        <span class='prelude-val'>Ok</span>(<span class='ident'>MinidumpModuleList</span>::<span class='ident'>from_modules</span>(<span class='ident'>modules</span>))
     }
 }
 
