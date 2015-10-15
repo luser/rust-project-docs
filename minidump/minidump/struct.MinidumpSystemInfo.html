@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-15207' class='srclink' href='../src/minidump/minidump.rs.html#163-170' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-15228' class='srclink' href='../src/minidump/minidump.rs.html#164-171' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct MinidumpSystemInfo {
     pub raw: <a class='type' href='../minidump/minidump_format/type.MDRawSystemInfo.html' title='minidump::minidump_format::MDRawSystemInfo'>MDRawSystemInfo</a>,
     pub os: <a class='enum' href='../minidump/enum.OS.html' title='minidump::OS'>OS</a>,
@@ -63,7 +63,7 @@
 
 <p>This is very verbose, it is the format used by <code>minidump_dump</code>.</p>
 </div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl MinidumpStream for <a class='struct' href='../minidump/struct.MinidumpSystemInfo.html' title='minidump::MinidumpSystemInfo'>MinidumpSystemInfo</a></code></h3><div class='impl-items'><h4 id='method.stream_type' class='method'><code>fn <a href='#method.stream_type' class='fnname'>stream_type</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a></code></h4>
-<h4 id='method.read' class='method'><code>fn <a href='#method.read' class='fnname'>read</a>(f: &amp;<a class='struct' href='http://doc.rust-lang.org/nightly/std/fs/struct.File.html' title='std::fs::File'>File</a>, expected_size: <a href='http://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../minidump/struct.MinidumpSystemInfo.html' title='minidump::MinidumpSystemInfo'>MinidumpSystemInfo</a>, <a class='enum' href='../minidump/enum.Error.html' title='minidump::Error'>Error</a>&gt;</code></h4>
+<h4 id='method.read' class='method'><code>fn <a href='#method.read' class='fnname'>read</a>&lt;T: <a class='trait' href='../minidump/trait.Readable.html' title='minidump::Readable'>Readable</a>&gt;(f: &amp;mut T, expected_size: <a href='http://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../minidump/struct.MinidumpSystemInfo.html' title='minidump::MinidumpSystemInfo'>MinidumpSystemInfo</a>, <a class='enum' href='../minidump/enum.Error.html' title='minidump::Error'>Error</a>&gt;</code></h4>
 </div></section>
     <section id='search' class="content hidden"></section>
 
