@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["CPU","Known CPU types."],["OS","Known operating systems."]],"struct":[["SystemInfo","Information about the system that produced a `Minidump`."]],"trait":[["EnumFromPrimitive","Derive an enum value from a primitive."]]});
