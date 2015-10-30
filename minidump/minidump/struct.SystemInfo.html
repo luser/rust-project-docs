@@ -24,10 +24,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'><a href='index.html'>minidump</a></p><script>window.sidebarCurrent = {name: 'SystemInfo', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -48,10 +48,10 @@
         </span><a id='src-27018' class='srclink' href='../src/minidump/system_info.rs.html#46-60' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct SystemInfo {
     pub os: <a class='enum' href='../minidump/enum.OS.html' title='minidump::OS'>OS</a>,
-    pub os_version: <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
+    pub os_version: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
     pub cpu: <a class='enum' href='../minidump/enum.CPU.html' title='minidump::CPU'>CPU</a>,
-    pub cpu_info: <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
-    pub cpu_count: <a href='http://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,
+    pub cpu_info: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
+    pub cpu_count: <a href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,
 }</pre><div class='docblock'><p>Information about the system that produced a <code>Minidump</code>.</p>
 </div><h2 class='fields'>Fields</h2>
 <table><tr class='stab '>
@@ -72,10 +72,12 @@ multi-core systems.</p>
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -92,7 +94,7 @@ multi-core systems.</p>
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -102,8 +104,8 @@ multi-core systems.</p>
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>typedef</code> (or
-                    <code>tdef</code>).
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
                 </p>
 
                 <p>
@@ -112,7 +114,7 @@ multi-core systems.</p>
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 

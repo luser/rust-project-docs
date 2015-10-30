@@ -24,10 +24,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'><a href='../../index.html'>chrono</a>::<wbr><a href='../index.html'>format</a></p><script>window.sidebarCurrent = {name: 'strftime', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -52,13 +52,16 @@
                            href="#specifiers">Specifiers</a></h2>
 <p>The following specifiers are available both to formatting and parsing.</p>
 
-<table><thead>
+<table>
+<thead>
 <tr>
 <th>Spec.</th>
 <th>Example</th>
 <th>Description</th>
 </tr>
-</thead><tbody>
+</thead>
+
+<tbody>
 <tr>
 <td></td>
 <td></td>
@@ -404,17 +407,21 @@
 <td></td>
 <td>Literal percent sign.</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 
 <p>It is possible to override the default padding behavior of numeric specifiers <code>%?</code>.
 This is not allowed for other specifiers and will result in the <code>BAD_FORMAT</code> error.</p>
 
-<table><thead>
+<table>
+<thead>
 <tr>
 <th>Modifier</th>
 <th>Description</th>
 </tr>
-</thead><tbody>
+</thead>
+
+<tbody>
 <tr>
 <td><code>%-?</code></td>
 <td>Suppresses any padding including spaces and zeroes. (e.g. <code>%j</code> = <code>012</code>, <code>%-j</code> = <code>12</code>)</td>
@@ -427,7 +434,8 @@ This is not allowed for other specifiers and will result in the <code>BAD_FORMAT
 <td><code>%0?</code></td>
 <td>Uses zeroes as a padding. (e.g. <code>%e</code> = <code>9</code>, <code>%0e</code> = <code>09</code>)</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 
 <p>Notes:</p>
 
@@ -485,10 +493,12 @@ the next character is not <code>.</code> however will print with the specified l
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -505,7 +515,7 @@ the next character is not <code>.</code> however will print with the specified l
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -515,8 +525,8 @@ the next character is not <code>.</code> however will print with the specified l
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>typedef</code> (or
-                    <code>tdef</code>).
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
                 </p>
 
                 <p>
@@ -525,7 +535,7 @@ the next character is not <code>.</code> however will print with the specified l
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 

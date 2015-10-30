@@ -24,10 +24,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'><a href='index.html'>minidump</a></p><script>window.sidebarCurrent = {name: 'CallStack', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -47,7 +47,7 @@
             </a>
         </span><a id='src-23144' class='srclink' href='../src/minidump/process_state.rs.html#106-114' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct CallStack {
-    pub frames: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../minidump/struct.StackFrame.html' title='minidump::StackFrame'>StackFrame</a>&gt;,
+    pub frames: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../minidump/struct.StackFrame.html' title='minidump::StackFrame'>StackFrame</a>&gt;,
     pub info: <a class='enum' href='../minidump/enum.CallStackInfo.html' title='minidump::CallStackInfo'>CallStackInfo</a>,
 }</pre><div class='docblock'><p>A stack of <code>StackFrame</code>s produced as a result of unwinding a thread.</p>
 </div><h2 class='fields'>Fields</h2>
@@ -60,7 +60,7 @@ caller.</p>
                                   <td id='structfield.info'><code>info</code></td><td><div class='docblock'><p>Information about this <code>CallStack</code>.</p>
 </div></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../minidump/struct.CallStack.html' title='minidump::CallStack'>CallStack</a></code></h3><div class='impl-items'><h4 id='method.with_info' class='method'><code>fn <a href='#method.with_info' class='fnname'>with_info</a>(info: <a class='enum' href='../minidump/enum.CallStackInfo.html' title='minidump::CallStackInfo'>CallStackInfo</a>) -&gt; <a class='struct' href='../minidump/struct.CallStack.html' title='minidump::CallStack'>CallStack</a></code></h4>
 <div class='docblock'><p>Create a <code>CallStack</code> with <code>info</code> and no frames.</p>
-</div><h4 id='method.print' class='method'><code>fn <a href='#method.print' class='fnname'>print</a>&lt;T: <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>&gt;(&amp;self, f: &amp;mut T) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></h4>
+</div><h4 id='method.print' class='method'><code>fn <a href='#method.print' class='fnname'>print</a>&lt;T: <a class='trait' href='https://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>&gt;(&amp;self, f: &amp;mut T) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></h4>
 <div class='docblock'><p>Write a human-readable description of the call stack to <code>f</code>.</p>
 
 <p>This is very verbose, it implements the output format used by
@@ -70,10 +70,12 @@ minidump_stackwalk.</p>
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -90,7 +92,7 @@ minidump_stackwalk.</p>
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -100,8 +102,8 @@ minidump_stackwalk.</p>
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>typedef</code> (or
-                    <code>tdef</code>).
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
                 </p>
 
                 <p>
@@ -110,7 +112,7 @@ minidump_stackwalk.</p>
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 

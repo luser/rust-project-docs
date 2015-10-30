@@ -24,10 +24,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'><a href='index.html'>minidump</a></p><script>window.sidebarCurrent = {name: 'MinidumpModule', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -48,8 +48,8 @@
         </span><a id='src-15189' class='srclink' href='../src/minidump/minidump.rs.html#126-135' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct MinidumpModule {
     pub raw: <a class='type' href='../minidump/minidump_format/type.MDRawModule.html' title='minidump::minidump_format::MDRawModule'>MDRawModule</a>,
-    pub codeview_info: <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;CodeView&gt;,
-    pub misc_info: <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='type' href='../minidump/minidump_format/type.MDImageDebugMisc.html' title='minidump::minidump_format::MDImageDebugMisc'>MDImageDebugMisc</a>&gt;,
+    pub codeview_info: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;CodeView&gt;,
+    pub misc_info: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='type' href='../minidump/minidump_format/type.MDImageDebugMisc.html' title='minidump::minidump_format::MDImageDebugMisc'>MDImageDebugMisc</a>&gt;,
     // some fields omitted
 }</pre><div class='docblock'><p>An executable or shared library loaded in the process at the time the <code>Minidump</code> was written.</p>
 </div><h2 class='fields'>Fields</h2>
@@ -59,33 +59,35 @@
                                   <td id='structfield.codeview_info'><code>codeview_info</code></td><td><div class='docblock'><p>A <code>CodeView</code> record, if one is present.</p>
 </div></td></tr><tr class='stab '>
                                   <td id='structfield.misc_info'><code>misc_info</code></td><td><div class='docblock'><p>A misc debug record, if one is present.</p>
-</div></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../minidump/struct.MinidumpModule.html' title='minidump::MinidumpModule'>MinidumpModule</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(base: <a href='http://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>, size: <a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, name: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='struct' href='../minidump/struct.MinidumpModule.html' title='minidump::MinidumpModule'>MinidumpModule</a></code></h4>
+</div></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../minidump/struct.MinidumpModule.html' title='minidump::MinidumpModule'>MinidumpModule</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(base: <a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>, size: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, name: &amp;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='struct' href='../minidump/struct.MinidumpModule.html' title='minidump::MinidumpModule'>MinidumpModule</a></code></h4>
 <div class='docblock'><p>Create a <code>MinidumpModule</code> with some basic info.</p>
 
 <p>Useful for testing.</p>
-</div><h4 id='method.read' class='method'><code>fn <a href='#method.read' class='fnname'>read</a>&lt;T: <a class='trait' href='../minidump/trait.Readable.html' title='minidump::Readable'>Readable</a>&gt;(f: &amp;mut T, raw: <a class='type' href='../minidump/minidump_format/type.MDRawModule.html' title='minidump::minidump_format::MDRawModule'>MDRawModule</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../minidump/struct.MinidumpModule.html' title='minidump::MinidumpModule'>MinidumpModule</a>, <a class='enum' href='../minidump/enum.Error.html' title='minidump::Error'>Error</a>&gt;</code></h4>
-<h4 id='method.print' class='method'><code>fn <a href='#method.print' class='fnname'>print</a>&lt;T: <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>&gt;(&amp;self, f: &amp;mut T) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></h4>
+</div><h4 id='method.read' class='method'><code>fn <a href='#method.read' class='fnname'>read</a>&lt;T: <a class='trait' href='../minidump/trait.Readable.html' title='minidump::Readable'>Readable</a>&gt;(f: &amp;mut T, raw: <a class='type' href='../minidump/minidump_format/type.MDRawModule.html' title='minidump::minidump_format::MDRawModule'>MDRawModule</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../minidump/struct.MinidumpModule.html' title='minidump::MinidumpModule'>MinidumpModule</a>, <a class='enum' href='../minidump/enum.Error.html' title='minidump::Error'>Error</a>&gt;</code></h4>
+<h4 id='method.print' class='method'><code>fn <a href='#method.print' class='fnname'>print</a>&lt;T: <a class='trait' href='https://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>&gt;(&amp;self, f: &amp;mut T) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></h4>
 <div class='docblock'><p>Write a human-readable description of this <code>MinidumpModule</code> to <code>f</code>.</p>
 
 <p>This is very verbose, it is the format used by <code>minidump_dump</code>.</p>
-</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../minidump/struct.MinidumpModule.html' title='minidump::MinidumpModule'>MinidumpModule</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../minidump/struct.MinidumpModule.html' title='minidump::MinidumpModule'>MinidumpModule</a></code></h4>
-<h4 id='method.clone_from' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
-</div><h3 class='impl'><code>impl <a class='trait' href='../minidump/trait.Module.html' title='minidump::Module'>Module</a> for <a class='struct' href='../minidump/struct.MinidumpModule.html' title='minidump::MinidumpModule'>MinidumpModule</a></code></h3><div class='impl-items'><h4 id='method.base_address' class='method'><code>fn <a href='../minidump/trait.Module.html#method.base_address' class='fnname'>base_address</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h4>
-<h4 id='method.size' class='method'><code>fn <a href='../minidump/trait.Module.html#method.size' class='fnname'>size</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h4>
-<h4 id='method.code_file' class='method'><code>fn <a href='../minidump/trait.Module.html#method.code_file' class='fnname'>code_file</a>(&amp;self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;</code></h4>
-<h4 id='method.code_identifier' class='method'><code>fn <a href='../minidump/trait.Module.html#method.code_identifier' class='fnname'>code_identifier</a>(&amp;self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;</code></h4>
-<h4 id='method.debug_file' class='method'><code>fn <a href='../minidump/trait.Module.html#method.debug_file' class='fnname'>debug_file</a>(&amp;self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='enum' href='http://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;&gt;</code></h4>
-<h4 id='method.debug_identifier' class='method'><code>fn <a href='../minidump/trait.Module.html#method.debug_identifier' class='fnname'>debug_identifier</a>(&amp;self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='enum' href='http://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;&gt;</code></h4>
-<h4 id='method.version' class='method'><code>fn <a href='../minidump/trait.Module.html#method.version' class='fnname'>version</a>(&amp;self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='enum' href='http://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;&gt;</code></h4>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../minidump/struct.MinidumpModule.html' title='minidump::MinidumpModule'>MinidumpModule</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../minidump/struct.MinidumpModule.html' title='minidump::MinidumpModule'>MinidumpModule</a></code></h4>
+<h4 id='method.clone_from' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='../minidump/trait.Module.html' title='minidump::Module'>Module</a> for <a class='struct' href='../minidump/struct.MinidumpModule.html' title='minidump::MinidumpModule'>MinidumpModule</a></code></h3><div class='impl-items'><h4 id='method.base_address' class='method'><code>fn <a href='../minidump/trait.Module.html#method.base_address' class='fnname'>base_address</a>(&amp;self) -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h4>
+<h4 id='method.size' class='method'><code>fn <a href='../minidump/trait.Module.html#method.size' class='fnname'>size</a>(&amp;self) -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h4>
+<h4 id='method.code_file' class='method'><code>fn <a href='../minidump/trait.Module.html#method.code_file' class='fnname'>code_file</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;</code></h4>
+<h4 id='method.code_identifier' class='method'><code>fn <a href='../minidump/trait.Module.html#method.code_identifier' class='fnname'>code_identifier</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;</code></h4>
+<h4 id='method.debug_file' class='method'><code>fn <a href='../minidump/trait.Module.html#method.debug_file' class='fnname'>debug_file</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='enum' href='https://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;&gt;</code></h4>
+<h4 id='method.debug_identifier' class='method'><code>fn <a href='../minidump/trait.Module.html#method.debug_identifier' class='fnname'>debug_identifier</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='enum' href='https://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;&gt;</code></h4>
+<h4 id='method.version' class='method'><code>fn <a href='../minidump/trait.Module.html#method.version' class='fnname'>version</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='enum' href='https://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;&gt;</code></h4>
 </div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -102,7 +104,7 @@
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -112,8 +114,8 @@
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>typedef</code> (or
-                    <code>tdef</code>).
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
                 </p>
 
                 <p>
@@ -122,7 +124,7 @@
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 

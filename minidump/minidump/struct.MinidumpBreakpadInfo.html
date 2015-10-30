@@ -24,10 +24,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'><a href='index.html'>minidump</a></p><script>window.sidebarCurrent = {name: 'MinidumpBreakpadInfo', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -47,8 +47,8 @@
             </a>
         </span><a id='src-15253' class='srclink' href='../src/minidump/minidump.rs.html#196-202' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct MinidumpBreakpadInfo {
-    pub dump_thread_id: <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>&gt;,
-    pub requesting_thread_id: <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>&gt;,
+    pub dump_thread_id: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>&gt;,
+    pub requesting_thread_id: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>&gt;,
     // some fields omitted
 }</pre><div class='docblock'><p>Additional information about process state.</p>
 
@@ -60,21 +60,23 @@ at the time the minidump was generated.</p>
                                   <td id='structfield.dump_thread_id'><code>dump_thread_id</code></td><td><div class='docblock'><p>The thread that wrote the minidump.</p>
 </div></td></tr><tr class='stab '>
                                   <td id='structfield.requesting_thread_id'><code>requesting_thread_id</code></td><td><div class='docblock'><p>The thread that requested that a minidump be written.</p>
-</div></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../minidump/struct.MinidumpBreakpadInfo.html' title='minidump::MinidumpBreakpadInfo'>MinidumpBreakpadInfo</a></code></h3><div class='impl-items'><h4 id='method.print' class='method'><code>fn <a href='#method.print' class='fnname'>print</a>&lt;T: <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>&gt;(&amp;self, f: &amp;mut T) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></h4>
+</div></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../minidump/struct.MinidumpBreakpadInfo.html' title='minidump::MinidumpBreakpadInfo'>MinidumpBreakpadInfo</a></code></h3><div class='impl-items'><h4 id='method.print' class='method'><code>fn <a href='#method.print' class='fnname'>print</a>&lt;T: <a class='trait' href='https://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>&gt;(&amp;self, f: &amp;mut T) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></h4>
 <div class='docblock'><p>Write a human-readable description of this <code>MinidumpBreakpadInfo</code> to <code>f</code>.</p>
 
 <p>This is very verbose, it is the format used by <code>minidump_dump</code>.</p>
-</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl MinidumpStream for <a class='struct' href='../minidump/struct.MinidumpBreakpadInfo.html' title='minidump::MinidumpBreakpadInfo'>MinidumpBreakpadInfo</a></code></h3><div class='impl-items'><h4 id='method.stream_type' class='method'><code>fn <a href='#method.stream_type' class='fnname'>stream_type</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a></code></h4>
-<h4 id='method.read' class='method'><code>fn <a href='#method.read' class='fnname'>read</a>&lt;T: <a class='trait' href='../minidump/trait.Readable.html' title='minidump::Readable'>Readable</a>&gt;(f: &amp;mut T, expected_size: <a href='http://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../minidump/struct.MinidumpBreakpadInfo.html' title='minidump::MinidumpBreakpadInfo'>MinidumpBreakpadInfo</a>, <a class='enum' href='../minidump/enum.Error.html' title='minidump::Error'>Error</a>&gt;</code></h4>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl MinidumpStream for <a class='struct' href='../minidump/struct.MinidumpBreakpadInfo.html' title='minidump::MinidumpBreakpadInfo'>MinidumpBreakpadInfo</a></code></h3><div class='impl-items'><h4 id='method.stream_type' class='method'><code>fn <a href='#method.stream_type' class='fnname'>stream_type</a>() -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a></code></h4>
+<h4 id='method.read' class='method'><code>fn <a href='#method.read' class='fnname'>read</a>&lt;T: <a class='trait' href='../minidump/trait.Readable.html' title='minidump::Readable'>Readable</a>&gt;(f: &amp;mut T, expected_size: <a href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../minidump/struct.MinidumpBreakpadInfo.html' title='minidump::MinidumpBreakpadInfo'>MinidumpBreakpadInfo</a>, <a class='enum' href='../minidump/enum.Error.html' title='minidump::Error'>Error</a>&gt;</code></h4>
 </div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -91,7 +93,7 @@ at the time the minidump was generated.</p>
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -101,8 +103,8 @@ at the time the minidump was generated.</p>
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>typedef</code> (or
-                    <code>tdef</code>).
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
                 </p>
 
                 <p>
@@ -111,7 +113,7 @@ at the time the minidump was generated.</p>
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 
