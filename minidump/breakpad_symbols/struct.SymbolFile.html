@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `SymbolFile` struct in crate `breakpad_symbols`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, SymbolFile">
+
+    <title>breakpad_symbols::SymbolFile - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='index.html'>breakpad_symbols</a></p><script>window.sidebarCurrent = {name: 'SymbolFile', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>breakpad_symbols</a>::<wbr><a class='struct' href=''>SymbolFile</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-11028' class='srclink' href='../src/breakpad_symbols/sym_file/types.rs.html#127-138' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct SymbolFile {
+    pub files: <a class='struct' href='https://doc.rust-lang.org/nightly/std/collections/hash/map/struct.HashMap.html' title='std::collections::hash::map::HashMap'>HashMap</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
+    pub publics: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;PublicSymbol&gt;,
+    pub functions: <a class='struct' href='../range_map/struct.RangeMap.html' title='range_map::RangeMap'>RangeMap</a>&lt;Function&gt;,
+    pub cfi_stack_info: <a class='struct' href='../range_map/struct.RangeMap.html' title='range_map::RangeMap'>RangeMap</a>&lt;StackInfoCFI&gt;,
+    pub win_stack_info: <a class='struct' href='../range_map/struct.RangeMap.html' title='range_map::RangeMap'>RangeMap</a>&lt;StackInfoWin&gt;,
+}</pre><div class='docblock'><p>A parsed .sym file containing debug symbols.</p>
+</div><h2 class='fields'>Fields</h2>
+<table><tr class='stab '>
+                                  <td id='structfield.files'><code>files</code></td><td><div class='docblock'><p>The set of source files involved in compilation.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.publics'><code>publics</code></td><td><div class='docblock'><p>Publicly visible symbols.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.functions'><code>functions</code></td><td><div class='docblock'><p>Functions.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.cfi_stack_info'><code>cfi_stack_info</code></td><td><div class='docblock'><p>DWARF CFI unwind information.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.win_stack_info'><code>win_stack_info</code></td><td><div class='docblock'><p>Windows unwind information.</p>
+</div></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../breakpad_symbols/struct.SymbolFile.html' title='breakpad_symbols::SymbolFile'>SymbolFile</a></code></h3><div class='impl-items'><h4 id='method.from_file' class='method'><code>fn <a href='#method.from_file' class='fnname'>from_file</a>(path: &amp;<a class='struct' href='https://doc.rust-lang.org/nightly/std/path/struct.Path.html' title='std::path::Path'>Path</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../breakpad_symbols/struct.SymbolFile.html' title='breakpad_symbols::SymbolFile'>SymbolFile</a>, &amp;'static <a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;</code></h4>
+<div class='docblock'><p>Parse a <code>SymbolFile</code> from <code>path</code>.</p>
+</div><h4 id='method.find_nearest_public' class='method'><code>fn <a href='#method.find_nearest_public' class='fnname'>find_nearest_public</a>(&amp;self, addr: <a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;&amp;PublicSymbol&gt;</code></h4>
+<div class='docblock'><p>Find the nearest <code>PublicSymbol</code> whose address is less than or equal to <code>addr</code>.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='struct' href='../breakpad_symbols/struct.SymbolFile.html' title='breakpad_symbols::SymbolFile'>SymbolFile</a></code></h3><div class='impl-items'><h4 id='method.eq' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='struct' href='../breakpad_symbols/struct.SymbolFile.html' title='breakpad_symbols::SymbolFile'>SymbolFile</a>) -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ne' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class='struct' href='../breakpad_symbols/struct.SymbolFile.html' title='breakpad_symbols::SymbolFile'>SymbolFile</a>) -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='struct' href='../breakpad_symbols/struct.SymbolFile.html' title='breakpad_symbols::SymbolFile'>SymbolFile</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "breakpad_symbols";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script async src="../search-index.js"></script>
+</body>
+</html>

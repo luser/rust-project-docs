@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["RangeMap","A `RangeMap` stores values of `T` that map to `Range`s."]],"type":[["Addr","The value type for the endpoints of ranges."],["Entry","Implementation detail, entries are internally a tuple."],["Range","Entries are indexed by a `Range` of `Addr`s."]]});
+initSidebarItems({"struct":[["RangeMap","A `RangeMap` stores values of `T` that map to `Range`s."]],"type":[["Addr","The value type for the endpoints of ranges."],["Entry","Entry type, a tuple of `Range` and `T`."],["Range","Entries are indexed by a `Range` of `Addr`s."]]});

@@ -1284,7 +1284,7 @@ pub struct MinidumpMemoryInfoList;
 */</span>
 
 <span class='doccomment'>/// The fundamental unit of data in a `Minidump`.</span>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>MinidumpStream</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>MinidumpStream</span> : <span class='ident'>Sized</span> {
     <span class='comment'>//TODO: associated_consts when that stabilizes.</span>
     <span class='doccomment'>/// The stream type constant used in the `md::MDRawDirectory` entry.</span>
     <span class='kw'>fn</span> <span class='ident'>stream_type</span>() <span class='op'>-&gt;</span> <span class='ident'>u32</span>;
