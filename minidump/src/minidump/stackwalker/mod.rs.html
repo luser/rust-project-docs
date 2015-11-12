@@ -109,8 +109,6 @@
 <span id="67">67</span>
 <span id="68">68</span>
 <span id="69">69</span>
-<span id="70">70</span>
-<span id="71">71</span>
 </pre><pre class='rust '>
 <span class='comment'>// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class='comment'>// file at the top-level directory of this distribution.</span>
@@ -120,6 +118,7 @@
 <span class='kw'>mod</span> <span class='ident'>x86</span>;
 <span class='kw'>mod</span> <span class='ident'>unwind</span>;
 
+<span class='kw'>use</span> <span class='ident'>breakpad_symbols</span>::<span class='ident'>Symbolizer</span>;
 <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='op'>*</span>;
 <span class='kw'>use</span> <span class='ident'>process_state</span>::<span class='op'>*</span>;
 
@@ -144,23 +143,21 @@
 }
 
 <span class='kw'>fn</span> <span class='ident'>fill_source_line_info</span>(<span class='ident'>frame</span> : <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>StackFrame</span>,
-                         <span class='ident'>modules</span> : <span class='kw-2'>&amp;</span><span class='ident'>MinidumpModuleList</span>) {
-    <span class='comment'>// get module at frame instruction</span>
+                         <span class='ident'>modules</span> : <span class='kw-2'>&amp;</span><span class='ident'>MinidumpModuleList</span>,
+                         <span class='ident'>symbolizer</span> : <span class='kw-2'>&amp;</span><span class='ident'>Symbolizer</span>) {
+    <span class='comment'>// Find the module whose address range covers this frame&#39;s instruction.</span>
     <span class='kw'>if</span> <span class='kw'>let</span> <span class='kw-2'>&amp;</span><span class='prelude-val'>Some</span>(<span class='ident'>module</span>) <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='ident'>modules</span>.<span class='ident'>module_at_address</span>(<span class='ident'>frame</span>.<span class='ident'>instruction</span>) {
         <span class='comment'>// FIXME: this shouldn&#39;t need to clone, we should be able to use</span>
         <span class='comment'>// the same lifetime as the module list that&#39;s passed in.</span>
         <span class='ident'>frame</span>.<span class='ident'>module</span> <span class='op'>=</span> <span class='prelude-val'>Some</span>(<span class='ident'>module</span>.<span class='ident'>clone</span>());
-        <span class='comment'>// see if we have symbols for this module</span>
-        <span class='comment'>// - if not, see if we can find symbols for this module</span>
-        <span class='comment'>// -- if so, load them</span>
-        <span class='comment'>// - fill in info using symbols</span>
+        <span class='ident'>symbolizer</span>.<span class='ident'>fill_symbol</span>(<span class='ident'>module</span>, <span class='ident'>frame</span>);
     }
 }
 
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>walk_stack</span>(<span class='ident'>maybe_context</span> : <span class='kw-2'>&amp;</span><span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>MinidumpContext</span><span class='op'>&gt;</span>,
                   <span class='ident'>stack_memory</span> : <span class='kw-2'>&amp;</span><span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>MinidumpMemory</span><span class='op'>&gt;</span>,
-                  <span class='ident'>modules</span> : <span class='kw-2'>&amp;</span><span class='ident'>MinidumpModuleList</span>) <span class='op'>-&gt;</span> <span class='ident'>CallStack</span> {
-    <span class='comment'>// context, memory, modules, symbolizer</span>
+                  <span class='ident'>modules</span> : <span class='kw-2'>&amp;</span><span class='ident'>MinidumpModuleList</span>,
+                  <span class='ident'>symbolizer</span> : <span class='kw-2'>&amp;</span><span class='ident'>Symbolizer</span>) <span class='op'>-&gt;</span> <span class='ident'>CallStack</span> {
     <span class='comment'>// Begin with the context frame, and keep getting callers until there are</span>
     <span class='comment'>// no more.</span>
     <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>frames</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>();
@@ -169,8 +166,7 @@
         <span class='kw'>let</span> <span class='ident'>ctx</span> <span class='op'>=</span> <span class='ident'>context</span>.<span class='ident'>clone</span>();
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>maybe_frame</span> <span class='op'>=</span> <span class='prelude-val'>Some</span>(<span class='ident'>StackFrame</span>::<span class='ident'>from_context</span>(<span class='ident'>ctx</span>, <span class='ident'>FrameTrust</span>::<span class='ident'>Context</span>));
         <span class='kw'>while</span> <span class='kw'>let</span> <span class='prelude-val'>Some</span>(<span class='kw-2'>mut</span> <span class='ident'>frame</span>) <span class='op'>=</span> <span class='ident'>maybe_frame</span> {
-            <span class='comment'>// TODO: provide a SourceLineResolver trait?</span>
-            <span class='ident'>fill_source_line_info</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>frame</span>, <span class='ident'>modules</span>);
+            <span class='ident'>fill_source_line_info</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>frame</span>, <span class='ident'>modules</span>, <span class='ident'>symbolizer</span>);
             <span class='ident'>frames</span>.<span class='ident'>push</span>(<span class='ident'>frame</span>);
             <span class='kw'>let</span> <span class='ident'>last_frame</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='ident'>frames</span>.<span class='ident'>last</span>().<span class='ident'>unwrap</span>();
             <span class='ident'>maybe_frame</span> <span class='op'>=</span> <span class='ident'>get_caller_frame</span>(<span class='ident'>last_frame</span>, <span class='ident'>stack_memory</span>);

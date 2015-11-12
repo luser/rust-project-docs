@@ -45,14 +45,14 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-22825' class='srclink' href='../src/minidump/process_state.rs.html#37-88' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-22832' class='srclink' href='../src/minidump/process_state.rs.html#38-89' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct StackFrame {
     pub instruction: <a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
     pub module: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../minidump/struct.MinidumpModule.html' title='minidump::MinidumpModule'>MinidumpModule</a>&gt;,
     pub function_name: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
     pub function_base: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>&gt;,
     pub source_file_name: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
-    pub source_line: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>&gt;,
+    pub source_line: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>&gt;,
     pub source_line_base: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>&gt;,
     pub trust: <a class='enum' href='../minidump/enum.FrameTrust.html' title='minidump::FrameTrust'>FrameTrust</a>,
     pub context: <a class='struct' href='../minidump/struct.MinidumpContext.html' title='minidump::MinidumpContext'>MinidumpContext</a>,
@@ -83,7 +83,10 @@ of this frame.</p>
 </div><h4 id='method.return_address' class='method'><code>fn <a href='#method.return_address' class='fnname'>return_address</a>(&amp;self) -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h4>
 <div class='docblock'><p>Return the actual return address, as saved on the stack or in a
 register. See the comments for <code>StackFrame::instruction</code> for details.</p>
-</div></div></section>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='../breakpad_symbols/trait.FrameSymbolizer.html' title='breakpad_symbols::FrameSymbolizer'>FrameSymbolizer</a> for <a class='struct' href='../minidump/struct.StackFrame.html' title='minidump::StackFrame'>StackFrame</a></code></h3><div class='impl-items'><h4 id='method.get_instruction' class='method'><code>fn <a href='../breakpad_symbols/trait.FrameSymbolizer.html#method.get_instruction' class='fnname'>get_instruction</a>(&amp;self) -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h4>
+<h4 id='method.set_function' class='method'><code>fn <a href='../breakpad_symbols/trait.FrameSymbolizer.html#method.set_function' class='fnname'>set_function</a>(&amp;mut self, name: &amp;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, base: <a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>)</code></h4>
+<h4 id='method.set_source_file' class='method'><code>fn <a href='../breakpad_symbols/trait.FrameSymbolizer.html#method.set_source_file' class='fnname'>set_source_file</a>(&amp;mut self, file: &amp;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, line: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, base: <a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>)</code></h4>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
