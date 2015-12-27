@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-11150' class='srclink' href='../../../src/chrono/naive/datetime.rs.html#24-27' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1358' class='srclink' href='../../../src/chrono/naive/datetime.rs.html#24-27' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct NaiveDateTime {
     // some fields omitted
 }</pre><div class='docblock'><p>ISO 8601 combined date and time without timezone.</p>
@@ -57,7 +57,7 @@ Equivalent to <code>date.and_time(time)</code> and many other helper constructor
 since January 1, 1970 0:00:00 UTC (aka &quot;UNIX timestamp&quot;)
 and the number of nanoseconds since the last whole non-leap second.</p>
 
-<p>Fails on the out-of-range number of seconds and/or invalid nanosecond.</p>
+<p>Panics on the out-of-range number of seconds and/or invalid nanosecond.</p>
 </div><h4 id='method.from_timestamp_opt' class='method'><code>fn <a href='#method.from_timestamp_opt' class='fnname'>from_timestamp_opt</a>(secs: <a href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>, nsecs: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../../chrono/naive/datetime/struct.NaiveDateTime.html' title='chrono::naive::datetime::NaiveDateTime'>NaiveDateTime</a>&gt;</code></h4>
 <div class='docblock'><p>Makes a new <code>NaiveDateTime</code> from the number of non-leap seconds
 since January 1, 1970 0:00:00 UTC (aka &quot;UNIX timestamp&quot;)

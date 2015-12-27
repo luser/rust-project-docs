@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-13109' class='srclink' href='../../src/chrono/date.rs.html#26-29' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1656' class='srclink' href='../../src/chrono/date.rs.html#26-29' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Date&lt;Tz: <a class='trait' href='../../chrono/offset/trait.TimeZone.html' title='chrono::offset::TimeZone'>TimeZone</a>&gt; {
     // some fields omitted
 }</pre><div class='docblock'><p>ISO 8601 calendar date with time zone.</p>
@@ -56,12 +56,12 @@ The local date should be constructed via the <code>TimeZone</code> trait.</p>
 <div class='docblock'><p>Makes a new <code>DateTime</code> from the current date and given <code>NaiveTime</code>.
 The offset in the current date is preserved.</p>
 
-<p>Fails on invalid datetime.</p>
+<p>Panics on invalid datetime.</p>
 </div><h4 id='method.and_hms' class='method'><code>fn <a href='#method.and_hms' class='fnname'>and_hms</a>(&amp;self, hour: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, min: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, sec: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>) -&gt; <a class='struct' href='../../chrono/datetime/struct.DateTime.html' title='chrono::datetime::DateTime'>DateTime</a>&lt;Tz&gt;</code></h4>
 <div class='docblock'><p>Makes a new <code>DateTime</code> from the current date, hour, minute and second.
 The offset in the current date is preserved.</p>
 
-<p>Fails on invalid hour, minute and/or second.</p>
+<p>Panics on invalid hour, minute and/or second.</p>
 </div><h4 id='method.and_hms_opt' class='method'><code>fn <a href='#method.and_hms_opt' class='fnname'>and_hms_opt</a>(&amp;self, hour: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, min: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, sec: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../chrono/datetime/struct.DateTime.html' title='chrono::datetime::DateTime'>DateTime</a>&lt;Tz&gt;&gt;</code></h4>
 <div class='docblock'><p>Makes a new <code>DateTime</code> from the current date, hour, minute and second.
 The offset in the current date is preserved.</p>
@@ -72,7 +72,7 @@ The offset in the current date is preserved.</p>
 The millisecond part can exceed 1,000 in order to represent the leap second.
 The offset in the current date is preserved.</p>
 
-<p>Fails on invalid hour, minute, second and/or millisecond.</p>
+<p>Panics on invalid hour, minute, second and/or millisecond.</p>
 </div><h4 id='method.and_hms_milli_opt' class='method'><code>fn <a href='#method.and_hms_milli_opt' class='fnname'>and_hms_milli_opt</a>(&amp;self, hour: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, min: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, sec: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, milli: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../chrono/datetime/struct.DateTime.html' title='chrono::datetime::DateTime'>DateTime</a>&lt;Tz&gt;&gt;</code></h4>
 <div class='docblock'><p>Makes a new <code>DateTime</code> from the current date, hour, minute, second and millisecond.
 The millisecond part can exceed 1,000 in order to represent the leap second.
@@ -84,7 +84,7 @@ The offset in the current date is preserved.</p>
 The microsecond part can exceed 1,000,000 in order to represent the leap second.
 The offset in the current date is preserved.</p>
 
-<p>Fails on invalid hour, minute, second and/or microsecond.</p>
+<p>Panics on invalid hour, minute, second and/or microsecond.</p>
 </div><h4 id='method.and_hms_micro_opt' class='method'><code>fn <a href='#method.and_hms_micro_opt' class='fnname'>and_hms_micro_opt</a>(&amp;self, hour: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, min: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, sec: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, micro: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../chrono/datetime/struct.DateTime.html' title='chrono::datetime::DateTime'>DateTime</a>&lt;Tz&gt;&gt;</code></h4>
 <div class='docblock'><p>Makes a new <code>DateTime</code> from the current date, hour, minute, second and microsecond.
 The microsecond part can exceed 1,000,000 in order to represent the leap second.
@@ -96,7 +96,7 @@ The offset in the current date is preserved.</p>
 The nanosecond part can exceed 1,000,000,000 in order to represent the leap second.
 The offset in the current date is preserved.</p>
 
-<p>Fails on invalid hour, minute, second and/or nanosecond.</p>
+<p>Panics on invalid hour, minute, second and/or nanosecond.</p>
 </div><h4 id='method.and_hms_nano_opt' class='method'><code>fn <a href='#method.and_hms_nano_opt' class='fnname'>and_hms_nano_opt</a>(&amp;self, hour: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, min: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, sec: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, nano: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../chrono/datetime/struct.DateTime.html' title='chrono::datetime::DateTime'>DateTime</a>&lt;Tz&gt;&gt;</code></h4>
 <div class='docblock'><p>Makes a new <code>DateTime</code> from the current date, hour, minute, second and nanosecond.
 The nanosecond part can exceed 1,000,000,000 in order to represent the leap second.
@@ -106,7 +106,7 @@ The offset in the current date is preserved.</p>
 </div><h4 id='method.succ' class='method'><code>fn <a href='#method.succ' class='fnname'>succ</a>(&amp;self) -&gt; <a class='struct' href='../../chrono/date/struct.Date.html' title='chrono::date::Date'>Date</a>&lt;Tz&gt;</code></h4>
 <div class='docblock'><p>Makes a new <code>Date</code> for the next date.</p>
 
-<p>Fails when <code>self</code> is the last representable date.</p>
+<p>Panics when <code>self</code> is the last representable date.</p>
 </div><h4 id='method.succ_opt' class='method'><code>fn <a href='#method.succ_opt' class='fnname'>succ_opt</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../chrono/date/struct.Date.html' title='chrono::date::Date'>Date</a>&lt;Tz&gt;&gt;</code></h4>
 <div class='docblock'><p>Makes a new <code>Date</code> for the next date.</p>
 
@@ -114,7 +114,7 @@ The offset in the current date is preserved.</p>
 </div><h4 id='method.pred' class='method'><code>fn <a href='#method.pred' class='fnname'>pred</a>(&amp;self) -&gt; <a class='struct' href='../../chrono/date/struct.Date.html' title='chrono::date::Date'>Date</a>&lt;Tz&gt;</code></h4>
 <div class='docblock'><p>Makes a new <code>Date</code> for the prior date.</p>
 
-<p>Fails when <code>self</code> is the first representable date.</p>
+<p>Panics when <code>self</code> is the first representable date.</p>
 </div><h4 id='method.pred_opt' class='method'><code>fn <a href='#method.pred_opt' class='fnname'>pred_opt</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../chrono/date/struct.Date.html' title='chrono::date::Date'>Date</a>&lt;Tz&gt;&gt;</code></h4>
 <div class='docblock'><p>Makes a new <code>Date</code> for the prior date.</p>
 

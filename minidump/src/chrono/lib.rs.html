@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-0a35038f75765ae4/chrono-0.2.16/src/lib.rs`.">
+    <meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-0a35038f75765ae4/chrono-0.2.17/src/lib.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>lib.rs.html -- source</title>
@@ -672,6 +672,8 @@
 <span id="630">630</span>
 <span id="631">631</span>
 <span id="632">632</span>
+<span id="633">633</span>
+<span id="634">634</span>
 </pre><pre class='rust '>
 <span class='comment'>// This is a part of rust-chrono.</span>
 <span class='comment'>// Copyright (c) 2014-2015, Kang Seonghoon.</span>
@@ -679,7 +681,7 @@
 
 <span class='doccomment'>/*!
 
-# Chrono 0.2.16
+# Chrono 0.2.17
 
 Date and time handling for Rust. (also known as `rust-chrono`)
 It aims to be a feature-complete superset of the [time](https://github.com/rust-lang/time) library.
@@ -950,6 +952,8 @@ Advanced time zone handling is not yet supported (but is planned in 0.3).
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>num</span>;
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>feature</span> <span class='op'>=</span> <span class='string'>&quot;rustc-serialize&quot;</span>)]</span>
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>rustc_serialize</span>;
+<span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>feature</span> <span class='op'>=</span> <span class='string'>&quot;serde&quot;</span>)]</span>
+<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>serde</span>;
 
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>duration</span>::<span class='ident'>Duration</span>;
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>offset</span>::{<span class='ident'>TimeZone</span>, <span class='ident'>Offset</span>, <span class='ident'>LocalResult</span>};

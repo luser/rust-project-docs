@@ -45,10 +45,9 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/chrono/lib.rs.html#5-632' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-0' class='srclink' href='../src/chrono/lib.rs.html#5-634' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'>
-<h1 id="chrono-0.2.16" class='section-header'><a
-                           href="#chrono-0.2.16">Chrono 0.2.16</a></h1>
+<h1 id='chrono-0217' class='section-header'><a href='#chrono-0217'>Chrono 0.2.17</a></h1>
 <p>Date and time handling for Rust. (also known as <code>rust-chrono</code>)
 It aims to be a feature-complete superset of the <a href="https://github.com/rust-lang/time">time</a> library.
 In particular,</p>
@@ -69,8 +68,7 @@ the wiki</a></li>
 <li>Luis de Bethencourt&#39;s <a href="https://github.com/luisbg/rust-datetime">rust-datetime</a></li>
 </ul>
 
-<h2 id="usage" class='section-header'><a
-                           href="#usage">Usage</a></h2>
+<h2 id='usage' class='section-header'><a href='#usage'>Usage</a></h2>
 <p>Put this in your <code>Cargo.toml</code>:</p>
 
 <pre><code class="language-toml">[dependencies]
@@ -81,17 +79,14 @@ chrono = &quot;0.2&quot;
 <pre class='rust rust-example-rendered'>
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>chrono</span>;</pre>
 
-<h2 id="overview" class='section-header'><a
-                           href="#overview">Overview</a></h2>
-<h3 id="duration" class='section-header'><a
-                           href="#duration">Duration</a></h3>
+<h2 id='overview' class='section-header'><a href='#overview'>Overview</a></h2>
+<h3 id='duration' class='section-header'><a href='#duration'>Duration</a></h3>
 <p>Chrono used to have a <code>Duration</code> type, which represents the time span.
 This is a simple reexport of
 <a href="http://doc.rust-lang.org/time/time/struct.Duration.html"><code>time::Duration</code></a> type
 provided by crates.io <code>time</code> crate (which originally comes from Chrono).</p>
 
-<h3 id="date-and-time" class='section-header'><a
-                           href="#date-and-time">Date and Time</a></h3>
+<h3 id='date-and-time' class='section-header'><a href='#date-and-time'>Date and Time</a></h3>
 <p>Chrono provides a <code>DateTime</code> type for the combined date and time.</p>
 
 <p><code>DateTime</code>, among others, is timezone-aware and
@@ -236,8 +231,7 @@ It issues an error when the input contains an explicit offset different from the
 <span class='comment'>// oops, the weekday is incorrect!</span>
 <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>UTC</span>.<span class='ident'>datetime_from_str</span>(<span class='string'>&quot;Sat Nov 28 12:00:09 2014&quot;</span>, <span class='string'>&quot;%a %b %e %T %Y&quot;</span>).<span class='ident'>is_err</span>());</pre>
 
-<h3 id="individual-date" class='section-header'><a
-                           href="#individual-date">Individual date</a></h3>
+<h3 id='individual-date' class='section-header'><a href='#individual-date'>Individual date</a></h3>
 <p>Chrono also provides an individual date type (<code>Date</code>).
 It also has time zones attached, and have to be constructed via time zones.
 Most operations available to <code>DateTime</code> are also available to <code>Date</code> whenever appropriate.</p>
@@ -257,8 +251,7 @@ Most operations available to <code>DateTime</code> are also available to <code>D
 <p><code>DateTime</code> has <code>date</code> method which returns a <code>Date</code> which represents its date component.
 There is also a <code>time</code> method, which simply returns a naive local time described below.</p>
 
-<h3 id="naive-date-and-time" class='section-header'><a
-                           href="#naive-date-and-time">Naive date and time</a></h3>
+<h3 id='naive-date-and-time' class='section-header'><a href='#naive-date-and-time'>Naive date and time</a></h3>
 <p>Chrono provides naive counterparts to <code>Date</code>, (non-existent) <code>Time</code> and <code>DateTime</code>
 as <code>NaiveDate</code>, <code>NaiveTime</code> and <code>NaiveDateTime</code> respectively.</p>
 
@@ -270,8 +263,7 @@ They are mostly useful for building blocks for higher-level types.</p>
 <code>naive_local</code> returns a view to the naive local time,
 and <code>naive_utc</code> returns a view to the naive UTC time.</p>
 
-<h2 id="limitations" class='section-header'><a
-                           href="#limitations">Limitations</a></h2>
+<h2 id='limitations' class='section-header'><a href='#limitations'>Limitations</a></h2>
 <p>Only proleptic Gregorian calendar (i.e. extended to support older dates) is supported.
 Be very careful if you really have to deal with pre-20C dates, they can be in Julian or others.</p>
 

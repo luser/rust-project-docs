@@ -47,14 +47,12 @@
             </a>
         </span><a id='src-0' class='srclink' href='../src/encoding/lib.rs.html#5-276' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'>
-<h1 id="encoding-0.2.32" class='section-header'><a
-                           href="#encoding-0.2.32">Encoding 0.2.32</a></h1>
+<h1 id='encoding-0232' class='section-header'><a href='#encoding-0232'>Encoding 0.2.32</a></h1>
 <p>Character encoding support for Rust. (also known as <code>rust-encoding</code>)
 It is based on <a href="http://encoding.spec.whatwg.org/">WHATWG Encoding Standard</a>,
 and also provides an advanced interface for error detection and recovery.</p>
 
-<h2 id="usage" class='section-header'><a
-                           href="#usage">Usage</a></h2>
+<h2 id='usage' class='section-header'><a href='#usage'>Usage</a></h2>
 <p>Put this in your <code>Cargo.toml</code>:</p>
 
 <pre><code class="language-toml">[dependencies]
@@ -71,8 +69,7 @@ encoding = &quot;=0.2.32&quot;
 <pre class='rust rust-example-rendered'>
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>encoding</span>;</pre>
 
-<h2 id="overview" class='section-header'><a
-                           href="#overview">Overview</a></h2>
+<h2 id='overview' class='section-header'><a href='#overview'>Overview</a></h2>
 <p>To encode a string:</p>
 <pre class='rust rust-example-rendered'>
 <span class='kw'>use</span> <span class='ident'>encoding</span>::{<span class='ident'>Encoding</span>, <span class='ident'>EncoderTrap</span>};
@@ -165,8 +162,7 @@ encoding = &quot;=0.2.32&quot;
 <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>WINDOWS_949</span>.<span class='ident'>decode</span>(<span class='ident'>broken</span>, <span class='ident'>DecoderTrap</span>::<span class='ident'>Replace</span>),
            <span class='prelude-val'>Ok</span>(<span class='string'>&quot;\u{c6b0}\u{c640}\u{fffd}\u{c559}&quot;</span>.<span class='ident'>to_string</span>()));</pre>
 
-<h2 id="types-and-stuffs" class='section-header'><a
-                           href="#types-and-stuffs">Types and Stuffs</a></h2>
+<h2 id='types-and-stuffs' class='section-header'><a href='#types-and-stuffs'>Types and Stuffs</a></h2>
 <p>There are three main entry points to Encoding.</p>
 
 <p><strong><code>Encoding</code></strong> is a single character encoding.
@@ -202,8 +198,7 @@ Otherwise it is identical to <code>RawEncoder</code>s.</p>
 <code>RawEncoder</code> and <code>RawDecoder</code> is experimental and can change substantially.
 See the additional documents on <code>encoding::types</code> module for more information on them.</p>
 
-<h2 id="supported-encodings" class='section-header'><a
-                           href="#supported-encodings">Supported Encodings</a></h2>
+<h2 id='supported-encodings' class='section-header'><a href='#supported-encodings'>Supported Encodings</a></h2>
 <p>Encoding covers all encodings specified by WHATWG Encoding Standard and some more:</p>
 
 <ul>

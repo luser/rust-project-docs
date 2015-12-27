@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1496' class='srclink' href='../../../src/chrono/offset/fixed.rs.html#20-22' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-301' class='srclink' href='../../../src/chrono/offset/fixed.rs.html#20-22' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct FixedOffset {
     // some fields omitted
 }</pre><div class='docblock'><p>The time zone with fixed offset, from UTC-23:59:59 to UTC+23:59:59.</p>
@@ -53,7 +53,7 @@
 <div class='docblock'><p>Makes a new <code>FixedOffset</code> for the Eastern Hemisphere with given timezone difference.
 The negative <code>secs</code> means the Western Hemisphere.</p>
 
-<p>Fails on the out-of-bound <code>secs</code>.</p>
+<p>Panics on the out-of-bound <code>secs</code>.</p>
 </div><h4 id='method.east_opt' class='method'><code>fn <a href='#method.east_opt' class='fnname'>east_opt</a>(secs: <a href='https://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../../chrono/offset/fixed/struct.FixedOffset.html' title='chrono::offset::fixed::FixedOffset'>FixedOffset</a>&gt;</code></h4>
 <div class='docblock'><p>Makes a new <code>FixedOffset</code> for the Eastern Hemisphere with given timezone difference.
 The negative <code>secs</code> means the Western Hemisphere.</p>
@@ -63,7 +63,7 @@ The negative <code>secs</code> means the Western Hemisphere.</p>
 <div class='docblock'><p>Makes a new <code>FixedOffset</code> for the Western Hemisphere with given timezone difference.
 The negative <code>secs</code> means the Eastern Hemisphere.</p>
 
-<p>Fails on the out-of-bound <code>secs</code>.</p>
+<p>Panics on the out-of-bound <code>secs</code>.</p>
 </div><h4 id='method.west_opt' class='method'><code>fn <a href='#method.west_opt' class='fnname'>west_opt</a>(secs: <a href='https://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../../chrono/offset/fixed/struct.FixedOffset.html' title='chrono::offset::fixed::FixedOffset'>FixedOffset</a>&gt;</code></h4>
 <div class='docblock'><p>Makes a new <code>FixedOffset</code> for the Western Hemisphere with given timezone difference.
 The negative <code>secs</code> means the Eastern Hemisphere.</p>

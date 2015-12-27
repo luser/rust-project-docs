@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-0a35038f75765ae4/chrono-0.2.16/src/date.rs`.">
+    <meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-0a35038f75765ae4/chrono-0.2.17/src/date.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>date.rs.html -- source</title>
@@ -498,7 +498,7 @@
     <span class='doccomment'>/// Makes a new `DateTime` from the current date and given `NaiveTime`.</span>
     <span class='doccomment'>/// The offset in the current date is preserved.</span>
     <span class='doccomment'>///</span>
-    <span class='doccomment'>/// Fails on invalid datetime.</span>
+    <span class='doccomment'>/// Panics on invalid datetime.</span>
     <span class='attribute'>#[<span class='ident'>inline</span>]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>and_time</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>time</span>: <span class='ident'>NaiveTime</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>DateTime</span><span class='op'>&lt;</span><span class='ident'>Tz</span><span class='op'>&gt;&gt;</span> {
         <span class='kw'>let</span> <span class='ident'>localdt</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>naive_local</span>().<span class='ident'>and_time</span>(<span class='ident'>time</span>);
@@ -508,7 +508,7 @@
     <span class='doccomment'>/// Makes a new `DateTime` from the current date, hour, minute and second.</span>
     <span class='doccomment'>/// The offset in the current date is preserved.</span>
     <span class='doccomment'>///</span>
-    <span class='doccomment'>/// Fails on invalid hour, minute and/or second.</span>
+    <span class='doccomment'>/// Panics on invalid hour, minute and/or second.</span>
     <span class='attribute'>#[<span class='ident'>inline</span>]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>and_hms</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>hour</span>: <span class='ident'>u32</span>, <span class='ident'>min</span>: <span class='ident'>u32</span>, <span class='ident'>sec</span>: <span class='ident'>u32</span>) <span class='op'>-&gt;</span> <span class='ident'>DateTime</span><span class='op'>&lt;</span><span class='ident'>Tz</span><span class='op'>&gt;</span> {
         <span class='self'>self</span>.<span class='ident'>and_hms_opt</span>(<span class='ident'>hour</span>, <span class='ident'>min</span>, <span class='ident'>sec</span>).<span class='ident'>expect</span>(<span class='string'>&quot;invalid time&quot;</span>)
@@ -527,7 +527,7 @@
     <span class='doccomment'>/// The millisecond part can exceed 1,000 in order to represent the leap second.</span>
     <span class='doccomment'>/// The offset in the current date is preserved.</span>
     <span class='doccomment'>///</span>
-    <span class='doccomment'>/// Fails on invalid hour, minute, second and/or millisecond.</span>
+    <span class='doccomment'>/// Panics on invalid hour, minute, second and/or millisecond.</span>
     <span class='attribute'>#[<span class='ident'>inline</span>]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>and_hms_milli</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>hour</span>: <span class='ident'>u32</span>, <span class='ident'>min</span>: <span class='ident'>u32</span>, <span class='ident'>sec</span>: <span class='ident'>u32</span>, <span class='ident'>milli</span>: <span class='ident'>u32</span>) <span class='op'>-&gt;</span> <span class='ident'>DateTime</span><span class='op'>&lt;</span><span class='ident'>Tz</span><span class='op'>&gt;</span> {
         <span class='self'>self</span>.<span class='ident'>and_hms_milli_opt</span>(<span class='ident'>hour</span>, <span class='ident'>min</span>, <span class='ident'>sec</span>, <span class='ident'>milli</span>).<span class='ident'>expect</span>(<span class='string'>&quot;invalid time&quot;</span>)
@@ -548,7 +548,7 @@
     <span class='doccomment'>/// The microsecond part can exceed 1,000,000 in order to represent the leap second.</span>
     <span class='doccomment'>/// The offset in the current date is preserved.</span>
     <span class='doccomment'>///</span>
-    <span class='doccomment'>/// Fails on invalid hour, minute, second and/or microsecond.</span>
+    <span class='doccomment'>/// Panics on invalid hour, minute, second and/or microsecond.</span>
     <span class='attribute'>#[<span class='ident'>inline</span>]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>and_hms_micro</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>hour</span>: <span class='ident'>u32</span>, <span class='ident'>min</span>: <span class='ident'>u32</span>, <span class='ident'>sec</span>: <span class='ident'>u32</span>, <span class='ident'>micro</span>: <span class='ident'>u32</span>) <span class='op'>-&gt;</span> <span class='ident'>DateTime</span><span class='op'>&lt;</span><span class='ident'>Tz</span><span class='op'>&gt;</span> {
         <span class='self'>self</span>.<span class='ident'>and_hms_micro_opt</span>(<span class='ident'>hour</span>, <span class='ident'>min</span>, <span class='ident'>sec</span>, <span class='ident'>micro</span>).<span class='ident'>expect</span>(<span class='string'>&quot;invalid time&quot;</span>)
@@ -569,7 +569,7 @@
     <span class='doccomment'>/// The nanosecond part can exceed 1,000,000,000 in order to represent the leap second.</span>
     <span class='doccomment'>/// The offset in the current date is preserved.</span>
     <span class='doccomment'>///</span>
-    <span class='doccomment'>/// Fails on invalid hour, minute, second and/or nanosecond.</span>
+    <span class='doccomment'>/// Panics on invalid hour, minute, second and/or nanosecond.</span>
     <span class='attribute'>#[<span class='ident'>inline</span>]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>and_hms_nano</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>hour</span>: <span class='ident'>u32</span>, <span class='ident'>min</span>: <span class='ident'>u32</span>, <span class='ident'>sec</span>: <span class='ident'>u32</span>, <span class='ident'>nano</span>: <span class='ident'>u32</span>) <span class='op'>-&gt;</span> <span class='ident'>DateTime</span><span class='op'>&lt;</span><span class='ident'>Tz</span><span class='op'>&gt;</span> {
         <span class='self'>self</span>.<span class='ident'>and_hms_nano_opt</span>(<span class='ident'>hour</span>, <span class='ident'>min</span>, <span class='ident'>sec</span>, <span class='ident'>nano</span>).<span class='ident'>expect</span>(<span class='string'>&quot;invalid time&quot;</span>)
@@ -588,7 +588,7 @@
 
     <span class='doccomment'>/// Makes a new `Date` for the next date.</span>
     <span class='doccomment'>///</span>
-    <span class='doccomment'>/// Fails when `self` is the last representable date.</span>
+    <span class='doccomment'>/// Panics when `self` is the last representable date.</span>
     <span class='attribute'>#[<span class='ident'>inline</span>]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>succ</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Date</span><span class='op'>&lt;</span><span class='ident'>Tz</span><span class='op'>&gt;</span> {
         <span class='self'>self</span>.<span class='ident'>succ_opt</span>().<span class='ident'>expect</span>(<span class='string'>&quot;out of bound&quot;</span>)
@@ -604,7 +604,7 @@
 
     <span class='doccomment'>/// Makes a new `Date` for the prior date.</span>
     <span class='doccomment'>///</span>
-    <span class='doccomment'>/// Fails when `self` is the first representable date.</span>
+    <span class='doccomment'>/// Panics when `self` is the first representable date.</span>
     <span class='attribute'>#[<span class='ident'>inline</span>]</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>pred</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Date</span><span class='op'>&lt;</span><span class='ident'>Tz</span><span class='op'>&gt;</span> {
         <span class='self'>self</span>.<span class='ident'>pred_opt</span>().<span class='ident'>expect</span>(<span class='string'>&quot;out of bound&quot;</span>)
