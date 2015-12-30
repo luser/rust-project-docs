@@ -567,6 +567,71 @@
 <span id="525">525</span>
 <span id="526">526</span>
 <span id="527">527</span>
+<span id="528">528</span>
+<span id="529">529</span>
+<span id="530">530</span>
+<span id="531">531</span>
+<span id="532">532</span>
+<span id="533">533</span>
+<span id="534">534</span>
+<span id="535">535</span>
+<span id="536">536</span>
+<span id="537">537</span>
+<span id="538">538</span>
+<span id="539">539</span>
+<span id="540">540</span>
+<span id="541">541</span>
+<span id="542">542</span>
+<span id="543">543</span>
+<span id="544">544</span>
+<span id="545">545</span>
+<span id="546">546</span>
+<span id="547">547</span>
+<span id="548">548</span>
+<span id="549">549</span>
+<span id="550">550</span>
+<span id="551">551</span>
+<span id="552">552</span>
+<span id="553">553</span>
+<span id="554">554</span>
+<span id="555">555</span>
+<span id="556">556</span>
+<span id="557">557</span>
+<span id="558">558</span>
+<span id="559">559</span>
+<span id="560">560</span>
+<span id="561">561</span>
+<span id="562">562</span>
+<span id="563">563</span>
+<span id="564">564</span>
+<span id="565">565</span>
+<span id="566">566</span>
+<span id="567">567</span>
+<span id="568">568</span>
+<span id="569">569</span>
+<span id="570">570</span>
+<span id="571">571</span>
+<span id="572">572</span>
+<span id="573">573</span>
+<span id="574">574</span>
+<span id="575">575</span>
+<span id="576">576</span>
+<span id="577">577</span>
+<span id="578">578</span>
+<span id="579">579</span>
+<span id="580">580</span>
+<span id="581">581</span>
+<span id="582">582</span>
+<span id="583">583</span>
+<span id="584">584</span>
+<span id="585">585</span>
+<span id="586">586</span>
+<span id="587">587</span>
+<span id="588">588</span>
+<span id="589">589</span>
+<span id="590">590</span>
+<span id="591">591</span>
+<span id="592">592</span>
 </pre><pre class='rust '>
 <span class='comment'>// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class='comment'>// file at the top-level directory of this distribution.</span>
@@ -574,8 +639,12 @@
 <span class='doccomment'>//! A library for working with [Google Breakpad][breakpad]&#39;s</span>
 <span class='doccomment'>//! text-format [symbol files][symbolfiles].</span>
 <span class='doccomment'>//!</span>
+<span class='doccomment'>//! The highest-level API provided by this crate is to use the</span>
+<span class='doccomment'>//! [`Symbolizer`][symbolizer] struct.</span>
+<span class='doccomment'>//!</span>
 <span class='doccomment'>//! [breakpad]: https://chromium.googlesource.com/breakpad/breakpad/+/master/</span>
 <span class='doccomment'>//! [symbolfiles]: https://chromium.googlesource.com/breakpad/breakpad/+/master/docs/symbol_files.md</span>
+<span class='doccomment'>//! [symbolizer]: struct.Symbolizer.html</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! # Examples</span>
 <span class='doccomment'>//!</span>
@@ -592,15 +661,6 @@
 <span class='doccomment'>//!                                             0x1010)</span>
 <span class='doccomment'>//!               .unwrap(),</span>
 <span class='doccomment'>//!               &quot;vswprintf&quot;);</span>
-<span class='doccomment'>//!</span>
-<span class='doccomment'>//! // Pass in a module and a frame to get full information including</span>
-<span class='doccomment'>//! // source file and line.</span>
-<span class='doccomment'>//! let m = SimpleModule::new(&quot;test_app.pdb&quot;, &quot;5A9832E5287241C1838ED98914E9B7FF1&quot;);</span>
-<span class='doccomment'>//! let mut f = SimpleFrame::with_instruction(0x1010);</span>
-<span class='doccomment'>//! symbolizer.fill_symbol(&amp;m, &amp;mut f);</span>
-<span class='doccomment'>//! assert_eq!(f.function.unwrap(), &quot;vswprintf&quot;);</span>
-<span class='doccomment'>//! assert_eq!(f.source_file.unwrap(), r&quot;c:\program files\microsoft visual studio 8\vc\include\swprintf.inl&quot;);</span>
-<span class='doccomment'>//! assert_eq!(f.source_line.unwrap(), 51);</span>
 <span class='doccomment'>//! ```</span>
 
 <span class='attribute'>#[<span class='ident'>macro_use</span>]</span>
@@ -649,10 +709,14 @@
     <span class='kw'>fn</span> <span class='ident'>version</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>Cow</span><span class='op'>&lt;</span><span class='ident'>str</span><span class='op'>&gt;&gt;</span>;
 }
 
-<span class='doccomment'>/// A `Module` implementation that holds arbitrary data.</span>
+<span class='doccomment'>/// A [`Module`][module] implementation that holds arbitrary data.</span>
 <span class='doccomment'>///</span>
 <span class='doccomment'>/// This can be useful for getting symbols for a module when you</span>
-<span class='doccomment'>/// have a debug id and filename but not an actual minidump.</span>
+<span class='doccomment'>/// have a debug id and filename but not an actual minidump. If you have a</span>
+<span class='doccomment'>/// minidump, you should be using [`MinidumpModule`][minidumpmodule].</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// [module]: trait.Module.html</span>
+<span class='doccomment'>/// [minidumpmodule]: ../minidump/struct.MinidumpModule.html</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Default</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>SimpleModule</span> {
     <span class='kw'>pub</span> <span class='ident'>base_address</span> : <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>u64</span><span class='op'>&gt;</span>,
@@ -724,6 +788,14 @@
 <span class='doccomment'>/// removed.</span>
 <span class='doccomment'>/// `extension` is the expected extension for the symbol filename, generally</span>
 <span class='doccomment'>/// *sym* if Breakpad text format symbols are expected.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// The debug filename and debug identifier can be found in the</span>
+<span class='doccomment'>/// [first line][module_line] of the symbol file output by the dump_syms tool.</span>
+<span class='doccomment'>/// You can use [this script][packagesymbols] to run dump_syms and put the</span>
+<span class='doccomment'>/// resulting symbol files in the proper directory structure.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// [module_line]: https://chromium.googlesource.com/breakpad/breakpad/+/master/docs/symbol_files.md#MODULE-records</span>
+<span class='doccomment'>/// [packagesymbols]: https://gist.github.com/luser/2ad32d290f224782fcfc#file-packagesymbols-py</span>
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>relative_symbol_path</span>(<span class='ident'>module</span> : <span class='kw-2'>&amp;</span><span class='ident'>Module</span>, <span class='ident'>extension</span> : <span class='kw-2'>&amp;</span><span class='ident'>str</span>)
                             <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>String</span><span class='op'>&gt;</span> {
     <span class='ident'>module</span>.<span class='ident'>debug_file</span>().<span class='ident'>and_then</span>(<span class='op'>|</span><span class='ident'>debug_file</span><span class='op'>|</span> {
@@ -748,19 +820,23 @@
     <span class='ident'>LoadError</span>(<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span>),
 }
 
-<span class='doccomment'>/// Locate symbols for a given module.</span>
+<span class='doccomment'>/// A trait for things that can locate symbols for a given module.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>SymbolSupplier</span> {
     <span class='doccomment'>/// Locate and load a symbol file for `module`.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// Implementations may use any strategy for locating and loading</span>
+    <span class='doccomment'>/// symbols.</span>
     <span class='kw'>fn</span> <span class='ident'>locate_symbols</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>module</span> : <span class='kw-2'>&amp;</span><span class='ident'>Module</span>) <span class='op'>-&gt;</span> <span class='ident'>SymbolResult</span>;
 }
 
-<span class='doccomment'>/// Locate Breakpad text-format symbols in local disk paths.</span>
+<span class='doccomment'>/// An implementation of `SymbolSupplier` that loads Breakpad text-format symbols from local disk paths.</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>SimpleSymbolSupplier</span> {
-    <span class='doccomment'>/// Local disk paths to search for symbols.</span>
+    <span class='doccomment'>/// Local disk paths in which to search for symbols.</span>
     <span class='ident'>paths</span> : <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>PathBuf</span><span class='op'>&gt;</span>,
 }
 
 <span class='kw'>impl</span> <span class='ident'>SimpleSymbolSupplier</span> {
+    <span class='doccomment'>/// Instantiate a new `SimpleSymbolSupplier` that will search in `paths`.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>paths</span> : <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>PathBuf</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>SimpleSymbolSupplier</span> {
         <span class='ident'>SimpleSymbolSupplier</span> { <span class='ident'>paths</span> : <span class='ident'>paths</span> }
     }
@@ -783,6 +859,7 @@
     }
 }
 
+<span class='doccomment'>/// A trait for setting symbol information on something like a stack frame.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>FrameSymbolizer</span> {
     <span class='doccomment'>/// Get the program counter value for this frame.</span>
     <span class='kw'>fn</span> <span class='ident'>get_instruction</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u64</span>;
@@ -792,17 +869,25 @@
     <span class='kw'>fn</span> <span class='ident'>set_source_file</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>file</span> : <span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='ident'>line</span> : <span class='ident'>u32</span>, <span class='ident'>base</span> : <span class='ident'>u64</span>);
 }
 
+<span class='doccomment'>/// A simple implementation of `FrameSymbolizer` that just holds data.</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Default</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>SimpleFrame</span> {
+    <span class='doccomment'>/// The program counter value for this frame.</span>
     <span class='kw'>pub</span> <span class='ident'>instruction</span> : <span class='ident'>u64</span>,
+    <span class='doccomment'>/// The name of the function in which the current instruction is executing.</span>
     <span class='kw'>pub</span> <span class='ident'>function</span> : <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>String</span><span class='op'>&gt;</span>,
+    <span class='doccomment'>/// The offset of the start of `function` from the module base.</span>
     <span class='kw'>pub</span> <span class='ident'>function_base</span> : <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>u64</span><span class='op'>&gt;</span>,
+    <span class='doccomment'>/// The name of the source file in which the current instruction is executing.</span>
     <span class='kw'>pub</span> <span class='ident'>source_file</span> : <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>String</span><span class='op'>&gt;</span>,
+    <span class='doccomment'>/// The 1-based index of the line number in `source_file` in which the current instruction is executing.</span>
     <span class='kw'>pub</span> <span class='ident'>source_line</span> : <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>u32</span><span class='op'>&gt;</span>,
+    <span class='doccomment'>/// The offset of the start of `source_line` from the function base.</span>
     <span class='kw'>pub</span> <span class='ident'>source_line_base</span> : <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>u64</span><span class='op'>&gt;</span>,
 }
 
 <span class='kw'>impl</span> <span class='ident'>SimpleFrame</span> {
+    <span class='doccomment'>/// Instantiate a `SimpleFrame` with instruction pointer `instruction`.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>with_instruction</span>(<span class='ident'>instruction</span> : <span class='ident'>u64</span>) <span class='op'>-&gt;</span> <span class='ident'>SimpleFrame</span> {
         <span class='ident'>SimpleFrame</span> {
             <span class='ident'>instruction</span>: <span class='ident'>instruction</span>,
@@ -837,6 +922,24 @@
 }
 
 <span class='doccomment'>/// Symbolicate stack frames.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// A `Symbolizer` manages loading symbols and looking up symbols in them</span>
+<span class='doccomment'>/// including caching so that symbols for a given module are only loaded once.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// Call [`Symbolizer::new`][new] to instantiate a `Symbolizer`. A Symbolizer</span>
+<span class='doccomment'>/// requires a [`SymbolSupplier`][supplier] to locate symbols. If you have</span>
+<span class='doccomment'>/// symbols on disk in the [customary directory layout][dirlayout], a</span>
+<span class='doccomment'>/// [`SimpleSymbolSupplier`][simple] will work.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// Use [`get_symbol_at_address`][get_symbol] or [`fill_symbol`][fill_symbol] to</span>
+<span class='doccomment'>/// do symbol lookup.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// [new]: struct.Symbolizer.html#method.new</span>
+<span class='doccomment'>/// [supplier]: trait.SymbolSupplier.html</span>
+<span class='doccomment'>/// [dirlayout]: fn.relative_symbol_path.html</span>
+<span class='doccomment'>/// [simple]: struct.SimpleSymbolSupplier.html</span>
+<span class='doccomment'>/// [get_symbol]: struct.Symbolizer.html#method.get_symbol_at_address</span>
+<span class='doccomment'>/// [fill_symbol]: struct.Symbolizer.html#method.fill_symbol</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Symbolizer</span> {
     <span class='doccomment'>/// Symbol supplier for locating symbols.</span>
     <span class='ident'>supplier</span> : <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>SymbolSupplier</span> <span class='op'>+</span> <span class='lifetime'>&#39;static</span><span class='op'>&gt;</span>,
@@ -861,6 +964,10 @@
     <span class='doccomment'>/// Pass `debug_file` and `debug_id` describing a specific module,</span>
     <span class='doccomment'>/// and `address`, a module-relative address, and get back</span>
     <span class='doccomment'>/// a symbol in that module that covers that address, or `None`.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// See [the module-level documentation][module] for an example.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// [module]: index.html</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_symbol_at_address</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>,
                                  <span class='ident'>debug_file</span> : <span class='kw-2'>&amp;</span><span class='ident'>str</span>,
                                  <span class='ident'>debug_id</span> : <span class='kw-2'>&amp;</span><span class='ident'>str</span>,
@@ -878,6 +985,29 @@
         })
     }
 
+    <span class='doccomment'>/// Fill symbol information in `frame` using the instruction address</span>
+    <span class='doccomment'>/// from `frame`, and the module information from `module`. If you&#39;re not</span>
+    <span class='doccomment'>/// using a minidump module, you can use [`SimpleModule`][simplemodule] and</span>
+    <span class='doccomment'>/// [`SimpleFrame`][simpleframe].</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// # Examples</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// ```</span>
+    <span class='doccomment'>/// use breakpad_symbols::{SimpleSymbolSupplier,Symbolizer,SimpleFrame,SimpleModule};</span>
+    <span class='doccomment'>/// use std::path::PathBuf;</span>
+    <span class='doccomment'>/// let paths = vec!(PathBuf::from(&quot;../testdata/symbols/&quot;));</span>
+    <span class='doccomment'>/// let supplier = SimpleSymbolSupplier::new(paths);</span>
+    <span class='doccomment'>/// let symbolizer = Symbolizer::new(supplier);</span>
+    <span class='doccomment'>/// let m = SimpleModule::new(&quot;test_app.pdb&quot;, &quot;5A9832E5287241C1838ED98914E9B7FF1&quot;);</span>
+    <span class='doccomment'>/// let mut f = SimpleFrame::with_instruction(0x1010);</span>
+    <span class='doccomment'>/// symbolizer.fill_symbol(&amp;m, &amp;mut f);</span>
+    <span class='doccomment'>/// assert_eq!(f.function.unwrap(), &quot;vswprintf&quot;);</span>
+    <span class='doccomment'>/// assert_eq!(f.source_file.unwrap(), r&quot;c:\program files\microsoft visual studio 8\vc\include\swprintf.inl&quot;);</span>
+    <span class='doccomment'>/// assert_eq!(f.source_line.unwrap(), 51);</span>
+    <span class='doccomment'>/// ```</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// [simplemodule]: struct.SimpleModule.html</span>
+    <span class='doccomment'>/// [simpleframe]: struct.SimpleFrame.html</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>fill_symbol</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>,
                        <span class='ident'>module</span> : <span class='kw-2'>&amp;</span><span class='ident'>Module</span>,
                        <span class='ident'>frame</span> : <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>FrameSymbolizer</span>) {

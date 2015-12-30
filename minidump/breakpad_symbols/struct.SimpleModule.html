@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1091' class='srclink' href='../src/breakpad_symbols/lib.rs.html#87-95' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1091' class='srclink' href='../src/breakpad_symbols/lib.rs.html#86-94' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct SimpleModule {
     pub base_address: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>&gt;,
     pub size: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>&gt;,
@@ -54,10 +54,11 @@
     pub debug_file: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
     pub debug_id: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
     pub version: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
-}</pre><div class='docblock'><p>A <code>Module</code> implementation that holds arbitrary data.</p>
+}</pre><div class='docblock'><p>A <a href="trait.Module.html"><code>Module</code></a> implementation that holds arbitrary data.</p>
 
 <p>This can be useful for getting symbols for a module when you
-have a debug id and filename but not an actual minidump.</p>
+have a debug id and filename but not an actual minidump. If you have a
+minidump, you should be using <a href="../minidump/struct.MinidumpModule.html"><code>MinidumpModule</code></a>.</p>
 </div><h2 class='fields'>Fields</h2>
 <table><tr class='stab '>
                                   <td id='structfield.base_address'><code>base_address</code></td><td></td></tr><tr class='stab '>
