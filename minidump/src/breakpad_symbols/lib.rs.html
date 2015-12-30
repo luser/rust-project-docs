@@ -631,7 +631,6 @@
 <span id="589">589</span>
 <span id="590">590</span>
 <span id="591">591</span>
-<span id="592">592</span>
 </pre><pre class='rust '>
 <span class='comment'>// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class='comment'>// file at the top-level directory of this distribution.</span>
@@ -709,13 +708,12 @@
     <span class='kw'>fn</span> <span class='ident'>version</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>Cow</span><span class='op'>&lt;</span><span class='ident'>str</span><span class='op'>&gt;&gt;</span>;
 }
 
-<span class='doccomment'>/// A [`Module`][module] implementation that holds arbitrary data.</span>
+<span class='doccomment'>/// A `Module` implementation that holds arbitrary data.</span>
 <span class='doccomment'>///</span>
 <span class='doccomment'>/// This can be useful for getting symbols for a module when you</span>
 <span class='doccomment'>/// have a debug id and filename but not an actual minidump. If you have a</span>
 <span class='doccomment'>/// minidump, you should be using [`MinidumpModule`][minidumpmodule].</span>
 <span class='doccomment'>///</span>
-<span class='doccomment'>/// [module]: trait.Module.html</span>
 <span class='doccomment'>/// [minidumpmodule]: ../minidump/struct.MinidumpModule.html</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Default</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>SimpleModule</span> {
