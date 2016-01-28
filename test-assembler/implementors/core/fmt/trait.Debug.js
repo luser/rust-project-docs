@@ -1,5 +1,5 @@
 (function() {var implementors = {};
-implementors['byteorder'] = ["impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='byteorder/enum.Error.html' title='byteorder::Error'>Error</a>",];implementors['test_assembler'] = ["impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='test_assembler/enum.Endian.html' title='test_assembler::Endian'>Endian</a>",];
+implementors['byteorder'] = ["impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='byteorder/enum.Error.html' title='byteorder::Error'>Error</a>",];implementors['test_assembler'] = ["impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='test_assembler/enum.Endian.html' title='test_assembler::Endian'>Endian</a>",];
 
             if (window.register_implementors) {
                 window.register_implementors(implementors);

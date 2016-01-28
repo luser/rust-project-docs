@@ -9,6 +9,7 @@
 
     <title>test_assembler - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
 
     
@@ -24,10 +25,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'></p><script>window.sidebarCurrent = {name: 'test_assembler', ty: 'mod', relpath: '../'};</script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -62,8 +63,7 @@ knowing its value at that time.</p>
 
 <p>Based on <a href="https://chromium.googlesource.com/breakpad/breakpad/+/master/src/common/test_assembler.h">Jim Blandy&#39;s fantastic C++ implementation</a> in Google Breakpad.</p>
 
-<h1 id="examples" class='section-header'><a
-                           href="#examples">Examples</a></h1>
+<h1 id='examples' class='section-header'><a href='#examples'>Examples</a></h1>
 <p>The <code>Section</code> methods for writing data all consume and return the <code>Section</code>
 so that they can be chained:</p>
 <pre class='rust rust-example-rendered'>
@@ -189,10 +189,12 @@ are not yet known using the same methods.</p>
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -209,7 +211,7 @@ are not yet known using the same methods.</p>
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -219,8 +221,8 @@ are not yet known using the same methods.</p>
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>typedef</code> (or
-                    <code>tdef</code>).
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
                 </p>
 
                 <p>
@@ -229,7 +231,7 @@ are not yet known using the same methods.</p>
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 
@@ -241,6 +243,6 @@ are not yet known using the same methods.</p>
     <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     
-    <script async src="../search-index.js"></script>
+    <script defer src="../search-index.js"></script>
 </body>
 </html>

@@ -9,6 +9,7 @@
 
     <title>test_assembler::RealLabel - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
 
     
@@ -24,10 +25,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'><a href='index.html'>test_assembler</a></p><script>window.sidebarCurrent = {name: 'RealLabel', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -45,31 +46,33 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-446' class='srclink' href='../src/test_assembler/lib.rs.html#172-174' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-79' class='srclink' href='../src/test_assembler/lib.rs.html#172-174' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct RealLabel {
     // some fields omitted
 }</pre><div class='docblock'><p>The inner workings of <code>Label</code>. Don&#39;t instanitate this, instantiate <code>Label</code>.</p>
-</div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></h3><div class='impl-items'><h4 id='method.value' class='method'><code>fn <a href='#method.value' class='fnname'>value</a>(&amp;self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>&gt;</code></h4>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></h3><div class='impl-items'><h4 id='method.value' class='method'><code>fn <a href='#method.value' class='fnname'>value</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>&gt;</code></h4>
 <div class='docblock'><p>Get the constant value of the <code>RealLabel</code>, if known.</p>
-</div><h4 id='method.offset' class='method'><code>fn <a href='#method.offset' class='fnname'>offset</a>(&amp;self, other: &amp;<a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>&gt;</code></h4>
+</div><h4 id='method.offset' class='method'><code>fn <a href='#method.offset' class='fnname'>offset</a>(&amp;self, other: &amp;<a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>&gt;</code></h4>
 <div class='docblock'><p>Get the relative offset from another label, if possible.</p>
-</div><h4 id='method.set_const' class='method'><code>fn <a href='#method.set_const' class='fnname'>set_const</a>(&amp;self, val: <a href='http://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>)</code></h4>
+</div><h4 id='method.set_const' class='method'><code>fn <a href='#method.set_const' class='fnname'>set_const</a>(&amp;self, val: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>)</code></h4>
 <div class='docblock'><p>Set this <code>RealLabel</code>s value to <code>val</code>.</p>
 </div><h4 id='method.set' class='method'><code>fn <a href='#method.set' class='fnname'>set</a>(&amp;self, other: &amp;<a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a>)</code></h4>
 <div class='docblock'><p>Set this <code>RealLabel</code>s value equal to <code>other</code>.</p>
 </div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='../test_assembler/trait.LabelMaker.html' title='test_assembler::LabelMaker'>LabelMaker</a> for <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='../test_assembler/trait.LabelMaker.html#method.new' class='fnname'>new</a>() -&gt; <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></h4>
-<h4 id='method.from_const' class='method'><code>fn <a href='../test_assembler/trait.LabelMaker.html#method.from_const' class='fnname'>from_const</a>(val: <a href='http://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>) -&gt; <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></h4>
+<h4 id='method.from_const' class='method'><code>fn <a href='../test_assembler/trait.LabelMaker.html#method.from_const' class='fnname'>from_const</a>(val: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>) -&gt; <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></h4>
 <h4 id='method.from_label' class='method'><code>fn <a href='../test_assembler/trait.LabelMaker.html#method.from_label' class='fnname'>from_label</a>(other: &amp;<a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a>) -&gt; <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></h4>
-<h4 id='method.from_label_offset' class='method'><code>fn <a href='../test_assembler/trait.LabelMaker.html#method.from_label_offset' class='fnname'>from_label_offset</a>(other: &amp;<a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a>, offset: <a href='http://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>) -&gt; <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></h4>
+<h4 id='method.from_label_offset' class='method'><code>fn <a href='../test_assembler/trait.LabelMaker.html#method.from_label_offset' class='fnname'>from_label_offset</a>(other: &amp;<a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a>, offset: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>) -&gt; <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></h4>
 </div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -86,7 +89,7 @@
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -96,8 +99,8 @@
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>typedef</code> (or
-                    <code>tdef</code>).
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
                 </p>
 
                 <p>
@@ -106,7 +109,7 @@
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 
@@ -118,6 +121,6 @@
     <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     
-    <script async src="../search-index.js"></script>
+    <script defer src="../search-index.js"></script>
 </body>
 </html>
