@@ -457,6 +457,76 @@
 <span id="414">414</span>
 <span id="415">415</span>
 <span id="416">416</span>
+<span id="417">417</span>
+<span id="418">418</span>
+<span id="419">419</span>
+<span id="420">420</span>
+<span id="421">421</span>
+<span id="422">422</span>
+<span id="423">423</span>
+<span id="424">424</span>
+<span id="425">425</span>
+<span id="426">426</span>
+<span id="427">427</span>
+<span id="428">428</span>
+<span id="429">429</span>
+<span id="430">430</span>
+<span id="431">431</span>
+<span id="432">432</span>
+<span id="433">433</span>
+<span id="434">434</span>
+<span id="435">435</span>
+<span id="436">436</span>
+<span id="437">437</span>
+<span id="438">438</span>
+<span id="439">439</span>
+<span id="440">440</span>
+<span id="441">441</span>
+<span id="442">442</span>
+<span id="443">443</span>
+<span id="444">444</span>
+<span id="445">445</span>
+<span id="446">446</span>
+<span id="447">447</span>
+<span id="448">448</span>
+<span id="449">449</span>
+<span id="450">450</span>
+<span id="451">451</span>
+<span id="452">452</span>
+<span id="453">453</span>
+<span id="454">454</span>
+<span id="455">455</span>
+<span id="456">456</span>
+<span id="457">457</span>
+<span id="458">458</span>
+<span id="459">459</span>
+<span id="460">460</span>
+<span id="461">461</span>
+<span id="462">462</span>
+<span id="463">463</span>
+<span id="464">464</span>
+<span id="465">465</span>
+<span id="466">466</span>
+<span id="467">467</span>
+<span id="468">468</span>
+<span id="469">469</span>
+<span id="470">470</span>
+<span id="471">471</span>
+<span id="472">472</span>
+<span id="473">473</span>
+<span id="474">474</span>
+<span id="475">475</span>
+<span id="476">476</span>
+<span id="477">477</span>
+<span id="478">478</span>
+<span id="479">479</span>
+<span id="480">480</span>
+<span id="481">481</span>
+<span id="482">482</span>
+<span id="483">483</span>
+<span id="484">484</span>
+<span id="485">485</span>
+<span id="486">486</span>
 </pre><pre class='rust '>
 <span class='comment'>// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class='comment'>// file at the top-level directory of this distribution.</span>
@@ -465,6 +535,7 @@
 
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::<span class='ident'>prelude</span>::<span class='op'>*</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>collections</span>::<span class='ident'>HashSet</span>;
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::<span class='ident'>SeekFrom</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>mem</span>;
@@ -483,6 +554,85 @@
     <span class='ident'>ARM</span>(<span class='ident'>md</span>::<span class='ident'>MDRawContextARM</span>),
     <span class='ident'>ARM64</span>(<span class='ident'>md</span>::<span class='ident'>MDRawContextARM64</span>),
     <span class='ident'>MIPS</span>(<span class='ident'>md</span>::<span class='ident'>MDRawContextMIPS</span>),
+}
+
+<span class='doccomment'>/// Generic over the specifics of a CPU context.</span>
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>CPUContext</span> {
+    <span class='doccomment'>/// The word size of general-purpose registers in the context.</span>
+    <span class='kw'>type</span> <span class='ident'>Register</span> : <span class='ident'>fmt</span>::<span class='ident'>LowerHex</span>;
+
+    <span class='doccomment'>/// Get a register value if it is valid.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// Get the value of the register named `reg` from this CPU context</span>
+    <span class='doccomment'>/// if `valid` indicates that it has a valid value, otherwise return</span>
+    <span class='doccomment'>/// `None`.</span>
+    <span class='kw'>fn</span> <span class='ident'>get_register</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>,
+                    <span class='ident'>reg</span> : <span class='kw-2'>&amp;</span><span class='ident'>str</span>,
+                    <span class='ident'>valid</span> : <span class='kw-2'>&amp;</span><span class='ident'>MinidumpContextValidity</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>Self</span>::<span class='ident'>Register</span><span class='op'>&gt;</span> {
+        <span class='kw'>if</span> <span class='kw'>let</span> <span class='kw-2'>&amp;</span><span class='ident'>MinidumpContextValidity</span>::<span class='prelude-val'>Some</span>(<span class='kw-2'>ref</span> <span class='ident'>which</span>) <span class='op'>=</span> <span class='ident'>valid</span> {
+            <span class='kw'>if</span> <span class='op'>!</span><span class='ident'>which</span>.<span class='ident'>contains</span>(<span class='ident'>reg</span>) {
+                <span class='kw'>return</span> <span class='prelude-val'>None</span>;
+            }
+        }
+        <span class='prelude-val'>Some</span>(<span class='self'>self</span>.<span class='ident'>get_register_always</span>(<span class='ident'>reg</span>))
+    }
+
+    <span class='doccomment'>/// Return a String containing the value of `reg` formatted to its natural width.</span>
+    <span class='kw'>fn</span> <span class='ident'>format_register</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>reg</span> : <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>String</span> {
+        <span class='macro'>format</span><span class='macro'>!</span>(<span class='string'>&quot;0x{:01$x}&quot;</span>,
+                <span class='self'>self</span>.<span class='ident'>get_register_always</span>(<span class='ident'>reg</span>),
+                <span class='ident'>mem</span>::<span class='ident'>size_of</span>::<span class='op'>&lt;</span><span class='ident'>Self</span>::<span class='ident'>Register</span><span class='op'>&gt;</span>() <span class='op'>*</span> <span class='number'>2</span>)
+    }
+
+    <span class='doccomment'>/// Get a register value regardless of whether it is valid.</span>
+    <span class='kw'>fn</span> <span class='ident'>get_register_always</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>reg</span> : <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Register</span>;
+}
+
+<span class='kw'>impl</span> <span class='ident'>CPUContext</span> <span class='kw'>for</span> <span class='ident'>md</span>::<span class='ident'>MDRawContextX86</span> {
+    <span class='kw'>type</span> <span class='ident'>Register</span> <span class='op'>=</span> <span class='ident'>u32</span>;
+
+    <span class='kw'>fn</span> <span class='ident'>get_register_always</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>reg</span> : <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
+        <span class='kw'>match</span> <span class='ident'>reg</span> {
+            <span class='string'>&quot;eip&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>eip</span>,
+            <span class='string'>&quot;esp&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>esp</span>,
+            <span class='string'>&quot;ebp&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>ebp</span>,
+            <span class='string'>&quot;ebx&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>ebx</span>,
+            <span class='string'>&quot;esi&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>esi</span>,
+            <span class='string'>&quot;edi&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>edi</span>,
+            <span class='string'>&quot;eax&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>eax</span>,
+            <span class='string'>&quot;ecx&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>ecx</span>,
+            <span class='string'>&quot;edx&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>edx</span>,
+            <span class='string'>&quot;efl&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>eflags</span>,
+            _ <span class='op'>=&gt;</span> <span class='macro'>unreachable</span><span class='macro'>!</span>(<span class='string'>&quot;Invalid x86 register!&quot;</span>),
+        }
+    }
+}
+
+<span class='kw'>impl</span> <span class='ident'>CPUContext</span> <span class='kw'>for</span> <span class='ident'>md</span>::<span class='ident'>MDRawContextAMD64</span> {
+    <span class='kw'>type</span> <span class='ident'>Register</span> <span class='op'>=</span> <span class='ident'>u64</span>;
+
+    <span class='kw'>fn</span> <span class='ident'>get_register_always</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>reg</span> : <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>u64</span> {
+        <span class='kw'>match</span> <span class='ident'>reg</span> {
+            <span class='string'>&quot;rax&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>rax</span>,
+            <span class='string'>&quot;rdx&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>rdx</span>,
+            <span class='string'>&quot;rcx&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>rcx</span>,
+            <span class='string'>&quot;rbx&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>rbx</span>,
+            <span class='string'>&quot;rsi&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>rsi</span>,
+            <span class='string'>&quot;rdi&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>rdi</span>,
+            <span class='string'>&quot;rbp&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>rbp</span>,
+            <span class='string'>&quot;rsp&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>rsp</span>,
+            <span class='string'>&quot;r8&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>r8</span>,
+            <span class='string'>&quot;r9&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>r9</span>,
+            <span class='string'>&quot;r10&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>r10</span>,
+            <span class='string'>&quot;r11&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>r11</span>,
+            <span class='string'>&quot;r12&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>r12</span>,
+            <span class='string'>&quot;r13&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>r13</span>,
+            <span class='string'>&quot;r14&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>r14</span>,
+            <span class='string'>&quot;r15&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>r15</span>,
+            <span class='string'>&quot;rip&quot;</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>rip</span>,
+            _ <span class='op'>=&gt;</span> <span class='macro'>unreachable</span><span class='macro'>!</span>(<span class='string'>&quot;Invalid x86-64 register!&quot;</span>),
+        }
+    }
 }
 
 <span class='doccomment'>/// Information about which registers are valid in a `MinidumpContext`.</span>
@@ -526,6 +676,11 @@
 <span class='doccomment'>/// General-purpose registers for x86.</span>
 <span class='kw'>static</span> <span class='ident'>X86_REGS</span> : [<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span>; <span class='number'>10</span>] <span class='op'>=</span>
     [<span class='string'>&quot;eip&quot;</span>, <span class='string'>&quot;esp&quot;</span>, <span class='string'>&quot;ebp&quot;</span>, <span class='string'>&quot;ebx&quot;</span>, <span class='string'>&quot;esi&quot;</span>, <span class='string'>&quot;edi&quot;</span>, <span class='string'>&quot;eax&quot;</span>, <span class='string'>&quot;ecx&quot;</span>, <span class='string'>&quot;edx&quot;</span>, <span class='string'>&quot;efl&quot;</span>];
+
+<span class='doccomment'>/// General-purpose registers for x86-64.</span>
+<span class='kw'>static</span> <span class='ident'>X86_64_REGS</span> : [<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span>; <span class='number'>17</span>] <span class='op'>=</span>
+    [<span class='string'>&quot;rax&quot;</span>, <span class='string'>&quot;rdx&quot;</span>, <span class='string'>&quot;rcx&quot;</span>, <span class='string'>&quot;rbx&quot;</span>, <span class='string'>&quot;rsi&quot;</span>, <span class='string'>&quot;rdi&quot;</span>, <span class='string'>&quot;rbp&quot;</span>, <span class='string'>&quot;rsp&quot;</span>,
+     <span class='string'>&quot;r8&quot;</span>,  <span class='string'>&quot;r9&quot;</span>,  <span class='string'>&quot;r10&quot;</span>, <span class='string'>&quot;r11&quot;</span>, <span class='string'>&quot;r12&quot;</span>, <span class='string'>&quot;r13&quot;</span>, <span class='string'>&quot;r14&quot;</span>, <span class='string'>&quot;r15&quot;</span>, <span class='string'>&quot;rip&quot;</span>];
 
 <span class='comment'>//======================================================</span>
 <span class='comment'>// Implementations</span>
@@ -629,40 +784,25 @@
         }
     }
 
-    <span class='comment'>//TODO: want an associated type to set register size per-context!</span>
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_register</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>reg</span> : <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>u64</span><span class='op'>&gt;</span> {
-        <span class='kw'>if</span> <span class='kw'>let</span> <span class='ident'>MinidumpContextValidity</span>::<span class='prelude-val'>Some</span>(<span class='kw-2'>ref</span> <span class='ident'>which</span>) <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>valid</span> {
-            <span class='kw'>if</span> <span class='op'>!</span><span class='ident'>which</span>.<span class='ident'>contains</span>(<span class='ident'>reg</span>) {
-                <span class='kw'>return</span> <span class='prelude-val'>None</span>;
-            }
-        }
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>format_register</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>,
+                           <span class='ident'>reg</span> : <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>String</span> {
+
         <span class='kw'>match</span> <span class='self'>self</span>.<span class='ident'>raw</span> {
-            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>AMD64</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
+            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>AMD64</span>(<span class='ident'>raw</span>) <span class='op'>=&gt;</span> <span class='ident'>raw</span>.<span class='ident'>format_register</span>(<span class='ident'>reg</span>),
             <span class='ident'>MinidumpRawContext</span>::<span class='ident'>ARM</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
             <span class='ident'>MinidumpRawContext</span>::<span class='ident'>ARM64</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
             <span class='ident'>MinidumpRawContext</span>::<span class='ident'>PPC</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
             <span class='ident'>MinidumpRawContext</span>::<span class='ident'>PPC64</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
             <span class='ident'>MinidumpRawContext</span>::<span class='ident'>SPARC</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
-            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>X86</span>(<span class='ident'>raw</span>) <span class='op'>=&gt;</span> <span class='kw'>match</span> <span class='ident'>reg</span> {
-                <span class='string'>&quot;eip&quot;</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>raw</span>.<span class='ident'>eip</span>),
-                <span class='string'>&quot;esp&quot;</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>raw</span>.<span class='ident'>esp</span>),
-                <span class='string'>&quot;ebp&quot;</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>raw</span>.<span class='ident'>ebp</span>),
-                <span class='string'>&quot;ebx&quot;</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>raw</span>.<span class='ident'>ebx</span>),
-                <span class='string'>&quot;esi&quot;</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>raw</span>.<span class='ident'>esi</span>),
-                <span class='string'>&quot;edi&quot;</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>raw</span>.<span class='ident'>edi</span>),
-                <span class='string'>&quot;eax&quot;</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>raw</span>.<span class='ident'>eax</span>),
-                <span class='string'>&quot;ecx&quot;</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>raw</span>.<span class='ident'>ecx</span>),
-                <span class='string'>&quot;edx&quot;</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>raw</span>.<span class='ident'>edx</span>),
-                <span class='string'>&quot;efl&quot;</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>raw</span>.<span class='ident'>eflags</span>),
-                _ <span class='op'>=&gt;</span> <span class='prelude-val'>None</span>
-            }.<span class='ident'>and_then</span>(<span class='op'>|</span><span class='ident'>r</span><span class='op'>|</span> <span class='prelude-val'>Some</span>(<span class='ident'>r</span> <span class='kw'>as</span> <span class='ident'>u64</span>)),
+            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>X86</span>(<span class='ident'>raw</span>) <span class='op'>=&gt;</span> <span class='ident'>raw</span>.<span class='ident'>format_register</span>(<span class='ident'>reg</span>),
             <span class='ident'>MinidumpRawContext</span>::<span class='ident'>MIPS</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
         }
     }
 
+
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>general_purpose_registers</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> [<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span>] {
         <span class='kw'>match</span> <span class='self'>self</span>.<span class='ident'>raw</span> {
-            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>AMD64</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
+            <span class='ident'>MinidumpRawContext</span>::<span class='ident'>AMD64</span>(_) <span class='op'>=&gt;</span> <span class='kw-2'>&amp;</span><span class='ident'>X86_64_REGS</span>[..],
             <span class='ident'>MinidumpRawContext</span>::<span class='ident'>ARM</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
             <span class='ident'>MinidumpRawContext</span>::<span class='ident'>ARM64</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
             <span class='ident'>MinidumpRawContext</span>::<span class='ident'>PPC</span>(_) <span class='op'>=&gt;</span> <span class='macro'>unimplemented</span><span class='macro'>!</span>(),
