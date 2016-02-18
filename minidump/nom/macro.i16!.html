@@ -9,6 +9,7 @@
 
     <title>nom::i16! - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
 
     
@@ -45,9 +46,11 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1402' class='srclink' href='../src/nom/nom.rs.html#341' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1425' class='srclink' href='../src/nom/nom.rs.html#341' title='goto source code'>[src]</a></span></h1>
 <pre class='rust macro'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>i16</span> ( (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> ( {<span class='kw'>if</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span> { <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>be_i16</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>) } <span class='kw'>else</span> { <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>le_i16</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>) } } ););</pre>
+<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>i16</span> {
+    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> { ... };
+}</pre>
 <div class='docblock'><p>if parameter is true, parse a big endian i16 integer,
 otherwise a little endian i16 integer</p>
 </div></section>
@@ -109,6 +112,6 @@ otherwise a little endian i16 integer</p>
     <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     
-    <script async src="../search-index.js"></script>
+    <script defer src="../search-index.js"></script>
 </body>
 </html>

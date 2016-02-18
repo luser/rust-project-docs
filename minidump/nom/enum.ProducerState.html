@@ -9,6 +9,7 @@
 
     <title>nom::ProducerState - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
 
     
@@ -45,12 +46,12 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-811' class='srclink' href='../src/nom/producer.rs.html#51-56' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-820' class='srclink' href='../src/nom/producer.rs.html#51-56' title='goto source code'>[src]</a></span></h1>
 <pre class='rust enum'>pub enum ProducerState&lt;O&gt; {
     Eof(O),
     Continue,
     Data(O),
-    ProducerError(<a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>),
+    ProducerError(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>),
 }</pre><div class='docblock'><p>Holds the data producer&#39;s current state</p>
 
 <ul>
@@ -61,8 +62,8 @@ but not right now. Parsing should resume at some point.</p></li>
 <li><p>ProducerError indicates something went wrong</p></li>
 </ul>
 </div><h2 class='variants'>Variants</h2>
-<table><tr><td id='variant.Eof'><code>Eof</code></td><td></td></tr><tr><td id='variant.Continue'><code>Continue</code></td><td></td></tr><tr><td id='variant.Data'><code>Data</code></td><td></td></tr><tr><td id='variant.ProducerError'><code>ProducerError</code></td><td></td></tr></table><h2 id='implementations'>Trait Implementations</h2><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl&lt;O: <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.Eq.html' title='core::cmp::Eq'>Eq</a>&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.Eq.html' title='core::cmp::Eq'>Eq</a> for <a class='enum' href='../nom/enum.ProducerState.html' title='nom::ProducerState'>ProducerState</a>&lt;O&gt;</code></h3><div class='impl-items'></div><h3 class='impl'><code>impl&lt;O: <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a>&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='enum' href='../nom/enum.ProducerState.html' title='nom::ProducerState'>ProducerState</a>&lt;O&gt;</code></h3><div class='impl-items'><h4 id='method.eq' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../nom/enum.ProducerState.html' title='nom::ProducerState'>ProducerState</a>&lt;O&gt;) -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
-<h4 id='method.ne' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../nom/enum.ProducerState.html' title='nom::ProducerState'>ProducerState</a>&lt;O&gt;) -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<table><tr><td id='variant.Eof'><code>Eof</code></td><td></td></tr><tr><td id='variant.Continue'><code>Continue</code></td><td></td></tr><tr><td id='variant.Data'><code>Data</code></td><td></td></tr><tr><td id='variant.ProducerError'><code>ProducerError</code></td><td></td></tr></table><h2 id='implementations'>Trait Implementations</h2><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl&lt;O: <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.Eq.html' title='core::cmp::Eq'>Eq</a>&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.Eq.html' title='core::cmp::Eq'>Eq</a> for <a class='enum' href='../nom/enum.ProducerState.html' title='nom::ProducerState'>ProducerState</a>&lt;O&gt;</code></h3><div class='impl-items'></div><h3 class='impl'><code>impl&lt;O: <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a>&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='enum' href='../nom/enum.ProducerState.html' title='nom::ProducerState'>ProducerState</a>&lt;O&gt;</code></h3><div class='impl-items'><h4 id='method.eq' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../nom/enum.ProducerState.html' title='nom::ProducerState'>ProducerState</a>&lt;O&gt;) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ne' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../nom/enum.ProducerState.html' title='nom::ProducerState'>ProducerState</a>&lt;O&gt;) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
 </div><h3 class='impl'><code>impl&lt;O: <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a>&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../nom/enum.ProducerState.html' title='nom::ProducerState'>ProducerState</a>&lt;O&gt;</code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
 </div></section>
     <section id='search' class="content hidden"></section>
@@ -123,6 +124,6 @@ but not right now. Parsing should resume at some point.</p></li>
     <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     
-    <script async src="../search-index.js"></script>
+    <script defer src="../search-index.js"></script>
 </body>
 </html>

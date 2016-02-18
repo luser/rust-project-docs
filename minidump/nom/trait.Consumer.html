@@ -9,6 +9,7 @@
 
     <title>nom::Consumer - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
 
     
@@ -45,10 +46,10 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1091' class='srclink' href='../src/nom/consumer.rs.html#100-214' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1114' class='srclink' href='../src/nom/consumer.rs.html#100-214' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait Consumer {
-    fn <a href='#tymethod.consume' class='fnname'>consume</a>(&amp;mut self, input: <a href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='enum' href='../nom/enum.ConsumerState.html' title='nom::ConsumerState'>ConsumerState</a>;
-    fn <a href='#tymethod.failed' class='fnname'>failed</a>(&amp;mut self, error_code: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>);
+    fn <a href='#tymethod.consume' class='fnname'>consume</a>(&amp;mut self, input: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='enum' href='../nom/enum.ConsumerState.html' title='nom::ConsumerState'>ConsumerState</a>;
+    fn <a href='#tymethod.failed' class='fnname'>failed</a>(&amp;mut self, error_code: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>);
     fn <a href='#tymethod.end' class='fnname'>end</a>(&amp;mut self);
 
     fn <a href='#method.run' class='fnname'>run</a>(&amp;mut self, producer: &amp;mut <a class='trait' href='../nom/trait.Producer.html' title='nom::Producer'>Producer</a>) { ... }
@@ -58,7 +59,7 @@
 </div>
             <h2 id='required-methods'>Required Methods</h2>
             <div class='methods'>
-        <h3 id='tymethod.consume' class='method stab '><code>fn <a href='#tymethod.consume' class='fnname'>consume</a>(&amp;mut self, input: <a href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='enum' href='../nom/enum.ConsumerState.html' title='nom::ConsumerState'>ConsumerState</a></code></h3><h3 id='tymethod.failed' class='method stab '><code>fn <a href='#tymethod.failed' class='fnname'>failed</a>(&amp;mut self, error_code: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>)</code></h3><h3 id='tymethod.end' class='method stab '><code>fn <a href='#tymethod.end' class='fnname'>end</a>(&amp;mut self)</code></h3></div>
+        <h3 id='tymethod.consume' class='method stab '><code>fn <a href='#tymethod.consume' class='fnname'>consume</a>(&amp;mut self, input: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='enum' href='../nom/enum.ConsumerState.html' title='nom::ConsumerState'>ConsumerState</a></code></h3><h3 id='tymethod.failed' class='method stab '><code>fn <a href='#tymethod.failed' class='fnname'>failed</a>(&amp;mut self, error_code: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>)</code></h3><h3 id='tymethod.end' class='method stab '><code>fn <a href='#tymethod.end' class='fnname'>end</a>(&amp;mut self)</code></h3></div>
             <h2 id='provided-methods'>Provided Methods</h2>
             <div class='methods'>
         <h3 id='method.run' class='method stab '><code>fn <a href='#method.run' class='fnname'>run</a>(&amp;mut self, producer: &amp;mut <a class='trait' href='../nom/trait.Producer.html' title='nom::Producer'>Producer</a>)</code></h3></div>
@@ -125,6 +126,6 @@
     <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     
-    <script async src="../search-index.js"></script>
+    <script defer src="../search-index.js"></script>
 </body>
 </html>

@@ -9,6 +9,7 @@
 
     <title>nom::Stepper - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
 
     
@@ -45,12 +46,12 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-987' class='srclink' href='../src/nom/producer.rs.html#333-337' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1005' class='srclink' href='../src/nom/producer.rs.html#333-337' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Stepper&lt;T: <a class='trait' href='../nom/trait.Producer.html' title='nom::Producer'>Producer</a>&gt; {
     // some fields omitted
 }</pre><div class='docblock'><p>Wraps a producer. The <code>step</code> method applies a parser and returns its result</p>
 </div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl&lt;T: <a class='trait' href='../nom/trait.Producer.html' title='nom::Producer'>Producer</a>&gt; <a class='struct' href='../nom/struct.Stepper.html' title='nom::Stepper'>Stepper</a>&lt;T&gt;</code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(producer: T) -&gt; <a class='struct' href='../nom/struct.Stepper.html' title='nom::Stepper'>Stepper</a>&lt;T&gt;</code></h4>
-<h4 id='method.step' class='method'><code>fn <a href='#method.step' class='fnname'>step</a>&lt;'a, F, O&gt;(&amp;'a mut self, parser: F) -&gt; <a class='enum' href='../nom/enum.StepperState.html' title='nom::StepperState'>StepperState</a>&lt;'a, O&gt; <span class='where'>where F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Fn.html' title='core::ops::Fn'>Fn</a>(<a href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;'a [</a><a href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='enum' href='../nom/enum.IResult.html' title='nom::IResult'>IResult</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;'a [</a><a href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>, O&gt;</span></code></h4>
+<h4 id='method.step' class='method'><code>fn <a href='#method.step' class='fnname'>step</a>&lt;'a, F, O&gt;(&amp;'a mut self, parser: F) -&gt; <a class='enum' href='../nom/enum.StepperState.html' title='nom::StepperState'>StepperState</a>&lt;'a, O&gt; <span class='where'>where F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Fn.html' title='core::ops::Fn'>Fn</a>(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;'a [</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='enum' href='../nom/enum.IResult.html' title='nom::IResult'>IResult</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;'a [</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>, O&gt;</span></code></h4>
 </div></section>
     <section id='search' class="content hidden"></section>
 
@@ -110,6 +111,6 @@
     <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     
-    <script async src="../search-index.js"></script>
+    <script defer src="../search-index.js"></script>
 </body>
 </html>

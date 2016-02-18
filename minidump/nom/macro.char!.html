@@ -9,6 +9,7 @@
 
     <title>nom::char! - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
 
     
@@ -45,23 +46,11 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1407' class='srclink' href='../src/nom/character.rs.html#76-90' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1430' class='srclink' href='../src/nom/character.rs.html#76-90' title='goto source code'>[src]</a></span></h1>
 <pre class='rust macro'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>char</span> (
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>c</span>: <span class='ident'>expr</span>) <span class='op'>=&gt;</span> (
-    {
-      <span class='kw'>if</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>.<span class='ident'>is_empty</span>() {
-        <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='number'>1</span>))
-      } <span class='kw'>else</span> {
-        <span class='kw'>if</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>[<span class='number'>0</span>] <span class='op'>==</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>c</span> <span class='kw'>as</span> <span class='ident'>u8</span> {
-          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>[<span class='number'>1</span>..], <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>[<span class='number'>0</span>] <span class='kw'>as</span> <span class='ident'>char</span>)
-        } <span class='kw'>else</span> {
-          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='prelude-val'>Err</span>::<span class='ident'>Position</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>ErrorCode</span>::<span class='ident'>Char</span> <span class='kw'>as</span> <span class='ident'>u32</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>))
-        }
-      }
-    }
-  );
-);</pre>
+<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>char</span> {
+    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>c</span>: <span class='ident'>expr</span>) <span class='op'>=&gt;</span> { ... };
+}</pre>
 <div class='docblock'><p>matches one character: `char!(char) =&gt; &amp;[u8] -&gt; IResult&lt;&amp;[u8], char&gt;</p>
 </div></section>
     <section id='search' class="content hidden"></section>
@@ -122,6 +111,6 @@
     <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     
-    <script async src="../search-index.js"></script>
+    <script defer src="../search-index.js"></script>
 </body>
 </html>

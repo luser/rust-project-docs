@@ -9,6 +9,7 @@
 
     <title>nom::alt! - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
 
     
@@ -45,15 +46,11 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1356' class='srclink' href='../src/nom/macros.rs.html#756-762' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1379' class='srclink' href='../src/nom/macros.rs.html#756-762' title='goto source code'>[src]</a></span></h1>
 <pre class='rust macro'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>alt</span> (
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> (
-    {
-      <span class='macro'>alt_parser</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>)
-    }
-  );
-);</pre>
+<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>alt</span> {
+    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> { ... };
+}</pre>
 <div class='docblock'><p><code>alt!(I -&gt; IResult&lt;I,O&gt; | I -&gt; IResult&lt;I,O&gt; | ... | I -&gt; IResult&lt;I,O&gt; ) =&gt; I -&gt; IResult&lt;I, O&gt;</code>
 try a list of parsers, return the result of the first successful one</p>
 
@@ -145,6 +142,6 @@ minimum size of data you need before you get into alt.</p>
     <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     
-    <script async src="../search-index.js"></script>
+    <script defer src="../search-index.js"></script>
 </body>
 </html>

@@ -9,6 +9,7 @@
 
     <title>breakpad_symbols::Symbolizer - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
 
     
@@ -45,7 +46,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1248' class='srclink' href='../src/breakpad_symbols/lib.rs.html#307-314' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1260' class='srclink' href='../src/breakpad_symbols/lib.rs.html#307-314' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Symbolizer {
     // some fields omitted
 }</pre><div class='docblock'><p>Symbolicate stack frames.</p>
@@ -62,7 +63,7 @@ symbols on disk in the <a href="fn.relative_symbol_path.html">customary director
 do symbol lookup.</p>
 </div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../breakpad_symbols/struct.Symbolizer.html' title='breakpad_symbols::Symbolizer'>Symbolizer</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>&lt;T: <a class='trait' href='../breakpad_symbols/trait.SymbolSupplier.html' title='breakpad_symbols::SymbolSupplier'>SymbolSupplier</a> + 'static&gt;(supplier: T) -&gt; <a class='struct' href='../breakpad_symbols/struct.Symbolizer.html' title='breakpad_symbols::Symbolizer'>Symbolizer</a></code></h4>
 <div class='docblock'><p>Create a <code>Symbolizer</code> that uses <code>supplier</code> to locate symbols.</p>
-</div><h4 id='method.get_symbol_at_address' class='method'><code>fn <a href='#method.get_symbol_at_address' class='fnname'>get_symbol_at_address</a>(&amp;self, debug_file: &amp;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, debug_id: &amp;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, address: <a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;</code></h4>
+</div><h4 id='method.get_symbol_at_address' class='method'><code>fn <a href='#method.get_symbol_at_address' class='fnname'>get_symbol_at_address</a>(&amp;self, debug_file: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, debug_id: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, address: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;</code></h4>
 <div class='docblock'><p>Helper method for non-minidump-using callers.</p>
 
 <p>Pass <code>debug_file</code> and <code>debug_id</code> describing a specific module,
@@ -147,6 +148,6 @@ using a minidump module, you can use <a href="struct.SimpleModule.html"><code>Si
     <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     
-    <script async src="../search-index.js"></script>
+    <script defer src="../search-index.js"></script>
 </body>
 </html>

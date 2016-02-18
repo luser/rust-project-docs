@@ -9,6 +9,7 @@
 
     <title>minidump::CallStack - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
 
     
@@ -45,7 +46,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-4723' class='srclink' href='../src/minidump/process_state.rs.html#107-115' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-4834' class='srclink' href='../src/minidump/process_state.rs.html#107-115' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct CallStack {
     pub frames: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../minidump/struct.StackFrame.html' title='minidump::StackFrame'>StackFrame</a>&gt;,
     pub info: <a class='enum' href='../minidump/enum.CallStackInfo.html' title='minidump::CallStackInfo'>CallStackInfo</a>,
@@ -60,7 +61,7 @@ caller.</p>
                                   <td id='structfield.info'><code>info</code></td><td><div class='docblock'><p>Information about this <code>CallStack</code>.</p>
 </div></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../minidump/struct.CallStack.html' title='minidump::CallStack'>CallStack</a></code></h3><div class='impl-items'><h4 id='method.with_info' class='method'><code>fn <a href='#method.with_info' class='fnname'>with_info</a>(info: <a class='enum' href='../minidump/enum.CallStackInfo.html' title='minidump::CallStackInfo'>CallStackInfo</a>) -&gt; <a class='struct' href='../minidump/struct.CallStack.html' title='minidump::CallStack'>CallStack</a></code></h4>
 <div class='docblock'><p>Create a <code>CallStack</code> with <code>info</code> and no frames.</p>
-</div><h4 id='method.print' class='method'><code>fn <a href='#method.print' class='fnname'>print</a>&lt;T: <a class='trait' href='https://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>&gt;(&amp;self, f: &amp;mut T) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></h4>
+</div><h4 id='method.print' class='method'><code>fn <a href='#method.print' class='fnname'>print</a>&lt;T: <a class='trait' href='https://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>&gt;(&amp;self, f: &amp;mut T) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></h4>
 <div class='docblock'><p>Write a human-readable description of the call stack to <code>f</code>.</p>
 
 <p>This is very verbose, it implements the output format used by
@@ -124,6 +125,6 @@ minidump_stackwalk.</p>
     <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     
-    <script async src="../search-index.js"></script>
+    <script defer src="../search-index.js"></script>
 </body>
 </html>

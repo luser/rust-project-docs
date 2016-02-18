@@ -9,6 +9,7 @@
 
     <title>breakpad_symbols::FrameSymbolizer - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
 
     
@@ -45,18 +46,18 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1205' class='srclink' href='../src/breakpad_symbols/lib.rs.html#227-234' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1217' class='srclink' href='../src/breakpad_symbols/lib.rs.html#227-234' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait FrameSymbolizer {
-    fn <a href='#tymethod.get_instruction' class='fnname'>get_instruction</a>(&amp;self) -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>;
-    fn <a href='#tymethod.set_function' class='fnname'>set_function</a>(&amp;mut self, name: &amp;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, base: <a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>);
-    fn <a href='#tymethod.set_source_file' class='fnname'>set_source_file</a>(&amp;mut self, file: &amp;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, line: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, base: <a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>);
+    fn <a href='#tymethod.get_instruction' class='fnname'>get_instruction</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>;
+    fn <a href='#tymethod.set_function' class='fnname'>set_function</a>(&amp;mut self, name: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, base: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>);
+    fn <a href='#tymethod.set_source_file' class='fnname'>set_source_file</a>(&amp;mut self, file: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, line: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, base: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>);
 }</pre><div class='docblock'><p>A trait for setting symbol information on something like a stack frame.</p>
 </div>
             <h2 id='required-methods'>Required Methods</h2>
             <div class='methods'>
-        <h3 id='tymethod.get_instruction' class='method stab '><code>fn <a href='#tymethod.get_instruction' class='fnname'>get_instruction</a>(&amp;self) -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h3><div class='docblock'><p>Get the program counter value for this frame.</p>
-</div><h3 id='tymethod.set_function' class='method stab '><code>fn <a href='#tymethod.set_function' class='fnname'>set_function</a>(&amp;mut self, name: &amp;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, base: <a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>)</code></h3><div class='docblock'><p>Set the name and base address of the function in which this frame is executing.</p>
-</div><h3 id='tymethod.set_source_file' class='method stab '><code>fn <a href='#tymethod.set_source_file' class='fnname'>set_source_file</a>(&amp;mut self, file: &amp;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, line: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, base: <a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>)</code></h3><div class='docblock'><p>Set the source file and (1-based) line number this frame represents.</p>
+        <h3 id='tymethod.get_instruction' class='method stab '><code>fn <a href='#tymethod.get_instruction' class='fnname'>get_instruction</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h3><div class='docblock'><p>Get the program counter value for this frame.</p>
+</div><h3 id='tymethod.set_function' class='method stab '><code>fn <a href='#tymethod.set_function' class='fnname'>set_function</a>(&amp;mut self, name: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, base: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>)</code></h3><div class='docblock'><p>Set the name and base address of the function in which this frame is executing.</p>
+</div><h3 id='tymethod.set_source_file' class='method stab '><code>fn <a href='#tymethod.set_source_file' class='fnname'>set_source_file</a>(&amp;mut self, file: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, line: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, base: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>)</code></h3><div class='docblock'><p>Set the source file and (1-based) line number this frame represents.</p>
 </div></div>
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>
@@ -122,6 +123,6 @@
     <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     
-    <script async src="../search-index.js"></script>
+    <script defer src="../search-index.js"></script>
 </body>
 </html>

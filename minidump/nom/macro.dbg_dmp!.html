@@ -9,6 +9,7 @@
 
     <title>nom::dbg_dmp! - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
 
     
@@ -45,31 +46,12 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1339' class='srclink' href='../src/nom/util.rs.html#144-166' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1362' class='srclink' href='../src/nom/util.rs.html#144-166' title='goto source code'>[src]</a></span></h1>
 <pre class='rust macro'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>dbg_dmp</span> (
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>: <span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> )) <span class='op'>=&gt;</span> (
-    {
-      <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>HexDisplay</span>;
-      <span class='kw'>let</span> <span class='ident'>l</span> <span class='op'>=</span> <span class='macro'>line</span><span class='macro'>!</span>();
-      <span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>) {
-        <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='ident'>a</span>) <span class='op'>=&gt;</span> {
-          <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Error({:?}) at l.{} by &#39; {} &#39;\n{}&quot;</span>, <span class='ident'>a</span>, <span class='ident'>l</span>, <span class='macro'>stringify</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>($(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>)), <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>.<span class='ident'>to_hex</span>(<span class='number'>8</span>));
-          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='ident'>a</span>)
-        },
-        <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>a</span>) <span class='op'>=&gt;</span> {
-          <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Incomplete({:?}) at {} by &#39; {} &#39;\n{}&quot;</span>, <span class='ident'>a</span>, <span class='ident'>l</span>, <span class='macro'>stringify</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>($(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>)), <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>.<span class='ident'>to_hex</span>(<span class='number'>8</span>));
-          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>a</span>)
-        },
-        <span class='ident'>a</span> <span class='op'>=&gt;</span> <span class='ident'>a</span>
-      }
-    }
-  );
-
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>:<span class='ident'>ident</span>) <span class='op'>=&gt;</span> (
-      <span class='macro'>dbg_dmp</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, <span class='macro'>call</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>));
-  );
-);</pre>
+<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>dbg_dmp</span> {
+    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>: <span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> )) <span class='op'>=&gt;</span> { ... };
+    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>:<span class='ident'>ident</span>) <span class='op'>=&gt;</span> { ... };
+}</pre>
 <div class='docblock'><p>Prints a message and the input if the parser fails</p>
 
 <p>The message prints the <code>Error</code> or <code>Incomplete</code>
@@ -144,6 +126,6 @@ and the parser&#39;s calling code.</p>
     <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     
-    <script async src="../search-index.js"></script>
+    <script defer src="../search-index.js"></script>
 </body>
 </html>

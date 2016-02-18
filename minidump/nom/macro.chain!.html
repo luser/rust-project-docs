@@ -9,6 +9,7 @@
 
     <title>nom::chain! - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
 
     
@@ -45,13 +46,11 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1354' class='srclink' href='../src/nom/macros.rs.html#477-481' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1377' class='srclink' href='../src/nom/macros.rs.html#477-481' title='goto source code'>[src]</a></span></h1>
 <pre class='rust macro'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>chain</span> (
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> (
-    <span class='macro'>chaining_parser</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, <span class='number'>0</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>)
-  );
-);</pre>
+<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>chain</span> {
+    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> { ... };
+}</pre>
 <div class='docblock'><p><code>chain!(I-&gt;IResult&lt;I,A&gt; ~ I-&gt;IResult&lt;I,B&gt; ~ ... I-&gt;IResult&lt;I,X&gt; , || { return O } ) =&gt; I -&gt; IResult&lt;I, O&gt;</code>
 chains parsers and assemble the results through a closure</p>
 <pre class='rust rust-example-rendered'>
@@ -150,6 +149,6 @@ chains parsers and assemble the results through a closure</p>
     <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     
-    <script async src="../search-index.js"></script>
+    <script defer src="../search-index.js"></script>
 </body>
 </html>
