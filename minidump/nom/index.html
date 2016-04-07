@@ -46,11 +46,11 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/nom/lib.rs.html#1-146' title='goto source code'>[src]</a></span></h1>
-<div class='docblock'><p>Nom, eating data byte by byte</p>
+        </span><a id='src-0' class='srclink' href='../src/nom/lib.rs.html#1-151' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>nom, eating data byte by byte</p>
 
-<p>The goal is to make a parser combinator library that is safe,
-supports streaming (push and pull), and as much as possible zero copy.</p>
+<p>nom is a parser combinator library with a focus on safe parsing,
+streaming patterns, and as much as possible zero copy.</p>
 
 <p>The code is available on <a href="https://github.com/Geal/nom">Github</a></p>
 
@@ -58,7 +58,7 @@ supports streaming (push and pull), and as much as possible zero copy.</p>
 <span class='attribute'>#[<span class='ident'>macro_use</span>]</span>
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>nom</span>;
 
-<span class='kw'>use</span> <span class='ident'>nom</span>::{<span class='ident'>IResult</span>,<span class='ident'>digit</span>,<span class='ident'>multispace</span>};
+<span class='kw'>use</span> <span class='ident'>nom</span>::{<span class='ident'>IResult</span>,<span class='ident'>digit</span>};
 <span class='kw'>use</span> <span class='ident'>nom</span>::<span class='ident'>IResult</span>::<span class='op'>*</span>;
 
 <span class='comment'>// Parser definition</span>
@@ -67,9 +67,19 @@ supports streaming (push and pull), and as much as possible zero copy.</p>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>str</span>::<span class='ident'>FromStr</span>;
 
 <span class='macro'>named</span><span class='macro'>!</span>(<span class='ident'>parens</span><span class='op'>&lt;</span><span class='ident'>i64</span><span class='op'>&gt;</span>, <span class='macro'>delimited</span><span class='macro'>!</span>(
-    <span class='macro'>delimited</span><span class='macro'>!</span>(<span class='macro'>opt</span><span class='macro'>!</span>(<span class='ident'>multispace</span>), <span class='macro'>tag</span><span class='macro'>!</span>(<span class='string'>&quot;(&quot;</span>), <span class='macro'>opt</span><span class='macro'>!</span>(<span class='ident'>multispace</span>)),
+    <span class='macro'>char</span><span class='macro'>!</span>(<span class='string'>&#39;(&#39;</span>),
     <span class='ident'>expr</span>,
-    <span class='macro'>delimited</span><span class='macro'>!</span>(<span class='macro'>opt</span><span class='macro'>!</span>(<span class='ident'>multispace</span>), <span class='macro'>tag</span><span class='macro'>!</span>(<span class='string'>&quot;)&quot;</span>), <span class='macro'>opt</span><span class='macro'>!</span>(<span class='ident'>multispace</span>))
+    <span class='macro'>char</span><span class='macro'>!</span>(<span class='string'>&#39;)&#39;</span>)
+  )
+);
+
+<span class='macro'>named</span><span class='macro'>!</span>(<span class='ident'>i64_digit</span><span class='op'>&lt;</span><span class='ident'>i64</span><span class='op'>&gt;</span>,
+  <span class='macro'>map_res</span><span class='macro'>!</span>(
+    <span class='macro'>map_res</span><span class='macro'>!</span>(
+      <span class='ident'>digit</span>,
+      <span class='ident'>str</span>::<span class='ident'>from_utf8</span>
+    ),
+    <span class='ident'>FromStr</span>::<span class='ident'>from_str</span>
   )
 );
 
@@ -79,13 +89,7 @@ supports streaming (push and pull), and as much as possible zero copy.</p>
 <span class='comment'>// the parser will fail</span>
 <span class='macro'>named</span><span class='macro'>!</span>(<span class='ident'>factor</span><span class='op'>&lt;</span><span class='ident'>i64</span><span class='op'>&gt;</span>,
   <span class='macro'>alt</span><span class='macro'>!</span>(
-    <span class='macro'>map_res</span><span class='macro'>!</span>(
-      <span class='macro'>map_res</span><span class='macro'>!</span>(
-        <span class='macro'>delimited</span><span class='macro'>!</span>(<span class='macro'>opt</span><span class='macro'>!</span>(<span class='ident'>multispace</span>), <span class='ident'>digit</span>, <span class='macro'>opt</span><span class='macro'>!</span>(<span class='ident'>multispace</span>)),
-        <span class='ident'>str</span>::<span class='ident'>from_utf8</span>
-      ),
-      <span class='ident'>FromStr</span>::<span class='ident'>from_str</span>
-    )
+    <span class='ident'>i64_digit</span>
   <span class='op'>|</span> <span class='ident'>parens</span>
   )
 );
@@ -118,16 +122,25 @@ supports streaming (push and pull), and as much as possible zero copy.</p>
 );
 
 <span class='kw'>fn</span> <span class='ident'>main</span>() {
-  <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>expr</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot; 1 +  2 &quot;</span>[..]),             <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>3</span>));
-  <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>expr</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot; 12 + 6 - 4+  3&quot;</span>[..]),      <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>17</span>));
-  <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>expr</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot; 1 + 2*3 + 4&quot;</span>[..]),         <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>11</span>));
+  <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>expr</span>(<span class='string'>b&quot;1+2&quot;</span>),         <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>3</span>));
+  <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>expr</span>(<span class='string'>b&quot;12+6-4+3&quot;</span>),    <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>17</span>));
+  <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>expr</span>(<span class='string'>b&quot;1+2*3+4&quot;</span>),     <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>11</span>));
 
-  <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>expr</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot; (  2 )&quot;</span>[..]),              <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>2</span>));
-  <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>expr</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot; 2* (  3 + 4 ) &quot;</span>[..]),      <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>14</span>));
-  <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>expr</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;  2*2 / ( 5 - 1) + 3&quot;</span>[..]), <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>4</span>));
+  <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>expr</span>(<span class='string'>b&quot;(2)&quot;</span>),         <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>2</span>));
+  <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>expr</span>(<span class='string'>b&quot;2*(3+4)&quot;</span>),     <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>14</span>));
+  <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>expr</span>(<span class='string'>b&quot;2*2/(5-1)+3&quot;</span>), <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>4</span>));
 }</pre>
 </div><h2 id='macros' class='section-header'><a href="#macros">Macros</a></h2>
 <table>
+                    <tr class=' module-item'>
+                        <td><a class='macro' href='macro.add_error!.html'
+                               title='nom::add_error!'>add_error!</a></td>
+                        <td class='docblock short'>
+                             <p>Add an error if the child parser fails</p>
+
+                        </td>
+                    </tr>
+                
                     <tr class=' module-item'>
                         <td><a class='macro' href='macro.alt!.html'
                                title='nom::alt!'>alt!</a></td>
@@ -139,10 +152,14 @@ try a list of parsers, return the result of the first successful one</p>
                     </tr>
                 
                     <tr class=' module-item'>
-                        <td><a class='macro' href='macro.alt_parser!.html'
-                               title='nom::alt_parser!'>alt_parser!</a></td>
+                        <td><a class='macro' href='macro.alt_complete!.html'
+                               title='nom::alt_complete!'>alt_complete!</a></td>
                         <td class='docblock short'>
-                             <p>Internal parser, do not use directly</p>
+                             <p>This is a combination of the <code>alt!</code> and <code>complete!</code> combinators. Rather
+than returning <code>Incomplete</code> on partial input, <code>alt_complete!</code> will try the
+next alternative in the chain. You should use this only if you know you
+will not receive partial input for the rules you&#39;re trying to match (this
+is almost always the case for parsing programming languages).</p>
 
                         </td>
                     </tr>
@@ -152,6 +169,16 @@ try a list of parsers, return the result of the first successful one</p>
                                title='nom::apply!'>apply!</a></td>
                         <td class='docblock short'>
                              <p>emulate function currying: <code>apply!(my_function, arg1, arg2, ...)</code> becomes <code>my_function(input, arg1, arg2, ...)</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='macro' href='macro.apply_m!.html'
+                               title='nom::apply_m!'>apply_m!</a></td>
+                        <td class='docblock short'>
+                             <p>emulate function currying for method calls on structs
+<code>apply!(self.my_function, arg1, arg2, ...)</code> becomes <code>self.my_function(input, arg1, arg2, ...)</code></p>
 
                         </td>
                     </tr>
@@ -167,19 +194,19 @@ transforms its byte slice input in a bit stream for the underlying parsers</p>
                     </tr>
                 
                     <tr class=' module-item'>
-                        <td><a class='macro' href='macro.bits_impl!.html'
-                               title='nom::bits_impl!'>bits_impl!</a></td>
+                        <td><a class='macro' href='macro.call!.html'
+                               title='nom::call!'>call!</a></td>
                         <td class='docblock short'>
-                             <p>Internal parser, do not use directly</p>
+                             <p>Used to wrap common expressions and function as macros</p>
 
                         </td>
                     </tr>
                 
                     <tr class=' module-item'>
-                        <td><a class='macro' href='macro.call!.html'
-                               title='nom::call!'>call!</a></td>
+                        <td><a class='macro' href='macro.call_m!.html'
+                               title='nom::call_m!'>call_m!</a></td>
                         <td class='docblock short'>
-                             <p>Used to wrap common expressions and function as macros</p>
+                             <p>Used to called methods then move self back into self</p>
 
                         </td>
                     </tr>
@@ -190,15 +217,6 @@ transforms its byte slice input in a bit stream for the underlying parsers</p>
                         <td class='docblock short'>
                              <p><code>chain!(I-&gt;IResult&lt;I,A&gt; ~ I-&gt;IResult&lt;I,B&gt; ~ ... I-&gt;IResult&lt;I,X&gt; , || { return O } ) =&gt; I -&gt; IResult&lt;I, O&gt;</code>
 chains parsers and assemble the results through a closure</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='macro' href='macro.chaining_parser!.html'
-                               title='nom::chaining_parser!'>chaining_parser!</a></td>
-                        <td class='docblock short'>
-                             <p>Internal parser, do not use directly</p>
 
                         </td>
                     </tr>
@@ -222,6 +240,16 @@ chains parsers and assemble the results through a closure</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='macro' href='macro.complete!.html'
+                               title='nom::complete!'>complete!</a></td>
+                        <td class='docblock short'>
+                             <p>replaces a <code>Incomplete</code> returned by the child parser
+with an <code>Error</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='macro' href='macro.cond!.html'
                                title='nom::cond!'>cond!</a></td>
                         <td class='docblock short'>
@@ -238,6 +266,14 @@ Conditional combinator</p>
                              <p><code>cond_reduce!(bool, I -&gt; IResult&lt;I,O&gt;) =&gt; I -&gt; IResult&lt;I, O&gt;</code>
 Conditional combinator with error</p>
 
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='macro' href='macro.consumer_from_parser!.html'
+                               title='nom::consumer_from_parser!'>consumer_from_parser!</a></td>
+                        <td class='docblock short'>
+                             
                         </td>
                     </tr>
                 
@@ -291,24 +327,6 @@ delimited(opening, X, closing) returns X</p>
                     </tr>
                 
                     <tr class=' module-item'>
-                        <td><a class='macro' href='macro.delimited1!.html'
-                               title='nom::delimited1!'>delimited1!</a></td>
-                        <td class='docblock short'>
-                             <p>Internal parser, do not use directly</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='macro' href='macro.delimited2!.html'
-                               title='nom::delimited2!'>delimited2!</a></td>
-                        <td class='docblock short'>
-                             <p>Internal parser, do not use directly</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
                         <td><a class='macro' href='macro.error!.html'
                                title='nom::error!'>error!</a></td>
                         <td class='docblock short'>
@@ -318,11 +336,31 @@ delimited(opening, X, closing) returns X</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='macro' href='macro.escaped!.html'
+                               title='nom::escaped!'>escaped!</a></td>
+                        <td class='docblock short'>
+                             <p><code>escaped!(&amp;[T] -&gt; IResult&lt;&amp;[T], &amp;[T]&gt;, T, &amp;[T] -&gt; IResult&lt;&amp;[T], &amp;[T]&gt;) =&gt; &amp;[T] -&gt; IResult&lt;&amp;[T], &amp;[T]&gt;</code>
+matches a byte string with escaped characters.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='macro' href='macro.escaped_transform!.html'
+                               title='nom::escaped_transform!'>escaped_transform!</a></td>
+                        <td class='docblock short'>
+                             <p><code>escaped_transform!(&amp;[T] -&gt; IResult&lt;&amp;[T], &amp;[T]&gt;, T, &amp;[T] -&gt; IResult&lt;&amp;[T], &amp;[T]&gt;) =&gt; &amp;[T] -&gt; IResult&lt;&amp;[T], Vec&lt;T&gt;&gt;</code>
+matches a byte string with escaped characters.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='macro' href='macro.expr_opt!.html'
                                title='nom::expr_opt!'>expr_opt!</a></td>
                         <td class='docblock short'>
                              <p><code>expr_opt!(Option&lt;O&gt;) =&gt; I -&gt; IResult&lt;I, O&gt;</code>
-evaluate an expression that returns a Option<T> and returns a IResult::Done(I,T) if Ok</p>
+evaluate an expression that returns a Option<T> and returns a IResult::Done(I,T) if Some</p>
 
                         </td>
                     </tr>
@@ -338,11 +376,10 @@ evaluate an expression that returns a Result<T,E> and returns a IResult::Done(I,
                     </tr>
                 
                     <tr class=' module-item'>
-                        <td><a class='macro' href='macro.filter!.html'
-                               title='nom::filter!'>filter!</a></td>
+                        <td><a class='macro' href='macro.fix_error!.html'
+                               title='nom::fix_error!'>fix_error!</a></td>
                         <td class='docblock short'>
-                             <p><code>filter!(&amp;[T] -&gt; bool) =&gt; &amp;[T] -&gt; IResult&lt;&amp;[T], &amp;[T]&gt;</code>
-returns the longest list of bytes until the provided function fails.</p>
+                             <p>translate parser result from IResult<I,O,u32> to IResult<I,O,E> woth a custom type</p>
 
                         </td>
                     </tr>
@@ -397,11 +434,42 @@ returns the longest list of bytes that appear in the provided array</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='macro' href='macro.is_a_s!.html'
+                               title='nom::is_a_s!'>is_a_s!</a></td>
+                        <td class='docblock short'>
+                             <p><code>is_a_s!(&amp;str) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;</code>
+returns the longest list of characters that appear in the provided array</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='macro' href='macro.is_not!.html'
                                title='nom::is_not!'>is_not!</a></td>
                         <td class='docblock short'>
                              <p><code>is_not!(&amp;[T:AsBytes]) =&gt; &amp;[T] -&gt; IResult&lt;&amp;[T], &amp;[T]&gt;</code>
 returns the longest list of bytes that do not appear in the provided array</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='macro' href='macro.is_not_s!.html'
+                               title='nom::is_not_s!'>is_not_s!</a></td>
+                        <td class='docblock short'>
+                             <p><code>is_not_s!(&amp;str) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;</code>
+returns the longest list of characters that do not appear in the provided array</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='macro' href='macro.length_bytes!.html'
+                               title='nom::length_bytes!'>length_bytes!</a></td>
+                        <td class='docblock short'>
+                             <p>`length_bytes!(&amp;[T] -&gt; IResult&lt;&amp;[T], nb&gt;) =&gt; &amp;[T] -&gt; IResult&lt;&amp;[T], &amp;[T]&gt;
+gets a number from the first parser, then extracts that many bytes from the
+remaining stream</p>
 
                         </td>
                     </tr>
@@ -437,6 +505,16 @@ Applies the parser 1 or more times and returns the list of results in a Vec</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='macro' href='macro.many_m_n!.html'
+                               title='nom::many_m_n!'>many_m_n!</a></td>
+                        <td class='docblock short'>
+                             <p><code>many_m_n!(usize, usize, I -&gt; IResult&lt;I,O&gt;) =&gt; I -&gt; IResult&lt;I, Vec&lt;O&gt;&gt;</code>
+Applies the parser between m and n times (n included) and returns the list of results in a Vec</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='macro' href='macro.map!.html'
                                title='nom::map!'>map!</a></td>
                         <td class='docblock short'>
@@ -447,29 +525,11 @@ maps a function on the result of a parser</p>
                     </tr>
                 
                     <tr class=' module-item'>
-                        <td><a class='macro' href='macro.map_impl!.html'
-                               title='nom::map_impl!'>map_impl!</a></td>
-                        <td class='docblock short'>
-                             <p>Internal parser, do not use directly</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
                         <td><a class='macro' href='macro.map_opt!.html'
                                title='nom::map_opt!'>map_opt!</a></td>
                         <td class='docblock short'>
-                             <p><code>map_res!(I -&gt; IResult&lt;I,O&gt;, O -&gt; Option&lt;P&gt;) =&gt; I -&gt; IResult&lt;I, P&gt;</code>
+                             <p><code>map_opt!(I -&gt; IResult&lt;I,O&gt;, O -&gt; Option&lt;P&gt;) =&gt; I -&gt; IResult&lt;I, P&gt;</code>
 maps a function returning an Option on the output of a parser</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='macro' href='macro.map_opt_impl!.html'
-                               title='nom::map_opt_impl!'>map_opt_impl!</a></td>
-                        <td class='docblock short'>
-                             <p>Internal parser, do not use directly</p>
 
                         </td>
                     </tr>
@@ -485,10 +545,10 @@ maps a function returning a Result on the output of a parser</p>
                     </tr>
                 
                     <tr class=' module-item'>
-                        <td><a class='macro' href='macro.map_res_impl!.html'
-                               title='nom::map_res_impl!'>map_res_impl!</a></td>
+                        <td><a class='macro' href='macro.method!.html'
+                               title='nom::method!'>method!</a></td>
                         <td class='docblock short'>
-                             <p>Internal parser, do not use directly</p>
+                             <p>Makes a method from a parser combination</p>
 
                         </td>
                     </tr>
@@ -571,10 +631,11 @@ preceded(opening, X) returns X</p>
                     </tr>
                 
                     <tr class=' module-item'>
-                        <td><a class='macro' href='macro.pusher!.html'
-                               title='nom::pusher!'>pusher!</a></td>
+                        <td><a class='macro' href='macro.recognize!.html'
+                               title='nom::recognize!'>recognize!</a></td>
                         <td class='docblock short'>
-                             <p>Prepares a parser function for a push pipeline</p>
+                             <p><code>recognize!(&amp;[T] -&gt; IResult&lt;&amp;[T], O&gt; ) =&gt; &amp;[T] -&gt; IResult&lt;&amp;[T], &amp;[T]&gt;</code>
+if the child parser was successful, return the consumed input as produced value</p>
 
                         </td>
                     </tr>
@@ -610,29 +671,12 @@ separated_pair(X,sep,Y) returns (x,y)</p>
                     </tr>
                 
                     <tr class=' module-item'>
-                        <td><a class='macro' href='macro.separated_pair1!.html'
-                               title='nom::separated_pair1!'>separated_pair1!</a></td>
-                        <td class='docblock short'>
-                             <p>Internal parser, do not use directly</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='macro' href='macro.separated_pair2!.html'
-                               title='nom::separated_pair2!'>separated_pair2!</a></td>
-                        <td class='docblock short'>
-                             <p>Internal parser, do not use directly</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
                         <td><a class='macro' href='macro.switch!.html'
                                title='nom::switch!'>switch!</a></td>
                         <td class='docblock short'>
                              <p><code>switch!(I -&gt; IResult&lt;I,P&gt;, P =&gt; I -&gt; IResult&lt;I,O&gt; | ... | P =&gt; I -&gt; IResult&lt;I,O&gt; ) =&gt; I -&gt; IResult&lt;I, O&gt;</code>
-choose the next parser depending on the result of the first one, if successful</p>
+choose the next parser depending on the result of the first one, if successful,
+and returns the result of the second parser</p>
 
                         </td>
                     </tr>
@@ -651,7 +695,18 @@ declares a byte array as a suite to recognize</p>
                         <td><a class='macro' href='macro.tag_bits!.html'
                                title='nom::tag_bits!'>tag_bits!</a></td>
                         <td class='docblock short'>
-                             
+                             <p>matches an integer pattern to a bitstream. The number of bits of the input to compare must be specified</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='macro' href='macro.tag_s!.html'
+                               title='nom::tag_s!'>tag_s!</a></td>
+                        <td class='docblock short'>
+                             <p><code>tag_s!(&amp;str) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;</code>
+declares a string as a suite to recognize</p>
+
                         </td>
                     </tr>
                 
@@ -676,6 +731,16 @@ generates a parser consuming the specified number of bytes</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='macro' href='macro.take_s!.html'
+                               title='nom::take_s!'>take_s!</a></td>
+                        <td class='docblock short'>
+                             <p><code>take_s!(nb) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;</code>
+generates a parser consuming the specified number of characters</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='macro' href='macro.take_str!.html'
                                title='nom::take_str!'>take_str!</a></td>
                         <td class='docblock short'>
@@ -689,8 +754,18 @@ same as take! but returning a &amp;str</p>
                         <td><a class='macro' href='macro.take_till!.html'
                                title='nom::take_till!'>take_till!</a></td>
                         <td class='docblock short'>
-                             <p><code>take_till!(&amp;[T] -&gt; bool) =&gt; &amp;[T] -&gt; IResult&lt;&amp;[T], &amp;[T]&gt;</code>
+                             <p><code>take_till!(T -&gt; bool) =&gt; &amp;[T] -&gt; IResult&lt;&amp;[T], &amp;[T]&gt;</code>
 returns the longest list of bytes until the provided function succeeds</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='macro' href='macro.take_till_s!.html'
+                               title='nom::take_till_s!'>take_till_s!</a></td>
+                        <td class='docblock short'>
+                             <p><code>take_till_s!(&amp;str -&gt; bool) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;</code>
+returns the longest list of characters until the provided function succeeds</p>
 
                         </td>
                     </tr>
@@ -716,6 +791,16 @@ generates a parser consuming bytes until the specified byte sequence is found, a
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='macro' href='macro.take_until_and_consume_s!.html'
+                               title='nom::take_until_and_consume_s!'>take_until_and_consume_s!</a></td>
+                        <td class='docblock short'>
+                             <p><code>take_until_and_consume_s!(&amp;str) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;</code>
+generates a parser consuming all chars until the specified string is found and consumes it</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='macro' href='macro.take_until_either!.html'
                                title='nom::take_until_either!'>take_until_either!</a></td>
                         <td class='docblock short'>
@@ -735,10 +820,20 @@ consumes data until it finds any of the specified characters, and consume it</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='macro' href='macro.take_until_s!.html'
+                               title='nom::take_until_s!'>take_until_s!</a></td>
+                        <td class='docblock short'>
+                             <p><code>take_until_s!(&amp;str) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;</code>
+generates a parser consuming all chars until the specified string is found and leaves it in the remaining input</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='macro' href='macro.take_while!.html'
                                title='nom::take_while!'>take_while!</a></td>
                         <td class='docblock short'>
-                             <p><code>take_while!(&amp;[T] -&gt; bool) =&gt; &amp;[T] -&gt; IResult&lt;&amp;[T], &amp;[T]&gt;</code>
+                             <p><code>take_while!(T -&gt; bool) =&gt; &amp;[T] -&gt; IResult&lt;&amp;[T], &amp;[T]&gt;</code>
 returns the longest list of bytes until the provided function fails.</p>
 
                         </td>
@@ -750,6 +845,26 @@ returns the longest list of bytes until the provided function fails.</p>
                         <td class='docblock short'>
                              <p><code>take_while1!(&amp;[T] -&gt; bool) =&gt; &amp;[T] -&gt; IResult&lt;&amp;[T], &amp;[T]&gt;</code>
 returns the longest (non empty) list of bytes until the provided function fails.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='macro' href='macro.take_while1_s!.html'
+                               title='nom::take_while1_s!'>take_while1_s!</a></td>
+                        <td class='docblock short'>
+                             <p><code>take_while1_s!(char -&gt; bool) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;</code>
+returns the longest (non empty) list of characters until the provided function fails.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='macro' href='macro.take_while_s!.html'
+                               title='nom::take_while_s!'>take_while_s!</a></td>
+                        <td class='docblock short'>
+                             <p><code>take_while_s!(char -&gt; bool) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;</code>
+returns the longest list of characters until the provided function fails.</p>
 
                         </td>
                     </tr>
@@ -770,6 +885,27 @@ allows access to the parser&#39;s result without affecting it</p>
                         <td class='docblock short'>
                              <p><code>terminated!(I -&gt; IResult&lt;I,O&gt;, I -&gt; IResult&lt;I,T&gt;) =&gt; I -&gt; IResult&lt;I, O&gt;</code>
 terminated(X, closing) returns X</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='macro' href='macro.try_parse!.html'
+                               title='nom::try_parse!'>try_parse!</a></td>
+                        <td class='docblock short'>
+                             <p>A bit like <code>std::try!</code>, this macro will return the remaining input and parsed value if the child parser returned <code>Done</code>,
+and will do an early return for <code>Error</code> and <code>Incomplete</code>
+this can provide more flexibility than <code>chain!</code> if needed</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='macro' href='macro.tuple!.html'
+                               title='nom::tuple!'>tuple!</a></td>
+                        <td class='docblock short'>
+                             <p><code>tuple!(I-&gt;IResult&lt;I,A&gt;, I-&gt;IResult&lt;I,B&gt;, ... I-&gt;IResult&lt;I,X&gt;) =&gt; I -&gt; IResult&lt;I, (A, B, ..., X)&gt;</code>
+chains parsers and assemble the sub results in a tuple.</p>
 
                         </td>
                     </tr>
@@ -803,13 +939,23 @@ otherwise a little endian u64 integer</p>
 
                         </td>
                     </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='macro' href='macro.value!.html'
+                               title='nom::value!'>value!</a></td>
+                        <td class='docblock short'>
+                             <p><code>value!(T, R -&gt; IResult&lt;R, S&gt; ) =&gt; R -&gt; IResult&lt;R, T&gt;</code></p>
+
+                        </td>
+                    </tr>
                 </table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
                     <tr class=' module-item'>
-                        <td><a class='struct' href='struct.AccReader.html'
-                               title='nom::AccReader'>AccReader</a></td>
+                        <td><a class='struct' href='struct.ChainConsumer.html'
+                               title='nom::ChainConsumer'>ChainConsumer</a></td>
                         <td class='docblock short'>
-                             
+                             <p>ChainConsumer takes a consumer C1 R -&gt; S, and a consumer C2 S -&gt; T, and makes a consumer R -&gt; T by applying C2 on C1&#39;s result</p>
+
                         </td>
                     </tr>
                 
@@ -817,7 +963,15 @@ otherwise a little endian u64 integer</p>
                         <td><a class='struct' href='struct.FileProducer.html'
                                title='nom::FileProducer'>FileProducer</a></td>
                         <td class='docblock short'>
-                             <p>Can produce data from a file</p>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.MapConsumer.html'
+                               title='nom::MapConsumer'>MapConsumer</a></td>
+                        <td class='docblock short'>
+                             <p>MapConsumer takes a function S -&gt; T and applies it on a consumer producing values of type S</p>
 
                         </td>
                     </tr>
@@ -826,25 +980,16 @@ otherwise a little endian u64 integer</p>
                         <td><a class='struct' href='struct.MemProducer.html'
                                title='nom::MemProducer'>MemProducer</a></td>
                         <td class='docblock short'>
-                             <p>Can parse data from an already in memory byte array</p>
+                             <p>A MemProducer generates values from an in memory byte buffer</p>
 
                         </td>
                     </tr>
                 
                     <tr class=' module-item'>
-                        <td><a class='struct' href='struct.ReadProducer.html'
-                               title='nom::ReadProducer'>ReadProducer</a></td>
+                        <td><a class='struct' href='struct.ProducerRepeat.html'
+                               title='nom::ProducerRepeat'>ProducerRepeat</a></td>
                         <td class='docblock short'>
-                             <p>Can produce data from a struct implementing Read</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='struct' href='struct.Stepper.html'
-                               title='nom::Stepper'>Stepper</a></td>
-                        <td class='docblock short'>
-                             <p>Wraps a producer. The <code>step</code> method applies a parser and returns its result</p>
+                             <p>ProducerRepeat takes a single value, and generates it at each step</p>
 
                         </td>
                     </tr>
@@ -854,7 +999,7 @@ otherwise a little endian u64 integer</p>
                         <td><a class='enum' href='enum.ConsumerState.html'
                                title='nom::ConsumerState'>ConsumerState</a></td>
                         <td class='docblock short'>
-                             <p>Holds the current state of the consumer</p>
+                             <p>Stores a consumer&#39;s current computation state</p>
 
                         </td>
                     </tr>
@@ -869,11 +1014,19 @@ otherwise a little endian u64 integer</p>
                     </tr>
                 
                     <tr class=' module-item'>
-                        <td><a class='enum' href='enum.ErrorCode.html'
-                               title='nom::ErrorCode'>ErrorCode</a></td>
+                        <td><a class='enum' href='enum.ErrorKind.html'
+                               title='nom::ErrorKind'>ErrorKind</a></td>
                         <td class='docblock short'>
                              <p>indicates which parser returned an error</p>
 
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='enum' href='enum.FileProducerState.html'
+                               title='nom::FileProducerState'>FileProducerState</a></td>
+                        <td class='docblock short'>
+                             
                         </td>
                     </tr>
                 
@@ -887,28 +1040,26 @@ otherwise a little endian u64 integer</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='enum' href='enum.Input.html'
+                               title='nom::Input'>Input</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='enum' href='enum.Move.html'
+                               title='nom::Move'>Move</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='enum' href='enum.Needed.html'
                                title='nom::Needed'>Needed</a></td>
                         <td class='docblock short'>
                              <p>Contains information on needed data if a parser returned <code>Incomplete</code></p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='enum' href='enum.ProducerState.html'
-                               title='nom::ProducerState'>ProducerState</a></td>
-                        <td class='docblock short'>
-                             <p>Holds the data producer&#39;s current state</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='enum' href='enum.StepperState.html'
-                               title='nom::StepperState'>StepperState</a></td>
-                        <td class='docblock short'>
-                             <p>Holds the Stepper&#39;s current state</p>
 
                         </td>
                     </tr>
@@ -923,10 +1074,18 @@ otherwise a little endian u64 integer</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='trait' href='trait.AsChar.html'
+                               title='nom::AsChar'>AsChar</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='trait' href='trait.Consumer.html'
                                title='nom::Consumer'>Consumer</a></td>
                         <td class='docblock short'>
-                             <p>Implement the consume method, taking a byte array as input and returning a consumer state</p>
+                             <p>The Consumer trait wraps a computation and its state</p>
 
                         </td>
                     </tr>
@@ -957,10 +1116,26 @@ otherwise a little endian u64 integer</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='trait' href='trait.InputLength.html'
+                               title='nom::InputLength'>InputLength</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='trait' href='trait.IterIndices.html'
+                               title='nom::IterIndices'>IterIndices</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='trait' href='trait.Producer.html'
                                title='nom::Producer'>Producer</a></td>
                         <td class='docblock short'>
-                             <p>A producer implements the produce method, currently working with u8 arrays</p>
+                             <p>The producer wraps a data source, like file or network, and applies a consumer on it</p>
 
                         </td>
                     </tr>
@@ -1157,10 +1332,36 @@ otherwise a little endian u64 integer</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='fn' href='fn.error_to_u32.html'
+                               title='nom::error_to_u32'>error_to_u32</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='fn' href='fn.generate_colors.html'
                                title='nom::generate_colors'>generate_colors</a></td>
                         <td class='docblock short'>
                              
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.hex_digit.html'
+                               title='nom::hex_digit'>hex_digit</a></td>
+                        <td class='docblock short'>
+                             <p>Recognizes hexadecimal numerical characters: 0-9, A-F, a-f</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.hex_u32.html'
+                               title='nom::hex_u32'>hex_u32</a></td>
+                        <td class='docblock short'>
+                             <p>Recognizes a hex-encoded integer</p>
+
                         </td>
                     </tr>
                 
@@ -1183,6 +1384,22 @@ otherwise a little endian u64 integer</p>
                     <tr class=' module-item'>
                         <td><a class='fn' href='fn.is_digit.html'
                                title='nom::is_digit'>is_digit</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.is_hex_digit.html'
+                               title='nom::is_hex_digit'>is_hex_digit</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.is_oct_digit.html'
+                               title='nom::is_oct_digit'>is_oct_digit</a></td>
                         <td class='docblock short'>
                              
                         </td>
@@ -1303,10 +1520,28 @@ otherwise a little endian u64 integer</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='fn' href='fn.non_empty.html'
+                               title='nom::non_empty'>non_empty</a></td>
+                        <td class='docblock short'>
+                             <p>Recognizes non empty buffers</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='fn' href='fn.not_line_ending.html'
                                title='nom::not_line_ending'>not_line_ending</a></td>
                         <td class='docblock short'>
                              
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.oct_digit.html'
+                               title='nom::oct_digit'>oct_digit</a></td>
+                        <td class='docblock short'>
+                             <p>Recognizes octal characters: 0-7</p>
+
                         </td>
                     </tr>
                 
@@ -1364,6 +1599,14 @@ otherwise a little endian u64 integer</p>
                         <td class='docblock short'>
                              <p>Return the remaining input.</p>
 
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.shift.html'
+                               title='nom::shift'>shift</a></td>
+                        <td class='docblock short'>
+                             
                         </td>
                     </tr>
                 
