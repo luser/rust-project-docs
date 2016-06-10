@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
+    
 
     
     
@@ -43,10 +44,10 @@
 
     <section id='main' class="content macro">
 <h1 class='fqn'><span class='in-band'><a href='index.html'>nom</a>::<wbr><a class='macro' href=''>add_error!</a></span><span class='out-of-band'><span id='render-detail'>
-            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
-                [<span class='inner'>&#x2212;</span>]
-            </a>
-        </span><a id='src-1759' class='srclink' href='../src/nom/macros.rs.html#242-257' title='goto source code'>[src]</a></span></h1>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-1756' class='srclink' href='../src/nom/macros.rs.html#277-292' title='goto source code'>[src]</a></span></h1>
 <pre class='rust macro'>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>add_error</span> {
     (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>code</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> )) <span class='op'>=&gt;</span> { ... };
@@ -57,6 +58,13 @@
 <p>While error! does an early return and avoids backtracking,
 add_error! backtracks normally. It just provides more context
 for an error</p>
+
+<pre class='rust rust-example-rendered'>
+    <span class='macro'>named</span><span class='macro'>!</span>(<span class='ident'>err_test</span>, <span class='macro'>add_error</span><span class='macro'>!</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>Custom</span>(<span class='number'>42</span>), <span class='macro'>tag</span><span class='macro'>!</span>(<span class='string'>&quot;abcd&quot;</span>)));
+
+    <span class='kw'>let</span> <span class='ident'>a</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;efghblah&quot;</span>[..];
+    <span class='kw'>let</span> <span class='ident'>res_a</span> <span class='op'>=</span> <span class='ident'>err_test</span>(<span class='ident'>a</span>);
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>res_a</span>, <span class='ident'>Error</span>(<span class='ident'>NodePosition</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>Custom</span>(<span class='number'>42</span>), <span class='ident'>a</span>, <span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='ident'>Position</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>Tag</span>, <span class='ident'>a</span>)))));</pre>
 </div></section>
     <section id='search' class="content hidden"></section>
 
@@ -100,7 +108,7 @@ for an error</p>
 
                 <p>
                     Search functions by type signature (e.g.
-                    <code>vec -> usize</code>)
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
                 </p>
             </div>
         </div>

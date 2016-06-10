@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-88ac128001ac3a9a/nom-1.2.2/src/macros.rs`.">
+    <meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-88ac128001ac3a9a/nom-1.2.3/src/macros.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>macros.rs.html -- source</title>
 
     <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../../main.css">
+    
 
     
     
@@ -3147,6 +3148,418 @@
 <span id="3104">3104</span>
 <span id="3105">3105</span>
 <span id="3106">3106</span>
+<span id="3107">3107</span>
+<span id="3108">3108</span>
+<span id="3109">3109</span>
+<span id="3110">3110</span>
+<span id="3111">3111</span>
+<span id="3112">3112</span>
+<span id="3113">3113</span>
+<span id="3114">3114</span>
+<span id="3115">3115</span>
+<span id="3116">3116</span>
+<span id="3117">3117</span>
+<span id="3118">3118</span>
+<span id="3119">3119</span>
+<span id="3120">3120</span>
+<span id="3121">3121</span>
+<span id="3122">3122</span>
+<span id="3123">3123</span>
+<span id="3124">3124</span>
+<span id="3125">3125</span>
+<span id="3126">3126</span>
+<span id="3127">3127</span>
+<span id="3128">3128</span>
+<span id="3129">3129</span>
+<span id="3130">3130</span>
+<span id="3131">3131</span>
+<span id="3132">3132</span>
+<span id="3133">3133</span>
+<span id="3134">3134</span>
+<span id="3135">3135</span>
+<span id="3136">3136</span>
+<span id="3137">3137</span>
+<span id="3138">3138</span>
+<span id="3139">3139</span>
+<span id="3140">3140</span>
+<span id="3141">3141</span>
+<span id="3142">3142</span>
+<span id="3143">3143</span>
+<span id="3144">3144</span>
+<span id="3145">3145</span>
+<span id="3146">3146</span>
+<span id="3147">3147</span>
+<span id="3148">3148</span>
+<span id="3149">3149</span>
+<span id="3150">3150</span>
+<span id="3151">3151</span>
+<span id="3152">3152</span>
+<span id="3153">3153</span>
+<span id="3154">3154</span>
+<span id="3155">3155</span>
+<span id="3156">3156</span>
+<span id="3157">3157</span>
+<span id="3158">3158</span>
+<span id="3159">3159</span>
+<span id="3160">3160</span>
+<span id="3161">3161</span>
+<span id="3162">3162</span>
+<span id="3163">3163</span>
+<span id="3164">3164</span>
+<span id="3165">3165</span>
+<span id="3166">3166</span>
+<span id="3167">3167</span>
+<span id="3168">3168</span>
+<span id="3169">3169</span>
+<span id="3170">3170</span>
+<span id="3171">3171</span>
+<span id="3172">3172</span>
+<span id="3173">3173</span>
+<span id="3174">3174</span>
+<span id="3175">3175</span>
+<span id="3176">3176</span>
+<span id="3177">3177</span>
+<span id="3178">3178</span>
+<span id="3179">3179</span>
+<span id="3180">3180</span>
+<span id="3181">3181</span>
+<span id="3182">3182</span>
+<span id="3183">3183</span>
+<span id="3184">3184</span>
+<span id="3185">3185</span>
+<span id="3186">3186</span>
+<span id="3187">3187</span>
+<span id="3188">3188</span>
+<span id="3189">3189</span>
+<span id="3190">3190</span>
+<span id="3191">3191</span>
+<span id="3192">3192</span>
+<span id="3193">3193</span>
+<span id="3194">3194</span>
+<span id="3195">3195</span>
+<span id="3196">3196</span>
+<span id="3197">3197</span>
+<span id="3198">3198</span>
+<span id="3199">3199</span>
+<span id="3200">3200</span>
+<span id="3201">3201</span>
+<span id="3202">3202</span>
+<span id="3203">3203</span>
+<span id="3204">3204</span>
+<span id="3205">3205</span>
+<span id="3206">3206</span>
+<span id="3207">3207</span>
+<span id="3208">3208</span>
+<span id="3209">3209</span>
+<span id="3210">3210</span>
+<span id="3211">3211</span>
+<span id="3212">3212</span>
+<span id="3213">3213</span>
+<span id="3214">3214</span>
+<span id="3215">3215</span>
+<span id="3216">3216</span>
+<span id="3217">3217</span>
+<span id="3218">3218</span>
+<span id="3219">3219</span>
+<span id="3220">3220</span>
+<span id="3221">3221</span>
+<span id="3222">3222</span>
+<span id="3223">3223</span>
+<span id="3224">3224</span>
+<span id="3225">3225</span>
+<span id="3226">3226</span>
+<span id="3227">3227</span>
+<span id="3228">3228</span>
+<span id="3229">3229</span>
+<span id="3230">3230</span>
+<span id="3231">3231</span>
+<span id="3232">3232</span>
+<span id="3233">3233</span>
+<span id="3234">3234</span>
+<span id="3235">3235</span>
+<span id="3236">3236</span>
+<span id="3237">3237</span>
+<span id="3238">3238</span>
+<span id="3239">3239</span>
+<span id="3240">3240</span>
+<span id="3241">3241</span>
+<span id="3242">3242</span>
+<span id="3243">3243</span>
+<span id="3244">3244</span>
+<span id="3245">3245</span>
+<span id="3246">3246</span>
+<span id="3247">3247</span>
+<span id="3248">3248</span>
+<span id="3249">3249</span>
+<span id="3250">3250</span>
+<span id="3251">3251</span>
+<span id="3252">3252</span>
+<span id="3253">3253</span>
+<span id="3254">3254</span>
+<span id="3255">3255</span>
+<span id="3256">3256</span>
+<span id="3257">3257</span>
+<span id="3258">3258</span>
+<span id="3259">3259</span>
+<span id="3260">3260</span>
+<span id="3261">3261</span>
+<span id="3262">3262</span>
+<span id="3263">3263</span>
+<span id="3264">3264</span>
+<span id="3265">3265</span>
+<span id="3266">3266</span>
+<span id="3267">3267</span>
+<span id="3268">3268</span>
+<span id="3269">3269</span>
+<span id="3270">3270</span>
+<span id="3271">3271</span>
+<span id="3272">3272</span>
+<span id="3273">3273</span>
+<span id="3274">3274</span>
+<span id="3275">3275</span>
+<span id="3276">3276</span>
+<span id="3277">3277</span>
+<span id="3278">3278</span>
+<span id="3279">3279</span>
+<span id="3280">3280</span>
+<span id="3281">3281</span>
+<span id="3282">3282</span>
+<span id="3283">3283</span>
+<span id="3284">3284</span>
+<span id="3285">3285</span>
+<span id="3286">3286</span>
+<span id="3287">3287</span>
+<span id="3288">3288</span>
+<span id="3289">3289</span>
+<span id="3290">3290</span>
+<span id="3291">3291</span>
+<span id="3292">3292</span>
+<span id="3293">3293</span>
+<span id="3294">3294</span>
+<span id="3295">3295</span>
+<span id="3296">3296</span>
+<span id="3297">3297</span>
+<span id="3298">3298</span>
+<span id="3299">3299</span>
+<span id="3300">3300</span>
+<span id="3301">3301</span>
+<span id="3302">3302</span>
+<span id="3303">3303</span>
+<span id="3304">3304</span>
+<span id="3305">3305</span>
+<span id="3306">3306</span>
+<span id="3307">3307</span>
+<span id="3308">3308</span>
+<span id="3309">3309</span>
+<span id="3310">3310</span>
+<span id="3311">3311</span>
+<span id="3312">3312</span>
+<span id="3313">3313</span>
+<span id="3314">3314</span>
+<span id="3315">3315</span>
+<span id="3316">3316</span>
+<span id="3317">3317</span>
+<span id="3318">3318</span>
+<span id="3319">3319</span>
+<span id="3320">3320</span>
+<span id="3321">3321</span>
+<span id="3322">3322</span>
+<span id="3323">3323</span>
+<span id="3324">3324</span>
+<span id="3325">3325</span>
+<span id="3326">3326</span>
+<span id="3327">3327</span>
+<span id="3328">3328</span>
+<span id="3329">3329</span>
+<span id="3330">3330</span>
+<span id="3331">3331</span>
+<span id="3332">3332</span>
+<span id="3333">3333</span>
+<span id="3334">3334</span>
+<span id="3335">3335</span>
+<span id="3336">3336</span>
+<span id="3337">3337</span>
+<span id="3338">3338</span>
+<span id="3339">3339</span>
+<span id="3340">3340</span>
+<span id="3341">3341</span>
+<span id="3342">3342</span>
+<span id="3343">3343</span>
+<span id="3344">3344</span>
+<span id="3345">3345</span>
+<span id="3346">3346</span>
+<span id="3347">3347</span>
+<span id="3348">3348</span>
+<span id="3349">3349</span>
+<span id="3350">3350</span>
+<span id="3351">3351</span>
+<span id="3352">3352</span>
+<span id="3353">3353</span>
+<span id="3354">3354</span>
+<span id="3355">3355</span>
+<span id="3356">3356</span>
+<span id="3357">3357</span>
+<span id="3358">3358</span>
+<span id="3359">3359</span>
+<span id="3360">3360</span>
+<span id="3361">3361</span>
+<span id="3362">3362</span>
+<span id="3363">3363</span>
+<span id="3364">3364</span>
+<span id="3365">3365</span>
+<span id="3366">3366</span>
+<span id="3367">3367</span>
+<span id="3368">3368</span>
+<span id="3369">3369</span>
+<span id="3370">3370</span>
+<span id="3371">3371</span>
+<span id="3372">3372</span>
+<span id="3373">3373</span>
+<span id="3374">3374</span>
+<span id="3375">3375</span>
+<span id="3376">3376</span>
+<span id="3377">3377</span>
+<span id="3378">3378</span>
+<span id="3379">3379</span>
+<span id="3380">3380</span>
+<span id="3381">3381</span>
+<span id="3382">3382</span>
+<span id="3383">3383</span>
+<span id="3384">3384</span>
+<span id="3385">3385</span>
+<span id="3386">3386</span>
+<span id="3387">3387</span>
+<span id="3388">3388</span>
+<span id="3389">3389</span>
+<span id="3390">3390</span>
+<span id="3391">3391</span>
+<span id="3392">3392</span>
+<span id="3393">3393</span>
+<span id="3394">3394</span>
+<span id="3395">3395</span>
+<span id="3396">3396</span>
+<span id="3397">3397</span>
+<span id="3398">3398</span>
+<span id="3399">3399</span>
+<span id="3400">3400</span>
+<span id="3401">3401</span>
+<span id="3402">3402</span>
+<span id="3403">3403</span>
+<span id="3404">3404</span>
+<span id="3405">3405</span>
+<span id="3406">3406</span>
+<span id="3407">3407</span>
+<span id="3408">3408</span>
+<span id="3409">3409</span>
+<span id="3410">3410</span>
+<span id="3411">3411</span>
+<span id="3412">3412</span>
+<span id="3413">3413</span>
+<span id="3414">3414</span>
+<span id="3415">3415</span>
+<span id="3416">3416</span>
+<span id="3417">3417</span>
+<span id="3418">3418</span>
+<span id="3419">3419</span>
+<span id="3420">3420</span>
+<span id="3421">3421</span>
+<span id="3422">3422</span>
+<span id="3423">3423</span>
+<span id="3424">3424</span>
+<span id="3425">3425</span>
+<span id="3426">3426</span>
+<span id="3427">3427</span>
+<span id="3428">3428</span>
+<span id="3429">3429</span>
+<span id="3430">3430</span>
+<span id="3431">3431</span>
+<span id="3432">3432</span>
+<span id="3433">3433</span>
+<span id="3434">3434</span>
+<span id="3435">3435</span>
+<span id="3436">3436</span>
+<span id="3437">3437</span>
+<span id="3438">3438</span>
+<span id="3439">3439</span>
+<span id="3440">3440</span>
+<span id="3441">3441</span>
+<span id="3442">3442</span>
+<span id="3443">3443</span>
+<span id="3444">3444</span>
+<span id="3445">3445</span>
+<span id="3446">3446</span>
+<span id="3447">3447</span>
+<span id="3448">3448</span>
+<span id="3449">3449</span>
+<span id="3450">3450</span>
+<span id="3451">3451</span>
+<span id="3452">3452</span>
+<span id="3453">3453</span>
+<span id="3454">3454</span>
+<span id="3455">3455</span>
+<span id="3456">3456</span>
+<span id="3457">3457</span>
+<span id="3458">3458</span>
+<span id="3459">3459</span>
+<span id="3460">3460</span>
+<span id="3461">3461</span>
+<span id="3462">3462</span>
+<span id="3463">3463</span>
+<span id="3464">3464</span>
+<span id="3465">3465</span>
+<span id="3466">3466</span>
+<span id="3467">3467</span>
+<span id="3468">3468</span>
+<span id="3469">3469</span>
+<span id="3470">3470</span>
+<span id="3471">3471</span>
+<span id="3472">3472</span>
+<span id="3473">3473</span>
+<span id="3474">3474</span>
+<span id="3475">3475</span>
+<span id="3476">3476</span>
+<span id="3477">3477</span>
+<span id="3478">3478</span>
+<span id="3479">3479</span>
+<span id="3480">3480</span>
+<span id="3481">3481</span>
+<span id="3482">3482</span>
+<span id="3483">3483</span>
+<span id="3484">3484</span>
+<span id="3485">3485</span>
+<span id="3486">3486</span>
+<span id="3487">3487</span>
+<span id="3488">3488</span>
+<span id="3489">3489</span>
+<span id="3490">3490</span>
+<span id="3491">3491</span>
+<span id="3492">3492</span>
+<span id="3493">3493</span>
+<span id="3494">3494</span>
+<span id="3495">3495</span>
+<span id="3496">3496</span>
+<span id="3497">3497</span>
+<span id="3498">3498</span>
+<span id="3499">3499</span>
+<span id="3500">3500</span>
+<span id="3501">3501</span>
+<span id="3502">3502</span>
+<span id="3503">3503</span>
+<span id="3504">3504</span>
+<span id="3505">3505</span>
+<span id="3506">3506</span>
+<span id="3507">3507</span>
+<span id="3508">3508</span>
+<span id="3509">3509</span>
+<span id="3510">3510</span>
+<span id="3511">3511</span>
+<span id="3512">3512</span>
+<span id="3513">3513</span>
+<span id="3514">3514</span>
+<span id="3515">3515</span>
+<span id="3516">3516</span>
+<span id="3517">3517</span>
+<span id="3518">3518</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Macro combinators</span>
 <span class='doccomment'>//!</span>
@@ -3296,6 +3709,17 @@
 );
 
 <span class='doccomment'>/// Used to wrap common expressions and function as macros</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// ```</span>
+<span class='doccomment'>/// # #[macro_use] extern crate nom;</span>
+<span class='doccomment'>/// # use nom::IResult;</span>
+<span class='doccomment'>/// # fn main() {</span>
+<span class='doccomment'>///   fn take_wrapper(input: &amp;[u8], i: u8) -&gt; IResult&lt;&amp;[u8],&amp;[u8]&gt; { take!(input, i * 10) }</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>///   // will make a parser taking 20 bytes</span>
+<span class='doccomment'>///   named!(parser, apply!(take_wrapper, 2));</span>
+<span class='doccomment'>/// # }</span>
+<span class='doccomment'>/// ```</span>
 <span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>call</span> (
   (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> ( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span> ) );
@@ -3304,7 +3728,16 @@
 
 <span class='doccomment'>/// emulate function currying: `apply!(my_function, arg1, arg2, ...)` becomes `my_function(input, arg1, arg2, ...)`</span>
 <span class='doccomment'>///</span>
-<span class='doccomment'>/// Supports up to 6 arguments</span>
+<span class='doccomment'>/// ```</span>
+<span class='doccomment'>/// # #[macro_use] extern crate nom;</span>
+<span class='doccomment'>/// # use nom::IResult;</span>
+<span class='doccomment'>/// # fn main() {</span>
+<span class='doccomment'>///   fn take_wrapper(input: &amp;[u8], i: u8) -&gt; IResult&lt;&amp;[u8],&amp;[u8]&gt; { take!(input, i * 10) }</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>///   // will make a parser taking 20 bytes</span>
+<span class='doccomment'>///   named!(parser, apply!(take_wrapper, 2));</span>
+<span class='doccomment'>/// # }</span>
+<span class='doccomment'>/// ```</span>
 <span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>apply</span> (
   (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>:<span class='ident'>expr</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>expr</span>),<span class='op'>*</span> ) <span class='op'>=&gt;</span> ( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>),<span class='op'>*</span> ) );
@@ -3388,6 +3821,21 @@
 <span class='doccomment'>/// add_error! backtracks normally. It just provides more context</span>
 <span class='doccomment'>/// for an error</span>
 <span class='doccomment'>///</span>
+<span class='doccomment'>/// ```</span>
+<span class='doccomment'>/// # #[macro_use] extern crate nom;</span>
+<span class='doccomment'>/// # use std::collections;</span>
+<span class='doccomment'>/// # use nom::IResult::Error;</span>
+<span class='doccomment'>/// # use nom::Err::{Position,NodePosition};</span>
+<span class='doccomment'>/// # use nom::ErrorKind;</span>
+<span class='doccomment'>/// # fn main() {</span>
+<span class='doccomment'>///     named!(err_test, add_error!(ErrorKind::Custom(42), tag!(&quot;abcd&quot;)));</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>///     let a = &amp;b&quot;efghblah&quot;[..];</span>
+<span class='doccomment'>///     let res_a = err_test(a);</span>
+<span class='doccomment'>///     assert_eq!(res_a, Error(NodePosition(ErrorKind::Custom(42), a, Box::new(Position(ErrorKind::Tag, a)))));</span>
+<span class='doccomment'>/// # }</span>
+<span class='doccomment'>/// ```</span>
+<span class='doccomment'>///</span>
 <span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>add_error</span> (
   (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>code</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> )) <span class='op'>=&gt;</span> (
@@ -3407,8 +3855,25 @@
 );
 
 
-<span class='doccomment'>/// translate parser result from IResult&lt;I,O,u32&gt; to IResult&lt;I,O,E&gt; woth a custom type</span>
+<span class='doccomment'>/// translate parser result from IResult&lt;I,O,u32&gt; to IResult&lt;I,O,E&gt; with a custom type</span>
 <span class='doccomment'>///</span>
+<span class='doccomment'>/// ```</span>
+<span class='doccomment'>/// # #[macro_use] extern crate nom;</span>
+<span class='doccomment'>/// # use std::collections;</span>
+<span class='doccomment'>/// # use nom::IResult::Error;</span>
+<span class='doccomment'>/// # use nom::Err::{Position,NodePosition};</span>
+<span class='doccomment'>/// # use nom::ErrorKind;</span>
+<span class='doccomment'>/// # fn main() {</span>
+<span class='doccomment'>///     // will add a Custom(42) error to the error chain</span>
+<span class='doccomment'>///     named!(err_test, add_error!(ErrorKind::Custom(42), tag!(&quot;abcd&quot;)));</span>
+<span class='doccomment'>///     // Convert to IREsult&lt;&amp;[u8], &amp;[u8], &amp;str&gt;</span>
+<span class='doccomment'>///     named!(parser&lt;&amp;[u8], &amp;[u8], &amp;str&gt;, add_error!(ErrorKind::Custom(&quot;custom error message&quot;), fix_error!(&amp;str, err_test)));</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>///     let a = &amp;b&quot;efghblah&quot;[..];</span>
+<span class='doccomment'>///     let res_a = parser(a);</span>
+<span class='doccomment'>///     assert_eq!(res_a,  Error(NodePosition( ErrorKind::Custom(&quot;custom error message&quot;), a, Box::new(Position(ErrorKind::Fix, a)))));</span>
+<span class='doccomment'>/// # }</span>
+<span class='doccomment'>/// ```</span>
 <span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>fix_error</span> (
   (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span>:<span class='ident'>ty</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> )) <span class='op'>=&gt;</span> (
@@ -3418,24 +3883,24 @@
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i</span>, <span class='ident'>o</span>)    <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i</span>, <span class='ident'>o</span>),
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='ident'>e</span>) <span class='op'>=&gt;</span> {
           <span class='kw'>let</span> <span class='ident'>err</span> <span class='op'>=</span> <span class='kw'>match</span> <span class='ident'>e</span> {
-            <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='prelude-val'>Err</span>::<span class='ident'>Code</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>Custom</span>(_)) <span class='op'>|</span>
-              <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='prelude-val'>Err</span>::<span class='ident'>Node</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>Custom</span>(_), _) <span class='op'>=&gt;</span> {
-              <span class='kw'>let</span> <span class='ident'>e</span>: <span class='ident'>ErrorKind</span><span class='op'>&lt;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>ErrorKind</span>::<span class='ident'>Fix</span>;
+            <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='prelude-val'>Err</span>::<span class='ident'>Code</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>ErrorKind</span>::<span class='ident'>Custom</span>(_)) <span class='op'>|</span>
+              <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='prelude-val'>Err</span>::<span class='ident'>Node</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>ErrorKind</span>::<span class='ident'>Custom</span>(_), _) <span class='op'>=&gt;</span> {
+              <span class='kw'>let</span> <span class='ident'>e</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>ErrorKind</span><span class='op'>&lt;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>ErrorKind</span>::<span class='ident'>Fix</span>;
               <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='prelude-val'>Err</span>::<span class='ident'>Code</span>(<span class='ident'>e</span>)
             },
-            <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='prelude-val'>Err</span>::<span class='ident'>Position</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>Custom</span>(_), <span class='ident'>p</span>) <span class='op'>|</span>
-              <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='prelude-val'>Err</span>::<span class='ident'>NodePosition</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>Custom</span>(_), <span class='ident'>p</span>, _) <span class='op'>=&gt;</span> {
-              <span class='kw'>let</span> <span class='ident'>e</span>: <span class='ident'>ErrorKind</span><span class='op'>&lt;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>ErrorKind</span>::<span class='ident'>Fix</span>;
+            <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='prelude-val'>Err</span>::<span class='ident'>Position</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>ErrorKind</span>::<span class='ident'>Custom</span>(_), <span class='ident'>p</span>) <span class='op'>|</span>
+              <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='prelude-val'>Err</span>::<span class='ident'>NodePosition</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>ErrorKind</span>::<span class='ident'>Custom</span>(_), <span class='ident'>p</span>, _) <span class='op'>=&gt;</span> {
+              <span class='kw'>let</span> <span class='ident'>e</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>ErrorKind</span><span class='op'>&lt;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>ErrorKind</span>::<span class='ident'>Fix</span>;
               <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='prelude-val'>Err</span>::<span class='ident'>Position</span>(<span class='ident'>e</span>, <span class='ident'>p</span>)
             },
             <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='prelude-val'>Err</span>::<span class='ident'>Code</span>(_) <span class='op'>|</span>
               <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='prelude-val'>Err</span>::<span class='ident'>Node</span>(_, _) <span class='op'>=&gt;</span> {
-              <span class='kw'>let</span> <span class='ident'>e</span>: <span class='ident'>ErrorKind</span><span class='op'>&lt;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>ErrorKind</span>::<span class='ident'>Fix</span>;
+              <span class='kw'>let</span> <span class='ident'>e</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>ErrorKind</span><span class='op'>&lt;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>ErrorKind</span>::<span class='ident'>Fix</span>;
               <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='prelude-val'>Err</span>::<span class='ident'>Code</span>(<span class='ident'>e</span>)
             },
             <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='prelude-val'>Err</span>::<span class='ident'>Position</span>(_, <span class='ident'>p</span>) <span class='op'>|</span>
               <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='prelude-val'>Err</span>::<span class='ident'>NodePosition</span>(_, <span class='ident'>p</span>, _) <span class='op'>=&gt;</span> {
-              <span class='kw'>let</span> <span class='ident'>e</span>: <span class='ident'>ErrorKind</span><span class='op'>&lt;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>ErrorKind</span>::<span class='ident'>Fix</span>;
+              <span class='kw'>let</span> <span class='ident'>e</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>ErrorKind</span><span class='op'>&lt;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>ErrorKind</span>::<span class='ident'>Fix</span>;
               <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='prelude-val'>Err</span>::<span class='ident'>Position</span>(<span class='ident'>e</span>, <span class='ident'>p</span>)
             },
           };
@@ -3451,6 +3916,21 @@
 
 <span class='doccomment'>/// replaces a `Incomplete` returned by the child parser</span>
 <span class='doccomment'>/// with an `Error`</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// ```</span>
+<span class='doccomment'>/// # #[macro_use] extern crate nom;</span>
+<span class='doccomment'>/// # use std::collections;</span>
+<span class='doccomment'>/// # use nom::IResult::Error;</span>
+<span class='doccomment'>/// # use nom::Err::{Position,NodePosition};</span>
+<span class='doccomment'>/// # use nom::ErrorKind;</span>
+<span class='doccomment'>/// # fn main() {</span>
+<span class='doccomment'>///     named!(take_5, complete!(take!(5)));</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>///     let a = &amp;b&quot;abcd&quot;[..];</span>
+<span class='doccomment'>///     let res_a = take_5(a);</span>
+<span class='doccomment'>///     assert_eq!(res_a,  Error(Position(ErrorKind::Complete, a)));</span>
+<span class='doccomment'>/// # }</span>
+<span class='doccomment'>/// ```</span>
 <span class='doccomment'>///</span>
 <span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>complete</span> (
@@ -3816,7 +4296,6 @@
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>chain</span> (
   (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> (
     {
-      <span class='comment'>//use $crate::InputLength;</span>
       <span class='macro'>chaining_parser</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, <span class='number'>0usize</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>)
     }
   );
@@ -3831,13 +4310,12 @@
   );
   (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> ) <span class='kw-2'>~</span> $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> (
     {
-      <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>;
       <span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>) {
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='ident'>e</span>)      <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='ident'>e</span>),
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>) <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>),
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span>)) <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span> <span class='op'>+</span> <span class='ident'>i</span>)),
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i</span>,_)     <span class='op'>=&gt;</span> {
-          <span class='macro'>chaining_parser</span><span class='macro'>!</span>(<span class='ident'>i</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span> <span class='op'>+</span> ((<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>).<span class='ident'>input_len</span>() <span class='op'>-</span> <span class='ident'>i</span>.<span class='ident'>input_len</span>()), $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>)
+          <span class='macro'>chaining_parser</span><span class='macro'>!</span>(<span class='ident'>i</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span> <span class='op'>+</span> (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>::<span class='ident'>input_len</span>(<span class='kw-2'>&amp;</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>)) <span class='op'>-</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>::<span class='ident'>input_len</span>(<span class='kw-2'>&amp;</span><span class='ident'>i</span>)), $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>)
         }
       }
     }
@@ -3847,9 +4325,8 @@
     <span class='macro'>chaining_parser</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span>, <span class='macro'>call</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>) ? <span class='kw-2'>~</span> $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>);
   );
 
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> ) ? <span class='kw-2'>~</span> $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> ({
+  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> ) ? <span class='kw-2'>~</span> $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> (
     {
-      <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>;
       <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>);
       <span class='kw'>if</span> <span class='kw'>let</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>inc</span>) <span class='op'>=</span> <span class='ident'>res</span> {
         <span class='kw'>match</span> <span class='ident'>inc</span> {
@@ -3862,10 +4339,10 @@
         } <span class='kw'>else</span> {
           <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>
         };
-        <span class='macro'>chaining_parser</span><span class='macro'>!</span>(<span class='ident'>input</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span> <span class='op'>+</span> ((<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>).<span class='ident'>input_len</span>() <span class='op'>-</span> <span class='ident'>input</span>.<span class='ident'>input_len</span>()), $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>)
+        <span class='macro'>chaining_parser</span><span class='macro'>!</span>(<span class='ident'>input</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span> <span class='op'>+</span> (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>::<span class='ident'>input_len</span>(<span class='kw-2'>&amp;</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>)) <span class='op'>-</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>::<span class='ident'>input_len</span>(<span class='kw-2'>&amp;</span><span class='ident'>input</span>)), $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>)
       }
     }
-  });
+  );
 
   (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>field</span>:<span class='ident'>ident</span> : <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>:<span class='ident'>ident</span> <span class='kw-2'>~</span> $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> (
     <span class='macro'>chaining_parser</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>field</span>: <span class='macro'>call</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>) <span class='kw-2'>~</span> $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>);
@@ -3873,14 +4350,13 @@
 
   (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>field</span>:<span class='ident'>ident</span> : <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> ) <span class='kw-2'>~</span> $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> (
     {
-      <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>;
       <span class='kw'>match</span>  <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>) {
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='ident'>e</span>)      <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='ident'>e</span>),
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>) <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>),
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span>)) <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span> <span class='op'>+</span> <span class='ident'>i</span>)),
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i</span>,<span class='ident'>o</span>)     <span class='op'>=&gt;</span> {
           <span class='kw'>let</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>field</span> <span class='op'>=</span> <span class='ident'>o</span>;
-          <span class='macro'>chaining_parser</span><span class='macro'>!</span>(<span class='ident'>i</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span> <span class='op'>+</span> ((<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>).<span class='ident'>input_len</span>() <span class='op'>-</span> <span class='ident'>i</span>.<span class='ident'>input_len</span>()), $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>)
+          <span class='macro'>chaining_parser</span><span class='macro'>!</span>(<span class='ident'>i</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span> <span class='op'>+</span> (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>::<span class='ident'>input_len</span>(<span class='kw-2'>&amp;</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>)) <span class='op'>-</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>::<span class='ident'>input_len</span>(<span class='kw-2'>&amp;</span><span class='ident'>i</span>)), $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>)
         }
       }
     }
@@ -3892,14 +4368,13 @@
 
   (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span>:<span class='ident'>expr</span>, <span class='kw-2'>mut</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>field</span>:<span class='ident'>ident</span> : <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> ) <span class='kw-2'>~</span> $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> (
     {
-      <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>;
       <span class='kw'>match</span>  <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>) {
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='ident'>e</span>)      <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='ident'>e</span>),
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>) <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>),
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span>)) <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span> <span class='op'>+</span> <span class='ident'>i</span>)),
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i</span>,<span class='ident'>o</span>)     <span class='op'>=&gt;</span> {
           <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>field</span> <span class='op'>=</span> <span class='ident'>o</span>;
-          <span class='macro'>chaining_parser</span><span class='macro'>!</span>(<span class='ident'>i</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span> <span class='op'>+</span> (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>).<span class='ident'>input_len</span>() <span class='op'>-</span> <span class='ident'>i</span>.<span class='ident'>input_len</span>(), $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>)
+          <span class='macro'>chaining_parser</span><span class='macro'>!</span>(<span class='ident'>i</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span> <span class='op'>+</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>::<span class='ident'>input_len</span>(<span class='kw-2'>&amp;</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>)) <span class='op'>-</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>::<span class='ident'>input_len</span>(<span class='kw-2'>&amp;</span><span class='ident'>i</span>), $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>)
         }
       }
     }
@@ -3909,9 +4384,8 @@
     <span class='macro'>chaining_parser</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>field</span> : <span class='macro'>call</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>) ? <span class='kw-2'>~</span> $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>);
   );
 
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>field</span>:<span class='ident'>ident</span> : <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> ) ? <span class='kw-2'>~</span> $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> ({
+  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>field</span>:<span class='ident'>ident</span> : <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> ) ? <span class='kw-2'>~</span> $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> (
     {
-      <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>;
       <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>);
       <span class='kw'>if</span> <span class='kw'>let</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>inc</span>) <span class='op'>=</span> <span class='ident'>res</span> {
         <span class='kw'>match</span> <span class='ident'>inc</span> {
@@ -3924,18 +4398,17 @@
         } <span class='kw'>else</span> {
           (::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span>::<span class='prelude-val'>None</span>,<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>)
         };
-        <span class='macro'>chaining_parser</span><span class='macro'>!</span>(<span class='ident'>input</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span> <span class='op'>+</span> (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>).<span class='ident'>input_len</span>() <span class='op'>-</span> <span class='ident'>input</span>.<span class='ident'>input_len</span>(), $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>)
+        <span class='macro'>chaining_parser</span><span class='macro'>!</span>(<span class='ident'>input</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span> <span class='op'>+</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>::<span class='ident'>input_len</span>(<span class='kw-2'>&amp;</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>)) <span class='op'>-</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>::<span class='ident'>input_len</span>(<span class='kw-2'>&amp;</span><span class='ident'>input</span>), $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>)
       }
     }
-  });
+  );
 
   (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span>:<span class='ident'>expr</span>, <span class='kw-2'>mut</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>field</span>:<span class='ident'>ident</span> : <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>:<span class='ident'>ident</span> ? <span class='kw-2'>~</span> $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> (
     <span class='macro'>chaining_parser</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span>, <span class='kw-2'>mut</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>field</span> : <span class='macro'>call</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>) ? <span class='kw-2'>~</span> $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>);
   );
 
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span>:<span class='ident'>expr</span>, <span class='kw-2'>mut</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>field</span>:<span class='ident'>ident</span> : <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> ) ? <span class='kw-2'>~</span> $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> ({
+  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span>:<span class='ident'>expr</span>, <span class='kw-2'>mut</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>field</span>:<span class='ident'>ident</span> : <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> ) ? <span class='kw-2'>~</span> $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> (
     {
-      <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>;
       <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>);
       <span class='kw'>if</span> <span class='kw'>let</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>inc</span>) <span class='op'>=</span> <span class='ident'>res</span> {
         <span class='kw'>match</span> <span class='ident'>inc</span> {
@@ -3948,10 +4421,10 @@
         } <span class='kw'>else</span> {
           (::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span>::<span class='prelude-val'>None</span>,<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>)
         };
-        <span class='macro'>chaining_parser</span><span class='macro'>!</span>(<span class='ident'>input</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span> <span class='op'>+</span> (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>).<span class='ident'>input_len</span>() <span class='op'>-</span> <span class='ident'>input</span>.<span class='ident'>input_len</span>(), $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>)
+        <span class='macro'>chaining_parser</span><span class='macro'>!</span>(<span class='ident'>input</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span> <span class='op'>+</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>::<span class='ident'>input_len</span>(<span class='kw-2'>&amp;</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>)) <span class='op'>-</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>::<span class='ident'>input_len</span>(<span class='kw-2'>&amp;</span><span class='ident'>input</span>), $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>)
       }
     }
-  });
+  );
 
   <span class='comment'>// ending the chain</span>
   (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>assemble</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (
@@ -4121,26 +4594,24 @@
   );
   (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span>:<span class='ident'>expr</span>, (), <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> ), $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> (
     {
-      <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>;
       <span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>) {
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='ident'>e</span>)                            <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='ident'>e</span>),
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>) <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>),
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span>)) <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span> <span class='op'>+</span> <span class='ident'>i</span>)),
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i</span>,<span class='ident'>o</span>)     <span class='op'>=&gt;</span> {
-          <span class='macro'>tuple_parser</span><span class='macro'>!</span>(<span class='ident'>i</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span> <span class='op'>+</span> ((<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>).<span class='ident'>input_len</span>() <span class='op'>-</span> <span class='ident'>i</span>.<span class='ident'>input_len</span>()), (<span class='ident'>o</span>), $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>)
+          <span class='macro'>tuple_parser</span><span class='macro'>!</span>(<span class='ident'>i</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span> <span class='op'>+</span> (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>::<span class='ident'>input_len</span>(<span class='kw-2'>&amp;</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>)) <span class='op'>-</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>::<span class='ident'>input_len</span>(<span class='kw-2'>&amp;</span><span class='ident'>i</span>)), (<span class='ident'>o</span>), $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>)
         }
       }
     }
   );
   (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span>:<span class='ident'>expr</span>, ($(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>parsed</span>:<span class='ident'>tt</span>)<span class='op'>*</span>), <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> ), $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> (
     {
-      <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>;
       <span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>) {
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='ident'>e</span>)                            <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='ident'>e</span>),
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>) <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>),
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span>)) <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span> <span class='op'>+</span> <span class='ident'>i</span>)),
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i</span>,<span class='ident'>o</span>)     <span class='op'>=&gt;</span> {
-          <span class='macro'>tuple_parser</span><span class='macro'>!</span>(<span class='ident'>i</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span> <span class='op'>+</span> ((<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>).<span class='ident'>input_len</span>() <span class='op'>-</span> <span class='ident'>i</span>.<span class='ident'>input_len</span>()), ($(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>parsed</span>)<span class='op'>*</span> , <span class='ident'>o</span>), $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>)
+          <span class='macro'>tuple_parser</span><span class='macro'>!</span>(<span class='ident'>i</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span> <span class='op'>+</span> (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>::<span class='ident'>input_len</span>(<span class='kw-2'>&amp;</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>)) <span class='op'>-</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>::<span class='ident'>input_len</span>(<span class='kw-2'>&amp;</span><span class='ident'>i</span>)), ($(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>parsed</span>)<span class='op'>*</span> , <span class='ident'>o</span>), $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>)<span class='op'>*</span>)
         }
       }
     }
@@ -4150,7 +4621,6 @@
   );
   (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span>:<span class='ident'>expr</span>, (), <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> )) <span class='op'>=&gt;</span> (
     {
-      <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>;
       <span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>) {
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='ident'>e</span>)                            <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='ident'>e</span>),
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>) <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>),
@@ -4163,7 +4633,6 @@
   );
   (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>consumed</span>:<span class='ident'>expr</span>, ($(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>parsed</span>:<span class='ident'>expr</span>),<span class='op'>*</span>), <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> )) <span class='op'>=&gt;</span> (
     {
-      <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>;
       <span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>) {
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='ident'>e</span>)                            <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='ident'>e</span>),
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>) <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>),
@@ -4597,6 +5066,59 @@
   );
 );
 
+<span class='doccomment'>/// `cond_with_error!(bool, I -&gt; IResult&lt;I,O&gt;) =&gt; I -&gt; IResult&lt;I, Option&lt;O&gt;&gt;`</span>
+<span class='doccomment'>/// Conditional combinator</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// Wraps another parser and calls it if the</span>
+<span class='doccomment'>/// condition is met. This combinator returns</span>
+<span class='doccomment'>/// an Option of the return type of the child</span>
+<span class='doccomment'>/// parser.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// This is especially useful if a parser depends</span>
+<span class='doccomment'>/// on the value return by a preceding parser in</span>
+<span class='doccomment'>/// a `chain!`.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// ```</span>
+<span class='doccomment'>/// # #[macro_use] extern crate nom;</span>
+<span class='doccomment'>/// # use nom::IResult::Done;</span>
+<span class='doccomment'>/// # use nom::IResult;</span>
+<span class='doccomment'>/// # fn main() {</span>
+<span class='doccomment'>///  let b = true;</span>
+<span class='doccomment'>///  let f: Box&lt;Fn(&amp;&#39;static [u8]) -&gt; IResult&lt;&amp;[u8],Option&lt;&amp;[u8]&gt;&gt;&gt; = Box::new(closure!(&amp;&#39;static[u8],</span>
+<span class='doccomment'>///    cond!( b, tag!(&quot;abcd&quot;) ))</span>
+<span class='doccomment'>///  );</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>///  let a = b&quot;abcdef&quot;;</span>
+<span class='doccomment'>///  assert_eq!(f(&amp;a[..]), Done(&amp;b&quot;ef&quot;[..], Some(&amp;b&quot;abcd&quot;[..])));</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>///  let b2 = false;</span>
+<span class='doccomment'>///  let f2:Box&lt;Fn(&amp;&#39;static [u8]) -&gt; IResult&lt;&amp;[u8],Option&lt;&amp;[u8]&gt;&gt;&gt; = Box::new(closure!(&amp;&#39;static[u8],</span>
+<span class='doccomment'>///    cond!( b2, tag!(&quot;abcd&quot;) ))</span>
+<span class='doccomment'>///  );</span>
+<span class='doccomment'>///  assert_eq!(f2(&amp;a[..]), Done(&amp;b&quot;abcdef&quot;[..], None));</span>
+<span class='doccomment'>///  # }</span>
+<span class='doccomment'>/// ```</span>
+<span class='doccomment'>///</span>
+<span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
+<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>cond_with_error</span>(
+  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>cond</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> )) <span class='op'>=&gt;</span> (
+    {
+      <span class='kw'>if</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>cond</span> {
+        <span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>) {
+          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i</span>,<span class='ident'>o</span>)     <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i</span>, ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span>::<span class='prelude-val'>Some</span>(<span class='ident'>o</span>)),
+          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='ident'>e</span>)      <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='ident'>e</span>),
+          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>i</span>) <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>i</span>)
+        }
+      } <span class='kw'>else</span> {
+        <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span>::<span class='prelude-val'>None</span>)
+      }
+    }
+  );
+  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>cond</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (
+    <span class='macro'>cond</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>cond</span>, <span class='macro'>call</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>));
+  );
+);
+
 <span class='doccomment'>/// `cond!(bool, I -&gt; IResult&lt;I,O&gt;) =&gt; I -&gt; IResult&lt;I, Option&lt;O&gt;&gt;`</span>
 <span class='doccomment'>/// Conditional combinator</span>
 <span class='doccomment'>///</span>
@@ -4917,11 +5439,10 @@
                 <span class='kw'>if</span> <span class='ident'>i2</span>.<span class='ident'>len</span>() <span class='op'>==</span> <span class='ident'>input</span>.<span class='ident'>len</span>() {
                   <span class='kw'>break</span>;
                 }
-                <span class='ident'>input</span> <span class='op'>=</span> <span class='ident'>i2</span>;
 
                 <span class='comment'>// get the element next</span>
-                <span class='kw'>if</span> <span class='kw'>let</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i3</span>,<span class='ident'>o3</span>) <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='ident'>input</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args2</span>)<span class='op'>*</span>) {
-                  <span class='kw'>if</span> <span class='ident'>i3</span>.<span class='ident'>len</span>() <span class='op'>==</span> <span class='ident'>input</span>.<span class='ident'>len</span>() {
+                <span class='kw'>if</span> <span class='kw'>let</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i3</span>,<span class='ident'>o3</span>) <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='ident'>i2</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args2</span>)<span class='op'>*</span>) {
+                  <span class='kw'>if</span> <span class='ident'>i3</span>.<span class='ident'>len</span>() <span class='op'>==</span> <span class='ident'>i2</span>.<span class='ident'>len</span>() {
                     <span class='kw'>break</span>;
                   }
                   <span class='ident'>res</span>.<span class='ident'>push</span>(<span class='ident'>o3</span>);
@@ -4975,10 +5496,9 @@
                 <span class='kw'>if</span> <span class='ident'>i2</span>.<span class='ident'>len</span>() <span class='op'>==</span> <span class='ident'>input</span>.<span class='ident'>len</span>() {
                   <span class='kw'>break</span>;
                 }
-                <span class='ident'>input</span> <span class='op'>=</span> <span class='ident'>i2</span>;
 
-                <span class='kw'>if</span> <span class='kw'>let</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i3</span>,<span class='ident'>o3</span>) <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='ident'>input</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args2</span>)<span class='op'>*</span>) {
-                  <span class='kw'>if</span> <span class='ident'>i3</span>.<span class='ident'>len</span>() <span class='op'>==</span> <span class='ident'>input</span>.<span class='ident'>len</span>() {
+                <span class='kw'>if</span> <span class='kw'>let</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i3</span>,<span class='ident'>o3</span>) <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='ident'>i2</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args2</span>)<span class='op'>*</span>) {
+                  <span class='kw'>if</span> <span class='ident'>i3</span>.<span class='ident'>len</span>() <span class='op'>==</span> <span class='ident'>i2</span>.<span class='ident'>len</span>() {
                     <span class='kw'>break</span>;
                   }
                   <span class='ident'>res</span>.<span class='ident'>push</span>(<span class='ident'>o3</span>);
@@ -5032,57 +5552,40 @@
   (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> )) <span class='op'>=&gt;</span> (
     {
       <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>;
-      <span class='kw'>if</span> (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>).<span class='ident'>input_len</span>() <span class='op'>==</span> <span class='number'>0</span> {
-        <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, ::<span class='ident'>std</span>::<span class='ident'>vec</span>::<span class='ident'>Vec</span>::<span class='ident'>new</span>())
-      } <span class='kw'>else</span> {
-        <span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>) {
-          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(_)      <span class='op'>=&gt;</span> {
-            <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, ::<span class='ident'>std</span>::<span class='ident'>vec</span>::<span class='ident'>Vec</span>::<span class='ident'>new</span>())
-          },
-          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>i</span>) <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>i</span>),
-          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i1</span>,<span class='ident'>o1</span>)   <span class='op'>=&gt;</span> {
-            <span class='kw'>if</span> <span class='ident'>i1</span>.<span class='ident'>input_len</span>() <span class='op'>==</span> <span class='number'>0</span> {
-              <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i1</span>,<span class='macro'>vec</span><span class='macro'>!</span>[<span class='ident'>o1</span>])
-            } <span class='kw'>else</span> {
-              <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>res</span>    <span class='op'>=</span> ::<span class='ident'>std</span>::<span class='ident'>vec</span>::<span class='ident'>Vec</span>::<span class='ident'>with_capacity</span>(<span class='number'>4</span>);
-              <span class='ident'>res</span>.<span class='ident'>push</span>(<span class='ident'>o1</span>);
-              <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>input</span>  <span class='op'>=</span> <span class='ident'>i1</span>;
-              <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>incomplete</span>: ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span><span class='op'>&gt;</span> <span class='op'>=</span> ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span>::<span class='prelude-val'>None</span>;
-              <span class='kw'>loop</span> {
-                <span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='ident'>input</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>) {
-                  <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i</span>, <span class='ident'>o</span>) <span class='op'>=&gt;</span> {
-                    <span class='comment'>// do not allow parsers that do not consume input (causes infinite loops)</span>
-                    <span class='kw'>if</span> <span class='ident'>i</span>.<span class='ident'>input_len</span>() <span class='op'>==</span> <span class='ident'>input</span>.<span class='ident'>input_len</span>() {
-                      <span class='kw'>break</span>;
-                    }
-                    <span class='ident'>res</span>.<span class='ident'>push</span>(<span class='ident'>o</span>);
-                    <span class='ident'>input</span> <span class='op'>=</span> <span class='ident'>i</span>;
-                  }
-                  <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(_)                    <span class='op'>=&gt;</span> {
-                    <span class='kw'>break</span>;
-                  },
-                  <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>) <span class='op'>=&gt;</span> {
-                    <span class='ident'>incomplete</span> <span class='op'>=</span> ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span>::<span class='prelude-val'>Some</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>);
-                    <span class='kw'>break</span>;
-                  },
-                  <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span>)) <span class='op'>=&gt;</span> {
-                    <span class='ident'>incomplete</span> <span class='op'>=</span> ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span>::<span class='prelude-val'>Some</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span> <span class='op'>+</span> (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>).<span class='ident'>input_len</span>() <span class='op'>-</span> <span class='ident'>input</span>.<span class='ident'>input_len</span>()));
-                    <span class='kw'>break</span>;
-                  },
-                }
-                <span class='kw'>if</span> <span class='ident'>input</span>.<span class='ident'>input_len</span>() <span class='op'>==</span> <span class='number'>0</span> {
-                  <span class='kw'>break</span>;
-                }
-              }
 
-              <span class='kw'>match</span> <span class='ident'>incomplete</span> {
-                ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span>::<span class='prelude-val'>Some</span>(<span class='ident'>i</span>) <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>i</span>),
-                ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span>::<span class='prelude-val'>None</span>    <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>input</span>, <span class='ident'>res</span>)
-              }
+      <span class='kw'>let</span> <span class='ident'>ret</span>;
+      <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>res</span>   <span class='op'>=</span> ::<span class='ident'>std</span>::<span class='ident'>vec</span>::<span class='ident'>Vec</span>::<span class='ident'>new</span>();
+      <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>input</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>;
+
+      <span class='kw'>loop</span> {
+        <span class='kw'>if</span> <span class='ident'>input</span>.<span class='ident'>input_len</span>() <span class='op'>==</span> <span class='number'>0</span> {
+          <span class='ident'>ret</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>input</span>, <span class='ident'>res</span>); <span class='kw'>break</span>;
+        }
+
+        <span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='ident'>input</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>) {
+          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(_)                            <span class='op'>=&gt;</span> {
+            <span class='ident'>ret</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>input</span>, <span class='ident'>res</span>); <span class='kw'>break</span>;
+          },
+          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>) <span class='op'>=&gt;</span> {
+            <span class='ident'>ret</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>); <span class='kw'>break</span>;
+          },
+          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span>)) <span class='op'>=&gt;</span> {
+            <span class='kw'>let</span> <span class='ident'>size</span> <span class='op'>=</span> <span class='ident'>i</span> <span class='op'>+</span> (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>).<span class='ident'>input_len</span>() <span class='op'>-</span> <span class='ident'>input</span>.<span class='ident'>input_len</span>();
+            <span class='ident'>ret</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>size</span>)); <span class='kw'>break</span>;
+          },
+          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i</span>, <span class='ident'>o</span>)                          <span class='op'>=&gt;</span> {
+            <span class='comment'>// loop trip must always consume (otherwise infinite loops)</span>
+            <span class='kw'>if</span> <span class='ident'>i</span> <span class='op'>==</span> <span class='ident'>input</span> {
+              <span class='ident'>ret</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='prelude-val'>Err</span>::<span class='ident'>Position</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>ErrorKind</span>::<span class='ident'>Many0</span>,<span class='ident'>input</span>)); <span class='kw'>break</span>;
             }
+
+            <span class='ident'>res</span>.<span class='ident'>push</span>(<span class='ident'>o</span>);
+            <span class='ident'>input</span> <span class='op'>=</span> <span class='ident'>i</span>;
           }
         }
       }
+
+      <span class='ident'>ret</span>
     }
   );
   (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (
@@ -5346,7 +5849,7 @@
         <span class='kw'>if</span> <span class='ident'>cnt</span> <span class='op'>==</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>count</span> {
           <span class='ident'>ret</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>input</span>, <span class='ident'>res</span>); <span class='kw'>break</span>;
         }
-        
+
         <span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='ident'>input</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>) {
           <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i</span>,<span class='ident'>o</span>) <span class='op'>=&gt;</span> {
             <span class='ident'>res</span>[<span class='ident'>cnt</span>] <span class='op'>=</span> <span class='ident'>o</span>;
@@ -5454,6 +5957,246 @@
   );
 );
 
+<span class='doccomment'>/// `fold_many0!(I -&gt; IResult&lt;I,O&gt;, R, Fn(R, O) -&gt; R) =&gt; I -&gt; IResult&lt;I, R&gt;`</span>
+<span class='doccomment'>/// Applies the parser 0 or more times and folds the list of return values</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// the embedded parser may return Incomplete</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// ```</span>
+<span class='doccomment'>/// # #[macro_use] extern crate nom;</span>
+<span class='doccomment'>/// # use nom::IResult::Done;</span>
+<span class='doccomment'>/// # fn main() {</span>
+<span class='doccomment'>///  named!(multi&lt;&amp;[u8], Vec&lt;&amp;[u8]&gt; &gt;, fold_many0!( tag!( &quot;abcd&quot; ), Vec::new(), |mut acc: Vec&lt;_&gt;, item| {</span>
+<span class='doccomment'>///      acc.push(item);</span>
+<span class='doccomment'>///      acc</span>
+<span class='doccomment'>///  }));</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>///  let a = b&quot;abcdabcdefgh&quot;;</span>
+<span class='doccomment'>///  let b = b&quot;azerty&quot;;</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>///  let res = vec![&amp;b&quot;abcd&quot;[..], &amp;b&quot;abcd&quot;[..]];</span>
+<span class='doccomment'>///  assert_eq!(multi(&amp;a[..]), Done(&amp;b&quot;efgh&quot;[..], res));</span>
+<span class='doccomment'>///  assert_eq!(multi(&amp;b[..]), Done(&amp;b&quot;azerty&quot;[..], Vec::new()));</span>
+<span class='doccomment'>/// # }</span>
+<span class='doccomment'>/// ```</span>
+<span class='doccomment'>/// 0 or more</span>
+<span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
+<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>fold_many0</span>(
+  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> ), <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>init</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (
+    {
+      <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>;
+      <span class='kw'>let</span> <span class='ident'>ret</span>;
+      <span class='kw'>let</span> <span class='ident'>f</span>         <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>;
+      <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>res</span>   <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>init</span>;
+      <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>input</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>;
+
+      <span class='kw'>loop</span> {
+        <span class='kw'>if</span> <span class='ident'>input</span>.<span class='ident'>input_len</span>() <span class='op'>==</span> <span class='number'>0</span> {
+          <span class='ident'>ret</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>input</span>, <span class='ident'>res</span>); <span class='kw'>break</span>;
+        }
+
+        <span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='ident'>input</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>) {
+          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(_)                            <span class='op'>=&gt;</span> {
+            <span class='ident'>ret</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>input</span>, <span class='ident'>res</span>); <span class='kw'>break</span>;
+          },
+          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>) <span class='op'>=&gt;</span> {
+            <span class='ident'>ret</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>); <span class='kw'>break</span>;
+          },
+          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span>)) <span class='op'>=&gt;</span> {
+            <span class='kw'>let</span> <span class='ident'>size</span> <span class='op'>=</span> <span class='ident'>i</span> <span class='op'>+</span> (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>).<span class='ident'>input_len</span>() <span class='op'>-</span> <span class='ident'>input</span>.<span class='ident'>input_len</span>();
+            <span class='ident'>ret</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>size</span>)); <span class='kw'>break</span>;
+          },
+          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i</span>, <span class='ident'>o</span>)                          <span class='op'>=&gt;</span> {
+            <span class='comment'>// loop trip must always consume (otherwise infinite loops)</span>
+            <span class='kw'>if</span> <span class='ident'>i</span> <span class='op'>==</span> <span class='ident'>input</span> {
+              <span class='ident'>ret</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='prelude-val'>Err</span>::<span class='ident'>Position</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>ErrorKind</span>::<span class='ident'>Many0</span>,<span class='ident'>input</span>)); <span class='kw'>break</span>;
+            }
+
+            <span class='ident'>res</span> <span class='op'>=</span> <span class='ident'>f</span>(<span class='ident'>res</span>, <span class='ident'>o</span>);
+            <span class='ident'>input</span> <span class='op'>=</span> <span class='ident'>i</span>;
+          }
+        }
+      }
+
+      <span class='ident'>ret</span>
+    }
+  );
+  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>init</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fold_f</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (
+    <span class='macro'>fold_many0</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, <span class='macro'>call</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>), <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>init</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fold_f</span>);
+  );
+);
+
+<span class='doccomment'>/// `fold_many1!(I -&gt; IResult&lt;I,O&gt;, R, Fn(R, O) -&gt; R) =&gt; I -&gt; IResult&lt;I, R&gt;`</span>
+<span class='doccomment'>/// Applies the parser 1 or more times and folds the list of return values</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// the embedded parser may return Incomplete</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// ```</span>
+<span class='doccomment'>/// # #[macro_use] extern crate nom;</span>
+<span class='doccomment'>/// # use nom::IResult::{Done, Error};</span>
+<span class='doccomment'>/// # use nom::Err::Position;</span>
+<span class='doccomment'>/// # use nom::ErrorKind;</span>
+<span class='doccomment'>/// # fn main() {</span>
+<span class='doccomment'>///  named!(multi&lt;&amp;[u8], Vec&lt;&amp;[u8]&gt; &gt;, fold_many1!( tag!( &quot;abcd&quot; ), Vec::new(), |mut acc: Vec&lt;_&gt;, item| {</span>
+<span class='doccomment'>///      acc.push(item);</span>
+<span class='doccomment'>///      acc</span>
+<span class='doccomment'>///  }));</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>///  let a = b&quot;abcdabcdefgh&quot;;</span>
+<span class='doccomment'>///  let b = b&quot;azerty&quot;;</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>///  let res = vec![&amp;b&quot;abcd&quot;[..], &amp;b&quot;abcd&quot;[..]];</span>
+<span class='doccomment'>///  assert_eq!(multi(&amp;a[..]), Done(&amp;b&quot;efgh&quot;[..], res));</span>
+<span class='doccomment'>///  assert_eq!(multi(&amp;b[..]), Error(Position(ErrorKind::Many1,&amp;b[..])));</span>
+<span class='doccomment'>/// # }</span>
+<span class='doccomment'>/// ```</span>
+<span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
+<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>fold_many1</span>(
+  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> ), <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>init</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (
+    {
+      <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>;
+      <span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>) {
+        <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(_)      <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='prelude-val'>Err</span>::<span class='ident'>Position</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>ErrorKind</span>::<span class='ident'>Many1</span>,<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>)),
+        <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>i</span>) <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>i</span>),
+        <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i1</span>,<span class='ident'>o1</span>)   <span class='op'>=&gt;</span> {
+          <span class='kw'>let</span> <span class='ident'>acc</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>init</span>;
+          <span class='kw'>let</span> <span class='ident'>f</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>;
+          <span class='kw'>if</span> <span class='ident'>i1</span>.<span class='ident'>len</span>() <span class='op'>==</span> <span class='number'>0</span> {
+            <span class='kw'>let</span> <span class='ident'>acc</span> <span class='op'>=</span> <span class='ident'>f</span>(<span class='ident'>acc</span>, <span class='ident'>o1</span>);
+            <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i1</span>,<span class='ident'>acc</span>)
+          } <span class='kw'>else</span> {
+            <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>acc</span> <span class='op'>=</span> <span class='ident'>f</span>(<span class='ident'>acc</span>, <span class='ident'>o1</span>);
+            <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>input</span>  <span class='op'>=</span> <span class='ident'>i1</span>;
+            <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>incomplete</span>: ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span><span class='op'>&gt;</span> <span class='op'>=</span> ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span>::<span class='prelude-val'>None</span>;
+            <span class='kw'>loop</span> {
+              <span class='kw'>if</span> <span class='ident'>input</span>.<span class='ident'>input_len</span>() <span class='op'>==</span> <span class='number'>0</span> {
+                <span class='kw'>break</span>;
+              }
+              <span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='ident'>input</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>) {
+                <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(_)                    <span class='op'>=&gt;</span> {
+                  <span class='kw'>break</span>;
+                },
+                <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>) <span class='op'>=&gt;</span> {
+                  <span class='ident'>incomplete</span> <span class='op'>=</span> ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span>::<span class='prelude-val'>Some</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>);
+                  <span class='kw'>break</span>;
+                },
+                <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span>)) <span class='op'>=&gt;</span> {
+                  <span class='ident'>incomplete</span> <span class='op'>=</span> ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span>::<span class='prelude-val'>Some</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span> <span class='op'>+</span> (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>).<span class='ident'>input_len</span>() <span class='op'>-</span> <span class='ident'>input</span>.<span class='ident'>input_len</span>()));
+                  <span class='kw'>break</span>;
+                },
+                <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i</span>, <span class='ident'>o</span>) <span class='op'>=&gt;</span> {
+                  <span class='kw'>if</span> <span class='ident'>i</span>.<span class='ident'>input_len</span>() <span class='op'>==</span> <span class='ident'>input</span>.<span class='ident'>input_len</span>() {
+                    <span class='kw'>break</span>;
+                  }
+                  <span class='ident'>acc</span> <span class='op'>=</span> <span class='ident'>f</span>(<span class='ident'>acc</span>, <span class='ident'>o</span>);
+                  <span class='ident'>input</span> <span class='op'>=</span> <span class='ident'>i</span>;
+                }
+              }
+            }
+
+            <span class='kw'>match</span> <span class='ident'>incomplete</span> {
+              ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span>::<span class='prelude-val'>Some</span>(<span class='ident'>i</span>) <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>i</span>),
+              ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span>::<span class='prelude-val'>None</span>    <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>input</span>, <span class='ident'>acc</span>)
+            }
+          }
+        }
+      }
+    }
+  );
+  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>init</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fold_f</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (
+    <span class='macro'>fold_many1</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, <span class='macro'>call</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>), <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>init</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fold_f</span>);
+  );
+);
+
+<span class='doccomment'>/// `fold_many_m_n!(usize, usize, I -&gt; IResult&lt;I,O&gt;, R, Fn(R, O) -&gt; R) =&gt; I -&gt; IResult&lt;I, R&gt;`</span>
+<span class='doccomment'>/// Applies the parser between m and n times (n included) and folds the list of return value</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// the embedded parser may return Incomplete</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// ```</span>
+<span class='doccomment'>/// # #[macro_use] extern crate nom;</span>
+<span class='doccomment'>/// # use nom::IResult::{Done, Error};</span>
+<span class='doccomment'>/// # use nom::Err::Position;</span>
+<span class='doccomment'>/// # use nom::ErrorKind;</span>
+<span class='doccomment'>/// # fn main() {</span>
+<span class='doccomment'>///  named!(multi&lt;&amp;[u8], Vec&lt;&amp;[u8]&gt; &gt;, fold_many_m_n!(2, 4, tag!( &quot;abcd&quot; ), Vec::new(), |mut acc: Vec&lt;_&gt;, item| {</span>
+<span class='doccomment'>///      acc.push(item);</span>
+<span class='doccomment'>///      acc</span>
+<span class='doccomment'>///  }));</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>///  let a = b&quot;abcdefgh&quot;;</span>
+<span class='doccomment'>///  let b = b&quot;abcdabcdefgh&quot;;</span>
+<span class='doccomment'>///  let c = b&quot;abcdabcdabcdabcdabcdefgh&quot;;</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>///  assert_eq!(multi(&amp;a[..]),Error(Position(ErrorKind::ManyMN,&amp;a[..])));</span>
+<span class='doccomment'>///  let res = vec![&amp;b&quot;abcd&quot;[..], &amp;b&quot;abcd&quot;[..]];</span>
+<span class='doccomment'>///  assert_eq!(multi(&amp;b[..]), Done(&amp;b&quot;efgh&quot;[..], res));</span>
+<span class='doccomment'>///  let res2 = vec![&amp;b&quot;abcd&quot;[..], &amp;b&quot;abcd&quot;[..], &amp;b&quot;abcd&quot;[..], &amp;b&quot;abcd&quot;[..]];</span>
+<span class='doccomment'>///  assert_eq!(multi(&amp;c[..]), Done(&amp;b&quot;abcdefgh&quot;[..], res2));</span>
+<span class='doccomment'>/// # }</span>
+<span class='doccomment'>/// ```</span>
+<span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
+<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>fold_many_m_n</span>(
+  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>m</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>n</span>: <span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> ), <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>init</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (
+    {
+      <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>InputLength</span>;
+      <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>acc</span>          <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>init</span>;
+      <span class='kw'>let</span>     <span class='ident'>f</span>            <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>;
+      <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>input</span>        <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>;
+      <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>count</span>: <span class='ident'>usize</span> <span class='op'>=</span> <span class='number'>0</span>;
+      <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>err</span>          <span class='op'>=</span> <span class='boolval'>false</span>;
+      <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>incomplete</span>: ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span><span class='op'>&gt;</span> <span class='op'>=</span> ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span>::<span class='prelude-val'>None</span>;
+      <span class='kw'>loop</span> {
+        <span class='kw'>if</span> <span class='ident'>count</span> <span class='op'>==</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>n</span> { <span class='kw'>break</span> }
+        <span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='ident'>input</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>) {
+          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>i</span>, <span class='ident'>o</span>) <span class='op'>=&gt;</span> {
+            <span class='comment'>// do not allow parsers that do not consume input (causes infinite loops)</span>
+            <span class='kw'>if</span> <span class='ident'>i</span>.<span class='ident'>input_len</span>() <span class='op'>==</span> <span class='ident'>input</span>.<span class='ident'>input_len</span>() {
+              <span class='kw'>break</span>;
+            }
+            <span class='ident'>acc</span> <span class='op'>=</span> <span class='ident'>f</span>(<span class='ident'>acc</span>, <span class='ident'>o</span>);
+            <span class='ident'>input</span>  <span class='op'>=</span> <span class='ident'>i</span>;
+            <span class='ident'>count</span> <span class='op'>+=</span> <span class='number'>1</span>;
+          }
+          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(_)                    <span class='op'>=&gt;</span> {
+            <span class='ident'>err</span> <span class='op'>=</span> <span class='boolval'>true</span>;
+            <span class='kw'>break</span>;
+          },
+          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>) <span class='op'>=&gt;</span> {
+            <span class='ident'>incomplete</span> <span class='op'>=</span> ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span>::<span class='prelude-val'>Some</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>);
+            <span class='kw'>break</span>;
+          },
+          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span>)) <span class='op'>=&gt;</span> {
+            <span class='ident'>incomplete</span> <span class='op'>=</span> ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span>::<span class='prelude-val'>Some</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span> <span class='op'>+</span> (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>).<span class='ident'>input_len</span>() <span class='op'>-</span> <span class='ident'>input</span>.<span class='ident'>input_len</span>()));
+            <span class='kw'>break</span>;
+          },
+        }
+        <span class='kw'>if</span> <span class='ident'>input</span>.<span class='ident'>input_len</span>() <span class='op'>==</span> <span class='number'>0</span> {
+          <span class='kw'>break</span>;
+        }
+      }
+
+      <span class='kw'>if</span> <span class='ident'>count</span> <span class='op'>&lt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>m</span> {
+        <span class='kw'>if</span> <span class='ident'>err</span> {
+          <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='prelude-val'>Err</span>::<span class='ident'>Position</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>ErrorKind</span>::<span class='ident'>ManyMN</span>,<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>))
+        } <span class='kw'>else</span> {
+          <span class='kw'>match</span> <span class='ident'>incomplete</span> {
+            ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span>::<span class='prelude-val'>Some</span>(<span class='ident'>i</span>) <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>i</span>),
+            ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span>::<span class='prelude-val'>None</span>    <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>)
+          }
+        }
+      } <span class='kw'>else</span> {
+        <span class='kw'>match</span> <span class='ident'>incomplete</span> {
+          ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span>::<span class='prelude-val'>Some</span>(<span class='ident'>i</span>) <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>i</span>),
+          ::<span class='ident'>std</span>::<span class='ident'>option</span>::<span class='prelude-ty'>Option</span>::<span class='prelude-val'>None</span>    <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>input</span>, <span class='ident'>acc</span>)
+        }
+      }
+    }
+  );
+  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>m</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>n</span>: <span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>init</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fold_f</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (
+    <span class='macro'>fold_many_m_n</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>m</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>n</span>, <span class='macro'>call</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>), <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>init</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fold_f</span>);
+  );
+);
 
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>test</span>)]</span>
 <span class='kw'>mod</span> <span class='ident'>tests</span> {
@@ -6013,14 +6756,18 @@
     <span class='kw'>let</span> <span class='ident'>b</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd,abcdef&quot;</span>[..];
     <span class='kw'>let</span> <span class='ident'>c</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;azerty&quot;</span>[..];
     <span class='kw'>let</span> <span class='ident'>d</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;,,abc&quot;</span>[..];
+    <span class='kw'>let</span> <span class='ident'>e</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd,abcd,ef&quot;</span>[..];
 
     <span class='kw'>let</span> <span class='ident'>res1</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..]];
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='ident'>a</span>), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;ef&quot;</span>[..], <span class='ident'>res1</span>));
     <span class='kw'>let</span> <span class='ident'>res2</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..], <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..]];
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='ident'>b</span>), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;ef&quot;</span>[..], <span class='ident'>res2</span>));
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='ident'>c</span>), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;azerty&quot;</span>[..], <span class='ident'>Vec</span>::<span class='ident'>new</span>()));
-    <span class='kw'>let</span> <span class='ident'>res3</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..]];
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi_empty</span>(<span class='ident'>d</span>), <span class='ident'>Error</span>(<span class='ident'>Position</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>SeparatedList</span>, <span class='ident'>d</span>)));
+    <span class='comment'>//let res3 = vec![&amp;b&quot;&quot;[..], &amp;b&quot;&quot;[..], &amp;b&quot;&quot;[..]];</span>
     <span class='comment'>//assert_eq!(multi_empty(d), Done(&amp;b&quot;abc&quot;[..], res3));</span>
+    <span class='kw'>let</span> <span class='ident'>res4</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..], <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..]];
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='ident'>e</span>), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;,ef&quot;</span>[..], <span class='ident'>res4</span>));
   }
 
   <span class='attribute'>#[<span class='ident'>test</span>]</span>
@@ -6030,29 +6777,31 @@
     <span class='kw'>let</span> <span class='ident'>a</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcdef&quot;</span>[..];
     <span class='kw'>let</span> <span class='ident'>b</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd,abcdef&quot;</span>[..];
     <span class='kw'>let</span> <span class='ident'>c</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;azerty&quot;</span>[..];
+    <span class='kw'>let</span> <span class='ident'>d</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd,abcd,ef&quot;</span>[..];
 
     <span class='kw'>let</span> <span class='ident'>res1</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..]];
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='ident'>a</span>), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;ef&quot;</span>[..], <span class='ident'>res1</span>));
     <span class='kw'>let</span> <span class='ident'>res2</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..], <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..]];
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='ident'>b</span>), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;ef&quot;</span>[..], <span class='ident'>res2</span>));
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='ident'>c</span>), <span class='ident'>Error</span>(<span class='ident'>Position</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>Tag</span>,<span class='ident'>c</span>)));
+    <span class='kw'>let</span> <span class='ident'>res3</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..], <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..]];
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='ident'>d</span>), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;,ef&quot;</span>[..], <span class='ident'>res3</span>));
   }
 
   <span class='attribute'>#[<span class='ident'>test</span>]</span>
   <span class='kw'>fn</span> <span class='ident'>many0</span>() {
-    <span class='macro'>named</span><span class='macro'>!</span>(<span class='ident'>multi</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>],<span class='ident'>Vec</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>]<span class='op'>&gt;</span> <span class='op'>&gt;</span>, <span class='macro'>many0</span><span class='macro'>!</span>(<span class='macro'>tag</span><span class='macro'>!</span>(<span class='string'>&quot;abcd&quot;</span>)));
+    <span class='macro'>named</span><span class='macro'>!</span>( <span class='ident'>tag_abcd</span>, <span class='macro'>tag</span><span class='macro'>!</span>(<span class='string'>&quot;abcd&quot;</span>) );
+    <span class='macro'>named</span><span class='macro'>!</span>( <span class='ident'>tag_empty</span>, <span class='macro'>tag</span><span class='macro'>!</span>(<span class='string'>&quot;&quot;</span>) );
+    <span class='macro'>named</span><span class='macro'>!</span>( <span class='ident'>multi</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>],<span class='ident'>Vec</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>]<span class='op'>&gt;</span> <span class='op'>&gt;</span>, <span class='macro'>many0</span><span class='macro'>!</span>(<span class='ident'>tag_abcd</span>) );
+    <span class='macro'>named</span><span class='macro'>!</span>( <span class='ident'>multi_empty</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>],<span class='ident'>Vec</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>]<span class='op'>&gt;</span> <span class='op'>&gt;</span>, <span class='macro'>many0</span><span class='macro'>!</span>(<span class='ident'>tag_empty</span>) );
 
-    <span class='kw'>let</span> <span class='ident'>a</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcdef&quot;</span>[..];
-    <span class='kw'>let</span> <span class='ident'>b</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcdabcdefgh&quot;</span>[..];
-    <span class='kw'>let</span> <span class='ident'>c</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;azerty&quot;</span>[..];
-    <span class='kw'>let</span> <span class='ident'>d</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcdab&quot;</span>[..];
-
-    <span class='kw'>let</span> <span class='ident'>res1</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..]];
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='ident'>a</span>), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;ef&quot;</span>[..], <span class='ident'>res1</span>));
-    <span class='kw'>let</span> <span class='ident'>res2</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..], <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..]];
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='ident'>b</span>), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;efgh&quot;</span>[..], <span class='ident'>res2</span>));
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='ident'>c</span>), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;azerty&quot;</span>[..], <span class='ident'>Vec</span>::<span class='ident'>new</span>()));
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='ident'>d</span>), <span class='ident'>Incomplete</span>(<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='number'>8</span>)));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcdef&quot;</span>[..]), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;ef&quot;</span>[..], <span class='macro'>vec</span><span class='macro'>!</span>[<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..]]));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcdabcdefgh&quot;</span>[..]), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;efgh&quot;</span>[..], <span class='macro'>vec</span><span class='macro'>!</span>[<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..], <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..]]));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;azerty&quot;</span>[..]), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;azerty&quot;</span>[..], <span class='ident'>Vec</span>::<span class='ident'>new</span>()));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcdab&quot;</span>[..]), <span class='ident'>Incomplete</span>(<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='number'>8</span>)));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..]), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='macro'>vec</span><span class='macro'>!</span>[<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..]]));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..]), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='ident'>Vec</span>::<span class='ident'>new</span>()));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi_empty</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcdef&quot;</span>[..]), <span class='ident'>Error</span>(<span class='ident'>Position</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>Many0</span>, <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcdef&quot;</span>[..])));
   }
 
   <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>feature</span> <span class='op'>=</span> <span class='string'>&quot;nightly&quot;</span>)]</span>
@@ -6244,6 +6993,82 @@
   }
 
   <span class='attribute'>#[<span class='ident'>test</span>]</span>
+  <span class='kw'>fn</span> <span class='ident'>fold_many0</span>() {
+    <span class='kw'>fn</span> <span class='ident'>fold_into_vec</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>(<span class='kw-2'>mut</span> <span class='ident'>acc</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>, <span class='ident'>item</span>: <span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
+      <span class='ident'>acc</span>.<span class='ident'>push</span>(<span class='ident'>item</span>);
+      <span class='ident'>acc</span>
+    };
+    <span class='macro'>named</span><span class='macro'>!</span>( <span class='ident'>tag_abcd</span>, <span class='macro'>tag</span><span class='macro'>!</span>(<span class='string'>&quot;abcd&quot;</span>) );
+    <span class='macro'>named</span><span class='macro'>!</span>( <span class='ident'>tag_empty</span>, <span class='macro'>tag</span><span class='macro'>!</span>(<span class='string'>&quot;&quot;</span>) );
+    <span class='macro'>named</span><span class='macro'>!</span>( <span class='ident'>multi</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>],<span class='ident'>Vec</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>]<span class='op'>&gt;</span> <span class='op'>&gt;</span>, <span class='macro'>fold_many0</span><span class='macro'>!</span>(<span class='ident'>tag_abcd</span>, <span class='ident'>Vec</span>::<span class='ident'>new</span>(), <span class='ident'>fold_into_vec</span>) );
+    <span class='macro'>named</span><span class='macro'>!</span>( <span class='ident'>multi_empty</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>],<span class='ident'>Vec</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>]<span class='op'>&gt;</span> <span class='op'>&gt;</span>, <span class='macro'>fold_many0</span><span class='macro'>!</span>(<span class='ident'>tag_empty</span>, <span class='ident'>Vec</span>::<span class='ident'>new</span>(), <span class='ident'>fold_into_vec</span>) );
+
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcdef&quot;</span>[..]), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;ef&quot;</span>[..], <span class='macro'>vec</span><span class='macro'>!</span>[<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..]]));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcdabcdefgh&quot;</span>[..]), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;efgh&quot;</span>[..], <span class='macro'>vec</span><span class='macro'>!</span>[<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..], <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..]]));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;azerty&quot;</span>[..]), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;azerty&quot;</span>[..], <span class='ident'>Vec</span>::<span class='ident'>new</span>()));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcdab&quot;</span>[..]), <span class='ident'>Incomplete</span>(<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='number'>8</span>)));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..]), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='macro'>vec</span><span class='macro'>!</span>[<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..]]));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..]), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='ident'>Vec</span>::<span class='ident'>new</span>()));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi_empty</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcdef&quot;</span>[..]), <span class='ident'>Error</span>(<span class='ident'>Position</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>Many0</span>, <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcdef&quot;</span>[..])));
+  }
+
+  <span class='attribute'>#[<span class='ident'>test</span>]</span>
+  <span class='kw'>fn</span> <span class='ident'>fold_many1</span>() {
+    <span class='kw'>fn</span> <span class='ident'>fold_into_vec</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>(<span class='kw-2'>mut</span> <span class='ident'>acc</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>, <span class='ident'>item</span>: <span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
+      <span class='ident'>acc</span>.<span class='ident'>push</span>(<span class='ident'>item</span>);
+      <span class='ident'>acc</span>
+    };
+    <span class='macro'>named</span><span class='macro'>!</span>(<span class='ident'>multi</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>],<span class='ident'>Vec</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>]<span class='op'>&gt;</span> <span class='op'>&gt;</span>, <span class='macro'>fold_many1</span><span class='macro'>!</span>(<span class='macro'>tag</span><span class='macro'>!</span>(<span class='string'>&quot;abcd&quot;</span>), <span class='ident'>Vec</span>::<span class='ident'>new</span>(), <span class='ident'>fold_into_vec</span>));
+
+    <span class='kw'>let</span> <span class='ident'>a</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcdef&quot;</span>[..];
+    <span class='kw'>let</span> <span class='ident'>b</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcdabcdefgh&quot;</span>[..];
+    <span class='kw'>let</span> <span class='ident'>c</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;azerty&quot;</span>[..];
+    <span class='kw'>let</span> <span class='ident'>d</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcdab&quot;</span>[..];
+
+    <span class='kw'>let</span> <span class='ident'>res1</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..]];
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='ident'>a</span>), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;ef&quot;</span>[..], <span class='ident'>res1</span>));
+    <span class='kw'>let</span> <span class='ident'>res2</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..], <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..]];
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='ident'>b</span>), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;efgh&quot;</span>[..], <span class='ident'>res2</span>));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='ident'>c</span>), <span class='ident'>Error</span>(<span class='ident'>Position</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>Many1</span>,<span class='ident'>c</span>)));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='ident'>d</span>), <span class='ident'>Incomplete</span>(<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='number'>8</span>)));
+  }
+
+  <span class='attribute'>#[<span class='ident'>test</span>]</span>
+  <span class='kw'>fn</span> <span class='ident'>fold_many_m_n</span>() {
+    <span class='kw'>fn</span> <span class='ident'>fold_into_vec</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>(<span class='kw-2'>mut</span> <span class='ident'>acc</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>, <span class='ident'>item</span>: <span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
+      <span class='ident'>acc</span>.<span class='ident'>push</span>(<span class='ident'>item</span>);
+      <span class='ident'>acc</span>
+    };
+    <span class='macro'>named</span><span class='macro'>!</span>(<span class='ident'>multi</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>],<span class='ident'>Vec</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>]<span class='op'>&gt;</span> <span class='op'>&gt;</span>, <span class='macro'>fold_many_m_n</span><span class='macro'>!</span>(<span class='number'>2</span>, <span class='number'>4</span>, <span class='macro'>tag</span><span class='macro'>!</span>(<span class='string'>&quot;Abcd&quot;</span>), <span class='ident'>Vec</span>::<span class='ident'>new</span>(), <span class='ident'>fold_into_vec</span>));
+
+    <span class='kw'>let</span> <span class='ident'>a</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;Abcdef&quot;</span>[..];
+    <span class='kw'>let</span> <span class='ident'>b</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;AbcdAbcdefgh&quot;</span>[..];
+    <span class='kw'>let</span> <span class='ident'>c</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;AbcdAbcdAbcdAbcdefgh&quot;</span>[..];
+    <span class='kw'>let</span> <span class='ident'>d</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;AbcdAbcdAbcdAbcdAbcdefgh&quot;</span>[..];
+    <span class='kw'>let</span> <span class='ident'>e</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='string'>b&quot;AbcdAb&quot;</span>[..];
+
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='ident'>a</span>), <span class='ident'>Error</span>(<span class='prelude-val'>Err</span>::<span class='ident'>Position</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>ManyMN</span>,<span class='ident'>a</span>)));
+    <span class='kw'>let</span> <span class='ident'>res1</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='kw-2'>&amp;</span><span class='string'>b&quot;Abcd&quot;</span>[..], <span class='kw-2'>&amp;</span><span class='string'>b&quot;Abcd&quot;</span>[..]];
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='ident'>b</span>), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;efgh&quot;</span>[..], <span class='ident'>res1</span>));
+    <span class='kw'>let</span> <span class='ident'>res2</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='kw-2'>&amp;</span><span class='string'>b&quot;Abcd&quot;</span>[..], <span class='kw-2'>&amp;</span><span class='string'>b&quot;Abcd&quot;</span>[..], <span class='kw-2'>&amp;</span><span class='string'>b&quot;Abcd&quot;</span>[..], <span class='kw-2'>&amp;</span><span class='string'>b&quot;Abcd&quot;</span>[..]];
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='ident'>c</span>), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;efgh&quot;</span>[..], <span class='ident'>res2</span>));
+    <span class='kw'>let</span> <span class='ident'>res3</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[<span class='kw-2'>&amp;</span><span class='string'>b&quot;Abcd&quot;</span>[..], <span class='kw-2'>&amp;</span><span class='string'>b&quot;Abcd&quot;</span>[..], <span class='kw-2'>&amp;</span><span class='string'>b&quot;Abcd&quot;</span>[..], <span class='kw-2'>&amp;</span><span class='string'>b&quot;Abcd&quot;</span>[..]];
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='ident'>d</span>), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;Abcdefgh&quot;</span>[..], <span class='ident'>res3</span>));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>multi</span>(<span class='ident'>e</span>), <span class='ident'>Incomplete</span>(<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='number'>8</span>)));
+  }
+
+  <span class='attribute'>#[<span class='ident'>test</span>]</span>
+  <span class='kw'>fn</span> <span class='ident'>chain_incomplete</span>() {
+    <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>chain</span><span class='macro'>!</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;abcdefgh&quot;</span>[..],
+      <span class='ident'>a</span>: <span class='macro'>take</span><span class='macro'>!</span>(<span class='number'>4</span>) <span class='kw-2'>~</span>
+      <span class='ident'>b</span>: <span class='macro'>take</span><span class='macro'>!</span>(<span class='number'>8</span>),
+      <span class='op'>||</span>{(<span class='ident'>a</span>,<span class='ident'>b</span> )}
+    );
+
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>res</span>, <span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='number'>12</span>)));
+  }
+
+  <span class='attribute'>#[<span class='ident'>test</span>]</span>
   <span class='kw'>fn</span> <span class='ident'>tuple_test</span>() {
     <span class='macro'>named</span><span class='macro'>!</span>(<span class='ident'>tuple_3</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>], (<span class='ident'>u16</span>, <span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>], <span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>]) <span class='op'>&gt;</span>,
     <span class='macro'>tuple</span><span class='macro'>!</span>( <span class='ident'>be_u16</span> , <span class='macro'>take</span><span class='macro'>!</span>(<span class='number'>3</span>), <span class='macro'>tag</span><span class='macro'>!</span>(<span class='string'>&quot;fg&quot;</span>) ) );
@@ -6298,7 +7123,7 @@
 
                 <p>
                     Search functions by type signature (e.g.
-                    <code>vec -> usize</code>)
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
                 </p>
             </div>
         </div>

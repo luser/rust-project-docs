@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-88ac128001ac3a9a/nom-1.2.2/src/nom.rs`.">
+    <meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-88ac128001ac3a9a/nom-1.2.3/src/nom.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>nom.rs.html -- source</title>
 
     <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../../main.css">
+    
 
     
     
@@ -1815,7 +1816,7 @@
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>oct_digit</span>(<span class='ident'>i</span>), <span class='ident'>Error</span>(<span class='ident'>Position</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>OctDigit</span>,<span class='ident'>i</span>)));
 
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>is_oct_digit</span>(<span class='string'>b&#39;0&#39;</span>));
-    <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>is_hex_digit</span>(<span class='string'>b&#39;7&#39;</span>));
+    <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>is_oct_digit</span>(<span class='string'>b&#39;7&#39;</span>));
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='op'>!</span><span class='ident'>is_oct_digit</span>(<span class='string'>b&#39;8&#39;</span>));
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='op'>!</span><span class='ident'>is_oct_digit</span>(<span class='string'>b&#39;9&#39;</span>));
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='op'>!</span><span class='ident'>is_oct_digit</span>(<span class='string'>b&#39;a&#39;</span>));
@@ -1870,7 +1871,7 @@
 
                 <p>
                     Search functions by type signature (e.g.
-                    <code>vec -> usize</code>)
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
                 </p>
             </div>
         </div>

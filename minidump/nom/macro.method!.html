@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
+    
 
     
     
@@ -43,10 +44,10 @@
 
     <section id='main' class="content macro">
 <h1 class='fqn'><span class='in-band'><a href='index.html'>nom</a>::<wbr><a class='macro' href=''>method!</a></span><span class='out-of-band'><span id='render-detail'>
-            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
-                [<span class='inner'>&#x2212;</span>]
-            </a>
-        </span><a id='src-1801' class='srclink' href='../src/nom/methods.rs.html#107-232' title='goto source code'>[src]</a></span></h1>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-1802' class='srclink' href='../src/nom/methods.rs.html#107-232' title='goto source code'>[src]</a></span></h1>
 <pre class='rust macro'>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>method</span> {
     (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>name</span>:<span class='ident'>ident</span><span class='op'>&lt;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>a</span>:<span class='ident'>ty</span><span class='op'>&gt;</span>( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>ty</span> ) <span class='op'>-&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>o</span>:<span class='ident'>ty</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>self_</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> )) <span class='op'>=&gt;</span> { ... };
@@ -74,6 +75,7 @@
 
 <p>The must be set up because the compiler needs
 the information</p>
+
 <pre class='rust rust-example-rendered'>
 <span class='macro'>method</span><span class='macro'>!</span>(<span class='ident'>my_function</span><span class='op'>&lt;</span><span class='ident'>Parser</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> <span class='op'>&gt;</span>( <span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>] ) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>], <span class='macro'>tag</span><span class='macro'>!</span>(<span class='string'>&quot;abcd&quot;</span>));
 <span class='comment'>// first type parameter is `self`&#39;s type, second is input, third is output</span>
@@ -123,7 +125,7 @@ the information</p>
 
                 <p>
                     Search functions by type signature (e.g.
-                    <code>vec -> usize</code>)
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
                 </p>
             </div>
         </div>

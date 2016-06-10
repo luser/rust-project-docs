@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
+    
 
     
     
@@ -43,10 +44,10 @@
 
     <section id='main' class="content enum">
 <h1 class='fqn'><span class='in-band'>Enum <a href='index.html'>minidump</a>::<wbr><a class='enum' href=''>CallStackInfo</a></span><span class='out-of-band'><span id='render-detail'>
-            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
-                [<span class='inner'>&#x2212;</span>]
-            </a>
-        </span><a id='src-4839' class='srclink' href='../src/minidump/process_state.rs.html#93-104' title='goto source code'>[src]</a></span></h1>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-4831' class='srclink' href='../src/minidump/src/process_state.rs.html#93-104' title='goto source code'>[src]</a></span></h1>
 <pre class='rust enum'>pub enum CallStackInfo {
     Ok,
     MissingContext,
@@ -55,14 +56,14 @@
     DumpThreadSkipped,
 }</pre><div class='docblock'><p>Information about the results of unwinding a thread&#39;s stack.</p>
 </div><h2 class='variants'>Variants</h2>
-<table><tr><td id='variant.Ok'><code>Ok</code></td><td><div class='docblock'><p>Everything went great.</p>
-</div></td></tr><tr><td id='variant.MissingContext'><code>MissingContext</code></td><td><div class='docblock'><p>No <code>MinidumpContext</code> was provided, couldn&#39;t do anything.</p>
-</div></td></tr><tr><td id='variant.MissingMemory'><code>MissingMemory</code></td><td><div class='docblock'><p>No stack memory was provided, couldn&#39;t unwind past the top frame.</p>
-</div></td></tr><tr><td id='variant.UnsupportedCPU'><code>UnsupportedCPU</code></td><td><div class='docblock'><p>The CPU type is unsupported.</p>
-</div></td></tr><tr><td id='variant.DumpThreadSkipped'><code>DumpThreadSkipped</code></td><td><div class='docblock'><p>This thread wrote the minidump, it was skipped.</p>
-</div></td></tr></table><h2 id='implementations'>Trait Implementations</h2><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='enum' href='../minidump/enum.CallStackInfo.html' title='minidump::CallStackInfo'>CallStackInfo</a></code></h3><div class='impl-items'><h4 id='method.eq' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../minidump/enum.CallStackInfo.html' title='minidump::CallStackInfo'>CallStackInfo</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
-<h4 id='method.ne' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../minidump/enum.CallStackInfo.html' title='minidump::CallStackInfo'>CallStackInfo</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
-</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../minidump/enum.CallStackInfo.html' title='minidump::CallStackInfo'>CallStackInfo</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+<table class='variants_table'><tr><td id='variant.Ok'><code>Ok</code></td><td><div class='docblock'><p>Everything went great.</p>
+</div></td><td></td></tr><tr><td id='variant.MissingContext'><code>MissingContext</code></td><td><div class='docblock'><p>No <code>MinidumpContext</code> was provided, couldn&#39;t do anything.</p>
+</div></td><td></td></tr><tr><td id='variant.MissingMemory'><code>MissingMemory</code></td><td><div class='docblock'><p>No stack memory was provided, couldn&#39;t unwind past the top frame.</p>
+</div></td><td></td></tr><tr><td id='variant.UnsupportedCPU'><code>UnsupportedCPU</code></td><td><div class='docblock'><p>The CPU type is unsupported.</p>
+</div></td><td></td></tr><tr><td id='variant.DumpThreadSkipped'><code>DumpThreadSkipped</code></td><td><div class='docblock'><p>This thread wrote the minidump, it was skipped.</p>
+</div></td><td></td></tr></table><h2 id='implementations'>Trait Implementations</h2><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='enum' href='../minidump/enum.CallStackInfo.html' title='minidump::CallStackInfo'>CallStackInfo</a></code></h3><div class='impl-items'><h4 id='method.eq' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../minidump/enum.CallStackInfo.html' title='minidump::CallStackInfo'>CallStackInfo</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ne' class='method'><span class="since">1.0.0</span><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, other: &amp;Rhs) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../minidump/enum.CallStackInfo.html' title='minidump::CallStackInfo'>CallStackInfo</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
 </div></section>
     <section id='search' class="content hidden"></section>
 
@@ -106,7 +107,7 @@
 
                 <p>
                     Search functions by type signature (e.g.
-                    <code>vec -> usize</code>)
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
                 </p>
             </div>
         </div>

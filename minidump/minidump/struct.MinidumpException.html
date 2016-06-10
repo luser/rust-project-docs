@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
+    
 
     
     
@@ -43,10 +44,10 @@
 
     <section id='main' class="content struct">
 <h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>minidump</a>::<wbr><a class='struct' href=''>MinidumpException</a></span><span class='out-of-band'><span id='render-detail'>
-            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
-                [<span class='inner'>&#x2212;</span>]
-            </a>
-        </span><a id='src-4036' class='srclink' href='../src/minidump/minidump.rs.html#199-203' title='goto source code'>[src]</a></span></h1>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-4033' class='srclink' href='../src/minidump/src/minidump.rs.html#199-203' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct MinidumpException {
     pub raw: <a class='type' href='../minidump/minidump_format/type.MDRawExceptionStream.html' title='minidump::minidump_format::MDRawExceptionStream'>MDRawExceptionStream</a>,
     pub thread_id: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>,
@@ -61,9 +62,9 @@ contains the CPU context for the exception thread at the time the exception
 occurred.</p>
 </div><h2 class='fields'>Fields</h2>
 <table><tr class='stab '>
-                                  <td id='structfield.raw'><code>raw</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.thread_id'><code>thread_id</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.context'><code>context</code></td><td></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../minidump/struct.MinidumpException.html' title='minidump::MinidumpException'>MinidumpException</a></code></h3><div class='impl-items'><h4 id='method.get_crash_address' class='method'><code>fn <a href='#method.get_crash_address' class='fnname'>get_crash_address</a>(&amp;self, os: <a class='enum' href='../minidump/enum.OS.html' title='minidump::OS'>OS</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h4>
+                             <td id='structfield.raw'><code>raw</code></td><td></td></tr><tr class='stab '>
+                             <td id='structfield.thread_id'><code>thread_id</code></td><td></td></tr><tr class='stab '>
+                             <td id='structfield.context'><code>context</code></td><td></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../minidump/struct.MinidumpException.html' title='minidump::MinidumpException'>MinidumpException</a></code></h3><div class='impl-items'><h4 id='method.get_crash_address' class='method'><code>fn <a href='#method.get_crash_address' class='fnname'>get_crash_address</a>(&amp;self, os: <a class='enum' href='../minidump/enum.OS.html' title='minidump::OS'>OS</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h4>
 <div class='docblock'><p>Get the crash address for an exception.</p>
 </div><h4 id='method.get_crash_reason' class='method'><code>fn <a href='#method.get_crash_reason' class='fnname'>get_crash_reason</a>(&amp;self, os: <a class='enum' href='../minidump/enum.OS.html' title='minidump::OS'>OS</a>) -&gt; CrashReason</code></h4>
 <div class='docblock'><p>Get the crash reason for an exception.</p>
@@ -114,7 +115,7 @@ occurred.</p>
 
                 <p>
                     Search functions by type signature (e.g.
-                    <code>vec -> usize</code>)
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
                 </p>
             </div>
         </div>

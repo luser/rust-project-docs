@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-88ac128001ac3a9a/nom-1.2.2/src/stream.rs`.">
+    <meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-88ac128001ac3a9a/nom-1.2.3/src/stream.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>stream.rs.html -- source</title>
 
     <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../../main.css">
+    
 
     
     
@@ -1070,6 +1071,8 @@
 <span id="1027">1027</span>
 <span id="1028">1028</span>
 <span id="1029">1029</span>
+<span id="1030">1030</span>
+<span id="1031">1031</span>
 </pre><pre class='rust '>
 <span class='doccomment'>/// Context:</span>
 <span class='doccomment'>/// * Rust does not have tail call optimization, so we cannot recurse wildly</span>
@@ -1601,6 +1604,8 @@
     }
 
     <span class='kw'>impl</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>name</span> {
+      <span class='comment'>// Allow this to go unused, because code in the defining scope can create the struct directly.</span>
+      <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>dead_code</span>)]</span>
       <span class='kw'>fn</span> <span class='ident'>new</span>() <span class='op'>-&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>name</span> {
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>name</span> { <span class='ident'>state</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>ConsumerState</span>::<span class='ident'>Continue</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Move</span>::<span class='ident'>Consume</span>(<span class='number'>0</span>)) }
       }
@@ -2144,7 +2149,7 @@
 
                 <p>
                     Search functions by type signature (e.g.
-                    <code>vec -> usize</code>)
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
                 </p>
             </div>
         </div>

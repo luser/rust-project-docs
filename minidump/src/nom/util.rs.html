@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-88ac128001ac3a9a/nom-1.2.2/src/util.rs`.">
+    <meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-88ac128001ac3a9a/nom-1.2.3/src/util.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>util.rs.html -- source</title>
 
     <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../../main.css">
+    
 
     
     
@@ -804,6 +805,9 @@
 <span id="761">761</span>
 <span id="762">762</span>
 <span id="763">763</span>
+<span id="764">764</span>
+<span id="765">765</span>
+<span id="766">766</span>
 </pre><pre class='rust '>
 <span class='kw'>use</span> <span class='ident'>internal</span>::{<span class='ident'>IResult</span>,<span class='prelude-val'>Err</span>};
 
@@ -1404,6 +1408,7 @@
   <span class='ident'>IsA</span>,
   <span class='ident'>SeparatedList</span>,
   <span class='ident'>SeparatedNonEmptyList</span>,
+  <span class='ident'>Many0</span>,
   <span class='ident'>Many1</span>,
   <span class='ident'>Count</span>,
   <span class='ident'>TakeUntilAndConsume</span>,
@@ -1505,6 +1510,7 @@
     <span class='ident'>ErrorKind</span>::<span class='ident'>HexDigit</span>                  <span class='op'>=&gt;</span> <span class='number'>59</span>,
     <span class='ident'>ErrorKind</span>::<span class='ident'>TakeUntilStr</span>              <span class='op'>=&gt;</span> <span class='number'>60</span>,
     <span class='ident'>ErrorKind</span>::<span class='ident'>OctDigit</span>                  <span class='op'>=&gt;</span> <span class='number'>61</span>,
+    <span class='ident'>ErrorKind</span>::<span class='ident'>Many0</span>                     <span class='op'>=&gt;</span> <span class='number'>62</span>,
   }
 }
 
@@ -1520,6 +1526,7 @@
         <span class='ident'>ErrorKind</span>::<span class='ident'>IsA</span>                       <span class='op'>=&gt;</span> <span class='string'>&quot;IsA&quot;</span>,
         <span class='ident'>ErrorKind</span>::<span class='ident'>SeparatedList</span>             <span class='op'>=&gt;</span> <span class='string'>&quot;Separated list&quot;</span>,
         <span class='ident'>ErrorKind</span>::<span class='ident'>SeparatedNonEmptyList</span>     <span class='op'>=&gt;</span> <span class='string'>&quot;Separated non empty list&quot;</span>,
+        <span class='ident'>ErrorKind</span>::<span class='ident'>Many0</span>                     <span class='op'>=&gt;</span> <span class='string'>&quot;Many0&quot;</span>,
         <span class='ident'>ErrorKind</span>::<span class='ident'>Many1</span>                     <span class='op'>=&gt;</span> <span class='string'>&quot;Many1&quot;</span>,
         <span class='ident'>ErrorKind</span>::<span class='ident'>Count</span>                     <span class='op'>=&gt;</span> <span class='string'>&quot;Count&quot;</span>,
         <span class='ident'>ErrorKind</span>::<span class='ident'>TakeUntilAndConsume</span>       <span class='op'>=&gt;</span> <span class='string'>&quot;Take until and consume&quot;</span>,
@@ -1612,7 +1619,7 @@
 
                 <p>
                     Search functions by type signature (e.g.
-                    <code>vec -> usize</code>)
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
                 </p>
             </div>
         </div>

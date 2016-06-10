@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
+    
 
     
     
@@ -43,10 +44,10 @@
 
     <section id='main' class="content macro">
 <h1 class='fqn'><span class='in-band'><a href='index.html'>nom</a>::<wbr><a class='macro' href=''>alt!</a></span><span class='out-of-band'><span id='render-detail'>
-            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
-                [<span class='inner'>&#x2212;</span>]
-            </a>
-        </span><a id='src-1777' class='srclink' href='../src/nom/macros.rs.html#1152-1158' title='goto source code'>[src]</a></span></h1>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-1774' class='srclink' href='../src/nom/macros.rs.html#1208-1214' title='goto source code'>[src]</a></span></h1>
 <pre class='rust macro'>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>alt</span> {
     (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> { ... };
@@ -57,6 +58,7 @@ try a list of parsers, return the result of the first successful one</p>
 <p>If one of the parser returns Incomplete, alt will return Incomplete, to retry
 once you get more input. Note that it is better for performance to know the
 minimum size of data you need before you get into alt.</p>
+
 <pre class='rust rust-example-rendered'>
  <span class='macro'>named</span><span class='macro'>!</span>( <span class='ident'>test</span>, <span class='macro'>alt</span><span class='macro'>!</span>( <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;abcd&quot;</span> ) <span class='op'>|</span> <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;efgh&quot;</span> ) ) );
  <span class='kw'>let</span> <span class='ident'>r1</span> <span class='op'>=</span> <span class='ident'>test</span>(<span class='string'>b&quot;abcdefgh&quot;</span>);
@@ -65,6 +67,7 @@ minimum size of data you need before you get into alt.</p>
  <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>r2</span>, <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;ijkl&quot;</span>[..], <span class='kw-2'>&amp;</span><span class='string'>b&quot;efgh&quot;</span>[..]));</pre>
 
 <p>There is another syntax for alt allowing a block to manipulate the result:</p>
+
 <pre class='rust rust-example-rendered'>
     <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>,<span class='ident'>PartialEq</span>,<span class='ident'>Eq</span>)]</span>
     <span class='kw'>enum</span> <span class='ident'>Tagged</span> {
@@ -87,6 +90,7 @@ minimum size of data you need before you get into alt.</p>
 <p><strong>BE CAREFUL</strong> there is a case where the behaviour of <code>alt!</code> can be confusing:</p>
 
 <p>when the alternatives have different lengths, like this case:</p>
+
 <pre class='rust rust-example-rendered'>
  <span class='macro'>named</span><span class='macro'>!</span>( <span class='ident'>test</span>, <span class='macro'>alt</span><span class='macro'>!</span>( <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;abcd&quot;</span> ) <span class='op'>|</span> <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;ef&quot;</span> ) <span class='op'>|</span> <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;ghi&quot;</span> ) <span class='op'>|</span> <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;kl&quot;</span> ) ) );</pre>
 
@@ -98,6 +102,7 @@ that it cannot decide with limited information.</p>
 
 <p>There are two ways to fix this behaviour. The first one consists in ordering the alternatives
 by size, like this:</p>
+
 <pre class='rust rust-example-rendered'>
  <span class='macro'>named</span><span class='macro'>!</span>( <span class='ident'>test</span>, <span class='macro'>alt</span><span class='macro'>!</span>( <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;ef&quot;</span> ) <span class='op'>|</span> <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;kl&quot;</span>) <span class='op'>|</span> <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;ghi&quot;</span> ) <span class='op'>|</span> <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;abcd&quot;</span> ) ) );</pre>
 
@@ -107,6 +112,7 @@ by size, like this:</p>
 <code>Error</code>. If one of the alternatives returns <code>Incomplete</code> but is wrapped by <code>complete!</code>,
 <code>alt!</code> will try the next alternative. This is useful when you know that
 you will not get partial input:</p>
+
 <pre class='rust rust-example-rendered'>
  <span class='macro'>named</span><span class='macro'>!</span>( <span class='ident'>test</span>,
    <span class='macro'>alt</span><span class='macro'>!</span>(
@@ -122,6 +128,7 @@ you will not get partial input:</p>
 
 <p>This behaviour of <code>alt!</code> can get especially confusing if multiple alternatives have different
 sizes but a common prefix, like this:</p>
+
 <pre class='rust rust-example-rendered'>
  <span class='macro'>named</span><span class='macro'>!</span>( <span class='ident'>test</span>, <span class='macro'>alt</span><span class='macro'>!</span>( <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;abcd&quot;</span> ) <span class='op'>|</span> <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;ab&quot;</span> ) <span class='op'>|</span> <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;ef&quot;</span> ) ) );</pre>
 
@@ -129,6 +136,7 @@ sizes but a common prefix, like this:</p>
 smallest parser, so the solution using <code>complete!</code> is better suited.</p>
 
 <p>You can also nest multiple <code>alt!</code>, like this:</p>
+
 <pre class='rust rust-example-rendered'>
  <span class='macro'>named</span><span class='macro'>!</span>( <span class='ident'>test</span>,
    <span class='macro'>alt</span><span class='macro'>!</span>(
@@ -189,7 +197,7 @@ smallest parser, so the solution using <code>complete!</code> is better suited.<
 
                 <p>
                     Search functions by type signature (e.g.
-                    <code>vec -> usize</code>)
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
                 </p>
             </div>
         </div>

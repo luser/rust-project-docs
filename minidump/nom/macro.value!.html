@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
+    
 
     
     
@@ -43,10 +44,10 @@
 
     <section id='main' class="content macro">
 <h1 class='fqn'><span class='in-band'><a href='index.html'>nom</a>::<wbr><a class='macro' href=''>value!</a></span><span class='out-of-band'><span id='render-detail'>
-            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
-                [<span class='inner'>&#x2212;</span>]
-            </a>
-        </span><a id='src-1770' class='srclink' href='../src/nom/macros.rs.html#534-552' title='goto source code'>[src]</a></span></h1>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-1767' class='srclink' href='../src/nom/macros.rs.html#601-619' title='goto source code'>[src]</a></span></h1>
 <pre class='rust macro'>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>value</span> {
     (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>res</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> )) <span class='op'>=&gt;</span> { ... };
@@ -59,6 +60,7 @@
 
 <p>If the child parser was successful, return the value.
 If no child parser is provided, always return the value</p>
+
 <pre class='rust rust-example-rendered'>
  <span class='macro'>named</span><span class='macro'>!</span>(<span class='ident'>x</span><span class='op'>&lt;</span><span class='ident'>u8</span><span class='op'>&gt;</span>, <span class='macro'>value</span><span class='macro'>!</span>(<span class='number'>42</span>, <span class='macro'>delimited</span><span class='macro'>!</span>(<span class='macro'>tag</span><span class='macro'>!</span>(<span class='string'>&quot;&lt;!--&quot;</span>), <span class='macro'>take</span><span class='macro'>!</span>(<span class='number'>5</span>), <span class='macro'>tag</span><span class='macro'>!</span>(<span class='string'>&quot;--&gt;&quot;</span>))));
  <span class='macro'>named</span><span class='macro'>!</span>(<span class='ident'>y</span><span class='op'>&lt;</span><span class='ident'>u8</span><span class='op'>&gt;</span>, <span class='macro'>delimited</span><span class='macro'>!</span>(<span class='macro'>tag</span><span class='macro'>!</span>(<span class='string'>&quot;&lt;!--&quot;</span>), <span class='macro'>value</span><span class='macro'>!</span>(<span class='number'>42</span>), <span class='macro'>tag</span><span class='macro'>!</span>(<span class='string'>&quot;--&gt;&quot;</span>)));
@@ -110,7 +112,7 @@ If no child parser is provided, always return the value</p>
 
                 <p>
                     Search functions by type signature (e.g.
-                    <code>vec -> usize</code>)
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
                 </p>
             </div>
         </div>

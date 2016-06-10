@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
+    
 
     
     
@@ -43,13 +44,14 @@
 
     <section id='main' class="content fn">
 <h1 class='fqn'><span class='in-band'>Function <a href='index.html'>minidump</a>::<wbr><a class='fn' href=''>process_minidump</a></span><span class='out-of-band'><span id='render-detail'>
-            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
-                [<span class='inner'>&#x2212;</span>]
-            </a>
-        </span><a id='src-4754' class='srclink' href='../src/minidump/processor.rs.html#47-130' title='goto source code'>[src]</a></span></h1>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-4751' class='srclink' href='../src/minidump/src/processor.rs.html#47-130' title='goto source code'>[src]</a></span></h1>
 <pre class='rust fn'>pub fn process_minidump(dump: &amp;mut <a class='struct' href='../minidump/struct.Minidump.html' title='minidump::Minidump'>Minidump</a>, symbolizer: &amp;<a class='struct' href='../breakpad_symbols/struct.Symbolizer.html' title='breakpad_symbols::Symbolizer'>Symbolizer</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../minidump/struct.ProcessState.html' title='minidump::ProcessState'>ProcessState</a>, <a class='enum' href='../minidump/enum.ProcessError.html' title='minidump::ProcessError'>ProcessError</a>&gt;</pre><div class='docblock'><p>Unwind all threads in <code>dump</code> and return a <code>ProcessState</code>.</p>
 
-<h1 id='examples' class='section-header'><a href='#examples'>Examples</a></h1><pre class='rust rust-example-rendered'>
+<h1 id='examples' class='section-header'><a href='#examples'>Examples</a></h1>
+<pre class='rust rust-example-rendered'>
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>breakpad_symbols</span>;
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>minidump</span>;
 <span class='kw'>use</span> <span class='ident'>minidump</span>::{<span class='ident'>Minidump</span>,<span class='ident'>process_minidump</span>};
@@ -107,7 +109,7 @@
 
                 <p>
                     Search functions by type signature (e.g.
-                    <code>vec -> usize</code>)
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
                 </p>
             </div>
         </div>
