@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
+    
 
     
     
@@ -43,10 +44,10 @@
 
     <section id='main' class="content struct">
 <h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>test_assembler</a>::<wbr><a class='struct' href=''>Section</a></span><span class='out-of-band'><span id='render-detail'>
-            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
-                [<span class='inner'>&#x2212;</span>]
-            </a>
-        </span><a id='src-193' class='srclink' href='../src/test_assembler/lib.rs.html#386-397' title='goto source code'>[src]</a></span></h1>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-233' class='srclink' href='../src/test_assembler/src/lib.rs.html#435-446' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Section {
     pub endian: <a class='enum' href='../test_assembler/enum.Endian.html' title='test_assembler::Endian'>Endian</a>,
     // some fields omitted
@@ -67,12 +68,12 @@ The method names are {D,L,B}{8,16,32,64} for each variant, so
 non-constant values.</p>
 
 <p>See <a href="index.html">the module-level documentation</a> for examples.</p>
-</div><h2 class='fields'>Fields</h2>
-<table><tr class='stab '>
-                                  <td id='structfield.endian'><code>endian</code></td><td><div class='docblock'><p>The current endianness of the writer.</p>
+</div><h2 class='fields'>Fields</h2><span id='structfield.endian' class='structfield'><code>endian: <a class='enum' href='../test_assembler/enum.Endian.html' title='test_assembler::Endian'>Endian</a></code>
+                           </span><span class='stab '></span><div class='docblock'><p>The current endianness of the writer.</p>
 
 <p>This sets the behavior of the D<N> appending functions.</p>
-</div></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-238' class='srclink' href='../src/test_assembler/src/lib.rs.html#448-734' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
 <div class='docblock'><p>Construct a <code>Section</code> with platform-default endianness.</p>
 </div><h4 id='method.with_endian' class='method'><code>fn <a href='#method.with_endian' class='fnname'>with_endian</a>(endian: <a class='enum' href='../test_assembler/enum.Endian.html' title='test_assembler::Endian'>Endian</a>) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
 <div class='docblock'><p>Construct a <code>Section</code> with <code>endian</code> endianness.</p>
@@ -109,60 +110,60 @@ member functions.</p>
 
 <p>Fill the gap with zeroes. <code>alignment</code> must be a power of two.
 Return this section.</p>
-</div><h4 id='method.D8' class='method'><code>fn <a href='#method.D8' class='fnname'>D8</a>&lt;'a, T: <a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>&gt;&gt;(self, byte: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
+</div><h4 id='method.D8' class='method'><code>fn <a href='#method.D8' class='fnname'>D8</a>&lt;'a,&nbsp;T:&nbsp;<a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>&gt;&gt;(self, byte: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
 <div class='docblock'><p>Append <code>byte</code> with the Section&#39;s default endianness.</p>
 
 <p><code>byte</code> may be a <code>Label</code> or a <code>u8</code>.
 Return this section.</p>
-</div><h4 id='method.L8' class='method'><code>fn <a href='#method.L8' class='fnname'>L8</a>&lt;'a, T: <a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>&gt;&gt;(self, byte: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
+</div><h4 id='method.L8' class='method'><code>fn <a href='#method.L8' class='fnname'>L8</a>&lt;'a,&nbsp;T:&nbsp;<a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>&gt;&gt;(self, byte: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
 <div class='docblock'><p>Append <code>byte</code> as little-endian (identical to <code>D8</code>).</p>
 
 <p>Return this section.</p>
-</div><h4 id='method.B8' class='method'><code>fn <a href='#method.B8' class='fnname'>B8</a>&lt;'a, T: <a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>&gt;&gt;(self, byte: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
+</div><h4 id='method.B8' class='method'><code>fn <a href='#method.B8' class='fnname'>B8</a>&lt;'a,&nbsp;T:&nbsp;<a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>&gt;&gt;(self, byte: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
 <div class='docblock'><p>Append <code>byte</code> as big-endian (identical to <code>D8</code>).</p>
 
 <p>Return this section.</p>
-</div><h4 id='method.D16' class='method'><code>fn <a href='#method.D16' class='fnname'>D16</a>&lt;'a, T: <a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>&gt;&gt;(self, word: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
+</div><h4 id='method.D16' class='method'><code>fn <a href='#method.D16' class='fnname'>D16</a>&lt;'a,&nbsp;T:&nbsp;<a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>&gt;&gt;(self, word: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
 <div class='docblock'><p>Append <code>word</code> with the Section&#39;s default endianness.</p>
 
 <p><code>word</code> may be a <code>Label</code> or a <code>u16</code>.
 Return this section.</p>
-</div><h4 id='method.L16' class='method'><code>fn <a href='#method.L16' class='fnname'>L16</a>&lt;'a, T: <a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>&gt;&gt;(self, word: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
+</div><h4 id='method.L16' class='method'><code>fn <a href='#method.L16' class='fnname'>L16</a>&lt;'a,&nbsp;T:&nbsp;<a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>&gt;&gt;(self, word: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
 <div class='docblock'><p>Append <code>word</code> as little-endian.</p>
 
 <p><code>word</code> may be a <code>Label</code> or a <code>u16</code>.
 Return this section.</p>
-</div><h4 id='method.B16' class='method'><code>fn <a href='#method.B16' class='fnname'>B16</a>&lt;'a, T: <a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>&gt;&gt;(self, word: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
+</div><h4 id='method.B16' class='method'><code>fn <a href='#method.B16' class='fnname'>B16</a>&lt;'a,&nbsp;T:&nbsp;<a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>&gt;&gt;(self, word: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
 <div class='docblock'><p>Append <code>word</code> as big-endian.</p>
 
 <p><code>word</code> may be a <code>Label</code> or a <code>u16</code>.
 Return this section.</p>
-</div><h4 id='method.D32' class='method'><code>fn <a href='#method.D32' class='fnname'>D32</a>&lt;'a, T: <a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>&gt;&gt;(self, dword: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
+</div><h4 id='method.D32' class='method'><code>fn <a href='#method.D32' class='fnname'>D32</a>&lt;'a,&nbsp;T:&nbsp;<a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>&gt;&gt;(self, dword: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
 <div class='docblock'><p>Append <code>dword</code> with the Section&#39;s default endianness.</p>
 
 <p><code>dword</code> may be a <code>Label</code> or a <code>u32</code>.
 Return this section.</p>
-</div><h4 id='method.L32' class='method'><code>fn <a href='#method.L32' class='fnname'>L32</a>&lt;'a, T: <a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>&gt;&gt;(self, dword: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
+</div><h4 id='method.L32' class='method'><code>fn <a href='#method.L32' class='fnname'>L32</a>&lt;'a,&nbsp;T:&nbsp;<a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>&gt;&gt;(self, dword: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
 <div class='docblock'><p>Append <code>dword</code> as little-endian.</p>
 
 <p><code>dword</code> may be a <code>Label</code> or a <code>u32</code>.
 Return this section.</p>
-</div><h4 id='method.B32' class='method'><code>fn <a href='#method.B32' class='fnname'>B32</a>&lt;'a, T: <a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>&gt;&gt;(self, dword: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
+</div><h4 id='method.B32' class='method'><code>fn <a href='#method.B32' class='fnname'>B32</a>&lt;'a,&nbsp;T:&nbsp;<a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>&gt;&gt;(self, dword: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
 <div class='docblock'><p>Append <code>dword</code> as big-endian.</p>
 
 <p><code>dword</code> may be a <code>Label</code> or a <code>u32</code>.
 Return this section.</p>
-</div><h4 id='method.D64' class='method'><code>fn <a href='#method.D64' class='fnname'>D64</a>&lt;'a, T: <a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>&gt;&gt;(self, qword: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
+</div><h4 id='method.D64' class='method'><code>fn <a href='#method.D64' class='fnname'>D64</a>&lt;'a,&nbsp;T:&nbsp;<a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>&gt;&gt;(self, qword: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
 <div class='docblock'><p>Append <code>qword</code> with the Section&#39;s default endianness.</p>
 
 <p><code>qword</code> may be a <code>Label</code> or a <code>u32</code>.
 Return this section.</p>
-</div><h4 id='method.L64' class='method'><code>fn <a href='#method.L64' class='fnname'>L64</a>&lt;'a, T: <a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>&gt;&gt;(self, qword: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
+</div><h4 id='method.L64' class='method'><code>fn <a href='#method.L64' class='fnname'>L64</a>&lt;'a,&nbsp;T:&nbsp;<a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>&gt;&gt;(self, qword: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
 <div class='docblock'><p>Append <code>qword</code> as little-endian.</p>
 
 <p><code>qword</code> may be a <code>Label</code> or a <code>u32</code>.
 Return this section.</p>
-</div><h4 id='method.B64' class='method'><code>fn <a href='#method.B64' class='fnname'>B64</a>&lt;'a, T: <a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>&gt;&gt;(self, qword: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
+</div><h4 id='method.B64' class='method'><code>fn <a href='#method.B64' class='fnname'>B64</a>&lt;'a,&nbsp;T:&nbsp;<a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>&gt;&gt;(self, qword: T) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
 <div class='docblock'><p>Append <code>qword</code> as big-endian.</p>
 
 <p><code>qword</code> may be a <code>Label</code> or a <code>u32</code>.
@@ -190,6 +191,8 @@ Return this section.</p>
                     <dd>Move down in search results</dd>
                     <dt>&#9166;</dt>
                     <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
                 </dl>
             </div>
 
@@ -210,7 +213,7 @@ Return this section.</p>
 
                 <p>
                     Search functions by type signature (e.g.
-                    <code>vec -> usize</code>)
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
                 </p>
             </div>
         </div>

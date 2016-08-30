@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
+    
 
     
     
@@ -43,14 +44,15 @@
 
     <section id='main' class="content struct">
 <h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>test_assembler</a>::<wbr><a class='struct' href=''>RealLabel</a></span><span class='out-of-band'><span id='render-detail'>
-            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
-                [<span class='inner'>&#x2212;</span>]
-            </a>
-        </span><a id='src-79' class='srclink' href='../src/test_assembler/lib.rs.html#172-174' title='goto source code'>[src]</a></span></h1>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-109' class='srclink' href='../src/test_assembler/src/lib.rs.html#211-213' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct RealLabel {
     // some fields omitted
 }</pre><div class='docblock'><p>The inner workings of <code>Label</code>. Don&#39;t instanitate this, instantiate <code>Label</code>.</p>
-</div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></h3><div class='impl-items'><h4 id='method.value' class='method'><code>fn <a href='#method.value' class='fnname'>value</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>&gt;</code></h4>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-126' class='srclink' href='../src/test_assembler/src/lib.rs.html#233-252' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.value' class='method'><code>fn <a href='#method.value' class='fnname'>value</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>&gt;</code></h4>
 <div class='docblock'><p>Get the constant value of the <code>RealLabel</code>, if known.</p>
 </div><h4 id='method.offset' class='method'><code>fn <a href='#method.offset' class='fnname'>offset</a>(&amp;self, other: &amp;<a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>&gt;</code></h4>
 <div class='docblock'><p>Get the relative offset from another label, if possible.</p>
@@ -58,11 +60,19 @@
 <div class='docblock'><p>Set this <code>RealLabel</code>s value to <code>val</code>.</p>
 </div><h4 id='method.set' class='method'><code>fn <a href='#method.set' class='fnname'>set</a>(&amp;self, other: &amp;<a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a>)</code></h4>
 <div class='docblock'><p>Set this <code>RealLabel</code>s value equal to <code>other</code>.</p>
-</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='../test_assembler/trait.LabelMaker.html' title='test_assembler::LabelMaker'>LabelMaker</a> for <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='../test_assembler/trait.LabelMaker.html#method.new' class='fnname'>new</a>() -&gt; <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></h4>
-<h4 id='method.from_const' class='method'><code>fn <a href='../test_assembler/trait.LabelMaker.html#method.from_const' class='fnname'>from_const</a>(val: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>) -&gt; <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></h4>
-<h4 id='method.from_label' class='method'><code>fn <a href='../test_assembler/trait.LabelMaker.html#method.from_label' class='fnname'>from_label</a>(other: &amp;<a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a>) -&gt; <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></h4>
-<h4 id='method.from_label_offset' class='method'><code>fn <a href='../test_assembler/trait.LabelMaker.html#method.from_label_offset' class='fnname'>from_label_offset</a>(other: &amp;<a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a>, offset: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>) -&gt; <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></h4>
-</div></section>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-111' class='srclink' href='../src/test_assembler/src/lib.rs.html#215-219' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, f: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='../test_assembler/trait.LabelMaker.html' title='test_assembler::LabelMaker'>LabelMaker</a> for <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-138' class='srclink' href='../src/test_assembler/src/lib.rs.html#254-267' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='../test_assembler/trait.LabelMaker.html#tymethod.new' class='fnname'>new</a>() -&gt; <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></h4>
+<div class='docblock'><p>Create an undefined label.</p>
+</div><h4 id='method.from_const' class='method'><code>fn <a href='../test_assembler/trait.LabelMaker.html#tymethod.from_const' class='fnname'>from_const</a>(val: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>) -&gt; <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></h4>
+<div class='docblock'><p>Create a label with a constant value <code>val</code>.</p>
+</div><h4 id='method.from_label' class='method'><code>fn <a href='../test_assembler/trait.LabelMaker.html#tymethod.from_label' class='fnname'>from_label</a>(other: &amp;<a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a>) -&gt; <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></h4>
+<div class='docblock'><p>Create a label whose value is equal to <code>other</code>.</p>
+</div><h4 id='method.from_label_offset' class='method'><code>fn <a href='../test_assembler/trait.LabelMaker.html#tymethod.from_label_offset' class='fnname'>from_label_offset</a>(other: &amp;<a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a>, offset: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>) -&gt; <a class='struct' href='../test_assembler/struct.RealLabel.html' title='test_assembler::RealLabel'>RealLabel</a></code></h4>
+<div class='docblock'><p>Create a label whose value is equal to <code>other</code> plus <code>offset</code>.</p>
+</div></div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
@@ -85,6 +95,8 @@
                     <dd>Move down in search results</dd>
                     <dt>&#9166;</dt>
                     <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
                 </dl>
             </div>
 
@@ -105,7 +117,7 @@
 
                 <p>
                     Search functions by type signature (e.g.
-                    <code>vec -> usize</code>)
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
                 </p>
             </div>
         </div>

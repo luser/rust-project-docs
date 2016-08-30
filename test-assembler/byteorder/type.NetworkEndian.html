@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `LabelOrNum` enum in crate `test_assembler`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, LabelOrNum">
+    <meta name="description" content="API documentation for the Rust `NetworkEndian` type in crate `byteorder`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, NetworkEndian">
 
-    <title>test_assembler::LabelOrNum - Rust</title>
+    <title>byteorder::NetworkEndian - Rust</title>
 
     <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
@@ -28,7 +28,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'><a href='index.html'>test_assembler</a></p><script>window.sidebarCurrent = {name: 'LabelOrNum', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'><a href='index.html'>byteorder</a></p><script>window.sidebarCurrent = {name: 'NetworkEndian', ty: 'type', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -42,18 +42,21 @@
         </form>
     </nav>
 
-    <section id='main' class="content enum">
-<h1 class='fqn'><span class='in-band'>Enum <a href='index.html'>test_assembler</a>::<wbr><a class='enum' href=''>LabelOrNum</a></span><span class='out-of-band'><span id='render-detail'>
+    <section id='main' class="content type">
+<h1 class='fqn'><span class='in-band'><a href='index.html'>byteorder</a>::<wbr><a class='type' href=''>NetworkEndian</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-200' class='srclink' href='../src/test_assembler/src/lib.rs.html#378-381' title='goto source code'>[src]</a></span></h1>
-<pre class='rust enum'>pub enum LabelOrNum&lt;T:&nbsp;<a class='trait' href='../test_assembler/trait.Num.html' title='test_assembler::Num'>Num</a>&gt; {
-    Label(<a class='struct' href='../test_assembler/struct.Label.html' title='test_assembler::Label'>Label</a>),
-    Num(T),
-}</pre><div class='docblock'><p>An enum to hold <code>Label</code>s or <code>Num</code>s.</p>
-</div><h2 class='variants'>Variants</h2>
-<span id='variant.Label' class='variant'><code>Label(<a class='struct' href='../test_assembler/struct.Label.html' title='test_assembler::Label'>Label</a>)</code></span><span id='variant.Num' class='variant'><code>Num(T)</code></span></section>
+               </span><a id='src-236' class='srclink' href='../src/byteorder/lib.rs.html#285' title='goto source code'>[src]</a></span></h1>
+<pre class='rust typedef'>type NetworkEndian = <a class='enum' href='../byteorder/enum.BigEndian.html' title='byteorder::BigEndian'>BigEndian</a>;</pre><div class='docblock'><p>Defines network byte order serialization.</p>
+
+<p>Network byte order is defined by <a href="https://tools.ietf.org/html/rfc1700">RFC 1700</a> to be big-endian, and is
+referred to in several protocol specifications.  This type is an alias of
+BigEndian.</p>
+
+<p>Note that this type has no value constructor. It is used purely at the
+type level.</p>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
@@ -108,7 +111,7 @@
 
     <script>
         window.rootPath = "../";
-        window.currentCrate = "test_assembler";
+        window.currentCrate = "byteorder";
         window.playgroundUrl = "";
     </script>
     <script src="../jquery.js"></script>

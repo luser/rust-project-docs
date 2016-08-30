@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
+    
 
     
     
@@ -43,11 +44,11 @@
 
     <section id='main' class="content trait">
 <h1 class='fqn'><span class='in-band'>Trait <a href='index.html'>test_assembler</a>::<wbr><a class='trait' href=''>ToLabelOrNum</a></span><span class='out-of-band'><span id='render-detail'>
-            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
-                [<span class='inner'>&#x2212;</span>]
-            </a>
-        </span><a id='src-166' class='srclink' href='../src/test_assembler/lib.rs.html#335-337' title='goto source code'>[src]</a></span></h1>
-<pre class='rust trait'>pub trait ToLabelOrNum&lt;'a, T: <a class='trait' href='../test_assembler/trait.Num.html' title='test_assembler::Num'>Num</a>&gt; {
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-206' class='srclink' href='../src/test_assembler/src/lib.rs.html#384-386' title='goto source code'>[src]</a></span></h1>
+<pre class='rust trait'>pub trait ToLabelOrNum&lt;'a,&nbsp;T:&nbsp;<a class='trait' href='../test_assembler/trait.Num.html' title='test_assembler::Num'>Num</a>&gt; {
     fn <a href='#tymethod.to_labelornum' class='fnname'>to_labelornum</a>(self) -&gt; <a class='enum' href='../test_assembler/enum.LabelOrNum.html' title='test_assembler::LabelOrNum'>LabelOrNum</a>&lt;T&gt;;
 }</pre><div class='docblock'><p>A trait to allow passing numbers or Labels.</p>
 </div>
@@ -56,10 +57,11 @@
         <h3 id='tymethod.to_labelornum' class='method stab '><code>fn <a href='#tymethod.to_labelornum' class='fnname'>to_labelornum</a>(self) -&gt; <a class='enum' href='../test_assembler/enum.LabelOrNum.html' title='test_assembler::LabelOrNum'>LabelOrNum</a>&lt;T&gt;</code></h3></div>
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>
-    <li><code>impl&lt;'a, T: <a class='trait' href='../test_assembler/trait.Num.html' title='test_assembler::Num'>Num</a>&gt; <a class='trait' href='../test_assembler/trait.ToLabelOrNum.html' title='test_assembler::ToLabelOrNum'>ToLabelOrNum</a>&lt;'a, T&gt; for &amp;'a <a class='struct' href='../test_assembler/struct.Label.html' title='test_assembler::Label'>Label</a></code></li>
+    <li><code>impl&lt;'a,&nbsp;T:&nbsp;<a class='trait' href='../test_assembler/trait.Num.html' title='test_assembler::Num'>Num</a>&gt; ToLabelOrNum&lt;'a,&nbsp;T&gt; for &amp;'a <a class='struct' href='../test_assembler/struct.Label.html' title='test_assembler::Label'>Label</a></code></li>
+<li><code>impl&lt;'a,&nbsp;T:&nbsp;<a class='trait' href='../test_assembler/trait.Num.html' title='test_assembler::Num'>Num</a>&gt; ToLabelOrNum&lt;'a,&nbsp;T&gt; for T</code></li>
 </ul><script type="text/javascript" async
-                              src="../implementors/test_assembler/trait.ToLabelOrNum.js">
-                      </script></section>
+                         src="../implementors/test_assembler/trait.ToLabelOrNum.js">
+                 </script></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
@@ -82,6 +84,8 @@
                     <dd>Move down in search results</dd>
                     <dt>&#9166;</dt>
                     <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
                 </dl>
             </div>
 
@@ -102,7 +106,7 @@
 
                 <p>
                     Search functions by type signature (e.g.
-                    <code>vec -> usize</code>)
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
                 </p>
             </div>
         </div>
