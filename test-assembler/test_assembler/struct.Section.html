@@ -72,7 +72,7 @@ non-constant values.</p>
                            </span><span class='stab '></span><div class='docblock'><p>The current endianness of the writer.</p>
 
 <p>This sets the behavior of the D<N> appending functions.</p>
-</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-238' class='srclink' href='../src/test_assembler/src/lib.rs.html#448-734' title='goto source code'>[src]</a></span></h3>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-238' class='srclink' href='../src/test_assembler/src/lib.rs.html#448-750' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
 <div class='docblock'><p>Construct a <code>Section</code> with platform-default endianness.</p>
 </div><h4 id='method.with_endian' class='method'><code>fn <a href='#method.with_endian' class='fnname'>with_endian</a>(endian: <a class='enum' href='../test_assembler/enum.Endian.html' title='test_assembler::Endian'>Endian</a>) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
@@ -101,6 +101,12 @@ member functions.</p>
 <div class='docblock'><p>Append <code>data</code> to the end of this section.</p>
 
 <p>Return this section.</p>
+</div><h4 id='method.append_section' class='method'><code>fn <a href='#method.append_section' class='fnname'>append_section</a>&lt;S:&nbsp;<a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.Into.html' title='core::convert::Into'>Into</a>&lt;<a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a>&gt;&gt;(self, section: S) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
+<div class='docblock'><p>Append <code>section</code>&#39;s contents to the end of this section.</p>
+
+<p>Any <code>Label</code>s that were appended to <code>section</code> will not be
+resolved until this section is finalized.
+Return this section.</p>
 </div><h4 id='method.append_repeated' class='method'><code>fn <a href='#method.append_repeated' class='fnname'>append_repeated</a>(self, byte: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>, count: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
 <div class='docblock'><p>Append <code>count</code> copies of <code>byte</code> to the end of this section.</p>
 
