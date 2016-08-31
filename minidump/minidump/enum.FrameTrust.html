@@ -47,7 +47,7 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-4796' class='srclink' href='../src/minidump/src/process_state.rs.html#20-35' title='goto source code'>[src]</a></span></h1>
+               </span><a id='src-4838' class='srclink' href='../src/minidump/src/process_state.rs.html#20-35' title='goto source code'>[src]</a></span></h1>
 <pre class='rust enum'>pub enum FrameTrust {
     None,
     Scan,
@@ -60,20 +60,26 @@
 stack walking is trusted. Since the stack walker can resort to
 stack scanning, it can wind up with dubious frames.</p>
 </div><h2 class='variants'>Variants</h2>
-<table class='variants_table'><tr><td id='variant.None'><code>None</code></td><td><div class='docblock'><p>Unknown</p>
-</div></td><td></td></tr><tr><td id='variant.Scan'><code>Scan</code></td><td><div class='docblock'><p>Scanned the stack, found this.</p>
-</div></td><td></td></tr><tr><td id='variant.CfiScan'><code>CfiScan</code></td><td><div class='docblock'><p>Found while scanning stack using call frame info.</p>
-</div></td><td></td></tr><tr><td id='variant.FramePointer'><code>FramePointer</code></td><td><div class='docblock'><p>Derived from frame pointer.</p>
-</div></td><td></td></tr><tr><td id='variant.CallFrameInfo'><code>CallFrameInfo</code></td><td><div class='docblock'><p>Derived from call frame info.</p>
-</div></td><td></td></tr><tr><td id='variant.PreWalked'><code>PreWalked</code></td><td><div class='docblock'><p>Explicitly provided by some external stack walker.</p>
-</div></td><td></td></tr><tr><td id='variant.Context'><code>Context</code></td><td><div class='docblock'><p>Given as instruction pointer in a context.</p>
-</div></td><td></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='enum' href='../minidump/enum.FrameTrust.html' title='minidump::FrameTrust'>FrameTrust</a></code></h3><div class='impl-items'><h4 id='method.description' class='method'><code>fn <a href='#method.description' class='fnname'>description</a>(&amp;self) -&gt; &amp;'static <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a></code></h4>
+<span id='variant.None' class='variant'><code>None</code></span><div class='docblock'><p>Unknown</p>
+</div><span id='variant.Scan' class='variant'><code>Scan</code></span><div class='docblock'><p>Scanned the stack, found this.</p>
+</div><span id='variant.CfiScan' class='variant'><code>CfiScan</code></span><div class='docblock'><p>Found while scanning stack using call frame info.</p>
+</div><span id='variant.FramePointer' class='variant'><code>FramePointer</code></span><div class='docblock'><p>Derived from frame pointer.</p>
+</div><span id='variant.CallFrameInfo' class='variant'><code>CallFrameInfo</code></span><div class='docblock'><p>Derived from call frame info.</p>
+</div><span id='variant.PreWalked' class='variant'><code>PreWalked</code></span><div class='docblock'><p>Explicitly provided by some external stack walker.</p>
+</div><span id='variant.Context' class='variant'><code>Context</code></span><div class='docblock'><p>Given as instruction pointer in a context.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='enum' href='../minidump/enum.FrameTrust.html' title='minidump::FrameTrust'>FrameTrust</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-4890' class='srclink' href='../src/minidump/src/process_state.rs.html#159-173' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.description' class='method'><code>fn <a href='#method.description' class='fnname'>description</a>(&amp;self) -&gt; &amp;'static <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a></code></h4>
 <div class='docblock'><p>Return a string describing how a stack frame was found
 by the stackwalker.</p>
-</div></div><h2 id='implementations'>Trait Implementations</h2><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='enum' href='../minidump/enum.FrameTrust.html' title='minidump::FrameTrust'>FrameTrust</a></code></h3><div class='impl-items'><h4 id='method.eq' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../minidump/enum.FrameTrust.html' title='minidump::FrameTrust'>FrameTrust</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
-<h4 id='method.ne' class='method'><span class="since">1.0.0</span><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, other: &amp;Rhs) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
-</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../minidump/enum.FrameTrust.html' title='minidump::FrameTrust'>FrameTrust</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
-</div></section>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='enum' href='../minidump/enum.FrameTrust.html' title='minidump::FrameTrust'>FrameTrust</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-4821' class='srclink' href='../src/minidump/src/process_state.rs.html#19' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.eq' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../minidump/enum.FrameTrust.html' title='minidump::FrameTrust'>FrameTrust</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<div class='docblock'><p>This method tests for <code>self</code> and <code>other</code> values to be equal, and is used by <code>==</code>. <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq">Read more</a></p>
+</div><h4 id='method.ne' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, other: &amp;Rhs) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div></h4>
+<div class='docblock'><p>This method tests for <code>!=</code>.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../minidump/enum.FrameTrust.html' title='minidump::FrameTrust'>FrameTrust</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-4827' class='srclink' href='../src/minidump/src/process_state.rs.html#19' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
@@ -96,6 +102,8 @@ by the stackwalker.</p>
                     <dd>Move down in search results</dd>
                     <dt>&#9166;</dt>
                     <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
                 </dl>
             </div>
 

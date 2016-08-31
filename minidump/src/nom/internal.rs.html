@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-88ac128001ac3a9a/nom-1.2.3/src/internal.rs`.">
+    <meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/nom-1.2.4/src/internal.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>internal.rs.html -- source</title>
@@ -313,6 +313,82 @@
 <span id="269">269</span>
 <span id="270">270</span>
 <span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
+<span id="318">318</span>
+<span id="319">319</span>
+<span id="320">320</span>
+<span id="321">321</span>
+<span id="322">322</span>
+<span id="323">323</span>
+<span id="324">324</span>
+<span id="325">325</span>
+<span id="326">326</span>
+<span id="327">327</span>
+<span id="328">328</span>
+<span id="329">329</span>
+<span id="330">330</span>
+<span id="331">331</span>
+<span id="332">332</span>
+<span id="333">333</span>
+<span id="334">334</span>
+<span id="335">335</span>
+<span id="336">336</span>
+<span id="337">337</span>
+<span id="338">338</span>
+<span id="339">339</span>
+<span id="340">340</span>
+<span id="341">341</span>
+<span id="342">342</span>
+<span id="343">343</span>
+<span id="344">344</span>
+<span id="345">345</span>
+<span id="346">346</span>
+<span id="347">347</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Basic types to build the parsers</span>
 
@@ -381,22 +457,22 @@
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>I</span>,<span class='ident'>O</span>,<span class='ident'>E</span><span class='op'>&gt;</span> <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='ident'>I</span>,<span class='ident'>O</span>,<span class='ident'>E</span><span class='op'>&gt;</span> {
   <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>is_done</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
     <span class='kw'>match</span> <span class='op'>*</span><span class='self'>self</span> {
-      <span class='ident'>Done</span>(_,_) <span class='op'>=&gt;</span> <span class='boolval'>true</span>,
-      _         <span class='op'>=&gt;</span> <span class='boolval'>false</span>
+      <span class='ident'>Done</span>(_,_) <span class='op'>=&gt;</span> <span class='bool-val'>true</span>,
+      _         <span class='op'>=&gt;</span> <span class='bool-val'>false</span>
     }
   }
 
   <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>is_err</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
     <span class='kw'>match</span> <span class='op'>*</span><span class='self'>self</span> {
-      <span class='ident'>Error</span>(_) <span class='op'>=&gt;</span> <span class='boolval'>true</span>,
-      _        <span class='op'>=&gt;</span> <span class='boolval'>false</span>
+      <span class='ident'>Error</span>(_) <span class='op'>=&gt;</span> <span class='bool-val'>true</span>,
+      _        <span class='op'>=&gt;</span> <span class='bool-val'>false</span>
     }
   }
 
   <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>is_incomplete</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
     <span class='kw'>match</span> <span class='op'>*</span><span class='self'>self</span> {
-      <span class='ident'>Incomplete</span>(_) <span class='op'>=&gt;</span> <span class='boolval'>true</span>,
-      _             <span class='op'>=&gt;</span> <span class='boolval'>false</span>
+      <span class='ident'>Incomplete</span>(_) <span class='op'>=&gt;</span> <span class='bool-val'>true</span>,
+      _             <span class='op'>=&gt;</span> <span class='bool-val'>false</span>
     }
   }
 
@@ -435,6 +511,36 @@
       <span class='ident'>Error</span>(<span class='ident'>e</span>)      <span class='op'>=&gt;</span> <span class='ident'>Error</span>(<span class='ident'>f</span>(<span class='ident'>e</span>)),
       <span class='ident'>Incomplete</span>(<span class='ident'>n</span>) <span class='op'>=&gt;</span> <span class='ident'>Incomplete</span>(<span class='ident'>n</span>),
       <span class='ident'>Done</span>(<span class='ident'>i</span>, <span class='ident'>o</span>)    <span class='op'>=&gt;</span> <span class='ident'>Done</span>(<span class='ident'>i</span>, <span class='ident'>o</span>),
+    }
+  }
+
+  <span class='doccomment'>/// Unwrap the contained `Done(I, O)` value, or panic if the `IResult` is not</span>
+  <span class='doccomment'>/// `Done`.</span>
+  <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>unwrap</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> (<span class='ident'>I</span>, <span class='ident'>O</span>) {
+    <span class='kw'>match</span> <span class='self'>self</span> {
+      <span class='ident'>Done</span>(<span class='ident'>i</span>, <span class='ident'>o</span>)    <span class='op'>=&gt;</span> (<span class='ident'>i</span>, <span class='ident'>o</span>),
+      <span class='ident'>Incomplete</span>(_) <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;unwrap() called on an IResult that is Incomplete&quot;</span>),
+      <span class='ident'>Error</span>(_)      <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;unwrap() called on an IResult that is Error&quot;</span>)
+    }
+  }
+
+  <span class='doccomment'>/// Unwrap the contained `Done(I, O)` value, or panic if the `IResult` is not</span>
+  <span class='doccomment'>/// `Done`.</span>
+  <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>unwrap_inc</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Needed</span> {
+    <span class='kw'>match</span> <span class='self'>self</span> {
+      <span class='ident'>Incomplete</span>(<span class='ident'>n</span>) <span class='op'>=&gt;</span> <span class='ident'>n</span>,
+      <span class='ident'>Done</span>(_, _)    <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;unwrap_inc() called on an IResult that is Done&quot;</span>),
+      <span class='ident'>Error</span>(_)      <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;unwrap_inc() called on an IResult that is Error&quot;</span>)
+    }
+  }
+
+  <span class='doccomment'>/// Unwrap the contained `Done(I, O)` value, or panic if the `IResult` is not</span>
+  <span class='doccomment'>/// `Done`.</span>
+  <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>unwrap_err</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-val'>Err</span><span class='op'>&lt;</span><span class='ident'>I</span>, <span class='ident'>E</span><span class='op'>&gt;</span> {
+    <span class='kw'>match</span> <span class='self'>self</span> {
+      <span class='ident'>Error</span>(<span class='ident'>e</span>)      <span class='op'>=&gt;</span> <span class='ident'>e</span>,
+      <span class='ident'>Done</span>(_, _)    <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;unwrap_err() called on an IResult that is Done&quot;</span>),
+      <span class='ident'>Incomplete</span>(_) <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;unwrap_err() called on an IResult that is Incomplete&quot;</span>),
     }
   }
 }
@@ -533,8 +639,13 @@
 
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>test</span>)]</span>
 <span class='kw'>mod</span> <span class='ident'>tests</span> {
-  <span class='kw'>use</span> <span class='ident'>super</span>::<span class='op'>*</span>;
+  <span class='kw'>use</span> <span class='kw'>super</span>::<span class='op'>*</span>;
   <span class='kw'>use</span> <span class='ident'>util</span>::<span class='ident'>ErrorKind</span>;
+
+  <span class='kw'>const</span> <span class='ident'>REST</span>: [<span class='ident'>u8</span>; <span class='number'>0</span>] <span class='op'>=</span> [];
+  <span class='kw'>const</span> <span class='ident'>DONE</span>: <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> [<span class='ident'>u8</span>], <span class='ident'>u32</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='ident'>REST</span>, <span class='number'>5</span>);
+  <span class='kw'>const</span> <span class='ident'>ERROR</span>: <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> [<span class='ident'>u8</span>], <span class='ident'>u32</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='prelude-val'>Err</span>::<span class='ident'>Code</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>Tag</span>));
+  <span class='kw'>const</span> <span class='ident'>INCOMPLETE</span>: <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> [<span class='ident'>u8</span>], <span class='ident'>u32</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>);
 
   <span class='attribute'>#[<span class='ident'>test</span>]</span>
   <span class='kw'>fn</span> <span class='ident'>needed_map</span>() {
@@ -547,24 +658,18 @@
 
   <span class='attribute'>#[<span class='ident'>test</span>]</span>
   <span class='kw'>fn</span> <span class='ident'>iresult_map</span>() {
-    <span class='kw'>let</span> <span class='ident'>done</span>: <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>], <span class='ident'>u32</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>5</span>);
-    <span class='kw'>let</span> <span class='ident'>error</span>: <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>], <span class='ident'>u32</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='prelude-val'>Err</span>::<span class='ident'>Code</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>Tag</span>));
-    <span class='kw'>let</span> <span class='ident'>incomplete</span>: <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>], <span class='ident'>u32</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>);
-
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>done</span>.<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> <span class='ident'>x</span> <span class='op'>*</span> <span class='number'>2</span>), <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>10</span>));
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>error</span>.<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> <span class='ident'>x</span> <span class='op'>*</span> <span class='number'>2</span>), <span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='prelude-val'>Err</span>::<span class='ident'>Code</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>Tag</span>)));
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>incomplete</span>.<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> <span class='ident'>x</span> <span class='op'>*</span> <span class='number'>2</span>), <span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>DONE</span>.<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> <span class='ident'>x</span> <span class='op'>*</span> <span class='number'>2</span>), <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>10</span>));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>ERROR</span>.<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> <span class='ident'>x</span> <span class='op'>*</span> <span class='number'>2</span>), <span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='prelude-val'>Err</span>::<span class='ident'>Code</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>Tag</span>)));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>INCOMPLETE</span>.<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> <span class='ident'>x</span> <span class='op'>*</span> <span class='number'>2</span>), <span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>));
   }
 
   <span class='attribute'>#[<span class='ident'>test</span>]</span>
   <span class='kw'>fn</span> <span class='ident'>iresult_map_inc</span>() {
-    <span class='kw'>let</span> <span class='ident'>done</span>: <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>], <span class='ident'>u32</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>5</span>);
-    <span class='kw'>let</span> <span class='ident'>error</span>: <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>], <span class='ident'>u32</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='prelude-val'>Err</span>::<span class='ident'>Code</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>Tag</span>));
     <span class='kw'>let</span> <span class='ident'>inc_unknown</span>: <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>], <span class='ident'>u32</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>);
     <span class='kw'>let</span> <span class='ident'>inc_size</span>: <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>], <span class='ident'>u32</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='number'>5</span>));
 
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>done</span>.<span class='ident'>map_inc</span>(<span class='op'>|</span><span class='ident'>n</span><span class='op'>|</span> <span class='kw'>if</span> <span class='kw'>let</span> <span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span>) <span class='op'>=</span> <span class='ident'>n</span> {<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span><span class='op'>+</span><span class='number'>1</span>)} <span class='kw'>else</span> {<span class='ident'>n</span>}), <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>5</span>));
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>error</span>.<span class='ident'>map_inc</span>(<span class='op'>|</span><span class='ident'>n</span><span class='op'>|</span> <span class='kw'>if</span> <span class='kw'>let</span> <span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span>) <span class='op'>=</span> <span class='ident'>n</span> {<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span><span class='op'>+</span><span class='number'>1</span>)} <span class='kw'>else</span> {<span class='ident'>n</span>}), <span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='prelude-val'>Err</span>::<span class='ident'>Code</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>Tag</span>)));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>DONE</span>.<span class='ident'>map_inc</span>(<span class='op'>|</span><span class='ident'>n</span><span class='op'>|</span> <span class='kw'>if</span> <span class='kw'>let</span> <span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span>) <span class='op'>=</span> <span class='ident'>n</span> {<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span><span class='op'>+</span><span class='number'>1</span>)} <span class='kw'>else</span> {<span class='ident'>n</span>}), <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>5</span>));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>ERROR</span>.<span class='ident'>map_inc</span>(<span class='op'>|</span><span class='ident'>n</span><span class='op'>|</span> <span class='kw'>if</span> <span class='kw'>let</span> <span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span>) <span class='op'>=</span> <span class='ident'>n</span> {<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span><span class='op'>+</span><span class='number'>1</span>)} <span class='kw'>else</span> {<span class='ident'>n</span>}), <span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='prelude-val'>Err</span>::<span class='ident'>Code</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>Tag</span>)));
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>inc_unknown</span>.<span class='ident'>map_inc</span>(<span class='op'>|</span><span class='ident'>n</span><span class='op'>|</span> <span class='kw'>if</span> <span class='kw'>let</span> <span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span>) <span class='op'>=</span> <span class='ident'>n</span> {<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span><span class='op'>+</span><span class='number'>1</span>)} <span class='kw'>else</span> {<span class='ident'>n</span>}), <span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>));
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>inc_size</span>.<span class='ident'>map_inc</span>(<span class='op'>|</span><span class='ident'>n</span><span class='op'>|</span> <span class='kw'>if</span> <span class='kw'>let</span> <span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span>) <span class='op'>=</span> <span class='ident'>n</span> {<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>i</span><span class='op'>+</span><span class='number'>1</span>)} <span class='kw'>else</span> {<span class='ident'>n</span>}), <span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>Needed</span>::<span class='ident'>Size</span>(<span class='number'>6</span>)));
   }
@@ -576,13 +681,60 @@
 
     <span class='kw'>let</span> <span class='ident'>error_kind</span> <span class='op'>=</span> <span class='prelude-val'>Err</span>::<span class='ident'>Code</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>Custom</span>(<span class='ident'>Error</span>(<span class='number'>5</span>)));
 
-    <span class='kw'>let</span> <span class='ident'>done</span>: <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>], <span class='ident'>u32</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>5</span>);
-    <span class='kw'>let</span> <span class='ident'>error</span>: <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>], <span class='ident'>u32</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='prelude-val'>Err</span>::<span class='ident'>Code</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>Tag</span>));
-    <span class='kw'>let</span> <span class='ident'>incomplete</span>: <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>], <span class='ident'>u32</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>);
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>DONE</span>.<span class='ident'>map_err</span>(<span class='op'>|</span>_<span class='op'>|</span> <span class='ident'>error_kind</span>.<span class='ident'>clone</span>()), <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>5</span>));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>ERROR</span>.<span class='ident'>map_err</span>(<span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> {<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;err: {:?}&quot;</span>, <span class='ident'>x</span>); <span class='ident'>error_kind</span>.<span class='ident'>clone</span>()}), <span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='ident'>error_kind</span>.<span class='ident'>clone</span>()));
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>INCOMPLETE</span>.<span class='ident'>map_err</span>(<span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> {<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;err: {:?}&quot;</span>, <span class='ident'>x</span>); <span class='ident'>error_kind</span>.<span class='ident'>clone</span>()}), <span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>));
+  }
 
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>done</span>.<span class='ident'>map_err</span>(<span class='op'>|</span>_<span class='op'>|</span> <span class='ident'>error_kind</span>.<span class='ident'>clone</span>()), <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>5</span>));
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>error</span>.<span class='ident'>map_err</span>(<span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> {<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;err: {:?}&quot;</span>, <span class='ident'>x</span>); <span class='ident'>error_kind</span>.<span class='ident'>clone</span>()}), <span class='ident'>IResult</span>::<span class='ident'>Error</span>(<span class='ident'>error_kind</span>.<span class='ident'>clone</span>()));
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>incomplete</span>.<span class='ident'>map_err</span>(<span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> {<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;err: {:?}&quot;</span>, <span class='ident'>x</span>); <span class='ident'>error_kind</span>.<span class='ident'>clone</span>()}), <span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='ident'>Needed</span>::<span class='ident'>Unknown</span>));
+  <span class='attribute'>#[<span class='ident'>test</span>]</span>
+  <span class='kw'>fn</span> <span class='ident'>iresult_unwrap_on_done</span>() {
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>DONE</span>.<span class='ident'>unwrap</span>(), (<span class='kw-2'>&amp;</span><span class='string'>b&quot;&quot;</span>[..], <span class='number'>5</span>));
+  }
+
+  <span class='attribute'>#[<span class='ident'>test</span>]</span>
+  <span class='attribute'>#[<span class='ident'>should_panic</span>]</span>
+  <span class='kw'>fn</span> <span class='ident'>iresult_unwrap_on_err</span>() {
+    <span class='ident'>ERROR</span>.<span class='ident'>unwrap</span>();
+  }
+
+  <span class='attribute'>#[<span class='ident'>test</span>]</span>
+  <span class='attribute'>#[<span class='ident'>should_panic</span>]</span>
+  <span class='kw'>fn</span> <span class='ident'>iresult_unwrap_on_inc</span>() {
+    <span class='ident'>INCOMPLETE</span>.<span class='ident'>unwrap</span>();
+  }
+
+  <span class='attribute'>#[<span class='ident'>test</span>]</span>
+  <span class='attribute'>#[<span class='ident'>should_panic</span>]</span>
+  <span class='kw'>fn</span> <span class='ident'>iresult_unwrap_err_on_done</span>() {
+    <span class='ident'>DONE</span>.<span class='ident'>unwrap_err</span>();
+  }
+
+  <span class='attribute'>#[<span class='ident'>test</span>]</span>
+  <span class='kw'>fn</span> <span class='ident'>iresult_unwrap_err_on_err</span>() {
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>ERROR</span>.<span class='ident'>unwrap_err</span>(), <span class='prelude-val'>Err</span>::<span class='ident'>Code</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>Tag</span>));
+  }
+
+  <span class='attribute'>#[<span class='ident'>test</span>]</span>
+  <span class='attribute'>#[<span class='ident'>should_panic</span>]</span>
+  <span class='kw'>fn</span> <span class='ident'>iresult_unwrap_err_on_inc</span>() {
+    <span class='ident'>INCOMPLETE</span>.<span class='ident'>unwrap_err</span>();
+  }
+
+  <span class='attribute'>#[<span class='ident'>test</span>]</span>
+  <span class='attribute'>#[<span class='ident'>should_panic</span>]</span>
+  <span class='kw'>fn</span> <span class='ident'>iresult_unwrap_inc_on_done</span>() {
+    <span class='ident'>DONE</span>.<span class='ident'>unwrap_inc</span>();
+  }
+
+  <span class='attribute'>#[<span class='ident'>test</span>]</span>
+  <span class='attribute'>#[<span class='ident'>should_panic</span>]</span>
+  <span class='kw'>fn</span> <span class='ident'>iresult_unwrap_inc_on_err</span>() {
+    <span class='ident'>ERROR</span>.<span class='ident'>unwrap_inc</span>();
+  }
+
+  <span class='attribute'>#[<span class='ident'>test</span>]</span>
+  <span class='kw'>fn</span> <span class='ident'>iresult_unwrap_inc_on_inc</span>() {
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>INCOMPLETE</span>.<span class='ident'>unwrap_inc</span>(), <span class='ident'>Needed</span>::<span class='ident'>Unknown</span>);
   }
 }
 </pre>
@@ -609,6 +761,8 @@
                     <dd>Move down in search results</dd>
                     <dt>&#9166;</dt>
                     <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
                 </dl>
             </div>
 

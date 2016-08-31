@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["SymbolFile","A parsed .sym file containing debug symbols."]]});

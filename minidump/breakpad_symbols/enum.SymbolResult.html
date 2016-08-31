@@ -47,20 +47,25 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-1227' class='srclink' href='../src/breakpad_symbols/breakpad-symbols/src/lib.rs.html#196-203' title='goto source code'>[src]</a></span></h1>
+               </span><a id='src-1246' class='srclink' href='../src/breakpad_symbols/breakpad-symbols/src/lib.rs.html#196-203' title='goto source code'>[src]</a></span></h1>
 <pre class='rust enum'>pub enum SymbolResult {
     Ok(<a class='struct' href='../breakpad_symbols/struct.SymbolFile.html' title='breakpad_symbols::SymbolFile'>SymbolFile</a>),
     NotFound,
     LoadError(&amp;'static <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>),
 }</pre><div class='docblock'><p>Possible results of locating symbols.</p>
 </div><h2 class='variants'>Variants</h2>
-<table class='variants_table'><tr><td id='variant.Ok'><code>Ok</code></td><td><div class='docblock'><p>Symbols loaded successfully.</p>
-</div></td><td></td></tr><tr><td id='variant.NotFound'><code>NotFound</code></td><td><div class='docblock'><p>Symbol file could not be found.</p>
-</div></td><td></td></tr><tr><td id='variant.LoadError'><code>LoadError</code></td><td><div class='docblock'><p>Error loading symbol file.</p>
-</div></td><td></td></tr></table><h2 id='implementations'>Trait Implementations</h2><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='enum' href='../breakpad_symbols/enum.SymbolResult.html' title='breakpad_symbols::SymbolResult'>SymbolResult</a></code></h3><div class='impl-items'><h4 id='method.eq' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../breakpad_symbols/enum.SymbolResult.html' title='breakpad_symbols::SymbolResult'>SymbolResult</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
-<h4 id='method.ne' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../breakpad_symbols/enum.SymbolResult.html' title='breakpad_symbols::SymbolResult'>SymbolResult</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
-</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../breakpad_symbols/enum.SymbolResult.html' title='breakpad_symbols::SymbolResult'>SymbolResult</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
-</div></section>
+<span id='variant.Ok' class='variant'><code>Ok(<a class='struct' href='../breakpad_symbols/struct.SymbolFile.html' title='breakpad_symbols::SymbolFile'>SymbolFile</a>)</code></span><div class='docblock'><p>Symbols loaded successfully.</p>
+</div><span id='variant.NotFound' class='variant'><code>NotFound</code></span><div class='docblock'><p>Symbol file could not be found.</p>
+</div><span id='variant.LoadError' class='variant'><code>LoadError(&amp;'static <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>)</code></span><div class='docblock'><p>Error loading symbol file.</p>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='enum' href='../breakpad_symbols/enum.SymbolResult.html' title='breakpad_symbols::SymbolResult'>SymbolResult</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-1218' class='srclink' href='../src/breakpad_symbols/breakpad-symbols/src/lib.rs.html#195' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.eq' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../breakpad_symbols/enum.SymbolResult.html' title='breakpad_symbols::SymbolResult'>SymbolResult</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<div class='docblock'><p>This method tests for <code>self</code> and <code>other</code> values to be equal, and is used by <code>==</code>. <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq">Read more</a></p>
+</div><h4 id='method.ne' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../breakpad_symbols/enum.SymbolResult.html' title='breakpad_symbols::SymbolResult'>SymbolResult</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<div class='docblock'><p>This method tests for <code>!=</code>.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../breakpad_symbols/enum.SymbolResult.html' title='breakpad_symbols::SymbolResult'>SymbolResult</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-1237' class='srclink' href='../src/breakpad_symbols/breakpad-symbols/src/lib.rs.html#195' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
@@ -83,6 +88,8 @@
                     <dd>Move down in search results</dd>
                     <dt>&#9166;</dt>
                     <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
                 </dl>
             </div>
 

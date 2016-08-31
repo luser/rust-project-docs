@@ -47,7 +47,7 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-1285' class='srclink' href='../src/breakpad_symbols/breakpad-symbols/src/lib.rs.html#245-252' title='goto source code'>[src]</a></span></h1>
+               </span><a id='src-1274' class='srclink' href='../src/breakpad_symbols/breakpad-symbols/src/lib.rs.html#245-252' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait FrameSymbolizer {
     fn <a href='#tymethod.get_instruction' class='fnname'>get_instruction</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>;
     fn <a href='#tymethod.set_function' class='fnname'>set_function</a>(&amp;mut self, name: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, base: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>);
@@ -62,7 +62,7 @@
 </div></div>
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>
-    <li><code>impl <a class='trait' href='../breakpad_symbols/trait.FrameSymbolizer.html' title='breakpad_symbols::FrameSymbolizer'>FrameSymbolizer</a> for <a class='struct' href='../breakpad_symbols/struct.SimpleFrame.html' title='breakpad_symbols::SimpleFrame'>SimpleFrame</a></code></li>
+    <li><code>impl FrameSymbolizer for <a class='struct' href='../breakpad_symbols/struct.SimpleFrame.html' title='breakpad_symbols::SimpleFrame'>SimpleFrame</a></code></li>
 </ul><script type="text/javascript" async
                          src="../implementors/breakpad_symbols/trait.FrameSymbolizer.js">
                  </script></section>
@@ -88,6 +88,8 @@
                     <dd>Move down in search results</dd>
                     <dt>&#9166;</dt>
                     <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
                 </dl>
             </div>
 

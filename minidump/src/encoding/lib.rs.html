@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-88ac128001ac3a9a/encoding-0.2.32/src/lib.rs`.">
+    <meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/encoding-0.2.33/src/lib.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>lib.rs.html -- source</title>
@@ -309,230 +309,212 @@
 <span id="265">265</span>
 <span id="266">266</span>
 <span id="267">267</span>
-<span id="268">268</span>
-<span id="269">269</span>
-<span id="270">270</span>
-<span id="271">271</span>
-<span id="272">272</span>
-<span id="273">273</span>
-<span id="274">274</span>
-<span id="275">275</span>
-<span id="276">276</span>
 </pre><pre class='rust '>
 <span class='comment'>// This is a part of rust-encoding.</span>
 <span class='comment'>// Copyright (c) 2013-2015, Kang Seonghoon.</span>
 <span class='comment'>// See README.md and LICENSE.txt for details.</span>
 
-<span class='doccomment'>/*!
-
-# Encoding 0.2.32
-
-Character encoding support for Rust. (also known as `rust-encoding`)
-It is based on [WHATWG Encoding Standard](http://encoding.spec.whatwg.org/),
-and also provides an advanced interface for error detection and recovery.
-
-## Usage
-
-Put this in your `Cargo.toml`:
-
-```toml
-[dependencies]
-encoding = &quot;0.2&quot;
-```
-
-Or in the case you are using Rust 1.0 beta, pin the exact version:
-
-```toml
-[dependencies]
-encoding = &quot;=0.2.32&quot;
-```
-
-Then put this in your crate root:
-
-```rust
-extern crate encoding;
-```
-
-## Overview
-
-To encode a string:
-
-~~~~ {.rust}
-use encoding::{Encoding, EncoderTrap};
-use encoding::all::ISO_8859_1;
-
-assert_eq!(ISO_8859_1.encode(&quot;caf\u{e9}&quot;, EncoderTrap::Strict),
-           Ok(vec![99,97,102,233]));
-~~~~
-
-To encode a string with unrepresentable characters:
-
-~~~~ {.rust}
-use encoding::{Encoding, EncoderTrap};
-use encoding::all::ISO_8859_2;
-
-assert!(ISO_8859_2.encode(&quot;Acme\u{a9}&quot;, EncoderTrap::Strict).is_err());
-assert_eq!(ISO_8859_2.encode(&quot;Acme\u{a9}&quot;, EncoderTrap::Replace),
-           Ok(vec![65,99,109,101,63]));
-assert_eq!(ISO_8859_2.encode(&quot;Acme\u{a9}&quot;, EncoderTrap::Ignore),
-           Ok(vec![65,99,109,101]));
-assert_eq!(ISO_8859_2.encode(&quot;Acme\u{a9}&quot;, EncoderTrap::NcrEscape),
-           Ok(vec![65,99,109,101,38,35,49,54,57,59]));
-~~~~
-
-To decode a byte sequence:
-
-~~~~ {.rust}
-use encoding::{Encoding, DecoderTrap};
-use encoding::all::ISO_8859_1;
-
-assert_eq!(ISO_8859_1.decode(&amp;[99,97,102,233], DecoderTrap::Strict),
-           Ok(&quot;caf\u{e9}&quot;.to_string()));
-~~~~
-
-To decode a byte sequence with invalid sequences:
-
-~~~~ {.rust}
-use encoding::{Encoding, DecoderTrap};
-use encoding::all::ISO_8859_6;
-
-assert!(ISO_8859_6.decode(&amp;[65,99,109,101,169], DecoderTrap::Strict).is_err());
-assert_eq!(ISO_8859_6.decode(&amp;[65,99,109,101,169], DecoderTrap::Replace),
-           Ok(&quot;Acme\u{fffd}&quot;.to_string()));
-assert_eq!(ISO_8859_6.decode(&amp;[65,99,109,101,169], DecoderTrap::Ignore),
-           Ok(&quot;Acme&quot;.to_string()));
-~~~~
-
-To encode or decode the input into the already allocated buffer:
-
-~~~~ {.rust}
-use encoding::{Encoding, EncoderTrap, DecoderTrap};
-use encoding::all::{ISO_8859_2, ISO_8859_6};
-
-let mut bytes = Vec::new();
-let mut chars = String::new();
-
-assert!(ISO_8859_2.encode_to(&quot;Acme\u{a9}&quot;, EncoderTrap::Ignore, &amp;mut bytes).is_ok());
-assert!(ISO_8859_6.decode_to(&amp;[65,99,109,101,169], DecoderTrap::Replace, &amp;mut chars).is_ok());
-
-assert_eq!(bytes, [65,99,109,101]);
-assert_eq!(chars, &quot;Acme\u{fffd}&quot;);
-~~~~
-
-A practical example of custom encoder traps:
-
-~~~~ {.rust}
-use encoding::{Encoding, ByteWriter, EncoderTrap, DecoderTrap};
-use encoding::types::RawEncoder;
-use encoding::all::ASCII;
-
-// hexadecimal numeric character reference replacement
-fn hex_ncr_escape(_encoder: &amp;mut RawEncoder, input: &amp;str, output: &amp;mut ByteWriter) -&gt; bool {
-    let escapes: Vec&lt;String&gt; =
-        input.chars().map(|ch| format!(&quot;&amp;#x{:x};&quot;, ch as isize)).collect();
-    let escapes = escapes.concat();
-    output.write_bytes(escapes.as_bytes());
-    true
-}
-static HEX_NCR_ESCAPE: EncoderTrap = EncoderTrap::Call(hex_ncr_escape);
-
-let orig = &quot;Hello, 世界!&quot;.to_string();
-let encoded = ASCII.encode(&amp;orig, HEX_NCR_ESCAPE).unwrap();
-assert_eq!(ASCII.decode(&amp;encoded, DecoderTrap::Strict),
-           Ok(&quot;Hello, &amp;#x4e16;&amp;#x754c;!&quot;.to_string()));
-~~~~
-
-Getting the encoding from the string label, as specified in WHATWG Encoding standard:
-
-~~~~ {.rust}
-use encoding::{Encoding, DecoderTrap};
-use encoding::label::encoding_from_whatwg_label;
-use encoding::all::WINDOWS_949;
-
-let euckr = encoding_from_whatwg_label(&quot;euc-kr&quot;).unwrap();
-assert_eq!(euckr.name(), &quot;windows-949&quot;);
-assert_eq!(euckr.whatwg_name(), Some(&quot;euc-kr&quot;)); // for the sake of compatibility
-let broken = &amp;[0xbf, 0xec, 0xbf, 0xcd, 0xff, 0xbe, 0xd3];
-assert_eq!(euckr.decode(broken, DecoderTrap::Replace),
-           Ok(&quot;\u{c6b0}\u{c640}\u{fffd}\u{c559}&quot;.to_string()));
-
-// corresponding Encoding native API:
-assert_eq!(WINDOWS_949.decode(broken, DecoderTrap::Replace),
-           Ok(&quot;\u{c6b0}\u{c640}\u{fffd}\u{c559}&quot;.to_string()));
-~~~~
-
-## Types and Stuffs
-
-There are three main entry points to Encoding.
-
-**`Encoding`** is a single character encoding.
-It contains `encode` and `decode` methods for converting `String` to `Vec&lt;u8&gt;` and vice versa.
-For the error handling, they receive **traps** (`EncoderTrap` and `DecoderTrap` respectively)
-which replace any error with some string (e.g. `U+FFFD`) or sequence (e.g. `?`).
-You can also use `EncoderTrap::Strict` and `DecoderTrap::Strict` traps to stop on an error.
-
-There are two ways to get `Encoding`:
-
-* `encoding::all` has static items for every supported encoding.
-  You should use them when the encoding would not change or only handful of them are required.
-  Combined with link-time optimization, any unused encoding would be discarded from the binary.
-* `encoding::label` has functions to dynamically get an encoding from given string (&quot;label&quot;).
-  They will return a static reference to the encoding, which type is also known as `EncodingRef`.
-  It is useful when a list of required encodings is not available in advance,
-  but it will result in the larger binary and missed optimization opportunities.
-
-**`RawEncoder`** is an experimental incremental encoder.
-At each step of `raw_feed`, it receives a slice of string
-and emits any encoded bytes to a generic `ByteWriter` (normally `Vec&lt;u8&gt;`).
-It will stop at the first error if any, and would return a `CodecError` struct in that case.
-The caller is responsible for calling `raw_finish` at the end of encoding process.
-
-**`RawDecoder`** is an experimental incremental decoder.
-At each step of `raw_feed`, it receives a slice of byte sequence
-and emits any decoded characters to a generic `StringWriter` (normally `String`).
-Otherwise it is identical to `RawEncoder`s.
-
-One should prefer `Encoding::{encode,decode}` as a primary interface.
-`RawEncoder` and `RawDecoder` is experimental and can change substantially.
-See the additional documents on `encoding::types` module for more information on them.
-
-## Supported Encodings
-
-Encoding covers all encodings specified by WHATWG Encoding Standard and some more:
-
-* 7-bit strict ASCII (`ascii`)
-* UTF-8 (`utf-8`)
-* UTF-16 in little endian (`utf-16` or `utf-16le`) and big endian (`utf-16be`)
-* All single byte encoding in WHATWG Encoding Standard:
-    * IBM code page 866
-    * ISO 8859-{2,3,4,5,6,7,8,10,13,14,15,16}
-    * KOI8-R, KOI8-U
-    * MacRoman (`macintosh`), Macintosh Cyrillic encoding (`x-mac-cyrillic`)
-    * Windows code pages 874, 1250, 1251, 1252 (instead of ISO 8859-1), 1253,
-      1254 (instead of ISO 8859-9), 1255, 1256, 1257, 1258
-* All multi byte encodings in WHATWG Encoding Standard:
-    * Windows code page 949 (`euc-kr`, since the strict EUC-KR is hardly used)
-    * EUC-JP and Windows code page 932 (`shift_jis`,
-      since it&#39;s the most widespread extension to Shift_JIS)
-    * ISO-2022-JP with asymmetric JIS X 0212 support
-      (Note: this is not yet up to date to the current standard)
-    * GBK
-    * GB 18030
-    * Big5-2003 with HKSCS-2008 extensions
-* Encodings that were originally specified by WHATWG Encoding Standard:
-    * HZ
-* ISO 8859-1 (distinct from Windows code page 1252)
-
-Parenthesized names refer to the encoding&#39;s primary name assigned by WHATWG Encoding Standard.
-
-Many legacy character encodings lack the proper specification,
-and even those that have a specification are highly dependent of the actual implementation.
-Consequently one should be careful when picking a desired character encoding.
-The only standards reliable in this regard are WHATWG Encoding Standard and
-[vendor-provided mappings from the Unicode consortium](http://www.unicode.org/Public/MAPPINGS/).
-Whenever in doubt, look at the source code and specifications for detailed explanations.
-
-*/</span>
+<span class='doccomment'>//! # Encoding 0.2.33</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! Character encoding support for Rust. (also known as `rust-encoding`)</span>
+<span class='doccomment'>//! It is based on [WHATWG Encoding Standard](http://encoding.spec.whatwg.org/),</span>
+<span class='doccomment'>//! and also provides an advanced interface for error detection and recovery.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ## Usage</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! Put this in your `Cargo.toml`:</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ```toml</span>
+<span class='doccomment'>//! [dependencies]</span>
+<span class='doccomment'>//! encoding = &quot;0.2&quot;</span>
+<span class='doccomment'>//! ```</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! Then put this in your crate root:</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ```rust</span>
+<span class='doccomment'>//! extern crate encoding;</span>
+<span class='doccomment'>//! ```</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ## Overview</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! To encode a string:</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ~~~~ {.rust}</span>
+<span class='doccomment'>//! use encoding::{Encoding, EncoderTrap};</span>
+<span class='doccomment'>//! use encoding::all::ISO_8859_1;</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! assert_eq!(ISO_8859_1.encode(&quot;caf\u{e9}&quot;, EncoderTrap::Strict),</span>
+<span class='doccomment'>//!            Ok(vec![99,97,102,233]));</span>
+<span class='doccomment'>//! ~~~~</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! To encode a string with unrepresentable characters:</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ~~~~ {.rust}</span>
+<span class='doccomment'>//! use encoding::{Encoding, EncoderTrap};</span>
+<span class='doccomment'>//! use encoding::all::ISO_8859_2;</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! assert!(ISO_8859_2.encode(&quot;Acme\u{a9}&quot;, EncoderTrap::Strict).is_err());</span>
+<span class='doccomment'>//! assert_eq!(ISO_8859_2.encode(&quot;Acme\u{a9}&quot;, EncoderTrap::Replace),</span>
+<span class='doccomment'>//!            Ok(vec![65,99,109,101,63]));</span>
+<span class='doccomment'>//! assert_eq!(ISO_8859_2.encode(&quot;Acme\u{a9}&quot;, EncoderTrap::Ignore),</span>
+<span class='doccomment'>//!            Ok(vec![65,99,109,101]));</span>
+<span class='doccomment'>//! assert_eq!(ISO_8859_2.encode(&quot;Acme\u{a9}&quot;, EncoderTrap::NcrEscape),</span>
+<span class='doccomment'>//!            Ok(vec![65,99,109,101,38,35,49,54,57,59]));</span>
+<span class='doccomment'>//! ~~~~</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! To decode a byte sequence:</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ~~~~ {.rust}</span>
+<span class='doccomment'>//! use encoding::{Encoding, DecoderTrap};</span>
+<span class='doccomment'>//! use encoding::all::ISO_8859_1;</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! assert_eq!(ISO_8859_1.decode(&amp;[99,97,102,233], DecoderTrap::Strict),</span>
+<span class='doccomment'>//!            Ok(&quot;caf\u{e9}&quot;.to_string()));</span>
+<span class='doccomment'>//! ~~~~</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! To decode a byte sequence with invalid sequences:</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ~~~~ {.rust}</span>
+<span class='doccomment'>//! use encoding::{Encoding, DecoderTrap};</span>
+<span class='doccomment'>//! use encoding::all::ISO_8859_6;</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! assert!(ISO_8859_6.decode(&amp;[65,99,109,101,169], DecoderTrap::Strict).is_err());</span>
+<span class='doccomment'>//! assert_eq!(ISO_8859_6.decode(&amp;[65,99,109,101,169], DecoderTrap::Replace),</span>
+<span class='doccomment'>//!            Ok(&quot;Acme\u{fffd}&quot;.to_string()));</span>
+<span class='doccomment'>//! assert_eq!(ISO_8859_6.decode(&amp;[65,99,109,101,169], DecoderTrap::Ignore),</span>
+<span class='doccomment'>//!            Ok(&quot;Acme&quot;.to_string()));</span>
+<span class='doccomment'>//! ~~~~</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! To encode or decode the input into the already allocated buffer:</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ~~~~ {.rust}</span>
+<span class='doccomment'>//! use encoding::{Encoding, EncoderTrap, DecoderTrap};</span>
+<span class='doccomment'>//! use encoding::all::{ISO_8859_2, ISO_8859_6};</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! let mut bytes = Vec::new();</span>
+<span class='doccomment'>//! let mut chars = String::new();</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! assert!(ISO_8859_2.encode_to(&quot;Acme\u{a9}&quot;, EncoderTrap::Ignore, &amp;mut bytes).is_ok());</span>
+<span class='doccomment'>//! assert!(ISO_8859_6.decode_to(&amp;[65,99,109,101,169], DecoderTrap::Replace, &amp;mut chars).is_ok());</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! assert_eq!(bytes, [65,99,109,101]);</span>
+<span class='doccomment'>//! assert_eq!(chars, &quot;Acme\u{fffd}&quot;);</span>
+<span class='doccomment'>//! ~~~~</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! A practical example of custom encoder traps:</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ~~~~ {.rust}</span>
+<span class='doccomment'>//! use encoding::{Encoding, ByteWriter, EncoderTrap, DecoderTrap};</span>
+<span class='doccomment'>//! use encoding::types::RawEncoder;</span>
+<span class='doccomment'>//! use encoding::all::ASCII;</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! // hexadecimal numeric character reference replacement</span>
+<span class='doccomment'>//! fn hex_ncr_escape(_encoder: &amp;mut RawEncoder, input: &amp;str, output: &amp;mut ByteWriter) -&gt; bool {</span>
+<span class='doccomment'>//!     let escapes: Vec&lt;String&gt; =</span>
+<span class='doccomment'>//!         input.chars().map(|ch| format!(&quot;&amp;#x{:x};&quot;, ch as isize)).collect();</span>
+<span class='doccomment'>//!     let escapes = escapes.concat();</span>
+<span class='doccomment'>//!     output.write_bytes(escapes.as_bytes());</span>
+<span class='doccomment'>//!     true</span>
+<span class='doccomment'>//! }</span>
+<span class='doccomment'>//! static HEX_NCR_ESCAPE: EncoderTrap = EncoderTrap::Call(hex_ncr_escape);</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! let orig = &quot;Hello, 世界!&quot;.to_string();</span>
+<span class='doccomment'>//! let encoded = ASCII.encode(&amp;orig, HEX_NCR_ESCAPE).unwrap();</span>
+<span class='doccomment'>//! assert_eq!(ASCII.decode(&amp;encoded, DecoderTrap::Strict),</span>
+<span class='doccomment'>//!            Ok(&quot;Hello, &amp;#x4e16;&amp;#x754c;!&quot;.to_string()));</span>
+<span class='doccomment'>//! ~~~~</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! Getting the encoding from the string label, as specified in WHATWG Encoding standard:</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ~~~~ {.rust}</span>
+<span class='doccomment'>//! use encoding::{Encoding, DecoderTrap};</span>
+<span class='doccomment'>//! use encoding::label::encoding_from_whatwg_label;</span>
+<span class='doccomment'>//! use encoding::all::WINDOWS_949;</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! let euckr = encoding_from_whatwg_label(&quot;euc-kr&quot;).unwrap();</span>
+<span class='doccomment'>//! assert_eq!(euckr.name(), &quot;windows-949&quot;);</span>
+<span class='doccomment'>//! assert_eq!(euckr.whatwg_name(), Some(&quot;euc-kr&quot;)); // for the sake of compatibility</span>
+<span class='doccomment'>//! let broken = &amp;[0xbf, 0xec, 0xbf, 0xcd, 0xff, 0xbe, 0xd3];</span>
+<span class='doccomment'>//! assert_eq!(euckr.decode(broken, DecoderTrap::Replace),</span>
+<span class='doccomment'>//!            Ok(&quot;\u{c6b0}\u{c640}\u{fffd}\u{c559}&quot;.to_string()));</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! // corresponding Encoding native API:</span>
+<span class='doccomment'>//! assert_eq!(WINDOWS_949.decode(broken, DecoderTrap::Replace),</span>
+<span class='doccomment'>//!            Ok(&quot;\u{c6b0}\u{c640}\u{fffd}\u{c559}&quot;.to_string()));</span>
+<span class='doccomment'>//! ~~~~</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ## Types and Stuffs</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! There are three main entry points to Encoding.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! **`Encoding`** is a single character encoding.</span>
+<span class='doccomment'>//! It contains `encode` and `decode` methods for converting `String` to `Vec&lt;u8&gt;` and vice versa.</span>
+<span class='doccomment'>//! For the error handling, they receive **traps** (`EncoderTrap` and `DecoderTrap` respectively)</span>
+<span class='doccomment'>//! which replace any error with some string (e.g. `U+FFFD`) or sequence (e.g. `?`).</span>
+<span class='doccomment'>//! You can also use `EncoderTrap::Strict` and `DecoderTrap::Strict` traps to stop on an error.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! There are two ways to get `Encoding`:</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! * `encoding::all` has static items for every supported encoding.</span>
+<span class='doccomment'>//!   You should use them when the encoding would not change or only handful of them are required.</span>
+<span class='doccomment'>//!   Combined with link-time optimization, any unused encoding would be discarded from the binary.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! * `encoding::label` has functions to dynamically get an encoding from given string (&quot;label&quot;).</span>
+<span class='doccomment'>//!   They will return a static reference to the encoding,</span>
+<span class='doccomment'>//!   which type is also known as `EncodingRef`.</span>
+<span class='doccomment'>//!   It is useful when a list of required encodings is not available in advance,</span>
+<span class='doccomment'>//!   but it will result in the larger binary and missed optimization opportunities.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! **`RawEncoder`** is an experimental incremental encoder.</span>
+<span class='doccomment'>//! At each step of `raw_feed`, it receives a slice of string</span>
+<span class='doccomment'>//! and emits any encoded bytes to a generic `ByteWriter` (normally `Vec&lt;u8&gt;`).</span>
+<span class='doccomment'>//! It will stop at the first error if any, and would return a `CodecError` struct in that case.</span>
+<span class='doccomment'>//! The caller is responsible for calling `raw_finish` at the end of encoding process.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! **`RawDecoder`** is an experimental incremental decoder.</span>
+<span class='doccomment'>//! At each step of `raw_feed`, it receives a slice of byte sequence</span>
+<span class='doccomment'>//! and emits any decoded characters to a generic `StringWriter` (normally `String`).</span>
+<span class='doccomment'>//! Otherwise it is identical to `RawEncoder`s.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! One should prefer `Encoding::{encode,decode}` as a primary interface.</span>
+<span class='doccomment'>//! `RawEncoder` and `RawDecoder` is experimental and can change substantially.</span>
+<span class='doccomment'>//! See the additional documents on `encoding::types` module for more information on them.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ## Supported Encodings</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! Encoding covers all encodings specified by WHATWG Encoding Standard and some more:</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! * 7-bit strict ASCII (`ascii`)</span>
+<span class='doccomment'>//! * UTF-8 (`utf-8`)</span>
+<span class='doccomment'>//! * UTF-16 in little endian (`utf-16` or `utf-16le`) and big endian (`utf-16be`)</span>
+<span class='doccomment'>//! * All single byte encoding in WHATWG Encoding Standard:</span>
+<span class='doccomment'>//!     * IBM code page 866</span>
+<span class='doccomment'>//!     * ISO 8859-{2,3,4,5,6,7,8,10,13,14,15,16}</span>
+<span class='doccomment'>//!     * KOI8-R, KOI8-U</span>
+<span class='doccomment'>//!     * MacRoman (`macintosh`), Macintosh Cyrillic encoding (`x-mac-cyrillic`)</span>
+<span class='doccomment'>//!     * Windows code pages 874, 1250, 1251, 1252 (instead of ISO 8859-1), 1253,</span>
+<span class='doccomment'>//!       1254 (instead of ISO 8859-9), 1255, 1256, 1257, 1258</span>
+<span class='doccomment'>//! * All multi byte encodings in WHATWG Encoding Standard:</span>
+<span class='doccomment'>//!     * Windows code page 949 (`euc-kr`, since the strict EUC-KR is hardly used)</span>
+<span class='doccomment'>//!     * EUC-JP and Windows code page 932 (`shift_jis`,</span>
+<span class='doccomment'>//!       since it&#39;s the most widespread extension to Shift_JIS)</span>
+<span class='doccomment'>//!     * ISO-2022-JP with asymmetric JIS X 0212 support</span>
+<span class='doccomment'>//!       (Note: this is not yet up to date to the current standard)</span>
+<span class='doccomment'>//!     * GBK</span>
+<span class='doccomment'>//!     * GB 18030</span>
+<span class='doccomment'>//!     * Big5-2003 with HKSCS-2008 extensions</span>
+<span class='doccomment'>//! * Encodings that were originally specified by WHATWG Encoding Standard:</span>
+<span class='doccomment'>//!     * HZ</span>
+<span class='doccomment'>//! * ISO 8859-1 (distinct from Windows code page 1252)</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! Parenthesized names refer to the encoding&#39;s primary name assigned by WHATWG Encoding Standard.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! Many legacy character encodings lack the proper specification,</span>
+<span class='doccomment'>//! and even those that have a specification are highly dependent of the actual implementation.</span>
+<span class='doccomment'>//! Consequently one should be careful when picking a desired character encoding.</span>
+<span class='doccomment'>//! The only standards reliable in this regard are WHATWG Encoding Standard and</span>
+<span class='doccomment'>//! [vendor-provided mappings from the Unicode consortium](http://www.unicode.org/Public/MAPPINGS/).</span>
+<span class='doccomment'>//! Whenever in doubt, look at the source code and specifications for detailed explanations.</span>
 
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>cfg_attr</span>(<span class='ident'>test</span>, <span class='ident'>feature</span>(<span class='ident'>test</span>))]</span> <span class='comment'>// lib stability features as per RFC #507</span>
 
@@ -573,7 +555,7 @@ Whenever in doubt, look at the source code and specifications for detailed expla
 
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>test</span>)]</span>
 <span class='kw'>mod</span> <span class='ident'>tests</span> {
-    <span class='kw'>use</span> <span class='ident'>super</span>::<span class='op'>*</span>;
+    <span class='kw'>use</span> <span class='kw'>super</span>::<span class='op'>*</span>;
 
     <span class='attribute'>#[<span class='ident'>test</span>]</span>
     <span class='kw'>fn</span> <span class='ident'>test_decode</span>() {
@@ -619,6 +601,8 @@ Whenever in doubt, look at the source code and specifications for detailed expla
                     <dd>Move down in search results</dd>
                     <dt>&#9166;</dt>
                     <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
                 </dl>
             </div>
 

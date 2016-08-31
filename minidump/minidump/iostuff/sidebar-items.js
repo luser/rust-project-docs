@@ -1,1 +1,0 @@
-initSidebarItems({"trait":[["Readable","Shorthand for Read + Seek"]]});

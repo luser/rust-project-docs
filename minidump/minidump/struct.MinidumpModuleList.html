@@ -47,15 +47,12 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-3993' class='srclink' href='../src/minidump/src/minidump.rs.html#119-124' title='goto source code'>[src]</a></span></h1>
+               </span><a id='src-4032' class='srclink' href='../src/minidump/src/minidump.rs.html#119-124' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct MinidumpModuleList {
-    pub modules: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../minidump/struct.MinidumpModule.html' title='minidump::MinidumpModule'>MinidumpModule</a>&gt;,
     // some fields omitted
 }</pre><div class='docblock'><p>A list of <code>MinidumpModule</code>s contained in a <code>Minidump</code>.</p>
-</div><h2 class='fields'>Fields</h2>
-<table><tr class='stab '>
-                             <td id='structfield.modules'><code>modules</code></td><td><div class='docblock'><p>The modules, in the order they were stored in the minidump.</p>
-</div></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../minidump/struct.MinidumpModuleList.html' title='minidump::MinidumpModuleList'>MinidumpModuleList</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class='struct' href='../minidump/struct.MinidumpModuleList.html' title='minidump::MinidumpModuleList'>MinidumpModuleList</a></code></h4>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../minidump/struct.MinidumpModuleList.html' title='minidump::MinidumpModuleList'>MinidumpModuleList</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-4334' class='srclink' href='../src/minidump/src/minidump.rs.html#612-679' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class='struct' href='../minidump/struct.MinidumpModuleList.html' title='minidump::MinidumpModuleList'>MinidumpModuleList</a></code></h4>
 <div class='docblock'><p>Return an empty <code>MinidumpModuleList</code>.</p>
 </div><h4 id='method.from_modules' class='method'><code>fn <a href='#method.from_modules' class='fnname'>from_modules</a>(modules: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../minidump/struct.MinidumpModule.html' title='minidump::MinidumpModule'>MinidumpModule</a>&gt;) -&gt; <a class='struct' href='../minidump/struct.MinidumpModuleList.html' title='minidump::MinidumpModuleList'>MinidumpModuleList</a></code></h4>
 <div class='docblock'><p>Create a <code>MinidumpModuleList</code> from a list of <code>MinidumpModule</code>s.</p>
@@ -63,15 +60,20 @@
 <div class='docblock'><p>Returns the module corresponding to the main executable.</p>
 </div><h4 id='method.module_at_address' class='method'><code>fn <a href='#method.module_at_address' class='fnname'>module_at_address</a>(&amp;self, addr: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;&amp;<a class='struct' href='../minidump/struct.MinidumpModule.html' title='minidump::MinidumpModule'>MinidumpModule</a>&gt;</code></h4>
 <div class='docblock'><p>Return a <code>MinidumpModule</code> whose address range covers <code>addr</code>.</p>
-</div><h4 id='method.by_addr' class='method'><code>fn <a href='#method.by_addr' class='fnname'>by_addr</a>(&amp;self) -&gt; <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;&amp;<a class='struct' href='../minidump/struct.MinidumpModule.html' title='minidump::MinidumpModule'>MinidumpModule</a>&gt;</code></h4>
-<div class='docblock'><p>Return modules in order by memory address.</p>
-</div><h4 id='method.print' class='method'><code>fn <a href='#method.print' class='fnname'>print</a>&lt;T: <a class='trait' href='https://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>&gt;(&amp;self, f: &amp;mut T) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></h4>
+</div><h4 id='method.iter' class='method'><code>fn <a href='#method.iter' class='fnname'>iter</a>&lt;'a&gt;(&amp;'a self) -&gt; Modules&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Iterate over the modules in arbitrary order.</p>
+</div><h4 id='method.by_addr' class='method'><code>fn <a href='#method.by_addr' class='fnname'>by_addr</a>&lt;'a&gt;(&amp;'a self) -&gt; Modules&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Iterate over the modules in order by memory address.</p>
+</div><h4 id='method.print' class='method'><code>fn <a href='#method.print' class='fnname'>print</a>&lt;T:&nbsp;<a class='trait' href='https://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>&gt;(&amp;self, f: &amp;mut T) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></h4>
 <div class='docblock'><p>Write a human-readable description of this <code>MinidumpModuleList</code> to <code>f</code>.</p>
 
 <p>This is very verbose, it is the format used by <code>minidump_dump</code>.</p>
-</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../minidump/struct.MinidumpModuleList.html' title='minidump::MinidumpModuleList'>MinidumpModuleList</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../minidump/struct.MinidumpModuleList.html' title='minidump::MinidumpModuleList'>MinidumpModuleList</a></code></h4>
-<h4 id='method.clone_from' class='method'><span class="since">1.0.0</span><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
-</div></section>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../minidump/struct.MinidumpModuleList.html' title='minidump::MinidumpModuleList'>MinidumpModuleList</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-4384' class='srclink' href='../src/minidump/src/minidump.rs.html#700-707' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../minidump/struct.MinidumpModuleList.html' title='minidump::MinidumpModuleList'>MinidumpModuleList</a></code></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
@@ -94,6 +96,8 @@
                     <dd>Move down in search results</dd>
                     <dt>&#9166;</dt>
                     <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
                 </dl>
             </div>
 
