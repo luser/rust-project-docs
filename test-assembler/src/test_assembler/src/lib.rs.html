@@ -1189,6 +1189,23 @@
 <span id="1145">1145</span>
 <span id="1146">1146</span>
 <span id="1147">1147</span>
+<span id="1148">1148</span>
+<span id="1149">1149</span>
+<span id="1150">1150</span>
+<span id="1151">1151</span>
+<span id="1152">1152</span>
+<span id="1153">1153</span>
+<span id="1154">1154</span>
+<span id="1155">1155</span>
+<span id="1156">1156</span>
+<span id="1157">1157</span>
+<span id="1158">1158</span>
+<span id="1159">1159</span>
+<span id="1160">1160</span>
+<span id="1161">1161</span>
+<span id="1162">1162</span>
+<span id="1163">1163</span>
+<span id="1164">1164</span>
 </pre><pre class='rust '>
 <span class='comment'>// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class='comment'>// file at the top-level directory of this distribution.</span>
@@ -1714,6 +1731,12 @@
     <span class='doccomment'>/// A label representing the point at which the next Appended item will appear in the section, relative to start().</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>here</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Label</span> {
         <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>start</span> <span class='op'>+</span> <span class='self'>self</span>.<span class='ident'>size</span>() <span class='kw'>as</span> <span class='ident'>i64</span>
+    }
+
+    <span class='doccomment'>/// Set the value of `start()` to `value`.</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>set_start_const</span>(<span class='self'>self</span>, <span class='ident'>value</span>: <span class='ident'>u64</span>) <span class='op'>-&gt;</span> <span class='ident'>Section</span> {
+        <span class='self'>self</span>.<span class='ident'>start</span>.<span class='ident'>set_const</span>(<span class='ident'>value</span>);
+        <span class='self'>self</span>
     }
 
     <span class='doccomment'>/// Set `label` to Here, and return this section.</span>
@@ -2336,6 +2359,17 @@
         .<span class='ident'>mark</span>(<span class='kw-2'>&amp;</span><span class='ident'>end</span>);
 
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>start</span>.<span class='ident'>offset</span>(<span class='kw-2'>&amp;</span><span class='ident'>end</span>), <span class='prelude-val'>Some</span>(<span class='number'>0</span>));
+}
+
+<span class='attribute'>#[<span class='ident'>test</span>]</span>
+<span class='kw'>fn</span> <span class='ident'>test_set_start_const</span>() {
+    <span class='kw'>let</span> <span class='ident'>l</span> <span class='op'>=</span> <span class='ident'>Label</span>::<span class='ident'>new</span>();
+    <span class='ident'>Section</span>::<span class='ident'>new</span>()
+        .<span class='ident'>set_start_const</span>(<span class='number'>0</span>)
+        .<span class='ident'>append_repeated</span>(<span class='number'>0</span>, <span class='number'>10</span>)
+        .<span class='ident'>mark</span>(<span class='kw-2'>&amp;</span><span class='ident'>l</span>)
+        .<span class='ident'>get_contents</span>().<span class='ident'>unwrap</span>();
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>l</span>.<span class='ident'>value</span>().<span class='ident'>unwrap</span>(), <span class='number'>10</span>);
 }
 </pre>
 </section>
