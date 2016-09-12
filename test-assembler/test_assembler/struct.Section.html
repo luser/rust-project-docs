@@ -47,7 +47,7 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-233' class='srclink' href='../src/test_assembler/src/lib.rs.html#435-446' title='goto source code'>[src]</a></span></h1>
+               </span><a id='src-238' class='srclink' href='../src/test_assembler/src/lib.rs.html#441-454' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Section {
     pub endian: <a class='enum' href='../test_assembler/enum.Endian.html' title='test_assembler::Endian'>Endian</a>,
     // some fields omitted
@@ -72,13 +72,17 @@ non-constant values.</p>
                            </span><span class='stab '></span><div class='docblock'><p>The current endianness of the writer.</p>
 
 <p>This sets the behavior of the D<N> appending functions.</p>
-</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-238' class='srclink' href='../src/test_assembler/src/lib.rs.html#448-750' title='goto source code'>[src]</a></span></h3>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-244' class='srclink' href='../src/test_assembler/src/lib.rs.html#456-768' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
 <div class='docblock'><p>Construct a <code>Section</code> with platform-default endianness.</p>
 </div><h4 id='method.with_endian' class='method'><code>fn <a href='#method.with_endian' class='fnname'>with_endian</a>(endian: <a class='enum' href='../test_assembler/enum.Endian.html' title='test_assembler::Endian'>Endian</a>) -&gt; <a class='struct' href='../test_assembler/struct.Section.html' title='test_assembler::Section'>Section</a></code></h4>
 <div class='docblock'><p>Construct a <code>Section</code> with <code>endian</code> endianness.</p>
 </div><h4 id='method.size' class='method'><code>fn <a href='#method.size' class='fnname'>size</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h4>
 <div class='docblock'><p>Return the current size of the section.</p>
+</div><h4 id='method.final_size' class='method'><code>fn <a href='#method.final_size' class='fnname'>final_size</a>(&amp;self) -&gt; <a class='struct' href='../test_assembler/struct.Label.html' title='test_assembler::Label'>Label</a></code></h4>
+<div class='docblock'><p>Return a <code>Label</code> that will resolve to the final size of the section.</p>
+
+<p>This label is undefined until <code>get_contents</code> is called.</p>
 </div><h4 id='method.get_contents' class='method'><code>fn <a href='#method.get_contents' class='fnname'>get_contents</a>(self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>&gt;&gt;</code></h4>
 <div class='docblock'><p>Get the contents of this section as a slice of bytes.</p>
 
