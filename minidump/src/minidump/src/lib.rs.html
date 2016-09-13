@@ -107,6 +107,8 @@
 <span id="63">63</span>
 <span id="64">64</span>
 <span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
 </pre><pre class='rust '>
 <span class='comment'>// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class='comment'>// file at the top-level directory of this distribution.</span>
@@ -144,6 +146,8 @@
 <span class='kw'>mod</span> <span class='ident'>processor</span>;
 <span class='kw'>mod</span> <span class='ident'>process_state</span>;
 <span class='kw'>mod</span> <span class='ident'>stackwalker</span>;
+<span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>test</span>)]</span>
+<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>synth_minidump</span>;
 <span class='kw'>mod</span> <span class='ident'>system_info</span>;
 
 <span class='comment'>// Stable Rust has a bug where `pub use minidump::*;` doesn&#39;t work.</span>

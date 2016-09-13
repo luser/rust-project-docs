@@ -47,7 +47,7 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-4877' class='srclink' href='../src/minidump/src/process_state.rs.html#107-115' title='goto source code'>[src]</a></span></h1>
+               </span><a id='src-4892' class='srclink' href='../src/minidump/src/process_state.rs.html#107-115' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct CallStack {
     pub frames: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../minidump/struct.StackFrame.html' title='minidump::StackFrame'>StackFrame</a>&gt;,
     pub info: <a class='enum' href='../minidump/enum.CallStackInfo.html' title='minidump::CallStackInfo'>CallStackInfo</a>,
@@ -59,7 +59,7 @@ and the frame at the highest index in a call stack is the outermost
 caller.</p>
 </div><span id='structfield.info' class='structfield'><code>info: <a class='enum' href='../minidump/enum.CallStackInfo.html' title='minidump::CallStackInfo'>CallStackInfo</a></code>
                            </span><span class='stab '></span><div class='docblock'><p>Information about this <code>CallStack</code>.</p>
-</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../minidump/struct.CallStack.html' title='minidump::CallStack'>CallStack</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-4943' class='srclink' href='../src/minidump/src/process_state.rs.html#253-303' title='goto source code'>[src]</a></span></h3>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../minidump/struct.CallStack.html' title='minidump::CallStack'>CallStack</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-4958' class='srclink' href='../src/minidump/src/process_state.rs.html#253-303' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.with_info' class='method'><code>fn <a href='#method.with_info' class='fnname'>with_info</a>(info: <a class='enum' href='../minidump/enum.CallStackInfo.html' title='minidump::CallStackInfo'>CallStackInfo</a>) -&gt; <a class='struct' href='../minidump/struct.CallStack.html' title='minidump::CallStack'>CallStack</a></code></h4>
 <div class='docblock'><p>Create a <code>CallStack</code> with <code>info</code> and no frames.</p>
 </div><h4 id='method.print' class='method'><code>fn <a href='#method.print' class='fnname'>print</a>&lt;T:&nbsp;<a class='trait' href='https://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>&gt;(&amp;self, f: &amp;mut T) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></h4>

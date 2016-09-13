@@ -47,7 +47,7 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-4035' class='srclink' href='../src/minidump/src/minidump.rs.html#127-134' title='goto source code'>[src]</a></span></h1>
+               </span><a id='src-4041' class='srclink' href='../src/minidump/src/minidump.rs.html#127-134' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct MinidumpThread {
     pub raw: <a class='type' href='../minidump/minidump_format/type.MDRawThread.html' title='minidump::minidump_format::MDRawThread'>MDRawThread</a>,
     pub context: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../minidump/struct.MinidumpContext.html' title='minidump::MinidumpContext'>MinidumpContext</a>&gt;,
@@ -59,7 +59,7 @@
                            </span><span class='stab '></span><div class='docblock'><p>The CPU context for the thread, if present.</p>
 </div><span id='structfield.stack' class='structfield'><code>stack: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../minidump/struct.MinidumpMemory.html' title='minidump::MinidumpMemory'>MinidumpMemory</a>&gt;</code>
                            </span><span class='stab '></span><div class='docblock'><p>The stack memory for the thread, if present.</p>
-</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../minidump/struct.MinidumpThread.html' title='minidump::MinidumpThread'>MinidumpThread</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-4423' class='srclink' href='../src/minidump/src/minidump.rs.html#750-794' title='goto source code'>[src]</a></span></h3>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../minidump/struct.MinidumpThread.html' title='minidump::MinidumpThread'>MinidumpThread</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-4429' class='srclink' href='../src/minidump/src/minidump.rs.html#750-794' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.print' class='method'><code>fn <a href='#method.print' class='fnname'>print</a>&lt;T:&nbsp;<a class='trait' href='https://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>&gt;(&amp;self, f: &amp;mut T) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></h4>
 <div class='docblock'><p>Write a human-readable description of this <code>MinidumpThread</code> to <code>f</code>.</p>
 
