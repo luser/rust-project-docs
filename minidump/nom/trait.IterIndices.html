@@ -50,15 +50,15 @@
                </span><a id='src-89' class='srclink' href='../src/nom/util.rs.html#114-118' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait IterIndices {
     type <a href='#associatedtype.Item' class='type'>Item</a>: <a class='trait' href='../nom/trait.AsChar.html' title='nom::AsChar'>AsChar</a>;
-    type <a href='#associatedtype.Iter' class='type'>Iter</a>: <a class='trait' href='https://doc.rust-lang.org/nightly/core/iter/iterator/trait.Iterator.html' title='core::iter::iterator::Iterator'>Iterator</a>&lt;Item=<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, Self::<a class='trait' href='../nom/trait.IterIndices.html' title='nom::IterIndices'>Item</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>&gt;;
-    fn <a href='#tymethod.iter_indices' class='fnname'>iter_indices</a>(self) -&gt; Self::<a class='trait' href='../nom/trait.IterIndices.html' title='nom::IterIndices'>Iter</a>;
+    type <a href='#associatedtype.Iter' class='type'>Iter</a>: <a class='trait' href='https://doc.rust-lang.org/nightly/core/iter/iterator/trait.Iterator.html' title='core::iter::iterator::Iterator'>Iterator</a>&lt;Item=<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, Self::Item<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>&gt;;
+    fn <a href='#tymethod.iter_indices' class='fnname'>iter_indices</a>(self) -&gt; Self::Iter;
 }</pre>
             <h2 id='associated-types'>Associated Types</h2>
             <div class='methods'>
-        <h3 id='associatedtype.Item' class='method stab '><code>type <a href='#associatedtype.Item' class='type'>Item</a>: <a class='trait' href='../nom/trait.AsChar.html' title='nom::AsChar'>AsChar</a></code></h3><h3 id='associatedtype.Iter' class='method stab '><code>type <a href='#associatedtype.Iter' class='type'>Iter</a>: <a class='trait' href='https://doc.rust-lang.org/nightly/core/iter/iterator/trait.Iterator.html' title='core::iter::iterator::Iterator'>Iterator</a>&lt;Item=<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, Self::<a class='trait' href='../nom/trait.IterIndices.html' title='nom::IterIndices'>Item</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>&gt;</code></h3></div>
+        <h3 id='associatedtype.Item' class='method stab '><span id='Item.t' class='invisible'><code>type <a href='#associatedtype.Item' class='type'>Item</a>: <a class='trait' href='../nom/trait.AsChar.html' title='nom::AsChar'>AsChar</a></code></span></h3><h3 id='associatedtype.Iter' class='method stab '><span id='Iter.t' class='invisible'><code>type <a href='#associatedtype.Iter' class='type'>Iter</a>: <a class='trait' href='https://doc.rust-lang.org/nightly/core/iter/iterator/trait.Iterator.html' title='core::iter::iterator::Iterator'>Iterator</a>&lt;Item=<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, Self::Item<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>&gt;</code></span></h3></div>
             <h2 id='required-methods'>Required Methods</h2>
             <div class='methods'>
-        <h3 id='tymethod.iter_indices' class='method stab '><code>fn <a href='#tymethod.iter_indices' class='fnname'>iter_indices</a>(self) -&gt; Self::<a class='trait' href='../nom/trait.IterIndices.html' title='nom::IterIndices'>Iter</a></code></h3></div>
+        <h3 id='tymethod.iter_indices' class='method stab '><span id='iter_indices.v' class='invisible'><code>fn <a href='#tymethod.iter_indices' class='fnname'>iter_indices</a>(self) -&gt; Self::Iter</code></span></h3></div>
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>
     <li><code>impl&lt;'a&gt; IterIndices for <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;'a [</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a></code></li>
@@ -121,11 +121,9 @@
     <script>
         window.rootPath = "../";
         window.currentCrate = "nom";
-        window.playgroundUrl = "";
     </script>
     <script src="../jquery.js"></script>
     <script src="../main.js"></script>
-    
     <script defer src="../search-index.js"></script>
 </body>
 </html>

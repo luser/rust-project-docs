@@ -1,5 +1,5 @@
 (function() {var implementors = {};
-implementors["chrono"] = [];
+implementors["chrono"] = [];implementors["minidump"] = [];
 
             if (window.register_implementors) {
                 window.register_implementors(implementors);

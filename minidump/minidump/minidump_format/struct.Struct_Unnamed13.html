@@ -47,15 +47,15 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-390' class='srclink' href='../../src/minidump/src/minidump_format.rs.html#451-466' title='goto source code'>[src]</a></span></h1>
+               </span><a id='src-3984' class='srclink' href='../../src/minidump/src/minidump_format.rs.html#456-471' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Struct_Unnamed13 {
     pub context_flags: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
     pub _pad0: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub iregs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='type' href='../../minidump/minidump_format/type.uint64_t.html' title='minidump::minidump_format::uint64_t'>uint64_t</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 32usize]</a>,
+    pub iregs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='type' href='../../minidump/minidump_format/type.uint64_t.html' title='minidump::minidump_format::uint64_t'>uint64_t</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 32]</a>,
     pub mdhi: <a class='type' href='../../minidump/minidump_format/type.uint64_t.html' title='minidump::minidump_format::uint64_t'>uint64_t</a>,
     pub mdlo: <a class='type' href='../../minidump/minidump_format/type.uint64_t.html' title='minidump::minidump_format::uint64_t'>uint64_t</a>,
-    pub hi: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 3usize]</a>,
-    pub lo: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 3usize]</a>,
+    pub hi: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 3]</a>,
+    pub lo: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 3]</a>,
     pub dsp_control: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
     pub _pad1: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
     pub epc: <a class='type' href='../../minidump/minidump_format/type.uint64_t.html' title='minidump::minidump_format::uint64_t'>uint64_t</a>,
@@ -63,28 +63,56 @@
     pub status: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
     pub cause: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
     pub float_save: <a class='type' href='../../minidump/minidump_format/type.MDFloatingSaveAreaMIPS.html' title='minidump::minidump_format::MDFloatingSaveAreaMIPS'>MDFloatingSaveAreaMIPS</a>,
-}</pre><h2 class='fields'>Fields</h2><span id='structfield.context_flags' class='structfield'><code>context_flags: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span><span class='stab '></span><span id='structfield._pad0' class='structfield'><code>_pad0: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span><span class='stab '></span><span id='structfield.iregs' class='structfield'><code>iregs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='type' href='../../minidump/minidump_format/type.uint64_t.html' title='minidump::minidump_format::uint64_t'>uint64_t</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 32usize]</a></code>
-                           </span><span class='stab '></span><span id='structfield.mdhi' class='structfield'><code>mdhi: <a class='type' href='../../minidump/minidump_format/type.uint64_t.html' title='minidump::minidump_format::uint64_t'>uint64_t</a></code>
-                           </span><span class='stab '></span><span id='structfield.mdlo' class='structfield'><code>mdlo: <a class='type' href='../../minidump/minidump_format/type.uint64_t.html' title='minidump::minidump_format::uint64_t'>uint64_t</a></code>
-                           </span><span class='stab '></span><span id='structfield.hi' class='structfield'><code>hi: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 3usize]</a></code>
-                           </span><span class='stab '></span><span id='structfield.lo' class='structfield'><code>lo: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 3usize]</a></code>
-                           </span><span class='stab '></span><span id='structfield.dsp_control' class='structfield'><code>dsp_control: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span><span class='stab '></span><span id='structfield._pad1' class='structfield'><code>_pad1: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span><span class='stab '></span><span id='structfield.epc' class='structfield'><code>epc: <a class='type' href='../../minidump/minidump_format/type.uint64_t.html' title='minidump::minidump_format::uint64_t'>uint64_t</a></code>
-                           </span><span class='stab '></span><span id='structfield.badvaddr' class='structfield'><code>badvaddr: <a class='type' href='../../minidump/minidump_format/type.uint64_t.html' title='minidump::minidump_format::uint64_t'>uint64_t</a></code>
-                           </span><span class='stab '></span><span id='structfield.status' class='structfield'><code>status: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span><span class='stab '></span><span id='structfield.cause' class='structfield'><code>cause: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span><span class='stab '></span><span id='structfield.float_save' class='structfield'><code>float_save: <a class='type' href='../../minidump/minidump_format/type.MDFloatingSaveAreaMIPS.html' title='minidump::minidump_format::MDFloatingSaveAreaMIPS'>MDFloatingSaveAreaMIPS</a></code>
-                           </span><span class='stab '></span><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> for <a class='struct' href='../../minidump/minidump_format/struct.Struct_Unnamed13.html' title='minidump::minidump_format::Struct_Unnamed13'>Struct_Unnamed13</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-389' class='srclink' href='../../src/minidump/src/minidump_format.rs.html#450' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../../minidump/minidump_format/struct.Struct_Unnamed13.html' title='minidump::minidump_format::Struct_Unnamed13'>Struct_Unnamed13</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-408' class='srclink' href='../../src/minidump/src/minidump_format.rs.html#467-469' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; Self</code></h4>
+}</pre><h2 class='fields'>Fields</h2><span id='structfield.context_flags' class='structfield'>
+                           <span id='context_flags.v' class='invisible'>
+                           <code>context_flags: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
+                           </span></span><span class='stab '></span><span id='structfield._pad0' class='structfield'>
+                           <span id='_pad0.v' class='invisible'>
+                           <code>_pad0: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
+                           </span></span><span class='stab '></span><span id='structfield.iregs' class='structfield'>
+                           <span id='iregs.v' class='invisible'>
+                           <code>iregs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='type' href='../../minidump/minidump_format/type.uint64_t.html' title='minidump::minidump_format::uint64_t'>uint64_t</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 32]</a></code>
+                           </span></span><span class='stab '></span><span id='structfield.mdhi' class='structfield'>
+                           <span id='mdhi.v' class='invisible'>
+                           <code>mdhi: <a class='type' href='../../minidump/minidump_format/type.uint64_t.html' title='minidump::minidump_format::uint64_t'>uint64_t</a></code>
+                           </span></span><span class='stab '></span><span id='structfield.mdlo' class='structfield'>
+                           <span id='mdlo.v' class='invisible'>
+                           <code>mdlo: <a class='type' href='../../minidump/minidump_format/type.uint64_t.html' title='minidump::minidump_format::uint64_t'>uint64_t</a></code>
+                           </span></span><span class='stab '></span><span id='structfield.hi' class='structfield'>
+                           <span id='hi.v' class='invisible'>
+                           <code>hi: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 3]</a></code>
+                           </span></span><span class='stab '></span><span id='structfield.lo' class='structfield'>
+                           <span id='lo.v' class='invisible'>
+                           <code>lo: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 3]</a></code>
+                           </span></span><span class='stab '></span><span id='structfield.dsp_control' class='structfield'>
+                           <span id='dsp_control.v' class='invisible'>
+                           <code>dsp_control: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
+                           </span></span><span class='stab '></span><span id='structfield._pad1' class='structfield'>
+                           <span id='_pad1.v' class='invisible'>
+                           <code>_pad1: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
+                           </span></span><span class='stab '></span><span id='structfield.epc' class='structfield'>
+                           <span id='epc.v' class='invisible'>
+                           <code>epc: <a class='type' href='../../minidump/minidump_format/type.uint64_t.html' title='minidump::minidump_format::uint64_t'>uint64_t</a></code>
+                           </span></span><span class='stab '></span><span id='structfield.badvaddr' class='structfield'>
+                           <span id='badvaddr.v' class='invisible'>
+                           <code>badvaddr: <a class='type' href='../../minidump/minidump_format/type.uint64_t.html' title='minidump::minidump_format::uint64_t'>uint64_t</a></code>
+                           </span></span><span class='stab '></span><span id='structfield.status' class='structfield'>
+                           <span id='status.v' class='invisible'>
+                           <code>status: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
+                           </span></span><span class='stab '></span><span id='structfield.cause' class='structfield'>
+                           <span id='cause.v' class='invisible'>
+                           <code>cause: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
+                           </span></span><span class='stab '></span><span id='structfield.float_save' class='structfield'>
+                           <span id='float_save.v' class='invisible'>
+                           <code>float_save: <a class='type' href='../../minidump/minidump_format/type.MDFloatingSaveAreaMIPS.html' title='minidump::minidump_format::MDFloatingSaveAreaMIPS'>MDFloatingSaveAreaMIPS</a></code>
+                           </span></span><span class='stab '></span><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> for <a class='struct' href='../../minidump/minidump_format/struct.Struct_Unnamed13.html' title='minidump::minidump_format::Struct_Unnamed13'>Struct_Unnamed13</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-4002' class='srclink' href='../../src/minidump/src/minidump_format.rs.html#455' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../../minidump/minidump_format/struct.Struct_Unnamed13.html' title='minidump::minidump_format::Struct_Unnamed13'>Struct_Unnamed13</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-250' class='srclink' href='../../src/minidump/src/minidump_format.rs.html#472-474' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class='method'><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; Self</code></span></h4>
 <div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
-</div><h4 id='method.clone_from' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div></h4>
+</div><h4 id='method.clone_from' class='method'><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div></span></h4>
 <div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
-</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html' title='core::default::Default'>Default</a> for <a class='struct' href='../../minidump/minidump_format/struct.Struct_Unnamed13.html' title='minidump::minidump_format::Struct_Unnamed13'>Struct_Unnamed13</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-411' class='srclink' href='../../src/minidump/src/minidump_format.rs.html#470-472' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.default' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default' class='fnname'>default</a>() -&gt; Self</code></h4>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html' title='core::default::Default'>Default</a> for <a class='struct' href='../../minidump/minidump_format/struct.Struct_Unnamed13.html' title='minidump::minidump_format::Struct_Unnamed13'>Struct_Unnamed13</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-253' class='srclink' href='../../src/minidump/src/minidump_format.rs.html#475-477' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.default' class='method'><span id='default.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default' class='fnname'>default</a>() -&gt; Self</code></span></h4>
 <div class='docblock'><p>Returns the &quot;default value&quot; for a type. <a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default">Read more</a></p>
 </div></div></section>
     <section id='search' class="content hidden"></section>
@@ -142,11 +170,9 @@
     <script>
         window.rootPath = "../../";
         window.currentCrate = "minidump";
-        window.playgroundUrl = "";
     </script>
     <script src="../../jquery.js"></script>
     <script src="../../main.js"></script>
-    
     <script defer src="../../search-index.js"></script>
 </body>
 </html>

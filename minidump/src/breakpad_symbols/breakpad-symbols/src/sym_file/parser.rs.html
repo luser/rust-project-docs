@@ -1002,7 +1002,7 @@
 <span class='doccomment'>/// Matches an entire symbol file.</span>
 <span class='macro'>named</span><span class='macro'>!</span>(<span class='ident'>symbol_file</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>], <span class='ident'>SymbolFile</span><span class='op'>&gt;</span>,
   <span class='macro'>chain</span><span class='macro'>!</span>(
-    <span class='ident'>module_line</span>? ~
+    <span class='ident'>module_line</span><span class='question-mark'>?</span> ~
     <span class='ident'>lines</span>: <span class='macro'>many0</span><span class='macro'>!</span>(<span class='ident'>line</span>) ,
     <span class='op'>||</span> { <span class='ident'>symbol_file_from_lines</span>(<span class='ident'>lines</span>) })
 );
@@ -1426,11 +1426,9 @@ FILE&quot;</span>[..]).<span class='ident'>is_err</span>(),
     <script>
         window.rootPath = "../../../../../";
         window.currentCrate = "breakpad_symbols";
-        window.playgroundUrl = "";
     </script>
     <script src="../../../../../jquery.js"></script>
     <script src="../../../../../main.js"></script>
-    
     <script defer src="../../../../../search-index.js"></script>
 </body>
 </html>

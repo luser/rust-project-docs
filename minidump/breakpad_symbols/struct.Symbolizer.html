@@ -47,10 +47,8 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-1317' class='srclink' href='../src/breakpad_symbols/breakpad-symbols/src/lib.rs.html#325-331' title='goto source code'>[src]</a></span></h1>
-<pre class='rust struct'>pub struct Symbolizer {
-    // some fields omitted
-}</pre><div class='docblock'><p>Symbolicate stack frames.</p>
+               </span><a id='src-245' class='srclink' href='../src/breakpad_symbols/breakpad-symbols/src/lib.rs.html#325-331' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Symbolizer { /* fields omitted */ }</pre><div class='docblock'><p>Symbolicate stack frames.</p>
 
 <p>A <code>Symbolizer</code> manages loading symbols and looking up symbols in them
 including caching so that symbols for a given module are only loaded once.</p>
@@ -62,10 +60,10 @@ symbols on disk in the <a href="fn.relative_symbol_path.html">customary director
 
 <p>Use <a href="struct.Symbolizer.html#method.get_symbol_at_address"><code>get_symbol_at_address</code></a> or <a href="struct.Symbolizer.html#method.fill_symbol"><code>fill_symbol</code></a> to
 do symbol lookup.</p>
-</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../breakpad_symbols/struct.Symbolizer.html' title='breakpad_symbols::Symbolizer'>Symbolizer</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-1320' class='srclink' href='../src/breakpad_symbols/breakpad-symbols/src/lib.rs.html#333-401' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>&lt;T:&nbsp;<a class='trait' href='../breakpad_symbols/trait.SymbolSupplier.html' title='breakpad_symbols::SymbolSupplier'>SymbolSupplier</a> + 'static&gt;(supplier: T) -&gt; <a class='struct' href='../breakpad_symbols/struct.Symbolizer.html' title='breakpad_symbols::Symbolizer'>Symbolizer</a></code></h4>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../breakpad_symbols/struct.Symbolizer.html' title='breakpad_symbols::Symbolizer'>Symbolizer</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-248' class='srclink' href='../src/breakpad_symbols/breakpad-symbols/src/lib.rs.html#333-401' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class='method'><span id='new.v' class='invisible'><code>fn <a href='#method.new' class='fnname'>new</a>&lt;T:&nbsp;<a class='trait' href='../breakpad_symbols/trait.SymbolSupplier.html' title='breakpad_symbols::SymbolSupplier'>SymbolSupplier</a> + 'static&gt;(supplier: T) -&gt; <a class='struct' href='../breakpad_symbols/struct.Symbolizer.html' title='breakpad_symbols::Symbolizer'>Symbolizer</a></code></span></h4>
 <div class='docblock'><p>Create a <code>Symbolizer</code> that uses <code>supplier</code> to locate symbols.</p>
-</div><h4 id='method.get_symbol_at_address' class='method'><code>fn <a href='#method.get_symbol_at_address' class='fnname'>get_symbol_at_address</a>(&amp;self, debug_file: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, debug_id: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, address: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;</code></h4>
+</div><h4 id='method.get_symbol_at_address' class='method'><span id='get_symbol_at_address.v' class='invisible'><code>fn <a href='#method.get_symbol_at_address' class='fnname'>get_symbol_at_address</a>(&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; debug_file: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; debug_id: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; address: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;</code></span></h4>
 <div class='docblock'><p>Helper method for non-minidump-using callers.</p>
 
 <p>Pass <code>debug_file</code> and <code>debug_id</code> describing a specific module,
@@ -73,7 +71,7 @@ and <code>address</code>, a module-relative address, and get back
 a symbol in that module that covers that address, or <code>None</code>.</p>
 
 <p>See <a href="index.html">the module-level documentation</a> for an example.</p>
-</div><h4 id='method.fill_symbol' class='method'><code>fn <a href='#method.fill_symbol' class='fnname'>fill_symbol</a>(&amp;self, module: &amp;<a class='trait' href='../breakpad_symbols/trait.Module.html' title='breakpad_symbols::Module'>Module</a>, frame: &amp;mut <a class='trait' href='../breakpad_symbols/trait.FrameSymbolizer.html' title='breakpad_symbols::FrameSymbolizer'>FrameSymbolizer</a>)</code></h4>
+</div><h4 id='method.fill_symbol' class='method'><span id='fill_symbol.v' class='invisible'><code>fn <a href='#method.fill_symbol' class='fnname'>fill_symbol</a>(&amp;self, module: &amp;<a class='trait' href='../breakpad_symbols/trait.Module.html' title='breakpad_symbols::Module'>Module</a>, frame: &amp;mut <a class='trait' href='../breakpad_symbols/trait.FrameSymbolizer.html' title='breakpad_symbols::FrameSymbolizer'>FrameSymbolizer</a>)</code></span></h4>
 <div class='docblock'><p>Fill symbol information in <code>frame</code> using the instruction address
 from <code>frame</code>, and the module information from <code>module</code>. If you&#39;re not
 using a minidump module, you can use <a href="struct.SimpleModule.html"><code>SimpleModule</code></a> and
@@ -148,11 +146,9 @@ using a minidump module, you can use <a href="struct.SimpleModule.html"><code>Si
     <script>
         window.rootPath = "../";
         window.currentCrate = "breakpad_symbols";
-        window.playgroundUrl = "";
     </script>
     <script src="../jquery.js"></script>
     <script src="../main.js"></script>
-    
     <script defer src="../search-index.js"></script>
 </body>
 </html>
