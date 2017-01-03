@@ -150,23 +150,23 @@
 <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>synth_minidump</span>;
 <span class='kw'>mod</span> <span class='ident'>system_info</span>;
 
-<span class='comment'>// Stable Rust has a bug where `pub use minidump::*;` doesn&#39;t work.</span>
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>iostuff</span>::<span class='ident'>Readable</span>;
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='ident'>Minidump</span>;
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='ident'>Error</span>;
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>breakpad_symbols</span>::<span class='ident'>Module</span>;
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='ident'>MinidumpBreakpadInfo</span>;
+<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='ident'>MinidumpContext</span>;
+<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='ident'>MinidumpContextValidity</span>;
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='ident'>MinidumpException</span>;
+<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='ident'>MinidumpMemory</span>;
+<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='ident'>MinidumpMemoryList</span>;
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='ident'>MinidumpMiscInfo</span>;
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='ident'>MinidumpModule</span>;
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='ident'>MinidumpModuleList</span>;
+<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='ident'>MinidumpRawContext</span>;
+<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='ident'>MinidumpSystemInfo</span>;
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='ident'>MinidumpThread</span>;
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='ident'>MinidumpThreadList</span>;
-<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='ident'>MinidumpSystemInfo</span>;
-<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='ident'>MinidumpRawContext</span>;
-<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='ident'>MinidumpContext</span>;
-<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='ident'>MinidumpContextValidity</span>;
-<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>minidump</span>::<span class='ident'>MinidumpMemory</span>;
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>processor</span>::<span class='ident'>process_minidump</span>;
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>processor</span>::<span class='ident'>ProcessError</span>;
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>process_state</span>::<span class='ident'>CallStack</span>;

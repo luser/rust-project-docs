@@ -127,6 +127,9 @@
 <span id="83">83</span>
 <span id="84">84</span>
 <span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
+<span id="88">88</span>
 </pre><pre class='rust '>
 <span class='comment'>// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class='comment'>// file at the top-level directory of this distribution.</span>
@@ -167,6 +170,9 @@
             }
             <span class='kw'>if</span> <span class='kw'>let</span> <span class='prelude-val'>Ok</span>(<span class='ident'>module_list</span>) <span class='op'>=</span> <span class='ident'>dump</span>.<span class='ident'>get_stream</span>::<span class='op'>&lt;</span><span class='ident'>MinidumpModuleList</span><span class='op'>&gt;</span>() {
                 <span class='ident'>module_list</span>.<span class='ident'>print</span>(<span class='ident'>stdout</span>).<span class='ident'>unwrap</span>();
+            }
+            <span class='kw'>if</span> <span class='kw'>let</span> <span class='prelude-val'>Ok</span>(<span class='ident'>memory_list</span>) <span class='op'>=</span> <span class='ident'>dump</span>.<span class='ident'>get_stream</span>::<span class='op'>&lt;</span><span class='ident'>MinidumpMemoryList</span><span class='op'>&gt;</span>() {
+                <span class='ident'>memory_list</span>.<span class='ident'>print</span>(<span class='ident'>stdout</span>).<span class='ident'>unwrap</span>();
             }
             <span class='comment'>// TODO: MemoryList</span>
             <span class='kw'>if</span> <span class='kw'>let</span> <span class='prelude-val'>Ok</span>(<span class='ident'>exception</span>) <span class='op'>=</span> <span class='ident'>dump</span>.<span class='ident'>get_stream</span>::<span class='op'>&lt;</span><span class='ident'>MinidumpException</span><span class='op'>&gt;</span>() {

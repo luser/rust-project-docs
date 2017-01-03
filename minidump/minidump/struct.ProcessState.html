@@ -47,7 +47,7 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-3627' class='srclink' href='../src/minidump/src/process_state.rs.html#118-157' title='goto source code'>[src]</a></span></h1>
+               </span><a id='src-3668' class='srclink' href='../src/minidump/src/process_state.rs.html#118-157' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct ProcessState {
     pub time: <a class='struct' href='../chrono/datetime/struct.DateTime.html' title='chrono::datetime::DateTime'>DateTime</a>&lt;<a class='struct' href='../chrono/offset/utc/struct.UTC.html' title='chrono::offset::utc::UTC'>UTC</a>&gt;,
     pub process_create_time: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../chrono/datetime/struct.DateTime.html' title='chrono::datetime::DateTime'>DateTime</a>&lt;<a class='struct' href='../chrono/offset/utc/struct.UTC.html' title='chrono::offset::utc::UTC'>UTC</a>&gt;&gt;,
@@ -110,7 +110,7 @@ thread) at the time of the crash.</p>
                            <code>modules: <a class='struct' href='../minidump/struct.MinidumpModuleList.html' title='minidump::MinidumpModuleList'>MinidumpModuleList</a></code>
                            </span></span><span class='stab '></span><div class='docblock'><p>The modules that were loaded into the process represented by the
 <code>ProcessState</code>.</p>
-</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../minidump/struct.ProcessState.html' title='minidump::ProcessState'>ProcessState</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-3700' class='srclink' href='../src/minidump/src/process_state.rs.html#312-391' title='goto source code'>[src]</a></span></h3>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../minidump/struct.ProcessState.html' title='minidump::ProcessState'>ProcessState</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-3741' class='srclink' href='../src/minidump/src/process_state.rs.html#312-391' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.crashed' class='method'><span id='crashed.v' class='invisible'><code>fn <a href='#method.crashed' class='fnname'>crashed</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></span></h4>
 <div class='docblock'><p><code>true</code> if the minidump was written in response to a process crash.</p>
 </div><h4 id='method.print' class='method'><span id='print.v' class='invisible'><code>fn <a href='#method.print' class='fnname'>print</a>&lt;T:&nbsp;<a class='trait' href='https://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>&gt;(&amp;self, f: &amp;mut T) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></span></h4>
