@@ -9,6 +9,7 @@
 
     <title>minidump::MinidumpException - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
     <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
     
@@ -16,7 +17,7 @@
     
     
 </head>
-<body class="rustdoc">
+<body class="rustdoc struct">
     <!--[if lte IE 8]>
     <div class="warning">
         This old browser is unsupported and will most likely display funky
@@ -28,7 +29,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'><a href='index.html'>minidump</a></p><script>window.sidebarCurrent = {name: 'MinidumpException', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'>Struct MinidumpException</p><div class="block items"><ul><li><a href="#fields">Fields</a></li><li><a href="#methods">Methods</a></li></ul></div><p class='location'><a href='index.html'>minidump</a></p><script>window.sidebarCurrent = {name: 'MinidumpException', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -42,16 +43,16 @@
         </form>
     </nav>
 
-    <section id='main' class="content struct">
-<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>minidump</a>::<wbr><a class='struct' href=''>MinidumpException</a></span><span class='out-of-band'><span id='render-detail'>
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>minidump</a>::<wbr><a class="struct" href=''>MinidumpException</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-3244' class='srclink' href='../src/minidump/src/minidump.rs.html#202-206' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../src/minidump/minidump.rs.html#202-206' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct MinidumpException {
-    pub raw: <a class='type' href='../minidump/minidump_format/type.MDRawExceptionStream.html' title='minidump::minidump_format::MDRawExceptionStream'>MDRawExceptionStream</a>,
-    pub thread_id: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>,
-    pub context: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../minidump/struct.MinidumpContext.html' title='minidump::MinidumpContext'>MinidumpContext</a>&gt;,
+    pub raw: <a class="type" href="../minidump/minidump_format/type.MDRawExceptionStream.html" title="type minidump::minidump_format::MDRawExceptionStream">MDRawExceptionStream</a>,
+    pub thread_id: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>,
+    pub context: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../minidump/struct.MinidumpContext.html" title="struct minidump::MinidumpContext">MinidumpContext</a>&gt;,
 }</pre><div class='docblock'><p>Information about the exception that caused the minidump to be generated.</p>
 
 <p>MinidumpException wraps MDRawExceptionStream, which contains information
@@ -60,21 +61,29 @@ minidump was generated in an exception handler called as a result of an
 exception.  It also provides access to a MinidumpContext object, which
 contains the CPU context for the exception thread at the time the exception
 occurred.</p>
-</div><h2 class='fields'>Fields</h2><span id='structfield.raw' class='structfield'>
-                           <span id='raw.v' class='invisible'>
-                           <code>raw: <a class='type' href='../minidump/minidump_format/type.MDRawExceptionStream.html' title='minidump::minidump_format::MDRawExceptionStream'>MDRawExceptionStream</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.thread_id' class='structfield'>
-                           <span id='thread_id.v' class='invisible'>
-                           <code>thread_id: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.context' class='structfield'>
-                           <span id='context.v' class='invisible'>
-                           <code>context: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../minidump/struct.MinidumpContext.html' title='minidump::MinidumpContext'>MinidumpContext</a>&gt;</code>
-                           </span></span><span class='stab '></span><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../minidump/struct.MinidumpException.html' title='minidump::MinidumpException'>MinidumpException</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-3557' class='srclink' href='../src/minidump/src/minidump.rs.html#1157-1215' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.get_crash_address' class='method'><span id='get_crash_address.v' class='invisible'><code>fn <a href='#method.get_crash_address' class='fnname'>get_crash_address</a>(&amp;self, os: <a class='enum' href='../minidump/enum.OS.html' title='minidump::OS'>OS</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></span></h4>
+</div><h2 id='fields' class='fields small-section-header'>
+                       Fields<a href='#fields' class='anchor'></a></h2><span id="structfield.raw" class="structfield small-section-header">
+                           <a href="#structfield.raw" class="anchor field"></a>
+                           <span id="raw.v" class='invisible'>
+                           <code>raw: <a class="type" href="../minidump/minidump_format/type.MDRawExceptionStream.html" title="type minidump::minidump_format::MDRawExceptionStream">MDRawExceptionStream</a></code>
+                           </span></span><span id="structfield.thread_id" class="structfield small-section-header">
+                           <a href="#structfield.thread_id" class="anchor field"></a>
+                           <span id="thread_id.v" class='invisible'>
+                           <code>thread_id: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></code>
+                           </span></span><span id="structfield.context" class="structfield small-section-header">
+                           <a href="#structfield.context" class="anchor field"></a>
+                           <span id="context.v" class='invisible'>
+                           <code>context: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../minidump/struct.MinidumpContext.html" title="struct minidump::MinidumpContext">MinidumpContext</a>&gt;</code>
+                           </span></span>
+                    <h2 id='methods' class='small-section-header'>
+                      Methods<a href='#methods' class='anchor'></a>
+                    </h2>
+                <h3 id='impl' class='impl'><span class='in-band'><code>impl <a class="struct" href="../minidump/struct.MinidumpException.html" title="struct minidump::MinidumpException">MinidumpException</a></code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#1185-1243' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.get_crash_address' class="method"><span id='get_crash_address.v' class='invisible'><code>pub fn <a href='#method.get_crash_address' class='fnname'>get_crash_address</a>(&amp;self, os: <a class="enum" href="../minidump/enum.OS.html" title="enum minidump::OS">OS</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#1187-1198' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Get the crash address for an exception.</p>
-</div><h4 id='method.get_crash_reason' class='method'><span id='get_crash_reason.v' class='invisible'><code>fn <a href='#method.get_crash_reason' class='fnname'>get_crash_reason</a>(&amp;self, os: <a class='enum' href='../minidump/enum.OS.html' title='minidump::OS'>OS</a>) -&gt; CrashReason</code></span></h4>
+</div><h4 id='method.get_crash_reason' class="method"><span id='get_crash_reason.v' class='invisible'><code>pub fn <a href='#method.get_crash_reason' class='fnname'>get_crash_reason</a>(&amp;self, os: <a class="enum" href="../minidump/enum.OS.html" title="enum minidump::OS">OS</a>) -&gt; CrashReason</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#1200-1202' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Get the crash reason for an exception.</p>
-</div><h4 id='method.print' class='method'><span id='print.v' class='invisible'><code>fn <a href='#method.print' class='fnname'>print</a>&lt;T:&nbsp;<a class='trait' href='https://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>&gt;(&amp;self, f: &amp;mut T) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></span></h4>
+</div><h4 id='method.print' class="method"><span id='print.v' class='invisible'><code>pub fn <a href='#method.print' class='fnname'>print</a>&lt;T:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/std/io/trait.Write.html" title="trait std::io::Write">Write</a>&gt;(&amp;self, f: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut </a>T) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/std/io/error/type.Result.html" title="type std::io::error::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">()</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#1207-1242' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Write a human-readable description of this <code>MinidumpException</code> to <code>f</code>.</p>
 
 <p>This is very verbose, it is the format used by <code>minidump_dump</code>.</p>
@@ -135,7 +144,6 @@ occurred.</p>
         window.rootPath = "../";
         window.currentCrate = "minidump";
     </script>
-    <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     <script defer src="../search-index.js"></script>
 </body>

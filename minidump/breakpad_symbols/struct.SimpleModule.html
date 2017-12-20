@@ -9,6 +9,7 @@
 
     <title>breakpad_symbols::SimpleModule - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
     <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
     
@@ -16,7 +17,7 @@
     
     
 </head>
-<body class="rustdoc">
+<body class="rustdoc struct">
     <!--[if lte IE 8]>
     <div class="warning">
         This old browser is unsupported and will most likely display funky
@@ -28,7 +29,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'><a href='index.html'>breakpad_symbols</a></p><script>window.sidebarCurrent = {name: 'SimpleModule', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'>Struct SimpleModule</p><div class="block items"><ul><li><a href="#fields">Fields</a></li><li><a href="#methods">Methods</a></li><li><a href="#implementations">Trait Implementations</a></li></ul></div><p class='location'><a href='index.html'>breakpad_symbols</a></p><script>window.sidebarCurrent = {name: 'SimpleModule', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -42,68 +43,84 @@
         </form>
     </nav>
 
-    <section id='main' class="content struct">
-<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>breakpad_symbols</a>::<wbr><a class='struct' href=''>SimpleModule</a></span><span class='out-of-band'><span id='render-detail'>
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>breakpad_symbols</a>::<wbr><a class="struct" href=''>SimpleModule</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-1280' class='srclink' href='../src/breakpad_symbols/breakpad-symbols/src/lib.rs.html#85-93' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../src/breakpad_symbols/lib.rs.html#85-93' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct SimpleModule {
-    pub base_address: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>&gt;,
-    pub size: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>&gt;,
-    pub code_file: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
-    pub code_identifier: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
-    pub debug_file: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
-    pub debug_id: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
-    pub version: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
+    pub base_address: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>&gt;,
+    pub size: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>&gt;,
+    pub code_file: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;,
+    pub code_identifier: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;,
+    pub debug_file: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;,
+    pub debug_id: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;,
+    pub version: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;,
 }</pre><div class='docblock'><p>A <code>Module</code> implementation that holds arbitrary data.</p>
 
 <p>This can be useful for getting symbols for a module when you
 have a debug id and filename but not an actual minidump. If you have a
 minidump, you should be using <a href="../minidump/struct.MinidumpModule.html"><code>MinidumpModule</code></a>.</p>
-</div><h2 class='fields'>Fields</h2><span id='structfield.base_address' class='structfield'>
-                           <span id='base_address.v' class='invisible'>
-                           <code>base_address: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>&gt;</code>
-                           </span></span><span class='stab '></span><span id='structfield.size' class='structfield'>
-                           <span id='size.v' class='invisible'>
-                           <code>size: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>&gt;</code>
-                           </span></span><span class='stab '></span><span id='structfield.code_file' class='structfield'>
-                           <span id='code_file.v' class='invisible'>
-                           <code>code_file: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;</code>
-                           </span></span><span class='stab '></span><span id='structfield.code_identifier' class='structfield'>
-                           <span id='code_identifier.v' class='invisible'>
-                           <code>code_identifier: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;</code>
-                           </span></span><span class='stab '></span><span id='structfield.debug_file' class='structfield'>
-                           <span id='debug_file.v' class='invisible'>
-                           <code>debug_file: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;</code>
-                           </span></span><span class='stab '></span><span id='structfield.debug_id' class='structfield'>
-                           <span id='debug_id.v' class='invisible'>
-                           <code>debug_id: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;</code>
-                           </span></span><span class='stab '></span><span id='structfield.version' class='structfield'>
-                           <span id='version.v' class='invisible'>
-                           <code>version: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;</code>
-                           </span></span><span class='stab '></span><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../breakpad_symbols/struct.SimpleModule.html' title='breakpad_symbols::SimpleModule'>SimpleModule</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-120' class='srclink' href='../src/breakpad_symbols/breakpad-symbols/src/lib.rs.html#95-106' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.new' class='method'><span id='new.v' class='invisible'><code>fn <a href='#method.new' class='fnname'>new</a>(debug_file: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, debug_id: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='struct' href='../breakpad_symbols/struct.SimpleModule.html' title='breakpad_symbols::SimpleModule'>SimpleModule</a></code></span></h4>
+</div><h2 id='fields' class='fields small-section-header'>
+                       Fields<a href='#fields' class='anchor'></a></h2><span id="structfield.base_address" class="structfield small-section-header">
+                           <a href="#structfield.base_address" class="anchor field"></a>
+                           <span id="base_address.v" class='invisible'>
+                           <code>base_address: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>&gt;</code>
+                           </span></span><span id="structfield.size" class="structfield small-section-header">
+                           <a href="#structfield.size" class="anchor field"></a>
+                           <span id="size.v" class='invisible'>
+                           <code>size: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>&gt;</code>
+                           </span></span><span id="structfield.code_file" class="structfield small-section-header">
+                           <a href="#structfield.code_file" class="anchor field"></a>
+                           <span id="code_file.v" class='invisible'>
+                           <code>code_file: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;</code>
+                           </span></span><span id="structfield.code_identifier" class="structfield small-section-header">
+                           <a href="#structfield.code_identifier" class="anchor field"></a>
+                           <span id="code_identifier.v" class='invisible'>
+                           <code>code_identifier: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;</code>
+                           </span></span><span id="structfield.debug_file" class="structfield small-section-header">
+                           <a href="#structfield.debug_file" class="anchor field"></a>
+                           <span id="debug_file.v" class='invisible'>
+                           <code>debug_file: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;</code>
+                           </span></span><span id="structfield.debug_id" class="structfield small-section-header">
+                           <a href="#structfield.debug_id" class="anchor field"></a>
+                           <span id="debug_id.v" class='invisible'>
+                           <code>debug_id: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;</code>
+                           </span></span><span id="structfield.version" class="structfield small-section-header">
+                           <a href="#structfield.version" class="anchor field"></a>
+                           <span id="version.v" class='invisible'>
+                           <code>version: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;</code>
+                           </span></span>
+                    <h2 id='methods' class='small-section-header'>
+                      Methods<a href='#methods' class='anchor'></a>
+                    </h2>
+                <h3 id='impl' class='impl'><span class='in-band'><code>impl <a class="struct" href="../breakpad_symbols/struct.SimpleModule.html" title="struct breakpad_symbols::SimpleModule">SimpleModule</a></code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/breakpad_symbols/lib.rs.html#95-106' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class="method"><span id='new.v' class='invisible'><code>pub fn <a href='#method.new' class='fnname'>new</a>(debug_file: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, debug_id: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="struct" href="../breakpad_symbols/struct.SimpleModule.html" title="struct breakpad_symbols::SimpleModule">SimpleModule</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/breakpad_symbols/lib.rs.html#99-105' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Create a <code>SimpleModule</code> with the given <code>debug_file</code> and <code>debug_id</code>.</p>
 
 <p>Uses <code>default</code> for the remaining fields.</p>
-</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html' title='core::default::Default'>Default</a> for <a class='struct' href='../breakpad_symbols/struct.SimpleModule.html' title='breakpad_symbols::SimpleModule'>SimpleModule</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-1288' class='srclink' href='../src/breakpad_symbols/breakpad-symbols/src/lib.rs.html#84' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.default' class='method'><span id='default.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default' class='fnname'>default</a>() -&gt; <a class='struct' href='../breakpad_symbols/struct.SimpleModule.html' title='breakpad_symbols::SimpleModule'>SimpleModule</a></code></span></h4>
+</div></div>
+            <h2 id='implementations' class='small-section-header'>
+              Trait Implementations<a href='#implementations' class='anchor'></a>
+            </h2>
+        <h3 id='impl-Default' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html" title="trait core::default::Default">Default</a> for <a class="struct" href="../breakpad_symbols/struct.SimpleModule.html" title="struct breakpad_symbols::SimpleModule">SimpleModule</a></code><a href='#impl-Default' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/breakpad_symbols/lib.rs.html#84' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.default' class="method"><span id='default.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default' class='fnname'>default</a>() -&gt; <a class="struct" href="../breakpad_symbols/struct.SimpleModule.html" title="struct breakpad_symbols::SimpleModule">SimpleModule</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/breakpad_symbols/lib.rs.html#84' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Returns the &quot;default value&quot; for a type. <a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default">Read more</a></p>
-</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='../breakpad_symbols/trait.Module.html' title='breakpad_symbols::Module'>Module</a> for <a class='struct' href='../breakpad_symbols/struct.SimpleModule.html' title='breakpad_symbols::SimpleModule'>SimpleModule</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-124' class='srclink' href='../src/breakpad_symbols/breakpad-symbols/src/lib.rs.html#108-127' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.base_address' class='method'><span id='base_address.v-1' class='invisible'><code>fn <a href='../breakpad_symbols/trait.Module.html#tymethod.base_address' class='fnname'>base_address</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></span></h4>
+</div></div><h3 id='impl-Module' class='impl'><span class='in-band'><code>impl <a class="trait" href="../breakpad_symbols/trait.Module.html" title="trait breakpad_symbols::Module">Module</a> for <a class="struct" href="../breakpad_symbols/struct.SimpleModule.html" title="struct breakpad_symbols::SimpleModule">SimpleModule</a></code><a href='#impl-Module' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/breakpad_symbols/lib.rs.html#108-127' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.base_address' class="method"><span id='base_address.v-1' class='invisible'><code>fn <a href='../breakpad_symbols/trait.Module.html#tymethod.base_address' class='fnname'>base_address</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/breakpad_symbols/lib.rs.html#109' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>The base address of this code module as it was loaded by the process.</p>
-</div><h4 id='method.size' class='method'><span id='size.v-1' class='invisible'><code>fn <a href='../breakpad_symbols/trait.Module.html#tymethod.size' class='fnname'>size</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></span></h4>
+</div><h4 id='method.size' class="method"><span id='size.v-1' class='invisible'><code>fn <a href='../breakpad_symbols/trait.Module.html#tymethod.size' class='fnname'>size</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/breakpad_symbols/lib.rs.html#110' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>The size of the code module.</p>
-</div><h4 id='method.code_file' class='method'><span id='code_file.v-1' class='invisible'><code>fn <a href='../breakpad_symbols/trait.Module.html#tymethod.code_file' class='fnname'>code_file</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;</code></span></h4>
+</div><h4 id='method.code_file' class="method"><span id='code_file.v-1' class='invisible'><code>fn <a href='../breakpad_symbols/trait.Module.html#tymethod.code_file' class='fnname'>code_file</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/alloc/borrow/enum.Cow.html" title="enum alloc::borrow::Cow">Cow</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/breakpad_symbols/lib.rs.html#111-113' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>The path or file name that the code module was loaded from.</p>
-</div><h4 id='method.code_identifier' class='method'><span id='code_identifier.v-1' class='invisible'><code>fn <a href='../breakpad_symbols/trait.Module.html#tymethod.code_identifier' class='fnname'>code_identifier</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;</code></span></h4>
+</div><h4 id='method.code_identifier' class="method"><span id='code_identifier.v-1' class='invisible'><code>fn <a href='../breakpad_symbols/trait.Module.html#tymethod.code_identifier' class='fnname'>code_identifier</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/alloc/borrow/enum.Cow.html" title="enum alloc::borrow::Cow">Cow</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/breakpad_symbols/lib.rs.html#114-117' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>An identifying string used to discriminate between multiple versions and builds of the same code module.  This may contain a uuid, timestamp, version number, or any combination of this or other information, in an implementation-defined format. <a href="../breakpad_symbols/trait.Module.html#tymethod.code_identifier">Read more</a></p>
-</div><h4 id='method.debug_file' class='method'><span id='debug_file.v-1' class='invisible'><code>fn <a href='../breakpad_symbols/trait.Module.html#tymethod.debug_file' class='fnname'>debug_file</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='enum' href='https://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;&gt;</code></span></h4>
+</div><h4 id='method.debug_file' class="method"><span id='debug_file.v-1' class='invisible'><code>fn <a href='../breakpad_symbols/trait.Module.html#tymethod.debug_file' class='fnname'>debug_file</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="enum" href="https://doc.rust-lang.org/nightly/alloc/borrow/enum.Cow.html" title="enum alloc::borrow::Cow">Cow</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/breakpad_symbols/lib.rs.html#118-120' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>The filename containing debugging information associated with the code module.  If debugging information is stored in a file separate from the code module itself (as is the case when .pdb or .dSYM files are used), this will be different from code_file.  If debugging information is stored in the code module itself (possibly prior to stripping), this will be the same as code_file. <a href="../breakpad_symbols/trait.Module.html#tymethod.debug_file">Read more</a></p>
-</div><h4 id='method.debug_identifier' class='method'><span id='debug_identifier.v' class='invisible'><code>fn <a href='../breakpad_symbols/trait.Module.html#tymethod.debug_identifier' class='fnname'>debug_identifier</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='enum' href='https://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;&gt;</code></span></h4>
+</div><h4 id='method.debug_identifier' class="method"><span id='debug_identifier.v' class='invisible'><code>fn <a href='../breakpad_symbols/trait.Module.html#tymethod.debug_identifier' class='fnname'>debug_identifier</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="enum" href="https://doc.rust-lang.org/nightly/alloc/borrow/enum.Cow.html" title="enum alloc::borrow::Cow">Cow</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/breakpad_symbols/lib.rs.html#121-123' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>An identifying string similar to code_identifier, but identifies a specific version and build of the associated debug file.  This may be the same as code_identifier when the debug_file and code_file are identical or when the same identifier is used to identify distinct debug and code files. <a href="../breakpad_symbols/trait.Module.html#tymethod.debug_identifier">Read more</a></p>
-</div><h4 id='method.version' class='method'><span id='version.v-1' class='invisible'><code>fn <a href='../breakpad_symbols/trait.Module.html#tymethod.version' class='fnname'>version</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='enum' href='https://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;&gt;</code></span></h4>
+</div><h4 id='method.version' class="method"><span id='version.v-1' class='invisible'><code>fn <a href='../breakpad_symbols/trait.Module.html#tymethod.version' class='fnname'>version</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="enum" href="https://doc.rust-lang.org/nightly/alloc/borrow/enum.Cow.html" title="enum alloc::borrow::Cow">Cow</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/breakpad_symbols/lib.rs.html#124-126' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>A human-readable representation of the code module&#39;s version.</p>
 </div></div></section>
     <section id='search' class="content hidden"></section>
@@ -162,7 +179,6 @@ minidump, you should be using <a href="../minidump/struct.MinidumpModule.html"><
         window.rootPath = "../";
         window.currentCrate = "breakpad_symbols";
     </script>
-    <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     <script defer src="../search-index.js"></script>
 </body>

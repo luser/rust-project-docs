@@ -9,6 +9,7 @@
 
     <title>breakpad_symbols::FrameSymbolizer - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
     <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
     
@@ -16,7 +17,7 @@
     
     
 </head>
-<body class="rustdoc">
+<body class="rustdoc trait">
     <!--[if lte IE 8]>
     <div class="warning">
         This old browser is unsupported and will most likely display funky
@@ -28,7 +29,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'><a href='index.html'>breakpad_symbols</a></p><script>window.sidebarCurrent = {name: 'FrameSymbolizer', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'>Trait FrameSymbolizer</p><div class="block items"><ul><li><a href="#required-methods">Required Methods</a></li><li><a href="#implementors">Implementors</a></li></ul></div><p class='location'><a href='index.html'>breakpad_symbols</a></p><script>window.sidebarCurrent = {name: 'FrameSymbolizer', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -42,27 +43,31 @@
         </form>
     </nav>
 
-    <section id='main' class="content trait">
-<h1 class='fqn'><span class='in-band'>Trait <a href='index.html'>breakpad_symbols</a>::<wbr><a class='trait' href=''>FrameSymbolizer</a></span><span class='out-of-band'><span id='render-detail'>
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Trait <a href='index.html'>breakpad_symbols</a>::<wbr><a class="trait" href=''>FrameSymbolizer</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-211' class='srclink' href='../src/breakpad_symbols/breakpad-symbols/src/lib.rs.html#245-252' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../src/breakpad_symbols/lib.rs.html#245-252' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait FrameSymbolizer {
-    fn <a href='#tymethod.get_instruction' class='fnname'>get_instruction</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>;
-    fn <a href='#tymethod.set_function' class='fnname'>set_function</a>(&amp;mut self, name: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, base: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>);
-    fn <a href='#tymethod.set_source_file' class='fnname'>set_source_file</a>(&amp;mut self, file: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, line: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, base: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>);
+    fn <a href='#tymethod.get_instruction' class='fnname'>get_instruction</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>;
+<div class='item-spacer'></div>    fn <a href='#tymethod.set_function' class='fnname'>set_function</a>(&amp;mut self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, base: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>);
+<div class='item-spacer'></div>    fn <a href='#tymethod.set_source_file' class='fnname'>set_source_file</a>(&amp;mut self, file: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, line: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, base: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>);
 }</pre><div class='docblock'><p>A trait for setting symbol information on something like a stack frame.</p>
 </div>
-            <h2 id='required-methods'>Required Methods</h2>
+            <h2 id='required-methods' class='small-section-header'>
+              Required Methods<a href='#required-methods' class='anchor'></a>
+            </h2>
             <div class='methods'>
-        <h3 id='tymethod.get_instruction' class='method stab '><span id='get_instruction.v' class='invisible'><code>fn <a href='#tymethod.get_instruction' class='fnname'>get_instruction</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></span></h3><div class='docblock'><p>Get the program counter value for this frame.</p>
-</div><h3 id='tymethod.set_function' class='method stab '><span id='set_function.v' class='invisible'><code>fn <a href='#tymethod.set_function' class='fnname'>set_function</a>(&amp;mut self, name: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, base: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>)</code></span></h3><div class='docblock'><p>Set the name and base address of the function in which this frame is executing.</p>
-</div><h3 id='tymethod.set_source_file' class='method stab '><span id='set_source_file.v' class='invisible'><code>fn <a href='#tymethod.set_source_file' class='fnname'>set_source_file</a>(&amp;mut self, file: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, line: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, base: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>)</code></span></h3><div class='docblock'><p>Set the source file and (1-based) line number this frame represents.</p>
+        <h3 id='tymethod.get_instruction' class='method'><span id='get_instruction.v' class='invisible'><code>fn <a href='#tymethod.get_instruction' class='fnname'>get_instruction</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span></h3><div class='docblock'><p>Get the program counter value for this frame.</p>
+</div><h3 id='tymethod.set_function' class='method'><span id='set_function.v' class='invisible'><code>fn <a href='#tymethod.set_function' class='fnname'>set_function</a>(&amp;mut self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, base: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>)</code></span></h3><div class='docblock'><p>Set the name and base address of the function in which this frame is executing.</p>
+</div><h3 id='tymethod.set_source_file' class='method'><span id='set_source_file.v' class='invisible'><code>fn <a href='#tymethod.set_source_file' class='fnname'>set_source_file</a>(&amp;mut self, file: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, line: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, base: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>)</code></span></h3><div class='docblock'><p>Set the source file and (1-based) line number this frame represents.</p>
 </div></div>
-        <h2 id='implementors'>Implementors</h2>
+        <h2 id='implementors' class='small-section-header'>
+          Implementors<a href='#implementors' class='anchor'></a>
+        </h2>
         <ul class='item-list' id='implementors-list'>
-    <li><code>impl FrameSymbolizer for <a class='struct' href='../breakpad_symbols/struct.SimpleFrame.html' title='breakpad_symbols::SimpleFrame'>SimpleFrame</a></code></li>
+    <li><div class='out-of-band'><a class='srclink' href='../src/breakpad_symbols/lib.rs.html#281-292' title='goto source code'>[src]</a></div><code>impl FrameSymbolizer for <a class="struct" href="../breakpad_symbols/struct.SimpleFrame.html" title="struct breakpad_symbols::SimpleFrame">SimpleFrame</a></code></li>
 </ul><script type="text/javascript" async
                          src="../implementors/breakpad_symbols/trait.FrameSymbolizer.js">
                  </script></section>
@@ -122,7 +127,6 @@
         window.rootPath = "../";
         window.currentCrate = "breakpad_symbols";
     </script>
-    <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     <script defer src="../search-index.js"></script>
 </body>

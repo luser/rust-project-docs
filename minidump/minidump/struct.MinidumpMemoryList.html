@@ -9,6 +9,7 @@
 
     <title>minidump::MinidumpMemoryList - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
     <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
     
@@ -16,7 +17,7 @@
     
     
 </head>
-<body class="rustdoc">
+<body class="rustdoc struct">
     <!--[if lte IE 8]>
     <div class="warning">
         This old browser is unsupported and will most likely display funky
@@ -28,7 +29,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'><a href='index.html'>minidump</a></p><script>window.sidebarCurrent = {name: 'MinidumpMemoryList', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'>Struct MinidumpMemoryList</p><div class="block items"><ul><li><a href="#methods">Methods</a></li></ul></div><p class='location'><a href='index.html'>minidump</a></p><script>window.sidebarCurrent = {name: 'MinidumpMemoryList', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -42,23 +43,27 @@
         </form>
     </nav>
 
-    <section id='main' class="content struct">
-<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>minidump</a>::<wbr><a class='struct' href=''>MinidumpMemoryList</a></span><span class='out-of-band'><span id='render-detail'>
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>minidump</a>::<wbr><a class="struct" href=''>MinidumpMemoryList</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-3248' class='srclink' href='../src/minidump/src/minidump.rs.html#209-214' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../src/minidump/minidump.rs.html#209-214' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct MinidumpMemoryList { /* fields omitted */ }</pre><div class='docblock'><p>A list of memory regions included in a minidump.</p>
-</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../minidump/struct.MinidumpMemoryList.html' title='minidump::MinidumpMemoryList'>MinidumpMemoryList</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-3433' class='srclink' href='../src/minidump/src/minidump.rs.html#787-834' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.new' class='method'><span id='new.v' class='invisible'><code>fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class='struct' href='../minidump/struct.MinidumpMemoryList.html' title='minidump::MinidumpMemoryList'>MinidumpMemoryList</a></code></span></h4>
+</div>
+                    <h2 id='methods' class='small-section-header'>
+                      Methods<a href='#methods' class='anchor'></a>
+                    </h2>
+                <h3 id='impl' class='impl'><span class='in-band'><code>impl <a class="struct" href="../minidump/struct.MinidumpMemoryList.html" title="struct minidump::MinidumpMemoryList">MinidumpMemoryList</a></code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#805-862' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class="method"><span id='new.v' class='invisible'><code>pub fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class="struct" href="../minidump/struct.MinidumpMemoryList.html" title="struct minidump::MinidumpMemoryList">MinidumpMemoryList</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#807-812' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Return an empty <code>MinidumpMemoryList</code>.</p>
-</div><h4 id='method.from_regions' class='method'><span id='from_regions.v' class='invisible'><code>fn <a href='#method.from_regions' class='fnname'>from_regions</a>(regions: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../minidump/struct.MinidumpMemory.html' title='minidump::MinidumpMemory'>MinidumpMemory</a>&gt;) -&gt; <a class='struct' href='../minidump/struct.MinidumpMemoryList.html' title='minidump::MinidumpMemoryList'>MinidumpMemoryList</a></code></span></h4>
+</div><h4 id='method.from_regions' class="method"><span id='from_regions.v' class='invisible'><code>pub fn <a href='#method.from_regions' class='fnname'>from_regions</a>(regions: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../minidump/struct.MinidumpMemory.html" title="struct minidump::MinidumpMemory">MinidumpMemory</a>&gt;) -&gt; <a class="struct" href="../minidump/struct.MinidumpMemoryList.html" title="struct minidump::MinidumpMemoryList">MinidumpMemoryList</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#814-832' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Create a <code>MinidumpMemoryList</code> from a list of <code>MinidumpMemory</code>s.</p>
-</div><h4 id='method.iter' class='method'><span id='iter.v' class='invisible'><code>fn <a href='#method.iter' class='fnname'>iter</a>&lt;'a&gt;(&amp;'a self) -&gt; MemoryRegions&lt;'a&gt;</code></span></h4>
+</div><h4 id='method.iter' class="method"><span id='iter.v' class='invisible'><code>pub fn <a href='#method.iter' class='fnname'>iter</a>&lt;'a&gt;(&amp;'a self) -&gt; MemoryRegions&lt;'a&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#835-837' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Iterate over the memory regions in the order contained in the minidump.</p>
-</div><h4 id='method.by_addr' class='method'><span id='by_addr.v' class='invisible'><code>fn <a href='#method.by_addr' class='fnname'>by_addr</a>&lt;'a&gt;(&amp;'a self) -&gt; MemoryRegions&lt;'a&gt;</code></span></h4>
+</div><h4 id='method.by_addr' class="method"><span id='by_addr.v' class='invisible'><code>pub fn <a href='#method.by_addr' class='fnname'>by_addr</a>&lt;'a&gt;(&amp;'a self) -&gt; MemoryRegions&lt;'a&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#840-846' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Iterate over the memory regions in order by memory address.</p>
-</div><h4 id='method.print' class='method'><span id='print.v' class='invisible'><code>fn <a href='#method.print' class='fnname'>print</a>&lt;T:&nbsp;<a class='trait' href='https://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>&gt;(&amp;self, f: &amp;mut T) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></span></h4>
+</div><h4 id='method.print' class="method"><span id='print.v' class='invisible'><code>pub fn <a href='#method.print' class='fnname'>print</a>&lt;T:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/std/io/trait.Write.html" title="trait std::io::Write">Write</a>&gt;(&amp;self, f: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut </a>T) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/std/io/error/type.Result.html" title="type std::io::error::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">()</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#851-861' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Write a human-readable description of this <code>MinidumpMemoryList</code> to <code>f</code>.</p>
 
 <p>This is very verbose, it is the format used by <code>minidump_dump</code>.</p>
@@ -119,7 +124,6 @@
         window.rootPath = "../";
         window.currentCrate = "minidump";
     </script>
-    <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     <script defer src="../search-index.js"></script>
 </body>

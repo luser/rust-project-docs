@@ -9,6 +9,7 @@
 
     <title>breakpad_symbols::SimpleSymbolSupplier - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
     <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
     
@@ -16,7 +17,7 @@
     
     
 </head>
-<body class="rustdoc">
+<body class="rustdoc struct">
     <!--[if lte IE 8]>
     <div class="warning">
         This old browser is unsupported and will most likely display funky
@@ -28,7 +29,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'><a href='index.html'>breakpad_symbols</a></p><script>window.sidebarCurrent = {name: 'SimpleSymbolSupplier', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'>Struct SimpleSymbolSupplier</p><div class="block items"><ul><li><a href="#methods">Methods</a></li><li><a href="#implementations">Trait Implementations</a></li></ul></div><p class='location'><a href='index.html'>breakpad_symbols</a></p><script>window.sidebarCurrent = {name: 'SimpleSymbolSupplier', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -42,18 +43,26 @@
         </form>
     </nav>
 
-    <section id='main' class="content struct">
-<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>breakpad_symbols</a>::<wbr><a class='struct' href=''>SimpleSymbolSupplier</a></span><span class='out-of-band'><span id='render-detail'>
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>breakpad_symbols</a>::<wbr><a class="struct" href=''>SimpleSymbolSupplier</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-193' class='srclink' href='../src/breakpad_symbols/breakpad-symbols/src/lib.rs.html#215-218' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../src/breakpad_symbols/lib.rs.html#215-218' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct SimpleSymbolSupplier { /* fields omitted */ }</pre><div class='docblock'><p>An implementation of <code>SymbolSupplier</code> that loads Breakpad text-format symbols from local disk paths.</p>
-</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../breakpad_symbols/struct.SimpleSymbolSupplier.html' title='breakpad_symbols::SimpleSymbolSupplier'>SimpleSymbolSupplier</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-195' class='srclink' href='../src/breakpad_symbols/breakpad-symbols/src/lib.rs.html#220-225' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.new' class='method'><span id='new.v' class='invisible'><code>fn <a href='#method.new' class='fnname'>new</a>(paths: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/std/path/struct.PathBuf.html' title='std::path::PathBuf'>PathBuf</a>&gt;) -&gt; <a class='struct' href='../breakpad_symbols/struct.SimpleSymbolSupplier.html' title='breakpad_symbols::SimpleSymbolSupplier'>SimpleSymbolSupplier</a></code></span></h4>
+</div>
+                    <h2 id='methods' class='small-section-header'>
+                      Methods<a href='#methods' class='anchor'></a>
+                    </h2>
+                <h3 id='impl' class='impl'><span class='in-band'><code>impl <a class="struct" href="../breakpad_symbols/struct.SimpleSymbolSupplier.html" title="struct breakpad_symbols::SimpleSymbolSupplier">SimpleSymbolSupplier</a></code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/breakpad_symbols/lib.rs.html#220-225' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class="method"><span id='new.v' class='invisible'><code>pub fn <a href='#method.new' class='fnname'>new</a>(paths: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/std/path/struct.PathBuf.html" title="struct std::path::PathBuf">PathBuf</a>&gt;) -&gt; <a class="struct" href="../breakpad_symbols/struct.SimpleSymbolSupplier.html" title="struct breakpad_symbols::SimpleSymbolSupplier">SimpleSymbolSupplier</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/breakpad_symbols/lib.rs.html#222-224' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Instantiate a new <code>SimpleSymbolSupplier</code> that will search in <code>paths</code>.</p>
-</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='../breakpad_symbols/trait.SymbolSupplier.html' title='breakpad_symbols::SymbolSupplier'>SymbolSupplier</a> for <a class='struct' href='../breakpad_symbols/struct.SimpleSymbolSupplier.html' title='breakpad_symbols::SimpleSymbolSupplier'>SimpleSymbolSupplier</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-198' class='srclink' href='../src/breakpad_symbols/breakpad-symbols/src/lib.rs.html#227-242' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.locate_symbols' class='method'><span id='locate_symbols.v' class='invisible'><code>fn <a href='../breakpad_symbols/trait.SymbolSupplier.html#tymethod.locate_symbols' class='fnname'>locate_symbols</a>(&amp;self, module: &amp;<a class='trait' href='../breakpad_symbols/trait.Module.html' title='breakpad_symbols::Module'>Module</a>) -&gt; <a class='enum' href='../breakpad_symbols/enum.SymbolResult.html' title='breakpad_symbols::SymbolResult'>SymbolResult</a></code></span></h4>
+</div></div>
+            <h2 id='implementations' class='small-section-header'>
+              Trait Implementations<a href='#implementations' class='anchor'></a>
+            </h2>
+        <h3 id='impl-SymbolSupplier' class='impl'><span class='in-band'><code>impl <a class="trait" href="../breakpad_symbols/trait.SymbolSupplier.html" title="trait breakpad_symbols::SymbolSupplier">SymbolSupplier</a> for <a class="struct" href="../breakpad_symbols/struct.SimpleSymbolSupplier.html" title="struct breakpad_symbols::SimpleSymbolSupplier">SimpleSymbolSupplier</a></code><a href='#impl-SymbolSupplier' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/breakpad_symbols/lib.rs.html#227-242' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.locate_symbols' class="method"><span id='locate_symbols.v' class='invisible'><code>fn <a href='../breakpad_symbols/trait.SymbolSupplier.html#tymethod.locate_symbols' class='fnname'>locate_symbols</a>(&amp;self, module: &amp;<a class="trait" href="../breakpad_symbols/trait.Module.html" title="trait breakpad_symbols::Module">Module</a>) -&gt; <a class="enum" href="../breakpad_symbols/enum.SymbolResult.html" title="enum breakpad_symbols::SymbolResult">SymbolResult</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/breakpad_symbols/lib.rs.html#228-241' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Locate and load a symbol file for <code>module</code>. <a href="../breakpad_symbols/trait.SymbolSupplier.html#tymethod.locate_symbols">Read more</a></p>
 </div></div></section>
     <section id='search' class="content hidden"></section>
@@ -112,7 +121,6 @@
         window.rootPath = "../";
         window.currentCrate = "breakpad_symbols";
     </script>
-    <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     <script defer src="../search-index.js"></script>
 </body>

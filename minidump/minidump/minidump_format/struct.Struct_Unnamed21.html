@@ -9,6 +9,7 @@
 
     <title>minidump::minidump_format::Struct_Unnamed21 - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
     <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../../main.css">
     
@@ -16,7 +17,7 @@
     
     
 </head>
-<body class="rustdoc">
+<body class="rustdoc struct">
     <!--[if lte IE 8]>
     <div class="warning">
         This old browser is unsupported and will most likely display funky
@@ -28,7 +29,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'><a href='../index.html'>minidump</a>::<wbr><a href='index.html'>minidump_format</a></p><script>window.sidebarCurrent = {name: 'Struct_Unnamed21', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'>Struct Struct_Unnamed21</p><div class="block items"><ul><li><a href="#fields">Fields</a></li><li><a href="#implementations">Trait Implementations</a></li></ul></div><p class='location'><a href='../index.html'>minidump</a>::<wbr><a href='index.html'>minidump_format</a></p><script>window.sidebarCurrent = {name: 'Struct_Unnamed21', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -42,121 +43,152 @@
         </form>
     </nav>
 
-    <section id='main' class="content struct">
-<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>minidump</a>::<wbr><a href='index.html'>minidump_format</a>::<wbr><a class='struct' href=''>Struct_Unnamed21</a></span><span class='out-of-band'><span id='render-detail'>
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>minidump</a>::<wbr><a href='index.html'>minidump_format</a>::<wbr><a class="struct" href=''>Struct_Unnamed21</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-4121' class='srclink' href='../../src/minidump/src/minidump_format.rs.html#632-658' title='goto source code'>[src]</a></span></h1>
-<pre class='rust struct'>pub struct Struct_Unnamed21 {
-    pub context_flags: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub dr0: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub dr1: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub dr2: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub dr3: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub dr6: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub dr7: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub float_save: <a class='type' href='../../minidump/minidump_format/type.MDFloatingSaveAreaX86.html' title='minidump::minidump_format::MDFloatingSaveAreaX86'>MDFloatingSaveAreaX86</a>,
-    pub gs: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub fs: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub es: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub ds: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub edi: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub esi: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub ebx: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub edx: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub ecx: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub eax: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub ebp: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub eip: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub cs: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub eflags: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub esp: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub ss: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a>,
-    pub extended_registers: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='type' href='../../minidump/minidump_format/type.uint8_t.html' title='minidump::minidump_format::uint8_t'>uint8_t</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 512]</a>,
-}</pre><h2 class='fields'>Fields</h2><span id='structfield.context_flags' class='structfield'>
-                           <span id='context_flags.v' class='invisible'>
-                           <code>context_flags: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.dr0' class='structfield'>
-                           <span id='dr0.v' class='invisible'>
-                           <code>dr0: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.dr1' class='structfield'>
-                           <span id='dr1.v' class='invisible'>
-                           <code>dr1: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.dr2' class='structfield'>
-                           <span id='dr2.v' class='invisible'>
-                           <code>dr2: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.dr3' class='structfield'>
-                           <span id='dr3.v' class='invisible'>
-                           <code>dr3: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.dr6' class='structfield'>
-                           <span id='dr6.v' class='invisible'>
-                           <code>dr6: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.dr7' class='structfield'>
-                           <span id='dr7.v' class='invisible'>
-                           <code>dr7: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.float_save' class='structfield'>
-                           <span id='float_save.v' class='invisible'>
-                           <code>float_save: <a class='type' href='../../minidump/minidump_format/type.MDFloatingSaveAreaX86.html' title='minidump::minidump_format::MDFloatingSaveAreaX86'>MDFloatingSaveAreaX86</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.gs' class='structfield'>
-                           <span id='gs.v' class='invisible'>
-                           <code>gs: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.fs' class='structfield'>
-                           <span id='fs.v' class='invisible'>
-                           <code>fs: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.es' class='structfield'>
-                           <span id='es.v' class='invisible'>
-                           <code>es: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.ds' class='structfield'>
-                           <span id='ds.v' class='invisible'>
-                           <code>ds: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.edi' class='structfield'>
-                           <span id='edi.v' class='invisible'>
-                           <code>edi: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.esi' class='structfield'>
-                           <span id='esi.v' class='invisible'>
-                           <code>esi: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.ebx' class='structfield'>
-                           <span id='ebx.v' class='invisible'>
-                           <code>ebx: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.edx' class='structfield'>
-                           <span id='edx.v' class='invisible'>
-                           <code>edx: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.ecx' class='structfield'>
-                           <span id='ecx.v' class='invisible'>
-                           <code>ecx: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.eax' class='structfield'>
-                           <span id='eax.v' class='invisible'>
-                           <code>eax: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.ebp' class='structfield'>
-                           <span id='ebp.v' class='invisible'>
-                           <code>ebp: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.eip' class='structfield'>
-                           <span id='eip.v' class='invisible'>
-                           <code>eip: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.cs' class='structfield'>
-                           <span id='cs.v' class='invisible'>
-                           <code>cs: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.eflags' class='structfield'>
-                           <span id='eflags.v' class='invisible'>
-                           <code>eflags: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.esp' class='structfield'>
-                           <span id='esp.v' class='invisible'>
-                           <code>esp: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.ss' class='structfield'>
-                           <span id='ss.v' class='invisible'>
-                           <code>ss: <a class='type' href='../../minidump/minidump_format/type.uint32_t.html' title='minidump::minidump_format::uint32_t'>uint32_t</a></code>
-                           </span></span><span class='stab '></span><span id='structfield.extended_registers' class='structfield'>
-                           <span id='extended_registers.v' class='invisible'>
-                           <code>extended_registers: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>[</a><a class='type' href='../../minidump/minidump_format/type.uint8_t.html' title='minidump::minidump_format::uint8_t'>uint8_t</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.array.html'>; 512]</a></code>
-                           </span></span><span class='stab '></span><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> for <a class='struct' href='../../minidump/minidump_format/struct.Struct_Unnamed21.html' title='minidump::minidump_format::Struct_Unnamed21'>Struct_Unnamed21</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-4148' class='srclink' href='../../src/minidump/src/minidump_format.rs.html#631' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../../minidump/minidump_format/struct.Struct_Unnamed21.html' title='minidump::minidump_format::Struct_Unnamed21'>Struct_Unnamed21</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-319' class='srclink' href='../../src/minidump/src/minidump_format.rs.html#659-661' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.clone' class='method'><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; Self</code></span></h4>
+               </span><a class='srclink' href='../../src/minidump/minidump_format.rs.html#632-658' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'><div class="docblock attributes">#[repr(C, packed)]
+</div>pub struct Struct_Unnamed21 {
+    pub context_flags: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub dr0: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub dr1: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub dr2: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub dr3: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub dr6: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub dr7: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub float_save: <a class="type" href="../../minidump/minidump_format/type.MDFloatingSaveAreaX86.html" title="type minidump::minidump_format::MDFloatingSaveAreaX86">MDFloatingSaveAreaX86</a>,
+    pub gs: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub fs: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub es: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub ds: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub edi: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub esi: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub ebx: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub edx: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub ecx: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub eax: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub ebp: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub eip: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub cs: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub eflags: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub esp: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub ss: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a>,
+    pub extended_registers: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="type" href="../../minidump/minidump_format/type.uint8_t.html" title="type minidump::minidump_format::uint8_t">uint8_t</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 512]</a>,
+}</pre><h2 id='fields' class='fields small-section-header'>
+                       Fields<a href='#fields' class='anchor'></a></h2><span id="structfield.context_flags" class="structfield small-section-header">
+                           <a href="#structfield.context_flags" class="anchor field"></a>
+                           <span id="context_flags.v" class='invisible'>
+                           <code>context_flags: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.dr0" class="structfield small-section-header">
+                           <a href="#structfield.dr0" class="anchor field"></a>
+                           <span id="dr0.v" class='invisible'>
+                           <code>dr0: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.dr1" class="structfield small-section-header">
+                           <a href="#structfield.dr1" class="anchor field"></a>
+                           <span id="dr1.v" class='invisible'>
+                           <code>dr1: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.dr2" class="structfield small-section-header">
+                           <a href="#structfield.dr2" class="anchor field"></a>
+                           <span id="dr2.v" class='invisible'>
+                           <code>dr2: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.dr3" class="structfield small-section-header">
+                           <a href="#structfield.dr3" class="anchor field"></a>
+                           <span id="dr3.v" class='invisible'>
+                           <code>dr3: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.dr6" class="structfield small-section-header">
+                           <a href="#structfield.dr6" class="anchor field"></a>
+                           <span id="dr6.v" class='invisible'>
+                           <code>dr6: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.dr7" class="structfield small-section-header">
+                           <a href="#structfield.dr7" class="anchor field"></a>
+                           <span id="dr7.v" class='invisible'>
+                           <code>dr7: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.float_save" class="structfield small-section-header">
+                           <a href="#structfield.float_save" class="anchor field"></a>
+                           <span id="float_save.v" class='invisible'>
+                           <code>float_save: <a class="type" href="../../minidump/minidump_format/type.MDFloatingSaveAreaX86.html" title="type minidump::minidump_format::MDFloatingSaveAreaX86">MDFloatingSaveAreaX86</a></code>
+                           </span></span><span id="structfield.gs" class="structfield small-section-header">
+                           <a href="#structfield.gs" class="anchor field"></a>
+                           <span id="gs.v" class='invisible'>
+                           <code>gs: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.fs" class="structfield small-section-header">
+                           <a href="#structfield.fs" class="anchor field"></a>
+                           <span id="fs.v" class='invisible'>
+                           <code>fs: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.es" class="structfield small-section-header">
+                           <a href="#structfield.es" class="anchor field"></a>
+                           <span id="es.v" class='invisible'>
+                           <code>es: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.ds" class="structfield small-section-header">
+                           <a href="#structfield.ds" class="anchor field"></a>
+                           <span id="ds.v" class='invisible'>
+                           <code>ds: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.edi" class="structfield small-section-header">
+                           <a href="#structfield.edi" class="anchor field"></a>
+                           <span id="edi.v" class='invisible'>
+                           <code>edi: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.esi" class="structfield small-section-header">
+                           <a href="#structfield.esi" class="anchor field"></a>
+                           <span id="esi.v" class='invisible'>
+                           <code>esi: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.ebx" class="structfield small-section-header">
+                           <a href="#structfield.ebx" class="anchor field"></a>
+                           <span id="ebx.v" class='invisible'>
+                           <code>ebx: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.edx" class="structfield small-section-header">
+                           <a href="#structfield.edx" class="anchor field"></a>
+                           <span id="edx.v" class='invisible'>
+                           <code>edx: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.ecx" class="structfield small-section-header">
+                           <a href="#structfield.ecx" class="anchor field"></a>
+                           <span id="ecx.v" class='invisible'>
+                           <code>ecx: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.eax" class="structfield small-section-header">
+                           <a href="#structfield.eax" class="anchor field"></a>
+                           <span id="eax.v" class='invisible'>
+                           <code>eax: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.ebp" class="structfield small-section-header">
+                           <a href="#structfield.ebp" class="anchor field"></a>
+                           <span id="ebp.v" class='invisible'>
+                           <code>ebp: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.eip" class="structfield small-section-header">
+                           <a href="#structfield.eip" class="anchor field"></a>
+                           <span id="eip.v" class='invisible'>
+                           <code>eip: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.cs" class="structfield small-section-header">
+                           <a href="#structfield.cs" class="anchor field"></a>
+                           <span id="cs.v" class='invisible'>
+                           <code>cs: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.eflags" class="structfield small-section-header">
+                           <a href="#structfield.eflags" class="anchor field"></a>
+                           <span id="eflags.v" class='invisible'>
+                           <code>eflags: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.esp" class="structfield small-section-header">
+                           <a href="#structfield.esp" class="anchor field"></a>
+                           <span id="esp.v" class='invisible'>
+                           <code>esp: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.ss" class="structfield small-section-header">
+                           <a href="#structfield.ss" class="anchor field"></a>
+                           <span id="ss.v" class='invisible'>
+                           <code>ss: <a class="type" href="../../minidump/minidump_format/type.uint32_t.html" title="type minidump::minidump_format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.extended_registers" class="structfield small-section-header">
+                           <a href="#structfield.extended_registers" class="anchor field"></a>
+                           <span id="extended_registers.v" class='invisible'>
+                           <code>extended_registers: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="type" href="../../minidump/minidump_format/type.uint8_t.html" title="type minidump::minidump_format::uint8_t">uint8_t</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 512]</a></code>
+                           </span></span>
+            <h2 id='implementations' class='small-section-header'>
+              Trait Implementations<a href='#implementations' class='anchor'></a>
+            </h2>
+        <h3 id='impl-Copy' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html" title="trait core::marker::Copy">Copy</a> for <a class="struct" href="../../minidump/minidump_format/struct.Struct_Unnamed21.html" title="struct minidump::minidump_format::Struct_Unnamed21">Struct_Unnamed21</a></code><a href='#impl-Copy' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump/minidump_format.rs.html#631' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'></div><h3 id='impl-Clone' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="../../minidump/minidump_format/struct.Struct_Unnamed21.html" title="struct minidump::minidump_format::Struct_Unnamed21">Struct_Unnamed21</a></code><a href='#impl-Clone' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump/minidump_format.rs.html#659-661' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class="method"><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; Self</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump/minidump_format.rs.html#660' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
-</div><h4 id='method.clone_from' class='method'><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div></span></h4>
+</div><h4 id='method.clone_from' class="method"><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</code></span><span class='out-of-band'><div class='ghost'></div><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div><a class='srclink' href='https://doc.rust-lang.org/nightly/src/core/clone.rs.html#112-114' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
-</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html' title='core::default::Default'>Default</a> for <a class='struct' href='../../minidump/minidump_format/struct.Struct_Unnamed21.html' title='minidump::minidump_format::Struct_Unnamed21'>Struct_Unnamed21</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-322' class='srclink' href='../../src/minidump/src/minidump_format.rs.html#662-664' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.default' class='method'><span id='default.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default' class='fnname'>default</a>() -&gt; Self</code></span></h4>
+</div></div><h3 id='impl-Default' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html" title="trait core::default::Default">Default</a> for <a class="struct" href="../../minidump/minidump_format/struct.Struct_Unnamed21.html" title="struct minidump::minidump_format::Struct_Unnamed21">Struct_Unnamed21</a></code><a href='#impl-Default' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump/minidump_format.rs.html#662-664' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.default' class="method"><span id='default.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default' class='fnname'>default</a>() -&gt; Self</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump/minidump_format.rs.html#663' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Returns the &quot;default value&quot; for a type. <a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default">Read more</a></p>
 </div></div></section>
     <section id='search' class="content hidden"></section>
@@ -215,7 +247,6 @@
         window.rootPath = "../../";
         window.currentCrate = "minidump";
     </script>
-    <script src="../../jquery.js"></script>
     <script src="../../main.js"></script>
     <script defer src="../../search-index.js"></script>
 </body>

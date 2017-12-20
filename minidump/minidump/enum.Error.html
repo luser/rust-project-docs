@@ -9,6 +9,7 @@
 
     <title>minidump::Error - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
     <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
     
@@ -16,7 +17,7 @@
     
     
 </head>
-<body class="rustdoc">
+<body class="rustdoc enum">
     <!--[if lte IE 8]>
     <div class="warning">
         This old browser is unsupported and will most likely display funky
@@ -28,7 +29,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'><a href='index.html'>minidump</a></p><script>window.sidebarCurrent = {name: 'Error', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'>Enum Error</p><div class="block items"><ul><li><a href="#variants">Variants</a></li><li><a href="#implementations">Trait Implementations</a></li></ul></div><p class='location'><a href='index.html'>minidump</a></p><script>window.sidebarCurrent = {name: 'Error', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -42,12 +43,12 @@
         </form>
     </nav>
 
-    <section id='main' class="content enum">
-<h1 class='fqn'><span class='in-band'>Enum <a href='index.html'>minidump</a>::<wbr><a class='enum' href=''>Error</a></span><span class='out-of-band'><span id='render-detail'>
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Enum <a href='index.html'>minidump</a>::<wbr><a class="enum" href=''>Error</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-4668' class='srclink' href='../src/minidump/src/minidump.rs.html#57-71' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../src/minidump/minidump.rs.html#57-71' title='goto source code'>[src]</a></span></h1>
 <pre class='rust enum'>pub enum Error {
     FileNotFound,
     MissingHeader,
@@ -57,8 +58,8 @@
     MissingDirectory,
     StreamReadFailure,
     StreamSizeMismatch {
-        expected: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,
-        actual: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,
+        expected: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>,
+        actual: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>,
     },
     StreamNotFound,
     ModuleReadFailure,
@@ -66,16 +67,21 @@
     DataError,
     CodeViewReadFailure,
 }</pre><div class='docblock'><p>Errors encountered while reading a <code>Minidump</code>.</p>
-</div><h2 class='variants'>Variants</h2>
-<span id='variant.FileNotFound' class='variant'><span id='FileNotFound.v' class='invisible'><code>FileNotFound</code></span></span><span id='variant.MissingHeader' class='variant'><span id='MissingHeader.v' class='invisible'><code>MissingHeader</code></span></span><span id='variant.HeaderMismatch' class='variant'><span id='HeaderMismatch.v' class='invisible'><code>HeaderMismatch</code></span></span><span id='variant.SwapNotImplemented' class='variant'><span id='SwapNotImplemented.v' class='invisible'><code>SwapNotImplemented</code></span></span><span id='variant.VersionMismatch' class='variant'><span id='VersionMismatch.v' class='invisible'><code>VersionMismatch</code></span></span><span id='variant.MissingDirectory' class='variant'><span id='MissingDirectory.v' class='invisible'><code>MissingDirectory</code></span></span><span id='variant.StreamReadFailure' class='variant'><span id='StreamReadFailure.v' class='invisible'><code>StreamReadFailure</code></span></span><span id='variant.StreamSizeMismatch' class='variant'><span id='StreamSizeMismatch.v' class='invisible'><code>StreamSizeMismatch</code></span></span><h3 class='fields'>Fields</h3>
+</div><h2 id='variants' class='variants small-section-header'>
+                   Variants<a href='#variants' class='anchor'></a></h2>
+<span id="variant.FileNotFound" class="variant small-section-header"><a href="#variant.FileNotFound" class="anchor field"></a><span id='FileNotFound.v' class='invisible'><code>FileNotFound</code></span></span><span id="variant.MissingHeader" class="variant small-section-header"><a href="#variant.MissingHeader" class="anchor field"></a><span id='MissingHeader.v' class='invisible'><code>MissingHeader</code></span></span><span id="variant.HeaderMismatch" class="variant small-section-header"><a href="#variant.HeaderMismatch" class="anchor field"></a><span id='HeaderMismatch.v' class='invisible'><code>HeaderMismatch</code></span></span><span id="variant.SwapNotImplemented" class="variant small-section-header"><a href="#variant.SwapNotImplemented" class="anchor field"></a><span id='SwapNotImplemented.v' class='invisible'><code>SwapNotImplemented</code></span></span><span id="variant.VersionMismatch" class="variant small-section-header"><a href="#variant.VersionMismatch" class="anchor field"></a><span id='VersionMismatch.v' class='invisible'><code>VersionMismatch</code></span></span><span id="variant.MissingDirectory" class="variant small-section-header"><a href="#variant.MissingDirectory" class="anchor field"></a><span id='MissingDirectory.v' class='invisible'><code>MissingDirectory</code></span></span><span id="variant.StreamReadFailure" class="variant small-section-header"><a href="#variant.StreamReadFailure" class="anchor field"></a><span id='StreamReadFailure.v' class='invisible'><code>StreamReadFailure</code></span></span><span id="variant.StreamSizeMismatch" class="variant small-section-header"><a href="#variant.StreamSizeMismatch" class="anchor field"></a><span id='StreamSizeMismatch.v' class='invisible'><code>StreamSizeMismatch</code></span></span><span class='docblock autohide sub-variant' id='variant.StreamSizeMismatch.fields'><h3 class='fields'>Fields of <code>StreamSizeMismatch</code></h3>
 
-                           <table><tr><td id='variant.StreamSizeMismatch.field.expected'><span id='StreamSizeMismatch.v.expected.v' class='invisible'><code>expected:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a></code></span></td><td></td></tr><tr><td id='variant.StreamSizeMismatch.field.actual'><span id='StreamSizeMismatch.v.actual.v' class='invisible'><code>actual:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a></code></span></td><td></td></tr></table><span id='variant.StreamNotFound' class='variant'><span id='StreamNotFound.v' class='invisible'><code>StreamNotFound</code></span></span><span id='variant.ModuleReadFailure' class='variant'><span id='ModuleReadFailure.v' class='invisible'><code>ModuleReadFailure</code></span></span><span id='variant.MemoryReadFailure' class='variant'><span id='MemoryReadFailure.v' class='invisible'><code>MemoryReadFailure</code></span></span><span id='variant.DataError' class='variant'><span id='DataError.v' class='invisible'><code>DataError</code></span></span><span id='variant.CodeViewReadFailure' class='variant'><span id='CodeViewReadFailure.v' class='invisible'><code>CodeViewReadFailure</code></span></span><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../minidump/enum.Error.html' title='minidump::Error'>Error</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-4684' class='srclink' href='../src/minidump/src/minidump.rs.html#56' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.fmt' class='method'><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></span></h4>
+                           <table><tr><td id='variant.StreamSizeMismatch.field.expected'><span id='StreamSizeMismatch.v.expected.v' class='invisible'><code>expected:&nbsp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a></code></span></td><td></td></tr><tr><td id='variant.StreamSizeMismatch.field.actual'><span id='StreamSizeMismatch.v.actual.v' class='invisible'><code>actual:&nbsp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a></code></span></td><td></td></tr></table></span><span id="variant.StreamNotFound" class="variant small-section-header"><a href="#variant.StreamNotFound" class="anchor field"></a><span id='StreamNotFound.v' class='invisible'><code>StreamNotFound</code></span></span><span id="variant.ModuleReadFailure" class="variant small-section-header"><a href="#variant.ModuleReadFailure" class="anchor field"></a><span id='ModuleReadFailure.v' class='invisible'><code>ModuleReadFailure</code></span></span><span id="variant.MemoryReadFailure" class="variant small-section-header"><a href="#variant.MemoryReadFailure" class="anchor field"></a><span id='MemoryReadFailure.v' class='invisible'><code>MemoryReadFailure</code></span></span><span id="variant.DataError" class="variant small-section-header"><a href="#variant.DataError" class="anchor field"></a><span id='DataError.v' class='invisible'><code>DataError</code></span></span><span id="variant.CodeViewReadFailure" class="variant small-section-header"><a href="#variant.CodeViewReadFailure" class="anchor field"></a><span id='CodeViewReadFailure.v' class='invisible'><code>CodeViewReadFailure</code></span></span>
+            <h2 id='implementations' class='small-section-header'>
+              Trait Implementations<a href='#implementations' class='anchor'></a>
+            </h2>
+        <h3 id='impl-Debug' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="enum" href="../minidump/enum.Error.html" title="enum minidump::Error">Error</a></code><a href='#impl-Debug' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#56' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#56' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Formats the value using the given formatter.</p>
-</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='enum' href='../minidump/enum.Error.html' title='minidump::Error'>Error</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-4703' class='srclink' href='../src/minidump/src/minidump.rs.html#56' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.eq' class='method'><span id='eq.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../minidump/enum.Error.html' title='minidump::Error'>Error</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></span></h4>
+</div></div><h3 id='impl-PartialEq' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html" title="trait core::cmp::PartialEq">PartialEq</a> for <a class="enum" href="../minidump/enum.Error.html" title="enum minidump::Error">Error</a></code><a href='#impl-PartialEq' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#56' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.eq' class="method"><span id='eq.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class="enum" href="../minidump/enum.Error.html" title="enum minidump::Error">Error</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#56' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>This method tests for <code>self</code> and <code>other</code> values to be equal, and is used by <code>==</code>. <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq">Read more</a></p>
-</div><h4 id='method.ne' class='method'><span id='ne.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../minidump/enum.Error.html' title='minidump::Error'>Error</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></span></h4>
+</div><h4 id='method.ne' class="method"><span id='ne.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class="enum" href="../minidump/enum.Error.html" title="enum minidump::Error">Error</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#56' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>This method tests for <code>!=</code>.</p>
 </div></div></section>
     <section id='search' class="content hidden"></section>
@@ -134,7 +140,6 @@
         window.rootPath = "../";
         window.currentCrate = "minidump";
     </script>
-    <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     <script defer src="../search-index.js"></script>
 </body>

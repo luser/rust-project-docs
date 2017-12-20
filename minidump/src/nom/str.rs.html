@@ -9,6 +9,7 @@
 
     <title>str.rs.html -- source</title>
 
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
     <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../../main.css">
     
@@ -16,7 +17,7 @@
     
     
 </head>
-<body class="rustdoc">
+<body class="rustdoc source">
     <!--[if lte IE 8]>
     <div class="warning">
         This old browser is unsupported and will most likely display funky
@@ -42,7 +43,7 @@
         </form>
     </nav>
 
-    <section id='main' class="content source"><pre class="line-numbers"><span id="1">  1</span>
+    <section id='main' class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -776,738 +777,738 @@
 <span id="732">732</span>
 <span id="733">733</span>
 <span id="734">734</span>
-</pre><pre class='rust '>
-<span class='doccomment'>//! Parsers and helper functions operating on strings, especially useful when writing parsers for</span>
-<span class='doccomment'>//! text-based formats.</span>
+</pre><pre class="rust ">
+<span class="doccomment">//! Parsers and helper functions operating on strings, especially useful when writing parsers for</span>
+<span class="doccomment">//! text-based formats.</span>
 
-<span class='doccomment'>/// `tag_s!(&amp;str) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;`</span>
-<span class='doccomment'>/// declares a string as a suite to recognize</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>/// consumes the recognized characters</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>/// ```</span>
-<span class='doccomment'>/// # #[macro_use] extern crate nom;</span>
-<span class='doccomment'>/// # use nom::IResult::{self,Done};</span>
-<span class='doccomment'>/// # fn main() {</span>
-<span class='doccomment'>///  fn test(input: &amp;str) -&gt; IResult&lt;&amp;str, &amp;str&gt; {</span>
-<span class='doccomment'>///    tag_s!(input, &quot;abcd&quot;)</span>
-<span class='doccomment'>///  }</span>
-<span class='doccomment'>///  let r = test(&quot;abcdefgh&quot;);</span>
-<span class='doccomment'>///  assert_eq!(r, Done(&quot;efgh&quot;, &quot;abcd&quot;));</span>
-<span class='doccomment'>/// # }</span>
-<span class='doccomment'>/// ```</span>
-<span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>tag_s</span> (
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>tag</span>: <span class='ident'>expr</span>) <span class='op'>=&gt;</span> (
+<span class="doccomment">/// `tag_s!(&amp;str) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;`</span>
+<span class="doccomment">/// declares a string as a suite to recognize</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// consumes the recognized characters</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// ```</span>
+<span class="doccomment">/// # #[macro_use] extern crate nom;</span>
+<span class="doccomment">/// # use nom::IResult::{self,Done};</span>
+<span class="doccomment">/// # fn main() {</span>
+<span class="doccomment">///  fn test(input: &amp;str) -&gt; IResult&lt;&amp;str, &amp;str&gt; {</span>
+<span class="doccomment">///    tag_s!(input, &quot;abcd&quot;)</span>
+<span class="doccomment">///  }</span>
+<span class="doccomment">///  let r = test(&quot;abcdefgh&quot;);</span>
+<span class="doccomment">///  assert_eq!(r, Done(&quot;efgh&quot;, &quot;abcd&quot;));</span>
+<span class="doccomment">/// # }</span>
+<span class="doccomment">/// ```</span>
+<span class="attribute">#[<span class="ident">macro_export</span>]</span>
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">tag_s</span> (
+  (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tag</span>: <span class="ident">expr</span>) <span class="op">=&gt;</span> (
     {
-      <span class='kw'>let</span> <span class='ident'>res</span>: <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span><span class='op'>&lt;</span>_,_<span class='op'>&gt;</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>tag</span>.<span class='ident'>len</span>() <span class='op'>&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>.<span class='ident'>len</span>() {
-        <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>Needed</span>::<span class='ident'>Size</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>tag</span>.<span class='ident'>len</span>()))
-      <span class='comment'>//} else if &amp;$i[0..$tag.len()] == $tag {</span>
-      } <span class='kw'>else</span> <span class='kw'>if</span> (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>).<span class='ident'>starts_with</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>tag</span>) {
-        <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>[<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>tag</span>.<span class='ident'>len</span>()..], <span class='kw-2'>&amp;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>[<span class='number'>0</span>..<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>tag</span>.<span class='ident'>len</span>()])
-      } <span class='kw'>else</span> {
-        <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Error</span>(<span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='prelude-val'>Err</span>::<span class='macro-nonterminal'>Position</span>(<span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>ErrorKind</span>::<span class='ident'>TagStr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>))
+      <span class="kw">let</span> <span class="ident">res</span>: <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span><span class="op">&lt;</span>_,_<span class="op">&gt;</span> <span class="op">=</span> <span class="kw">if</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tag</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>.<span class="ident">len</span>() {
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Incomplete</span>(<span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">Needed</span>::<span class="ident">Size</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">tag</span>.<span class="ident">len</span>()))
+      <span class="comment">//} else if &amp;$i[0..$tag.len()] == $tag {</span>
+      } <span class="kw">else</span> <span class="kw">if</span> (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>).<span class="ident">starts_with</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">tag</span>) {
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Done</span>(<span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">tag</span>.<span class="ident">len</span>()..], <span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>[<span class="number">0</span>..<span class="macro-nonterminal">$</span><span class="macro-nonterminal">tag</span>.<span class="ident">len</span>()])
+      } <span class="kw">else</span> {
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Error</span>(<span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="prelude-val">Err</span>::<span class="macro-nonterminal">Position</span>(<span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">ErrorKind</span>::<span class="ident">TagStr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>))
       };
-      <span class='ident'>res</span>
+      <span class="ident">res</span>
     }
   );
 );
 
-<span class='doccomment'>/// `take_s!(nb) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;`</span>
-<span class='doccomment'>/// generates a parser consuming the specified number of characters</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>/// ```</span>
-<span class='doccomment'>/// # #[macro_use] extern crate nom;</span>
-<span class='doccomment'>/// # use nom::IResult::Done;</span>
-<span class='doccomment'>/// # fn main() {</span>
-<span class='doccomment'>///  // Desmond parser</span>
-<span class='doccomment'>///  named!(take5&lt;&amp;str,&amp;str&gt;, take_s!( 5 ) );</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>///  let a = &quot;abcdefgh&quot;;</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>///  assert_eq!(take5(a), Done(&quot;fgh&quot;, &quot;abcde&quot;));</span>
-<span class='doccomment'>/// # }</span>
-<span class='doccomment'>/// ```</span>
-<span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>take_s</span> (
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>count</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (
+<span class="doccomment">/// `take_s!(nb) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;`</span>
+<span class="doccomment">/// generates a parser consuming the specified number of characters</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// ```</span>
+<span class="doccomment">/// # #[macro_use] extern crate nom;</span>
+<span class="doccomment">/// # use nom::IResult::Done;</span>
+<span class="doccomment">/// # fn main() {</span>
+<span class="doccomment">///  // Desmond parser</span>
+<span class="doccomment">///  named!(take5&lt;&amp;str,&amp;str&gt;, take_s!( 5 ) );</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///  let a = &quot;abcdefgh&quot;;</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///  assert_eq!(take5(a), Done(&quot;fgh&quot;, &quot;abcde&quot;));</span>
+<span class="doccomment">/// # }</span>
+<span class="doccomment">/// ```</span>
+<span class="attribute">#[<span class="ident">macro_export</span>]</span>
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">take_s</span> (
+  (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">count</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> (
     {
-      <span class='kw'>let</span> <span class='ident'>cnt</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>count</span> <span class='kw'>as</span> <span class='ident'>usize</span>;
-      <span class='kw'>let</span> <span class='ident'>res</span>: <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span><span class='op'>&lt;</span>_,_<span class='op'>&gt;</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>.<span class='ident'>chars</span>().<span class='ident'>count</span>() <span class='op'>&lt;</span> <span class='ident'>cnt</span> {
-        <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>Needed</span>::<span class='ident'>Size</span>(<span class='ident'>cnt</span>))
-      } <span class='kw'>else</span> {
-        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>offset</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>.<span class='ident'>len</span>();
-        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>count</span> <span class='op'>=</span> <span class='number'>0</span>;
-        <span class='kw'>for</span> (<span class='ident'>o</span>, _) <span class='kw'>in</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>.<span class='ident'>char_indices</span>() {
-          <span class='kw'>if</span> <span class='ident'>count</span> <span class='op'>==</span> <span class='ident'>cnt</span> {
-            <span class='ident'>offset</span> <span class='op'>=</span> <span class='ident'>o</span>;
-            <span class='kw'>break</span>;
+      <span class="kw">let</span> <span class="ident">cnt</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">count</span> <span class="kw">as</span> <span class="ident">usize</span>;
+      <span class="kw">let</span> <span class="ident">res</span>: <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span><span class="op">&lt;</span>_,_<span class="op">&gt;</span> <span class="op">=</span> <span class="kw">if</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>.<span class="ident">chars</span>().<span class="ident">count</span>() <span class="op">&lt;</span> <span class="ident">cnt</span> {
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Incomplete</span>(<span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">Needed</span>::<span class="ident">Size</span>(<span class="ident">cnt</span>))
+      } <span class="kw">else</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>.<span class="ident">len</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">count</span> <span class="op">=</span> <span class="number">0</span>;
+        <span class="kw">for</span> (<span class="ident">o</span>, _) <span class="kw">in</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>.<span class="ident">char_indices</span>() {
+          <span class="kw">if</span> <span class="ident">count</span> <span class="op">==</span> <span class="ident">cnt</span> {
+            <span class="ident">offset</span> <span class="op">=</span> <span class="ident">o</span>;
+            <span class="kw">break</span>;
           }
-          <span class='ident'>count</span> <span class='op'>+=</span> <span class='number'>1</span>;
+          <span class="ident">count</span> <span class="op">+=</span> <span class="number">1</span>;
         }
-        <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>[<span class='ident'>offset</span>..], <span class='kw-2'>&amp;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>[..<span class='ident'>offset</span>])
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Done</span>(<span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>[<span class="ident">offset</span>..], <span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>[..<span class="ident">offset</span>])
       };
-      <span class='ident'>res</span>
+      <span class="ident">res</span>
     }
   );
 );
 
 
-<span class='doccomment'>/// `is_not_s!(&amp;str) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;`</span>
-<span class='doccomment'>/// returns the longest list of characters that do not appear in the provided array</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>/// ```</span>
-<span class='doccomment'>/// # #[macro_use] extern crate nom;</span>
-<span class='doccomment'>/// # use nom::IResult::Done;</span>
-<span class='doccomment'>/// # fn main() {</span>
-<span class='doccomment'>///  named!( not_space&lt;&amp;str,&amp;str&gt;, is_not_s!( &quot; \t\r\n&quot; ) );</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>///  let r = not_space(&quot;abcdefgh\nijkl&quot;);</span>
-<span class='doccomment'>///  assert_eq!(r, Done(&quot;\nijkl&quot;, &quot;abcdefgh&quot;));</span>
-<span class='doccomment'>///  # }</span>
-<span class='doccomment'>/// ```</span>
-<span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>is_not_s</span> (
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>arr</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (
+<span class="doccomment">/// `is_not_s!(&amp;str) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;`</span>
+<span class="doccomment">/// returns the longest list of characters that do not appear in the provided array</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// ```</span>
+<span class="doccomment">/// # #[macro_use] extern crate nom;</span>
+<span class="doccomment">/// # use nom::IResult::Done;</span>
+<span class="doccomment">/// # fn main() {</span>
+<span class="doccomment">///  named!( not_space&lt;&amp;str,&amp;str&gt;, is_not_s!( &quot; \t\r\n&quot; ) );</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///  let r = not_space(&quot;abcdefgh\nijkl&quot;);</span>
+<span class="doccomment">///  assert_eq!(r, Done(&quot;\nijkl&quot;, &quot;abcdefgh&quot;));</span>
+<span class="doccomment">///  # }</span>
+<span class="doccomment">/// ```</span>
+<span class="attribute">#[<span class="ident">macro_export</span>]</span>
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">is_not_s</span> (
+  (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">arr</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> (
     {
-      <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>collections</span>::<span class='ident'>HashSet</span>;
-      <span class='kw'>let</span> <span class='ident'>set</span>: <span class='ident'>HashSet</span><span class='op'>&lt;</span><span class='ident'>char</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>arr</span>.<span class='ident'>chars</span>().<span class='ident'>collect</span>();
-      <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>offset</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>len</span>();
-      <span class='kw'>for</span> (<span class='ident'>o</span>, <span class='ident'>c</span>) <span class='kw'>in</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>char_indices</span>() {
-        <span class='kw'>if</span> <span class='ident'>set</span>.<span class='ident'>contains</span>(<span class='kw-2'>&amp;</span><span class='ident'>c</span>) {
-          <span class='ident'>offset</span> <span class='op'>=</span> <span class='ident'>o</span>;
-          <span class='kw'>break</span>;
+      <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">collections</span>::<span class="ident">HashSet</span>;
+      <span class="kw">let</span> <span class="ident">set</span>: <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">arr</span>.<span class="ident">chars</span>().<span class="ident">collect</span>();
+      <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">len</span>();
+      <span class="kw">for</span> (<span class="ident">o</span>, <span class="ident">c</span>) <span class="kw">in</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">char_indices</span>() {
+        <span class="kw">if</span> <span class="ident">set</span>.<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">c</span>) {
+          <span class="ident">offset</span> <span class="op">=</span> <span class="ident">o</span>;
+          <span class="kw">break</span>;
         }
       }
-      <span class='kw'>if</span> <span class='ident'>offset</span> <span class='op'>==</span> <span class='number'>0</span> {
-        <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Error</span>(<span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='prelude-val'>Err</span>::<span class='macro-nonterminal'>Position</span>(<span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>ErrorKind</span>::<span class='ident'>IsAStr</span>,<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>))
-      } <span class='kw'>else</span> <span class='kw'>if</span> <span class='ident'>offset</span> <span class='op'>&lt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>len</span>() {
-        <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>[<span class='ident'>offset</span>..], <span class='kw-2'>&amp;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>[..<span class='ident'>offset</span>])
-      } <span class='kw'>else</span> {
-        <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Done</span>(<span class='string'>&quot;&quot;</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>)
+      <span class="kw">if</span> <span class="ident">offset</span> <span class="op">==</span> <span class="number">0</span> {
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Error</span>(<span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="prelude-val">Err</span>::<span class="macro-nonterminal">Position</span>(<span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">ErrorKind</span>::<span class="ident">IsAStr</span>,<span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>))
+      } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">offset</span> <span class="op">&lt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">len</span>() {
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Done</span>(<span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>[<span class="ident">offset</span>..], <span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>[..<span class="ident">offset</span>])
+      } <span class="kw">else</span> {
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Done</span>(<span class="string">&quot;&quot;</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>)
       }
     }
   );
 );
 
-<span class='doccomment'>/// `is_a_s!(&amp;str) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;`</span>
-<span class='doccomment'>/// returns the longest list of characters that appear in the provided array</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>/// ```</span>
-<span class='doccomment'>/// # #[macro_use] extern crate nom;</span>
-<span class='doccomment'>/// # use nom::IResult::Done;</span>
-<span class='doccomment'>/// # fn main() {</span>
-<span class='doccomment'>///  named!(abcd&lt;&amp;str, &amp;str&gt;, is_a_s!( &quot;abcd&quot; ));</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>///  let r1 = abcd(&quot;aaaaefgh&quot;);</span>
-<span class='doccomment'>///  assert_eq!(r1, Done(&quot;efgh&quot;, &quot;aaaa&quot;));</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>///  let r2 = abcd(&quot;dcbaefgh&quot;);</span>
-<span class='doccomment'>///  assert_eq!(r2, Done(&quot;efgh&quot;, &quot;dcba&quot;));</span>
-<span class='doccomment'>/// # }</span>
-<span class='doccomment'>/// ```</span>
-<span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>is_a_s</span> (
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>arr</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (
+<span class="doccomment">/// `is_a_s!(&amp;str) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;`</span>
+<span class="doccomment">/// returns the longest list of characters that appear in the provided array</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// ```</span>
+<span class="doccomment">/// # #[macro_use] extern crate nom;</span>
+<span class="doccomment">/// # use nom::IResult::Done;</span>
+<span class="doccomment">/// # fn main() {</span>
+<span class="doccomment">///  named!(abcd&lt;&amp;str, &amp;str&gt;, is_a_s!( &quot;abcd&quot; ));</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///  let r1 = abcd(&quot;aaaaefgh&quot;);</span>
+<span class="doccomment">///  assert_eq!(r1, Done(&quot;efgh&quot;, &quot;aaaa&quot;));</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///  let r2 = abcd(&quot;dcbaefgh&quot;);</span>
+<span class="doccomment">///  assert_eq!(r2, Done(&quot;efgh&quot;, &quot;dcba&quot;));</span>
+<span class="doccomment">/// # }</span>
+<span class="doccomment">/// ```</span>
+<span class="attribute">#[<span class="ident">macro_export</span>]</span>
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">is_a_s</span> (
+  (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">arr</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> (
     {
-      <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>collections</span>::<span class='ident'>HashSet</span>;
-      <span class='kw'>let</span> <span class='ident'>set</span>: <span class='ident'>HashSet</span><span class='op'>&lt;</span><span class='ident'>char</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>arr</span>.<span class='ident'>chars</span>().<span class='ident'>collect</span>();
-      <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>offset</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>len</span>();
-      <span class='kw'>for</span> (<span class='ident'>o</span>, <span class='ident'>c</span>) <span class='kw'>in</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>char_indices</span>() {
-        <span class='kw'>if</span> <span class='op'>!</span><span class='ident'>set</span>.<span class='ident'>contains</span>(<span class='kw-2'>&amp;</span><span class='ident'>c</span>) {
-          <span class='ident'>offset</span> <span class='op'>=</span> <span class='ident'>o</span>;
-          <span class='kw'>break</span>;
+      <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">collections</span>::<span class="ident">HashSet</span>;
+      <span class="kw">let</span> <span class="ident">set</span>: <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">arr</span>.<span class="ident">chars</span>().<span class="ident">collect</span>();
+      <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">len</span>();
+      <span class="kw">for</span> (<span class="ident">o</span>, <span class="ident">c</span>) <span class="kw">in</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">char_indices</span>() {
+        <span class="kw">if</span> <span class="op">!</span><span class="ident">set</span>.<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">c</span>) {
+          <span class="ident">offset</span> <span class="op">=</span> <span class="ident">o</span>;
+          <span class="kw">break</span>;
         }
       }
-      <span class='kw'>if</span> <span class='ident'>offset</span> <span class='op'>==</span> <span class='number'>0</span> {
-        <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Error</span>(<span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='prelude-val'>Err</span>::<span class='macro-nonterminal'>Position</span>(<span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>ErrorKind</span>::<span class='ident'>IsAStr</span>,<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>))
-      } <span class='kw'>else</span> <span class='kw'>if</span> <span class='ident'>offset</span> <span class='op'>&lt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>len</span>() {
-        <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>[<span class='ident'>offset</span>..], <span class='kw-2'>&amp;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>[..<span class='ident'>offset</span>])
-      } <span class='kw'>else</span> {
-        <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Done</span>(<span class='string'>&quot;&quot;</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>)
+      <span class="kw">if</span> <span class="ident">offset</span> <span class="op">==</span> <span class="number">0</span> {
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Error</span>(<span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="prelude-val">Err</span>::<span class="macro-nonterminal">Position</span>(<span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">ErrorKind</span>::<span class="ident">IsAStr</span>,<span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>))
+      } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">offset</span> <span class="op">&lt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">len</span>() {
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Done</span>(<span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>[<span class="ident">offset</span>..], <span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>[..<span class="ident">offset</span>])
+      } <span class="kw">else</span> {
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Done</span>(<span class="string">&quot;&quot;</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>)
       }
     }
   );
 );
 
 
-<span class='doccomment'>/// `take_while_s!(char -&gt; bool) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;`</span>
-<span class='doccomment'>/// returns the longest list of characters until the provided function fails.</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>/// The argument is either a function `char -&gt; bool` or a macro returning a `bool</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>/// ```</span>
-<span class='doccomment'>/// # #[macro_use] extern crate nom;</span>
-<span class='doccomment'>/// # use nom::IResult::Done;</span>
-<span class='doccomment'>/// # use nom::is_alphanumeric;</span>
-<span class='doccomment'>/// # fn main() {</span>
-<span class='doccomment'>///  fn alphabetic(chr: char) -&gt; bool { (chr &gt;= 0x41 as char &amp;&amp; chr &lt;= 0x5A as char) || (chr &gt;= 0x61 as char &amp;&amp; chr &lt;= 0x7A as char) }</span>
-<span class='doccomment'>///  named!( alpha&lt;&amp;str,&amp;str&gt;, take_while_s!( alphabetic ) );</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>///  let r = alpha(&quot;abcd\nefgh&quot;);</span>
-<span class='doccomment'>///  assert_eq!(r, Done(&quot;\nefgh&quot;, &quot;abcd&quot;));</span>
-<span class='doccomment'>/// # }</span>
-<span class='doccomment'>/// ```</span>
-<span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>take_while_s</span> (
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> )) <span class='op'>=&gt;</span> (
+<span class="doccomment">/// `take_while_s!(char -&gt; bool) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;`</span>
+<span class="doccomment">/// returns the longest list of characters until the provided function fails.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// The argument is either a function `char -&gt; bool` or a macro returning a `bool</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// ```</span>
+<span class="doccomment">/// # #[macro_use] extern crate nom;</span>
+<span class="doccomment">/// # use nom::IResult::Done;</span>
+<span class="doccomment">/// # use nom::is_alphanumeric;</span>
+<span class="doccomment">/// # fn main() {</span>
+<span class="doccomment">///  fn alphabetic(chr: char) -&gt; bool { (chr &gt;= 0x41 as char &amp;&amp; chr &lt;= 0x5A as char) || (chr &gt;= 0x61 as char &amp;&amp; chr &lt;= 0x7A as char) }</span>
+<span class="doccomment">///  named!( alpha&lt;&amp;str,&amp;str&gt;, take_while_s!( alphabetic ) );</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///  let r = alpha(&quot;abcd\nefgh&quot;);</span>
+<span class="doccomment">///  assert_eq!(r, Done(&quot;\nefgh&quot;, &quot;abcd&quot;));</span>
+<span class="doccomment">/// # }</span>
+<span class="doccomment">/// ```</span>
+<span class="attribute">#[<span class="ident">macro_export</span>]</span>
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">take_while_s</span> (
+  (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">submac</span>:<span class="macro">ident</span><span class="macro">!</span>( $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">args</span>:<span class="ident">tt</span>)<span class="op">*</span> )) <span class="op">=&gt;</span> (
     {
-      <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>offset</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>len</span>();
-      <span class='kw'>for</span> (<span class='ident'>o</span>, <span class='ident'>c</span>) <span class='kw'>in</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>char_indices</span>() {
-        <span class='kw'>if</span> <span class='op'>!</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='ident'>c</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>) {
-          <span class='ident'>offset</span> <span class='op'>=</span> <span class='ident'>o</span>;
-          <span class='kw'>break</span>;
+      <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">len</span>();
+      <span class="kw">for</span> (<span class="ident">o</span>, <span class="ident">c</span>) <span class="kw">in</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">char_indices</span>() {
+        <span class="kw">if</span> <span class="op">!</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">submac</span><span class="op">!</span>(<span class="ident">c</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">args</span>)<span class="kw-2">*</span>) {
+          <span class="ident">offset</span> <span class="op">=</span> <span class="ident">o</span>;
+          <span class="kw">break</span>;
         }
       }
-      <span class='kw'>if</span> <span class='ident'>offset</span> <span class='op'>&lt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>len</span>() {
-        <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>[<span class='ident'>offset</span>..], <span class='kw-2'>&amp;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>[..<span class='ident'>offset</span>])
-      } <span class='kw'>else</span> {
-        <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Done</span>(<span class='string'>&quot;&quot;</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>)
+      <span class="kw">if</span> <span class="ident">offset</span> <span class="op">&lt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">len</span>() {
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Done</span>(<span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>[<span class="ident">offset</span>..], <span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>[..<span class="ident">offset</span>])
+      } <span class="kw">else</span> {
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Done</span>(<span class="string">&quot;&quot;</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>)
       }
     }
   );
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (
-    <span class='macro'>take_while_s</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>, <span class='macro'>call</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>));
+  (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">f</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> (
+    <span class="macro">take_while_s</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>, <span class="macro">call</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">f</span>));
   );
 );
 
-<span class='doccomment'>/// `take_while1_s!(char -&gt; bool) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;`</span>
-<span class='doccomment'>/// returns the longest (non empty) list of characters until the provided function fails.</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>/// The argument is either a function `char -&gt; bool` or a macro returning a `bool`</span>
-<span class='doccomment'>/// ```</span>
-<span class='doccomment'>/// # #[macro_use] extern crate nom;</span>
-<span class='doccomment'>/// # use nom::IResult::Done;</span>
-<span class='doccomment'>/// # use nom::is_alphanumeric;</span>
-<span class='doccomment'>/// # fn main() {</span>
-<span class='doccomment'>///  fn alphabetic(chr: char) -&gt; bool { (chr &gt;= 0x41 as char &amp;&amp; chr &lt;= 0x5A as char) || (chr &gt;= 0x61 as char &amp;&amp; chr &lt;= 0x7A as char) }</span>
-<span class='doccomment'>///  named!( alpha&lt;&amp;str,&amp;str&gt;, take_while1_s!( alphabetic ) );</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>///  let r = alpha(&quot;abcd\nefgh&quot;);</span>
-<span class='doccomment'>///  assert_eq!(r, Done(&quot;\nefgh&quot;, &quot;abcd&quot;));</span>
-<span class='doccomment'>/// # }</span>
-<span class='doccomment'>/// ```</span>
-<span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>take_while1_s</span> (
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> )) <span class='op'>=&gt;</span> (
+<span class="doccomment">/// `take_while1_s!(char -&gt; bool) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;`</span>
+<span class="doccomment">/// returns the longest (non empty) list of characters until the provided function fails.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// The argument is either a function `char -&gt; bool` or a macro returning a `bool`</span>
+<span class="doccomment">/// ```</span>
+<span class="doccomment">/// # #[macro_use] extern crate nom;</span>
+<span class="doccomment">/// # use nom::IResult::Done;</span>
+<span class="doccomment">/// # use nom::is_alphanumeric;</span>
+<span class="doccomment">/// # fn main() {</span>
+<span class="doccomment">///  fn alphabetic(chr: char) -&gt; bool { (chr &gt;= 0x41 as char &amp;&amp; chr &lt;= 0x5A as char) || (chr &gt;= 0x61 as char &amp;&amp; chr &lt;= 0x7A as char) }</span>
+<span class="doccomment">///  named!( alpha&lt;&amp;str,&amp;str&gt;, take_while1_s!( alphabetic ) );</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///  let r = alpha(&quot;abcd\nefgh&quot;);</span>
+<span class="doccomment">///  assert_eq!(r, Done(&quot;\nefgh&quot;, &quot;abcd&quot;));</span>
+<span class="doccomment">/// # }</span>
+<span class="doccomment">/// ```</span>
+<span class="attribute">#[<span class="ident">macro_export</span>]</span>
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">take_while1_s</span> (
+  (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">submac</span>:<span class="macro">ident</span><span class="macro">!</span>( $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">args</span>:<span class="ident">tt</span>)<span class="op">*</span> )) <span class="op">=&gt;</span> (
     {
-      <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>offset</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>len</span>();
-      <span class='kw'>for</span> (<span class='ident'>o</span>, <span class='ident'>c</span>) <span class='kw'>in</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>char_indices</span>() {
-        <span class='kw'>if</span> <span class='op'>!</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='ident'>c</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>) {
-          <span class='ident'>offset</span> <span class='op'>=</span> <span class='ident'>o</span>;
-          <span class='kw'>break</span>;
+      <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">len</span>();
+      <span class="kw">for</span> (<span class="ident">o</span>, <span class="ident">c</span>) <span class="kw">in</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">char_indices</span>() {
+        <span class="kw">if</span> <span class="op">!</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">submac</span><span class="op">!</span>(<span class="ident">c</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">args</span>)<span class="kw-2">*</span>) {
+          <span class="ident">offset</span> <span class="op">=</span> <span class="ident">o</span>;
+          <span class="kw">break</span>;
         }
       }
-      <span class='kw'>if</span> <span class='ident'>offset</span> <span class='op'>==</span> <span class='number'>0</span> {
-        <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Error</span>(<span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='prelude-val'>Err</span>::<span class='macro-nonterminal'>Position</span>(<span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>ErrorKind</span>::<span class='ident'>TakeWhile1Str</span>,<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>))
-      } <span class='kw'>else</span> <span class='kw'>if</span> <span class='ident'>offset</span> <span class='op'>&lt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>len</span>() {
-        <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>[<span class='ident'>offset</span>..], <span class='kw-2'>&amp;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>[..<span class='ident'>offset</span>])
-      } <span class='kw'>else</span> {
-        <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Done</span>(<span class='string'>&quot;&quot;</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>)
+      <span class="kw">if</span> <span class="ident">offset</span> <span class="op">==</span> <span class="number">0</span> {
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Error</span>(<span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="prelude-val">Err</span>::<span class="macro-nonterminal">Position</span>(<span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">ErrorKind</span>::<span class="ident">TakeWhile1Str</span>,<span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>))
+      } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">offset</span> <span class="op">&lt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">len</span>() {
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Done</span>(<span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>[<span class="ident">offset</span>..], <span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>[..<span class="ident">offset</span>])
+      } <span class="kw">else</span> {
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Done</span>(<span class="string">&quot;&quot;</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>)
       }
     }
   );
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (
-    <span class='macro'>take_while1_s</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>, <span class='macro'>call</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>));
+  (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">f</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> (
+    <span class="macro">take_while1_s</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>, <span class="macro">call</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">f</span>));
   );
 );
 
 
-<span class='doccomment'>/// `take_till_s!(&amp;str -&gt; bool) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;`</span>
-<span class='doccomment'>/// returns the longest list of characters until the provided function succeeds</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>/// The argument is either a function `char -&gt; bool` or a macro returning a `bool</span>
-<span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>take_till_s</span> (
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span>:<span class='macro'>ident</span><span class='macro'>!</span>( $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>tt</span>)<span class='op'>*</span> )) <span class='op'>=&gt;</span> (
+<span class="doccomment">/// `take_till_s!(&amp;str -&gt; bool) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;`</span>
+<span class="doccomment">/// returns the longest list of characters until the provided function succeeds</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// The argument is either a function `char -&gt; bool` or a macro returning a `bool</span>
+<span class="attribute">#[<span class="ident">macro_export</span>]</span>
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">take_till_s</span> (
+  (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">submac</span>:<span class="macro">ident</span><span class="macro">!</span>( $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">args</span>:<span class="ident">tt</span>)<span class="op">*</span> )) <span class="op">=&gt;</span> (
 
     {
-      <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>offset</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>len</span>();
-      <span class='kw'>for</span> (<span class='ident'>o</span>, <span class='ident'>c</span>) <span class='kw'>in</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>char_indices</span>() {
-        <span class='kw'>if</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>submac</span><span class='op'>!</span>(<span class='ident'>c</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>)<span class='op'>*</span>) {
-            <span class='ident'>offset</span> <span class='op'>=</span> <span class='ident'>o</span>;
-            <span class='kw'>break</span>;
+      <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">len</span>();
+      <span class="kw">for</span> (<span class="ident">o</span>, <span class="ident">c</span>) <span class="kw">in</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">char_indices</span>() {
+        <span class="kw">if</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">submac</span><span class="op">!</span>(<span class="ident">c</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">args</span>)<span class="kw-2">*</span>) {
+            <span class="ident">offset</span> <span class="op">=</span> <span class="ident">o</span>;
+            <span class="kw">break</span>;
         }
       }
-      <span class='kw'>if</span> <span class='ident'>offset</span> <span class='op'>&lt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>len</span>() {
-        <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>[<span class='ident'>offset</span>..], <span class='kw-2'>&amp;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>[..<span class='ident'>offset</span>])
-      } <span class='kw'>else</span> {
-        <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Done</span>(<span class='string'>&quot;&quot;</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>)
+      <span class="kw">if</span> <span class="ident">offset</span> <span class="op">&lt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">len</span>() {
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Done</span>(<span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>[<span class="ident">offset</span>..], <span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>[..<span class="ident">offset</span>])
+      } <span class="kw">else</span> {
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Done</span>(<span class="string">&quot;&quot;</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>)
       }
     }
   );
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (
-    <span class='macro'>take_till_s</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>, <span class='macro'>call</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>f</span>));
+  (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">f</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> (
+    <span class="macro">take_till_s</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>, <span class="macro">call</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">f</span>));
   );
 );
 
-<span class='doccomment'>/// `take_until_and_consume_s!(&amp;str) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;`</span>
-<span class='doccomment'>/// generates a parser consuming all chars until the specified string is found and consumes it</span>
-<span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>take_until_and_consume_s</span> (
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>substr</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (
+<span class="doccomment">/// `take_until_and_consume_s!(&amp;str) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;`</span>
+<span class="doccomment">/// generates a parser consuming all chars until the specified string is found and consumes it</span>
+<span class="attribute">#[<span class="ident">macro_export</span>]</span>
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">take_until_and_consume_s</span> (
+  (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">substr</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> (
     {
-      <span class='attribute'>#[<span class='ident'>inline</span>(<span class='ident'>always</span>)]</span>
-      <span class='kw'>fn</span> <span class='ident'>shift_window_and_cmp</span>(<span class='ident'>window</span>: <span class='kw-2'>&amp;</span> <span class='kw-2'>mut</span> ::<span class='ident'>std</span>::<span class='ident'>vec</span>::<span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>char</span><span class='op'>&gt;</span>, <span class='ident'>c</span>: <span class='ident'>char</span>, <span class='ident'>substr_vec</span>: <span class='kw-2'>&amp;</span> ::<span class='ident'>std</span>::<span class='ident'>vec</span>::<span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>char</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
-        <span class='ident'>window</span>.<span class='ident'>push</span>(<span class='ident'>c</span>);
-        <span class='kw'>if</span> <span class='ident'>window</span>.<span class='ident'>len</span>() <span class='op'>&gt;</span> <span class='ident'>substr_vec</span>.<span class='ident'>len</span>() {
-          <span class='ident'>window</span>.<span class='ident'>remove</span>(<span class='number'>0</span>);
+      <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
+      <span class="kw">fn</span> <span class="ident">shift_window_and_cmp</span>(<span class="ident">window</span>: <span class="op">&amp;</span> <span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">vec</span>::<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span>, <span class="ident">c</span>: <span class="ident">char</span>, <span class="ident">substr_vec</span>: <span class="op">&amp;</span> ::<span class="ident">std</span>::<span class="ident">vec</span>::<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+        <span class="ident">window</span>.<span class="ident">push</span>(<span class="ident">c</span>);
+        <span class="kw">if</span> <span class="ident">window</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="ident">substr_vec</span>.<span class="ident">len</span>() {
+          <span class="ident">window</span>.<span class="ident">remove</span>(<span class="number">0</span>);
         }
-        <span class='ident'>window</span> <span class='op'>==</span> <span class='ident'>substr_vec</span>
+        <span class="ident">window</span> <span class="op">==</span> <span class="ident">substr_vec</span>
       }
-      <span class='kw'>let</span> <span class='ident'>res</span>: <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span><span class='op'>&lt;</span>_, _<span class='op'>&gt;</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>substr</span>.<span class='ident'>len</span>() <span class='op'>&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>len</span>() {
-        <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>Needed</span>::<span class='ident'>Size</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>substr</span>.<span class='ident'>len</span>()))
-      } <span class='kw'>else</span> {
-        <span class='kw'>let</span> <span class='ident'>substr_vec</span>: ::<span class='ident'>std</span>::<span class='ident'>vec</span>::<span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>char</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>substr</span>.<span class='ident'>chars</span>().<span class='ident'>collect</span>();
-        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>window</span>: ::<span class='ident'>std</span>::<span class='ident'>vec</span>::<span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>char</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[];
-        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>offset</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>len</span>();
-        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>parsed</span> <span class='op'>=</span> <span class='bool-val'>false</span>;
-        <span class='kw'>for</span> (<span class='ident'>o</span>, <span class='ident'>c</span>) <span class='kw'>in</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>char_indices</span>() {
-            <span class='kw'>if</span> <span class='ident'>parsed</span> {
-                <span class='comment'>// The easiest way to get the byte offset of the char after the found string</span>
-                <span class='ident'>offset</span> <span class='op'>=</span> <span class='ident'>o</span>;
-                <span class='kw'>break</span>;
+      <span class="kw">let</span> <span class="ident">res</span>: <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span><span class="op">&lt;</span>_, _<span class="op">&gt;</span> <span class="op">=</span> <span class="kw">if</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">substr</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">len</span>() {
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Incomplete</span>(<span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">Needed</span>::<span class="ident">Size</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">substr</span>.<span class="ident">len</span>()))
+      } <span class="kw">else</span> {
+        <span class="kw">let</span> <span class="ident">substr_vec</span>: ::<span class="ident">std</span>::<span class="ident">vec</span>::<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">substr</span>.<span class="ident">chars</span>().<span class="ident">collect</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">window</span>: ::<span class="ident">std</span>::<span class="ident">vec</span>::<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[];
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">len</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">parsed</span> <span class="op">=</span> <span class="bool-val">false</span>;
+        <span class="kw">for</span> (<span class="ident">o</span>, <span class="ident">c</span>) <span class="kw">in</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">char_indices</span>() {
+            <span class="kw">if</span> <span class="ident">parsed</span> {
+                <span class="comment">// The easiest way to get the byte offset of the char after the found string</span>
+                <span class="ident">offset</span> <span class="op">=</span> <span class="ident">o</span>;
+                <span class="kw">break</span>;
             }
-            <span class='kw'>if</span> <span class='ident'>shift_window_and_cmp</span>(<span class='kw-2'>&amp;</span> <span class='kw-2'>mut</span> <span class='ident'>window</span>, <span class='ident'>c</span>, <span class='kw-2'>&amp;</span><span class='ident'>substr_vec</span>) {
-                <span class='ident'>parsed</span> <span class='op'>=</span> <span class='bool-val'>true</span>;
+            <span class="kw">if</span> <span class="ident">shift_window_and_cmp</span>(<span class="op">&amp;</span> <span class="kw-2">mut</span> <span class="ident">window</span>, <span class="ident">c</span>, <span class="kw-2">&amp;</span><span class="ident">substr_vec</span>) {
+                <span class="ident">parsed</span> <span class="op">=</span> <span class="bool-val">true</span>;
             }
         }
-        <span class='kw'>if</span> <span class='ident'>parsed</span> {
-          <span class='kw'>if</span> <span class='ident'>offset</span> <span class='op'>&lt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>len</span>() {
-            <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>[<span class='ident'>offset</span>..], <span class='kw-2'>&amp;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>[..<span class='ident'>offset</span>])
-          } <span class='kw'>else</span> {
-            <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Done</span>(<span class='string'>&quot;&quot;</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>)
+        <span class="kw">if</span> <span class="ident">parsed</span> {
+          <span class="kw">if</span> <span class="ident">offset</span> <span class="op">&lt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">len</span>() {
+            <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Done</span>(<span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>[<span class="ident">offset</span>..], <span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>[..<span class="ident">offset</span>])
+          } <span class="kw">else</span> {
+            <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Done</span>(<span class="string">&quot;&quot;</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>)
           }
-        } <span class='kw'>else</span> {
-          <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Error</span>(<span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='prelude-val'>Err</span>::<span class='macro-nonterminal'>Position</span>(<span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>ErrorKind</span>::<span class='ident'>TakeUntilAndConsumeStr</span>,<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>))
+        } <span class="kw">else</span> {
+          <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Error</span>(<span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="prelude-val">Err</span>::<span class="macro-nonterminal">Position</span>(<span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">ErrorKind</span>::<span class="ident">TakeUntilAndConsumeStr</span>,<span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>))
         }
       };
-      <span class='ident'>res</span>
+      <span class="ident">res</span>
     }
   );
 );
 
-<span class='doccomment'>/// `take_until_s!(&amp;str) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;`</span>
-<span class='doccomment'>/// generates a parser consuming all chars until the specified string is found and leaves it in the remaining input</span>
-<span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>take_until_s</span> (
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>substr</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> (
+<span class="doccomment">/// `take_until_s!(&amp;str) =&gt; &amp;str -&gt; IResult&lt;&amp;str, &amp;str&gt;`</span>
+<span class="doccomment">/// generates a parser consuming all chars until the specified string is found and leaves it in the remaining input</span>
+<span class="attribute">#[<span class="ident">macro_export</span>]</span>
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">take_until_s</span> (
+  (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">substr</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> (
     {
-      <span class='attribute'>#[<span class='ident'>inline</span>(<span class='ident'>always</span>)]</span>
-      <span class='kw'>fn</span> <span class='ident'>shift_window_and_cmp</span>(<span class='ident'>window</span>: <span class='kw-2'>&amp;</span> <span class='kw-2'>mut</span> <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>char</span><span class='op'>&gt;</span>, <span class='ident'>c</span>: <span class='ident'>char</span>, <span class='ident'>substr_vec</span>: <span class='kw-2'>&amp;</span><span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>char</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
-        <span class='ident'>window</span>.<span class='ident'>push</span>(<span class='ident'>c</span>);
-        <span class='kw'>if</span> <span class='ident'>window</span>.<span class='ident'>len</span>() <span class='op'>&gt;</span> <span class='ident'>substr_vec</span>.<span class='ident'>len</span>() {
-          <span class='ident'>window</span>.<span class='ident'>remove</span>(<span class='number'>0</span>);
+      <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
+      <span class="kw">fn</span> <span class="ident">shift_window_and_cmp</span>(<span class="ident">window</span>: <span class="op">&amp;</span> <span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span>, <span class="ident">c</span>: <span class="ident">char</span>, <span class="ident">substr_vec</span>: <span class="kw-2">&amp;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+        <span class="ident">window</span>.<span class="ident">push</span>(<span class="ident">c</span>);
+        <span class="kw">if</span> <span class="ident">window</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="ident">substr_vec</span>.<span class="ident">len</span>() {
+          <span class="ident">window</span>.<span class="ident">remove</span>(<span class="number">0</span>);
         }
-        <span class='ident'>window</span> <span class='op'>==</span> <span class='ident'>substr_vec</span>
+        <span class="ident">window</span> <span class="op">==</span> <span class="ident">substr_vec</span>
       }
-      <span class='kw'>let</span> <span class='ident'>res</span>: <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>substr</span>.<span class='ident'>len</span>() <span class='op'>&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>len</span>() {
-        <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Incomplete</span>(<span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>Needed</span>::<span class='ident'>Size</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>substr</span>.<span class='ident'>len</span>()))
-      } <span class='kw'>else</span> {
-        <span class='kw'>let</span> <span class='ident'>substr_vec</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>char</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>substr</span>.<span class='ident'>chars</span>().<span class='ident'>collect</span>();
-        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>window</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>char</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[];
-        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>offset</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>len</span>();
-        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>parsed</span> <span class='op'>=</span> <span class='bool-val'>false</span>;
-        <span class='kw'>for</span> (<span class='ident'>o</span>, <span class='ident'>c</span>) <span class='kw'>in</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>.<span class='ident'>char_indices</span>() {
-            <span class='kw'>if</span> <span class='ident'>shift_window_and_cmp</span>(<span class='kw-2'>&amp;</span> <span class='kw-2'>mut</span> <span class='ident'>window</span>, <span class='ident'>c</span>, <span class='kw-2'>&amp;</span><span class='ident'>substr_vec</span>) {
-                <span class='ident'>parsed</span> <span class='op'>=</span> <span class='bool-val'>true</span>;
-                <span class='ident'>window</span>.<span class='ident'>pop</span>();
-                <span class='kw'>let</span> <span class='ident'>window_len</span>: <span class='ident'>usize</span> <span class='op'>=</span> <span class='ident'>window</span>.<span class='ident'>iter</span>()
-                    .<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>x</span><span class='op'>|</span> <span class='ident'>x</span>.<span class='ident'>len_utf8</span>())
-                    .<span class='ident'>fold</span>(<span class='number'>0</span>, <span class='op'>|</span><span class='ident'>x</span>, <span class='ident'>y</span><span class='op'>|</span> <span class='ident'>x</span> <span class='op'>+</span> <span class='ident'>y</span>);
-                <span class='ident'>offset</span> <span class='op'>=</span> <span class='ident'>o</span> <span class='op'>-</span> <span class='ident'>window_len</span>;
-                <span class='kw'>break</span>;
+      <span class="kw">let</span> <span class="ident">res</span>: <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span> <span class="kw">if</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">substr</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">len</span>() {
+        <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Incomplete</span>(<span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">Needed</span>::<span class="ident">Size</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">substr</span>.<span class="ident">len</span>()))
+      } <span class="kw">else</span> {
+        <span class="kw">let</span> <span class="ident">substr_vec</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">substr</span>.<span class="ident">chars</span>().<span class="ident">collect</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">window</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[];
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">len</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">parsed</span> <span class="op">=</span> <span class="bool-val">false</span>;
+        <span class="kw">for</span> (<span class="ident">o</span>, <span class="ident">c</span>) <span class="kw">in</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>.<span class="ident">char_indices</span>() {
+            <span class="kw">if</span> <span class="ident">shift_window_and_cmp</span>(<span class="op">&amp;</span> <span class="kw-2">mut</span> <span class="ident">window</span>, <span class="ident">c</span>, <span class="kw-2">&amp;</span><span class="ident">substr_vec</span>) {
+                <span class="ident">parsed</span> <span class="op">=</span> <span class="bool-val">true</span>;
+                <span class="ident">window</span>.<span class="ident">pop</span>();
+                <span class="kw">let</span> <span class="ident">window_len</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="ident">window</span>.<span class="ident">iter</span>()
+                    .<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span>.<span class="ident">len_utf8</span>())
+                    .<span class="ident">fold</span>(<span class="number">0</span>, <span class="op">|</span><span class="ident">x</span>, <span class="ident">y</span><span class="op">|</span> <span class="ident">x</span> <span class="op">+</span> <span class="ident">y</span>);
+                <span class="ident">offset</span> <span class="op">=</span> <span class="ident">o</span> <span class="op">-</span> <span class="ident">window_len</span>;
+                <span class="kw">break</span>;
             }
         }
-        <span class='kw'>if</span> <span class='ident'>parsed</span> {
-          <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>[<span class='ident'>offset</span>..], <span class='kw-2'>&amp;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>[..<span class='ident'>offset</span>])
-        } <span class='kw'>else</span> {
-          <span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>IResult</span>::<span class='ident'>Error</span>(<span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='prelude-val'>Err</span>::<span class='macro-nonterminal'>Position</span>(<span class='macro-nonterminal'>$</span><span class='kw'>crate</span>::<span class='macro-nonterminal'>ErrorKind</span>::<span class='ident'>TakeUntilStr</span>,<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>input</span>))
+        <span class="kw">if</span> <span class="ident">parsed</span> {
+          <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Done</span>(<span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>[<span class="ident">offset</span>..], <span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>[..<span class="ident">offset</span>])
+        } <span class="kw">else</span> {
+          <span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">IResult</span>::<span class="ident">Error</span>(<span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="prelude-val">Err</span>::<span class="macro-nonterminal">Position</span>(<span class="macro-nonterminal">$</span><span class="kw">crate</span>::<span class="macro-nonterminal">ErrorKind</span>::<span class="ident">TakeUntilStr</span>,<span class="macro-nonterminal">$</span><span class="macro-nonterminal">input</span>))
         }
       };
-      <span class='ident'>res</span>
+      <span class="ident">res</span>
     }
   );
 );
 
-<span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>test</span>)]</span>
-<span class='kw'>mod</span> <span class='ident'>test</span> {
-    <span class='kw'>use</span> ::<span class='ident'>IResult</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
+<span class="kw">mod</span> <span class="ident">test</span> {
+    <span class="kw">use</span> ::<span class="ident">IResult</span>;
 
-    <span class='attribute'>#[<span class='ident'>test</span>]</span>
-    <span class='kw'>fn</span> <span class='ident'>tag_str_succeed</span>() {
-        <span class='kw'>const</span> <span class='ident'>INPUT</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;Hello World!&quot;</span>;
-        <span class='kw'>const</span> <span class='ident'>TAG</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;Hello&quot;</span>;
-        <span class='kw'>fn</span> <span class='ident'>test</span>(<span class='ident'>input</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span> {
-          <span class='macro'>tag_s</span><span class='macro'>!</span>(<span class='ident'>input</span>, <span class='ident'>TAG</span>)
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">tag_str_succeed</span>() {
+        <span class="kw">const</span> <span class="ident">INPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;Hello World!&quot;</span>;
+        <span class="kw">const</span> <span class="ident">TAG</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;Hello&quot;</span>;
+        <span class="kw">fn</span> <span class="ident">test</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
+          <span class="macro">tag_s</span><span class="macro">!</span>(<span class="ident">input</span>, <span class="ident">TAG</span>)
         }
 
-        <span class='kw'>match</span> <span class='ident'>test</span>(<span class='ident'>INPUT</span>) {
-            <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>extra</span>, <span class='ident'>output</span>) <span class='op'>=&gt;</span> {
-                <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>extra</span> <span class='op'>==</span> <span class='string'>&quot; World!&quot;</span>, <span class='string'>&quot;Parser `tag_s` consumed leftover input.&quot;</span>);
-                <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>output</span> <span class='op'>==</span> <span class='ident'>TAG</span>,
-                    <span class='string'>&quot;Parser `tag_s` doesn&#39;t return the tag it matched on success. \
-                     Expected `{}`, got `{}`.&quot;</span>, <span class='ident'>TAG</span>, <span class='ident'>output</span>);
+        <span class="kw">match</span> <span class="ident">test</span>(<span class="ident">INPUT</span>) {
+            <span class="ident">IResult</span>::<span class="ident">Done</span>(<span class="ident">extra</span>, <span class="ident">output</span>) <span class="op">=&gt;</span> {
+                <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">extra</span> <span class="op">==</span> <span class="string">&quot; World!&quot;</span>, <span class="string">&quot;Parser `tag_s` consumed leftover input.&quot;</span>);
+                <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">output</span> <span class="op">==</span> <span class="ident">TAG</span>,
+                    <span class="string">&quot;Parser `tag_s` doesn&#39;t return the tag it matched on success. \
+                     Expected `{}`, got `{}`.&quot;</span>, <span class="ident">TAG</span>, <span class="ident">output</span>);
             },
-            <span class='ident'>other</span> <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Parser `tag_s` didn&#39;t succeed when it should have. \
-                             Got `{:?}`.&quot;</span>, <span class='ident'>other</span>),
+            <span class="ident">other</span> <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Parser `tag_s` didn&#39;t succeed when it should have. \
+                             Got `{:?}`.&quot;</span>, <span class="ident">other</span>),
         };
     }
 
-    <span class='attribute'>#[<span class='ident'>test</span>]</span>
-    <span class='kw'>fn</span> <span class='ident'>tag_str_incomplete</span>() {
-        <span class='kw'>const</span> <span class='ident'>INPUT</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;Hello&quot;</span>;
-        <span class='kw'>const</span> <span class='ident'>TAG</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;Hello World!&quot;</span>;
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">tag_str_incomplete</span>() {
+        <span class="kw">const</span> <span class="ident">INPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;Hello&quot;</span>;
+        <span class="kw">const</span> <span class="ident">TAG</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;Hello World!&quot;</span>;
 
-        <span class='kw'>match</span> <span class='macro'>tag_s</span><span class='macro'>!</span>(<span class='ident'>INPUT</span>, <span class='ident'>TAG</span>) {
-            <span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(_) <span class='op'>=&gt;</span> (),
-            <span class='ident'>other</span> <span class='op'>=&gt;</span> {
-                <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Parser `tag_s` didn&#39;t require more input when it should have. \
-                        Got `{:?}`.&quot;</span>, <span class='ident'>other</span>);
+        <span class="kw">match</span> <span class="macro">tag_s</span><span class="macro">!</span>(<span class="ident">INPUT</span>, <span class="ident">TAG</span>) {
+            <span class="ident">IResult</span>::<span class="ident">Incomplete</span>(_) <span class="op">=&gt;</span> (),
+            <span class="ident">other</span> <span class="op">=&gt;</span> {
+                <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Parser `tag_s` didn&#39;t require more input when it should have. \
+                        Got `{:?}`.&quot;</span>, <span class="ident">other</span>);
             }
         };
     }
 
-    <span class='attribute'>#[<span class='ident'>test</span>]</span>
-    <span class='kw'>fn</span> <span class='ident'>tag_str_error</span>() {
-        <span class='kw'>const</span> <span class='ident'>INPUT</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;Hello World!&quot;</span>;
-        <span class='kw'>const</span> <span class='ident'>TAG</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;Random&quot;</span>; <span class='comment'>// TAG must be closer than INPUT.</span>
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">tag_str_error</span>() {
+        <span class="kw">const</span> <span class="ident">INPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;Hello World!&quot;</span>;
+        <span class="kw">const</span> <span class="ident">TAG</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;Random&quot;</span>; <span class="comment">// TAG must be closer than INPUT.</span>
 
-        <span class='kw'>match</span> <span class='macro'>tag_s</span><span class='macro'>!</span>(<span class='ident'>INPUT</span>, <span class='ident'>TAG</span>) {
-            <span class='ident'>IResult</span>::<span class='ident'>Error</span>(_) <span class='op'>=&gt;</span> (),
-            <span class='ident'>other</span> <span class='op'>=&gt;</span> {
-                <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Parser `tag_s` didn&#39;t fail when it should have. Got `{:?}`.`&quot;</span>, <span class='ident'>other</span>);
+        <span class="kw">match</span> <span class="macro">tag_s</span><span class="macro">!</span>(<span class="ident">INPUT</span>, <span class="ident">TAG</span>) {
+            <span class="ident">IResult</span>::<span class="ident">Error</span>(_) <span class="op">=&gt;</span> (),
+            <span class="ident">other</span> <span class="op">=&gt;</span> {
+                <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Parser `tag_s` didn&#39;t fail when it should have. Got `{:?}`.`&quot;</span>, <span class="ident">other</span>);
             },
         };
     }
 
-    <span class='attribute'>#[<span class='ident'>test</span>]</span>
-    <span class='kw'>fn</span> <span class='ident'>take_s_succeed</span>() {
-        <span class='kw'>const</span> <span class='ident'>INPUT</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
-        <span class='kw'>const</span> <span class='ident'>CONSUMED</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇ&quot;</span>;
-        <span class='kw'>const</span> <span class='ident'>LEFTOVER</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;áƒƭèř&quot;</span>;
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">take_s_succeed</span>() {
+        <span class="kw">const</span> <span class="ident">INPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
+        <span class="kw">const</span> <span class="ident">CONSUMED</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇ&quot;</span>;
+        <span class="kw">const</span> <span class="ident">LEFTOVER</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;áƒƭèř&quot;</span>;
 
-        <span class='kw'>match</span> <span class='macro'>take_s</span><span class='macro'>!</span>(<span class='ident'>INPUT</span>, <span class='number'>9</span>) {
-             <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>extra</span>, <span class='ident'>output</span>) <span class='op'>=&gt;</span> {
-                <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>extra</span> <span class='op'>==</span> <span class='ident'>LEFTOVER</span>, <span class='string'>&quot;Parser `take_s` consumed leftover input. Leftover `{}`.&quot;</span>, <span class='ident'>extra</span>);
-                <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>output</span> <span class='op'>==</span> <span class='ident'>CONSUMED</span>,
-                    <span class='string'>&quot;Parser `take_s` doens&#39;t return the string it consumed on success. Expected `{}`, got `{}`.&quot;</span>,
-                    <span class='ident'>CONSUMED</span>, <span class='ident'>output</span>);
+        <span class="kw">match</span> <span class="macro">take_s</span><span class="macro">!</span>(<span class="ident">INPUT</span>, <span class="number">9</span>) {
+             <span class="ident">IResult</span>::<span class="ident">Done</span>(<span class="ident">extra</span>, <span class="ident">output</span>) <span class="op">=&gt;</span> {
+                <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">extra</span> <span class="op">==</span> <span class="ident">LEFTOVER</span>, <span class="string">&quot;Parser `take_s` consumed leftover input. Leftover `{}`.&quot;</span>, <span class="ident">extra</span>);
+                <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">output</span> <span class="op">==</span> <span class="ident">CONSUMED</span>,
+                    <span class="string">&quot;Parser `take_s` doens&#39;t return the string it consumed on success. Expected `{}`, got `{}`.&quot;</span>,
+                    <span class="ident">CONSUMED</span>, <span class="ident">output</span>);
             },
-            <span class='ident'>other</span> <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Parser `take_s` didn&#39;t succeed when it should have. \
-                             Got `{:?}`.&quot;</span>, <span class='ident'>other</span>),
+            <span class="ident">other</span> <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Parser `take_s` didn&#39;t succeed when it should have. \
+                             Got `{:?}`.&quot;</span>, <span class="ident">other</span>),
         };
     }
 
-    <span class='attribute'>#[<span class='ident'>test</span>]</span>
-    <span class='kw'>fn</span> <span class='ident'>take_until_s_succeed</span>() {
-        <span class='kw'>const</span> <span class='ident'>INPUT</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇ∂áƒƭèř&quot;</span>;
-        <span class='kw'>const</span> <span class='ident'>FIND</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;ÂßÇ∂&quot;</span>;
-        <span class='kw'>const</span> <span class='ident'>CONSUMED</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřè&quot;</span>;
-        <span class='kw'>const</span> <span class='ident'>LEFTOVER</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;ÂßÇ∂áƒƭèř&quot;</span>;
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">take_until_s_succeed</span>() {
+        <span class="kw">const</span> <span class="ident">INPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇ∂áƒƭèř&quot;</span>;
+        <span class="kw">const</span> <span class="ident">FIND</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;ÂßÇ∂&quot;</span>;
+        <span class="kw">const</span> <span class="ident">CONSUMED</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřè&quot;</span>;
+        <span class="kw">const</span> <span class="ident">LEFTOVER</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;ÂßÇ∂áƒƭèř&quot;</span>;
 
-        <span class='kw'>match</span> <span class='macro'>take_until_s</span><span class='macro'>!</span>(<span class='ident'>INPUT</span>, <span class='ident'>FIND</span>) {
-            <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>extra</span>, <span class='ident'>output</span>) <span class='op'>=&gt;</span> {
-                <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>extra</span> <span class='op'>==</span> <span class='ident'>LEFTOVER</span>, <span class='string'>&quot;Parser `take_until_s`\
-                  consumed leftover input. Leftover `{}`.&quot;</span>, <span class='ident'>extra</span>);
-                <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>output</span> <span class='op'>==</span> <span class='ident'>CONSUMED</span>, <span class='string'>&quot;Parser `take_until_s`\
+        <span class="kw">match</span> <span class="macro">take_until_s</span><span class="macro">!</span>(<span class="ident">INPUT</span>, <span class="ident">FIND</span>) {
+            <span class="ident">IResult</span>::<span class="ident">Done</span>(<span class="ident">extra</span>, <span class="ident">output</span>) <span class="op">=&gt;</span> {
+                <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">extra</span> <span class="op">==</span> <span class="ident">LEFTOVER</span>, <span class="string">&quot;Parser `take_until_s`\
+                  consumed leftover input. Leftover `{}`.&quot;</span>, <span class="ident">extra</span>);
+                <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">output</span> <span class="op">==</span> <span class="ident">CONSUMED</span>, <span class="string">&quot;Parser `take_until_s`\
                   doens&#39;t return the string it consumed on success. Expected `{}`, got `{}`.&quot;</span>,
-                  <span class='ident'>CONSUMED</span>, <span class='ident'>output</span>);
+                  <span class="ident">CONSUMED</span>, <span class="ident">output</span>);
             }
-            <span class='ident'>other</span> <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Parser `take_until_s` didn&#39;t succeed when it should have. \
-             Got `{:?}`.&quot;</span>, <span class='ident'>other</span>),
+            <span class="ident">other</span> <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Parser `take_until_s` didn&#39;t succeed when it should have. \
+             Got `{:?}`.&quot;</span>, <span class="ident">other</span>),
         };
     }
 
-    <span class='attribute'>#[<span class='ident'>test</span>]</span>
-    <span class='kw'>fn</span> <span class='ident'>take_s_incomplete</span>() {
-        <span class='kw'>const</span> <span class='ident'>INPUT</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇá&quot;</span>;
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">take_s_incomplete</span>() {
+        <span class="kw">const</span> <span class="ident">INPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇá&quot;</span>;
 
-        <span class='kw'>match</span> <span class='macro'>take_s</span><span class='macro'>!</span>(<span class='ident'>INPUT</span>, <span class='number'>13</span>) {
-            <span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(_) <span class='op'>=&gt;</span> (),
-            <span class='ident'>other</span> <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Parser `take_s` didn&#39;t require more input when it should have. \
-                             Got `{:?}`.&quot;</span>, <span class='ident'>other</span>),
+        <span class="kw">match</span> <span class="macro">take_s</span><span class="macro">!</span>(<span class="ident">INPUT</span>, <span class="number">13</span>) {
+            <span class="ident">IResult</span>::<span class="ident">Incomplete</span>(_) <span class="op">=&gt;</span> (),
+            <span class="ident">other</span> <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Parser `take_s` didn&#39;t require more input when it should have. \
+                             Got `{:?}`.&quot;</span>, <span class="ident">other</span>),
         }
     }
 
-  <span class='kw'>use</span> <span class='ident'>internal</span>::<span class='ident'>IResult</span>::{<span class='ident'>Done</span>, <span class='ident'>Error</span>};
-  <span class='kw'>use</span> <span class='ident'>internal</span>::<span class='prelude-val'>Err</span>::<span class='ident'>Position</span>;
-  <span class='kw'>use</span> <span class='ident'>util</span>::<span class='ident'>ErrorKind</span>;
+  <span class="kw">use</span> <span class="ident">internal</span>::<span class="ident">IResult</span>::{<span class="ident">Done</span>, <span class="ident">Error</span>};
+  <span class="kw">use</span> <span class="ident">internal</span>::<span class="prelude-val">Err</span>::<span class="ident">Position</span>;
+  <span class="kw">use</span> <span class="ident">util</span>::<span class="ident">ErrorKind</span>;
 
-  <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>is_alphabetic</span>(<span class='ident'>c</span>:<span class='ident'>char</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
-    (<span class='ident'>c</span> <span class='kw'>as</span> <span class='ident'>u8</span> <span class='op'>&gt;=</span> <span class='number'>0x41</span> <span class='op'>&amp;&amp;</span> <span class='ident'>c</span> <span class='kw'>as</span> <span class='ident'>u8</span> <span class='op'>&lt;=</span> <span class='number'>0x5A</span>) <span class='op'>||</span> (<span class='ident'>c</span> <span class='kw'>as</span> <span class='ident'>u8</span> <span class='op'>&gt;=</span> <span class='number'>0x61</span> <span class='op'>&amp;&amp;</span> <span class='ident'>c</span> <span class='kw'>as</span> <span class='ident'>u8</span> <span class='op'>&lt;=</span> <span class='number'>0x7A</span>)
+  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_alphabetic</span>(<span class="ident">c</span>:<span class="ident">char</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    (<span class="ident">c</span> <span class="kw">as</span> <span class="ident">u8</span> <span class="op">&gt;=</span> <span class="number">0x41</span> <span class="op">&amp;&amp;</span> <span class="ident">c</span> <span class="kw">as</span> <span class="ident">u8</span> <span class="op">&lt;=</span> <span class="number">0x5A</span>) <span class="op">||</span> (<span class="ident">c</span> <span class="kw">as</span> <span class="ident">u8</span> <span class="op">&gt;=</span> <span class="number">0x61</span> <span class="op">&amp;&amp;</span> <span class="ident">c</span> <span class="kw">as</span> <span class="ident">u8</span> <span class="op">&lt;=</span> <span class="number">0x7A</span>)
   }
-  <span class='attribute'>#[<span class='ident'>test</span>]</span>
-  <span class='kw'>fn</span> <span class='ident'>take_while_s</span>() {
-    <span class='macro'>named</span><span class='macro'>!</span>(<span class='ident'>f</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span>,<span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span>, <span class='macro'>take_while_s</span><span class='macro'>!</span>(<span class='ident'>is_alphabetic</span>));
-    <span class='kw'>let</span> <span class='ident'>a</span> <span class='op'>=</span> <span class='string'>&quot;&quot;</span>;
-    <span class='kw'>let</span> <span class='ident'>b</span> <span class='op'>=</span> <span class='string'>&quot;abcd&quot;</span>;
-    <span class='kw'>let</span> <span class='ident'>c</span> <span class='op'>=</span> <span class='string'>&quot;abcd123&quot;</span>;
-    <span class='kw'>let</span> <span class='ident'>d</span> <span class='op'>=</span> <span class='string'>&quot;123&quot;</span>;
+  <span class="attribute">#[<span class="ident">test</span>]</span>
+  <span class="kw">fn</span> <span class="ident">take_while_s</span>() {
+    <span class="macro">named</span><span class="macro">!</span>(<span class="ident">f</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>,<span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>, <span class="macro">take_while_s</span><span class="macro">!</span>(<span class="ident">is_alphabetic</span>));
+    <span class="kw">let</span> <span class="ident">a</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>;
+    <span class="kw">let</span> <span class="ident">b</span> <span class="op">=</span> <span class="string">&quot;abcd&quot;</span>;
+    <span class="kw">let</span> <span class="ident">c</span> <span class="op">=</span> <span class="string">&quot;abcd123&quot;</span>;
+    <span class="kw">let</span> <span class="ident">d</span> <span class="op">=</span> <span class="string">&quot;123&quot;</span>;
 
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>f</span>(<span class='kw-2'>&amp;</span><span class='ident'>a</span>[..]), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='ident'>a</span>[..], <span class='kw-2'>&amp;</span><span class='ident'>a</span>[..]));
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>f</span>(<span class='kw-2'>&amp;</span><span class='ident'>b</span>[..]), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='ident'>a</span>[..], <span class='kw-2'>&amp;</span><span class='ident'>b</span>[..]));
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>f</span>(<span class='kw-2'>&amp;</span><span class='ident'>c</span>[..]), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='ident'>d</span>[..], <span class='kw-2'>&amp;</span><span class='ident'>b</span>[..]));
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>f</span>(<span class='kw-2'>&amp;</span><span class='ident'>d</span>[..]), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='ident'>d</span>[..], <span class='kw-2'>&amp;</span><span class='ident'>a</span>[..]));
-  }
-
-  <span class='attribute'>#[<span class='ident'>test</span>]</span>
-  <span class='kw'>fn</span> <span class='ident'>take_while1_s</span>() {
-    <span class='macro'>named</span><span class='macro'>!</span>(<span class='ident'>f</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span>,<span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span>, <span class='macro'>take_while1_s</span><span class='macro'>!</span>(<span class='ident'>is_alphabetic</span>));
-    <span class='kw'>let</span> <span class='ident'>a</span> <span class='op'>=</span> <span class='string'>&quot;&quot;</span>;
-    <span class='kw'>let</span> <span class='ident'>b</span> <span class='op'>=</span> <span class='string'>&quot;abcd&quot;</span>;
-    <span class='kw'>let</span> <span class='ident'>c</span> <span class='op'>=</span> <span class='string'>&quot;abcd123&quot;</span>;
-    <span class='kw'>let</span> <span class='ident'>d</span> <span class='op'>=</span> <span class='string'>&quot;123&quot;</span>;
-
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>f</span>(<span class='kw-2'>&amp;</span><span class='ident'>a</span>[..]), <span class='ident'>Error</span>(<span class='ident'>Position</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>TakeWhile1Str</span>, <span class='kw-2'>&amp;</span><span class='string'>&quot;&quot;</span>[..])));
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>f</span>(<span class='kw-2'>&amp;</span><span class='ident'>b</span>[..]), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='ident'>a</span>[..], <span class='kw-2'>&amp;</span><span class='ident'>b</span>[..]));
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>f</span>(<span class='kw-2'>&amp;</span><span class='ident'>c</span>[..]), <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>&quot;123&quot;</span>[..], <span class='kw-2'>&amp;</span><span class='ident'>b</span>[..]));
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>f</span>(<span class='kw-2'>&amp;</span><span class='ident'>d</span>[..]), <span class='ident'>Error</span>(<span class='ident'>Position</span>(<span class='ident'>ErrorKind</span>::<span class='ident'>TakeWhile1Str</span>, <span class='kw-2'>&amp;</span><span class='ident'>d</span>[..])));
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">a</span>[..]), <span class="ident">Done</span>(<span class="kw-2">&amp;</span><span class="ident">a</span>[..], <span class="kw-2">&amp;</span><span class="ident">a</span>[..]));
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">b</span>[..]), <span class="ident">Done</span>(<span class="kw-2">&amp;</span><span class="ident">a</span>[..], <span class="kw-2">&amp;</span><span class="ident">b</span>[..]));
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">c</span>[..]), <span class="ident">Done</span>(<span class="kw-2">&amp;</span><span class="ident">d</span>[..], <span class="kw-2">&amp;</span><span class="ident">b</span>[..]));
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">d</span>[..]), <span class="ident">Done</span>(<span class="kw-2">&amp;</span><span class="ident">d</span>[..], <span class="kw-2">&amp;</span><span class="ident">a</span>[..]));
   }
 
-  <span class='attribute'>#[<span class='ident'>test</span>]</span>
-  <span class='kw'>fn</span> <span class='ident'>take_till_s_succeed</span>() {
-    <span class='kw'>const</span> <span class='ident'>INPUT</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
-    <span class='kw'>const</span> <span class='ident'>CONSUMED</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇ&quot;</span>;
-    <span class='kw'>const</span> <span class='ident'>LEFTOVER</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;áƒƭèř&quot;</span>;
-    <span class='kw'>fn</span> <span class='ident'>till_s</span>(<span class='ident'>c</span>: <span class='ident'>char</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
-      <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;á&#39;</span>
+  <span class="attribute">#[<span class="ident">test</span>]</span>
+  <span class="kw">fn</span> <span class="ident">take_while1_s</span>() {
+    <span class="macro">named</span><span class="macro">!</span>(<span class="ident">f</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>,<span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>, <span class="macro">take_while1_s</span><span class="macro">!</span>(<span class="ident">is_alphabetic</span>));
+    <span class="kw">let</span> <span class="ident">a</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>;
+    <span class="kw">let</span> <span class="ident">b</span> <span class="op">=</span> <span class="string">&quot;abcd&quot;</span>;
+    <span class="kw">let</span> <span class="ident">c</span> <span class="op">=</span> <span class="string">&quot;abcd123&quot;</span>;
+    <span class="kw">let</span> <span class="ident">d</span> <span class="op">=</span> <span class="string">&quot;123&quot;</span>;
+
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">a</span>[..]), <span class="ident">Error</span>(<span class="ident">Position</span>(<span class="ident">ErrorKind</span>::<span class="ident">TakeWhile1Str</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&quot;</span>[..])));
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">b</span>[..]), <span class="ident">Done</span>(<span class="kw-2">&amp;</span><span class="ident">a</span>[..], <span class="kw-2">&amp;</span><span class="ident">b</span>[..]));
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">c</span>[..]), <span class="ident">Done</span>(<span class="kw-2">&amp;</span><span class="string">&quot;123&quot;</span>[..], <span class="kw-2">&amp;</span><span class="ident">b</span>[..]));
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">d</span>[..]), <span class="ident">Error</span>(<span class="ident">Position</span>(<span class="ident">ErrorKind</span>::<span class="ident">TakeWhile1Str</span>, <span class="kw-2">&amp;</span><span class="ident">d</span>[..])));
+  }
+
+  <span class="attribute">#[<span class="ident">test</span>]</span>
+  <span class="kw">fn</span> <span class="ident">take_till_s_succeed</span>() {
+    <span class="kw">const</span> <span class="ident">INPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
+    <span class="kw">const</span> <span class="ident">CONSUMED</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇ&quot;</span>;
+    <span class="kw">const</span> <span class="ident">LEFTOVER</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;áƒƭèř&quot;</span>;
+    <span class="kw">fn</span> <span class="ident">till_s</span>(<span class="ident">c</span>: <span class="ident">char</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+      <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;á&#39;</span>
     }
-    <span class='kw'>fn</span> <span class='ident'>test</span>(<span class='ident'>input</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span> {
-      <span class='macro'>take_till_s</span><span class='macro'>!</span>(<span class='ident'>input</span>, <span class='ident'>till_s</span>)
+    <span class="kw">fn</span> <span class="ident">test</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
+      <span class="macro">take_till_s</span><span class="macro">!</span>(<span class="ident">input</span>, <span class="ident">till_s</span>)
     }
-    <span class='kw'>match</span> <span class='ident'>test</span>(<span class='ident'>INPUT</span>) {
-      <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>extra</span>, <span class='ident'>output</span>) <span class='op'>=&gt;</span> {
-        <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>extra</span> <span class='op'>==</span> <span class='ident'>LEFTOVER</span>, <span class='string'>&quot;Parser `take_till_s` consumed leftover input.&quot;</span>);
-        <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>output</span> <span class='op'>==</span> <span class='ident'>CONSUMED</span>,
-        <span class='string'>&quot;Parser `take_till_s` doesn&#39;t return the string it consumed on success. \
-                     Expected `{}`, got `{}`.&quot;</span>, <span class='ident'>CONSUMED</span>, <span class='ident'>output</span>);
+    <span class="kw">match</span> <span class="ident">test</span>(<span class="ident">INPUT</span>) {
+      <span class="ident">IResult</span>::<span class="ident">Done</span>(<span class="ident">extra</span>, <span class="ident">output</span>) <span class="op">=&gt;</span> {
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">extra</span> <span class="op">==</span> <span class="ident">LEFTOVER</span>, <span class="string">&quot;Parser `take_till_s` consumed leftover input.&quot;</span>);
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">output</span> <span class="op">==</span> <span class="ident">CONSUMED</span>,
+        <span class="string">&quot;Parser `take_till_s` doesn&#39;t return the string it consumed on success. \
+                     Expected `{}`, got `{}`.&quot;</span>, <span class="ident">CONSUMED</span>, <span class="ident">output</span>);
       },
-      <span class='ident'>other</span> <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Parser `take_till_s` didn&#39;t succeed when it should have. \
-                             Got `{:?}`.&quot;</span>, <span class='ident'>other</span>),
+      <span class="ident">other</span> <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Parser `take_till_s` didn&#39;t succeed when it should have. \
+                             Got `{:?}`.&quot;</span>, <span class="ident">other</span>),
     };
   }
 
-  <span class='attribute'>#[<span class='ident'>test</span>]</span>
-  <span class='kw'>fn</span> <span class='ident'>take_while_s_succeed_none</span>() {
-    <span class='kw'>const</span> <span class='ident'>INPUT</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
-    <span class='kw'>const</span> <span class='ident'>CONSUMED</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;&quot;</span>;
-    <span class='kw'>const</span> <span class='ident'>LEFTOVER</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
-    <span class='kw'>fn</span> <span class='ident'>while_s</span>(<span class='ident'>c</span>: <span class='ident'>char</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
-      <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;9&#39;</span>
+  <span class="attribute">#[<span class="ident">test</span>]</span>
+  <span class="kw">fn</span> <span class="ident">take_while_s_succeed_none</span>() {
+    <span class="kw">const</span> <span class="ident">INPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
+    <span class="kw">const</span> <span class="ident">CONSUMED</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>;
+    <span class="kw">const</span> <span class="ident">LEFTOVER</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
+    <span class="kw">fn</span> <span class="ident">while_s</span>(<span class="ident">c</span>: <span class="ident">char</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+      <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;9&#39;</span>
     }
-    <span class='kw'>fn</span> <span class='ident'>test</span>(<span class='ident'>input</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span> {
-      <span class='macro'>take_while_s</span><span class='macro'>!</span>(<span class='ident'>input</span>, <span class='ident'>while_s</span>)
+    <span class="kw">fn</span> <span class="ident">test</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
+      <span class="macro">take_while_s</span><span class="macro">!</span>(<span class="ident">input</span>, <span class="ident">while_s</span>)
     }
-    <span class='kw'>match</span> <span class='ident'>test</span>(<span class='ident'>INPUT</span>) {
-      <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>extra</span>, <span class='ident'>output</span>) <span class='op'>=&gt;</span> {
-        <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>extra</span> <span class='op'>==</span> <span class='ident'>LEFTOVER</span>, <span class='string'>&quot;Parser `take_while_s` consumed leftover input.&quot;</span>);
-        <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>output</span> <span class='op'>==</span> <span class='ident'>CONSUMED</span>,
-        <span class='string'>&quot;Parser `take_while_s` doesn&#39;t return the string it consumed on success. \
-                     Expected `{}`, got `{}`.&quot;</span>, <span class='ident'>CONSUMED</span>, <span class='ident'>output</span>);
+    <span class="kw">match</span> <span class="ident">test</span>(<span class="ident">INPUT</span>) {
+      <span class="ident">IResult</span>::<span class="ident">Done</span>(<span class="ident">extra</span>, <span class="ident">output</span>) <span class="op">=&gt;</span> {
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">extra</span> <span class="op">==</span> <span class="ident">LEFTOVER</span>, <span class="string">&quot;Parser `take_while_s` consumed leftover input.&quot;</span>);
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">output</span> <span class="op">==</span> <span class="ident">CONSUMED</span>,
+        <span class="string">&quot;Parser `take_while_s` doesn&#39;t return the string it consumed on success. \
+                     Expected `{}`, got `{}`.&quot;</span>, <span class="ident">CONSUMED</span>, <span class="ident">output</span>);
       },
-      <span class='ident'>other</span> <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Parser `take_while_s` didn&#39;t succeed when it should have. \
-                             Got `{:?}`.&quot;</span>, <span class='ident'>other</span>),
+      <span class="ident">other</span> <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Parser `take_while_s` didn&#39;t succeed when it should have. \
+                             Got `{:?}`.&quot;</span>, <span class="ident">other</span>),
     };
   }
 
-  <span class='attribute'>#[<span class='ident'>test</span>]</span>
-  <span class='kw'>fn</span> <span class='ident'>is_not_s_succeed</span>() {
-    <span class='kw'>const</span> <span class='ident'>INPUT</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
-    <span class='kw'>const</span> <span class='ident'>AVOID</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;£úçƙ¥á&quot;</span>;
-    <span class='kw'>const</span> <span class='ident'>CONSUMED</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇ&quot;</span>;
-    <span class='kw'>const</span> <span class='ident'>LEFTOVER</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;áƒƭèř&quot;</span>;
-    <span class='kw'>fn</span> <span class='ident'>test</span>(<span class='ident'>input</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span> {
-      <span class='macro'>is_not_s</span><span class='macro'>!</span>(<span class='ident'>input</span>, <span class='ident'>AVOID</span>)
+  <span class="attribute">#[<span class="ident">test</span>]</span>
+  <span class="kw">fn</span> <span class="ident">is_not_s_succeed</span>() {
+    <span class="kw">const</span> <span class="ident">INPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
+    <span class="kw">const</span> <span class="ident">AVOID</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;£úçƙ¥á&quot;</span>;
+    <span class="kw">const</span> <span class="ident">CONSUMED</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇ&quot;</span>;
+    <span class="kw">const</span> <span class="ident">LEFTOVER</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;áƒƭèř&quot;</span>;
+    <span class="kw">fn</span> <span class="ident">test</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
+      <span class="macro">is_not_s</span><span class="macro">!</span>(<span class="ident">input</span>, <span class="ident">AVOID</span>)
     }
-    <span class='kw'>match</span> <span class='ident'>test</span>(<span class='ident'>INPUT</span>) {
-      <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>extra</span>, <span class='ident'>output</span>) <span class='op'>=&gt;</span> {
-        <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>extra</span> <span class='op'>==</span> <span class='ident'>LEFTOVER</span>, <span class='string'>&quot;Parser `is_not_s` consumed leftover input. Leftover `{}`.&quot;</span>, <span class='ident'>extra</span>);
-        <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>output</span> <span class='op'>==</span> <span class='ident'>CONSUMED</span>,
-        <span class='string'>&quot;Parser `is_not_s` doens&#39;t return the string it consumed on success. Expected `{}`, got `{}`.&quot;</span>,
-        <span class='ident'>CONSUMED</span>, <span class='ident'>output</span>);
+    <span class="kw">match</span> <span class="ident">test</span>(<span class="ident">INPUT</span>) {
+      <span class="ident">IResult</span>::<span class="ident">Done</span>(<span class="ident">extra</span>, <span class="ident">output</span>) <span class="op">=&gt;</span> {
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">extra</span> <span class="op">==</span> <span class="ident">LEFTOVER</span>, <span class="string">&quot;Parser `is_not_s` consumed leftover input. Leftover `{}`.&quot;</span>, <span class="ident">extra</span>);
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">output</span> <span class="op">==</span> <span class="ident">CONSUMED</span>,
+        <span class="string">&quot;Parser `is_not_s` doens&#39;t return the string it consumed on success. Expected `{}`, got `{}`.&quot;</span>,
+        <span class="ident">CONSUMED</span>, <span class="ident">output</span>);
       },
-      <span class='ident'>other</span> <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Parser `is_not_s` didn&#39;t succeed when it should have. \
-                             Got `{:?}`.&quot;</span>, <span class='ident'>other</span>),
+      <span class="ident">other</span> <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Parser `is_not_s` didn&#39;t succeed when it should have. \
+                             Got `{:?}`.&quot;</span>, <span class="ident">other</span>),
     };
   }
 
-  <span class='attribute'>#[<span class='ident'>test</span>]</span>
-  <span class='kw'>fn</span> <span class='ident'>take_until_and_consume_s_succeed</span>() {
-    <span class='kw'>const</span> <span class='ident'>INPUT</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
-    <span class='kw'>const</span> <span class='ident'>FIND</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;ÂßÇ&quot;</span>;
-    <span class='kw'>const</span> <span class='ident'>CONSUMED</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇ&quot;</span>;
-    <span class='kw'>const</span> <span class='ident'>LEFTOVER</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;áƒƭèř&quot;</span>;
+  <span class="attribute">#[<span class="ident">test</span>]</span>
+  <span class="kw">fn</span> <span class="ident">take_until_and_consume_s_succeed</span>() {
+    <span class="kw">const</span> <span class="ident">INPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
+    <span class="kw">const</span> <span class="ident">FIND</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;ÂßÇ&quot;</span>;
+    <span class="kw">const</span> <span class="ident">CONSUMED</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇ&quot;</span>;
+    <span class="kw">const</span> <span class="ident">LEFTOVER</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;áƒƭèř&quot;</span>;
 
-    <span class='kw'>match</span> <span class='macro'>take_until_and_consume_s</span><span class='macro'>!</span>(<span class='ident'>INPUT</span>, <span class='ident'>FIND</span>) {
-      <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>extra</span>, <span class='ident'>output</span>) <span class='op'>=&gt;</span> {
-        <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>extra</span> <span class='op'>==</span> <span class='ident'>LEFTOVER</span>, <span class='string'>&quot;Parser `take_until_and_consume_s`\
-                    consumed leftover input. Leftover `{}`.&quot;</span>, <span class='ident'>extra</span>);
-        <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>output</span> <span class='op'>==</span> <span class='ident'>CONSUMED</span>, <span class='string'>&quot;Parser `take_until_and_consume_s`\
+    <span class="kw">match</span> <span class="macro">take_until_and_consume_s</span><span class="macro">!</span>(<span class="ident">INPUT</span>, <span class="ident">FIND</span>) {
+      <span class="ident">IResult</span>::<span class="ident">Done</span>(<span class="ident">extra</span>, <span class="ident">output</span>) <span class="op">=&gt;</span> {
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">extra</span> <span class="op">==</span> <span class="ident">LEFTOVER</span>, <span class="string">&quot;Parser `take_until_and_consume_s`\
+                    consumed leftover input. Leftover `{}`.&quot;</span>, <span class="ident">extra</span>);
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">output</span> <span class="op">==</span> <span class="ident">CONSUMED</span>, <span class="string">&quot;Parser `take_until_and_consume_s`\
                     doens&#39;t return the string it consumed on success. Expected `{}`, got `{}`.&quot;</span>,
-                    <span class='ident'>CONSUMED</span>, <span class='ident'>output</span>);
+                    <span class="ident">CONSUMED</span>, <span class="ident">output</span>);
       }
-      <span class='ident'>other</span> <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Parser `take_until_and_consume_s` didn&#39;t succeed when it should have. \
-                             Got `{:?}`.&quot;</span>, <span class='ident'>other</span>),
+      <span class="ident">other</span> <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Parser `take_until_and_consume_s` didn&#39;t succeed when it should have. \
+                             Got `{:?}`.&quot;</span>, <span class="ident">other</span>),
     };
   }
 
-    <span class='attribute'>#[<span class='ident'>test</span>]</span>
-    <span class='kw'>fn</span> <span class='ident'>take_while_s_succeed_some</span>() {
-        <span class='kw'>const</span> <span class='ident'>INPUT</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
-        <span class='kw'>const</span> <span class='ident'>CONSUMED</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇ&quot;</span>;
-        <span class='kw'>const</span> <span class='ident'>LEFTOVER</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;áƒƭèř&quot;</span>;
-        <span class='kw'>fn</span> <span class='ident'>while_s</span>(<span class='ident'>c</span>: <span class='ident'>char</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
-            <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;β&#39;</span> <span class='op'>||</span> <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;è&#39;</span> <span class='op'>||</span> <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;ƒ&#39;</span> <span class='op'>||</span> <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;ô&#39;</span> <span class='op'>||</span> <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;ř&#39;</span> <span class='op'>||</span>
-            <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;è&#39;</span> <span class='op'>||</span> <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;Â&#39;</span> <span class='op'>||</span> <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;ß&#39;</span> <span class='op'>||</span> <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;Ç&#39;</span>
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">take_while_s_succeed_some</span>() {
+        <span class="kw">const</span> <span class="ident">INPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
+        <span class="kw">const</span> <span class="ident">CONSUMED</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇ&quot;</span>;
+        <span class="kw">const</span> <span class="ident">LEFTOVER</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;áƒƭèř&quot;</span>;
+        <span class="kw">fn</span> <span class="ident">while_s</span>(<span class="ident">c</span>: <span class="ident">char</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+            <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;β&#39;</span> <span class="op">||</span> <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;è&#39;</span> <span class="op">||</span> <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;ƒ&#39;</span> <span class="op">||</span> <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;ô&#39;</span> <span class="op">||</span> <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;ř&#39;</span> <span class="op">||</span>
+            <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;è&#39;</span> <span class="op">||</span> <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;Â&#39;</span> <span class="op">||</span> <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;ß&#39;</span> <span class="op">||</span> <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;Ç&#39;</span>
         }
-        <span class='kw'>fn</span> <span class='ident'>test</span>(<span class='ident'>input</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span> {
-          <span class='macro'>take_while_s</span><span class='macro'>!</span>(<span class='ident'>input</span>, <span class='ident'>while_s</span>)
+        <span class="kw">fn</span> <span class="ident">test</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
+          <span class="macro">take_while_s</span><span class="macro">!</span>(<span class="ident">input</span>, <span class="ident">while_s</span>)
         }
-        <span class='kw'>match</span> <span class='ident'>test</span>(<span class='ident'>INPUT</span>) {
-            <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>extra</span>, <span class='ident'>output</span>) <span class='op'>=&gt;</span> {
-                <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>extra</span> <span class='op'>==</span> <span class='ident'>LEFTOVER</span>, <span class='string'>&quot;Parser `take_while_s` consumed leftover input.&quot;</span>);
-                <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>output</span> <span class='op'>==</span> <span class='ident'>CONSUMED</span>,
-                    <span class='string'>&quot;Parser `take_while_s` doesn&#39;t return the string it consumed on success. \
-                     Expected `{}`, got `{}`.&quot;</span>, <span class='ident'>CONSUMED</span>, <span class='ident'>output</span>);
+        <span class="kw">match</span> <span class="ident">test</span>(<span class="ident">INPUT</span>) {
+            <span class="ident">IResult</span>::<span class="ident">Done</span>(<span class="ident">extra</span>, <span class="ident">output</span>) <span class="op">=&gt;</span> {
+                <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">extra</span> <span class="op">==</span> <span class="ident">LEFTOVER</span>, <span class="string">&quot;Parser `take_while_s` consumed leftover input.&quot;</span>);
+                <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">output</span> <span class="op">==</span> <span class="ident">CONSUMED</span>,
+                    <span class="string">&quot;Parser `take_while_s` doesn&#39;t return the string it consumed on success. \
+                     Expected `{}`, got `{}`.&quot;</span>, <span class="ident">CONSUMED</span>, <span class="ident">output</span>);
             },
-            <span class='ident'>other</span> <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Parser `take_while_s` didn&#39;t succeed when it should have. \
-                             Got `{:?}`.&quot;</span>, <span class='ident'>other</span>),
+            <span class="ident">other</span> <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Parser `take_while_s` didn&#39;t succeed when it should have. \
+                             Got `{:?}`.&quot;</span>, <span class="ident">other</span>),
         };
     }
 
-    <span class='attribute'>#[<span class='ident'>test</span>]</span>
-    <span class='kw'>fn</span> <span class='ident'>is_not_s_fail</span>() {
-        <span class='kw'>const</span> <span class='ident'>INPUT</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
-        <span class='kw'>const</span> <span class='ident'>AVOID</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βúçƙ¥&quot;</span>;
-        <span class='kw'>fn</span> <span class='ident'>test</span>(<span class='ident'>input</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span> {
-            <span class='macro'>is_not_s</span><span class='macro'>!</span>(<span class='ident'>input</span>, <span class='ident'>AVOID</span>)
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">is_not_s_fail</span>() {
+        <span class="kw">const</span> <span class="ident">INPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
+        <span class="kw">const</span> <span class="ident">AVOID</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βúçƙ¥&quot;</span>;
+        <span class="kw">fn</span> <span class="ident">test</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
+            <span class="macro">is_not_s</span><span class="macro">!</span>(<span class="ident">input</span>, <span class="ident">AVOID</span>)
         }
-        <span class='kw'>match</span> <span class='ident'>test</span>(<span class='ident'>INPUT</span>) {
-            <span class='ident'>IResult</span>::<span class='ident'>Error</span>(_) <span class='op'>=&gt;</span> (),
-            <span class='ident'>other</span> <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Parser `is_not_s` didn&#39;t fail when it should have. Got `{:?}`.&quot;</span>, <span class='ident'>other</span>),
+        <span class="kw">match</span> <span class="ident">test</span>(<span class="ident">INPUT</span>) {
+            <span class="ident">IResult</span>::<span class="ident">Error</span>(_) <span class="op">=&gt;</span> (),
+            <span class="ident">other</span> <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Parser `is_not_s` didn&#39;t fail when it should have. Got `{:?}`.&quot;</span>, <span class="ident">other</span>),
         };
     }
 
-    <span class='attribute'>#[<span class='ident'>test</span>]</span>
-    <span class='kw'>fn</span> <span class='ident'>take_while1_s_succeed</span>() {
-        <span class='kw'>const</span> <span class='ident'>INPUT</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
-        <span class='kw'>const</span> <span class='ident'>CONSUMED</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇ&quot;</span>;
-        <span class='kw'>const</span> <span class='ident'>LEFTOVER</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;áƒƭèř&quot;</span>;
-        <span class='kw'>fn</span> <span class='ident'>while1_s</span>(<span class='ident'>c</span>: <span class='ident'>char</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
-            <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;β&#39;</span> <span class='op'>||</span> <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;è&#39;</span> <span class='op'>||</span> <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;ƒ&#39;</span> <span class='op'>||</span> <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;ô&#39;</span> <span class='op'>||</span> <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;ř&#39;</span> <span class='op'>||</span>
-            <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;è&#39;</span> <span class='op'>||</span> <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;Â&#39;</span> <span class='op'>||</span> <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;ß&#39;</span> <span class='op'>||</span> <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;Ç&#39;</span>
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">take_while1_s_succeed</span>() {
+        <span class="kw">const</span> <span class="ident">INPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
+        <span class="kw">const</span> <span class="ident">CONSUMED</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇ&quot;</span>;
+        <span class="kw">const</span> <span class="ident">LEFTOVER</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;áƒƭèř&quot;</span>;
+        <span class="kw">fn</span> <span class="ident">while1_s</span>(<span class="ident">c</span>: <span class="ident">char</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+            <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;β&#39;</span> <span class="op">||</span> <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;è&#39;</span> <span class="op">||</span> <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;ƒ&#39;</span> <span class="op">||</span> <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;ô&#39;</span> <span class="op">||</span> <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;ř&#39;</span> <span class="op">||</span>
+            <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;è&#39;</span> <span class="op">||</span> <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;Â&#39;</span> <span class="op">||</span> <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;ß&#39;</span> <span class="op">||</span> <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;Ç&#39;</span>
         }
-        <span class='kw'>fn</span> <span class='ident'>test</span>(<span class='ident'>input</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span> {
-          <span class='macro'>take_while1_s</span><span class='macro'>!</span>(<span class='ident'>input</span>, <span class='ident'>while1_s</span>)
+        <span class="kw">fn</span> <span class="ident">test</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
+          <span class="macro">take_while1_s</span><span class="macro">!</span>(<span class="ident">input</span>, <span class="ident">while1_s</span>)
         }
-        <span class='kw'>match</span> <span class='ident'>test</span>(<span class='ident'>INPUT</span>) {
-            <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>extra</span>, <span class='ident'>output</span>) <span class='op'>=&gt;</span> {
-                <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>extra</span> <span class='op'>==</span> <span class='ident'>LEFTOVER</span>, <span class='string'>&quot;Parser `take_while1_s` consumed leftover input.&quot;</span>);
-                <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>output</span> <span class='op'>==</span> <span class='ident'>CONSUMED</span>,
-                    <span class='string'>&quot;Parser `take_while1_s` doesn&#39;t return the string it consumed on success. \
-                     Expected `{}`, got `{}`.&quot;</span>, <span class='ident'>CONSUMED</span>, <span class='ident'>output</span>);
+        <span class="kw">match</span> <span class="ident">test</span>(<span class="ident">INPUT</span>) {
+            <span class="ident">IResult</span>::<span class="ident">Done</span>(<span class="ident">extra</span>, <span class="ident">output</span>) <span class="op">=&gt;</span> {
+                <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">extra</span> <span class="op">==</span> <span class="ident">LEFTOVER</span>, <span class="string">&quot;Parser `take_while1_s` consumed leftover input.&quot;</span>);
+                <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">output</span> <span class="op">==</span> <span class="ident">CONSUMED</span>,
+                    <span class="string">&quot;Parser `take_while1_s` doesn&#39;t return the string it consumed on success. \
+                     Expected `{}`, got `{}`.&quot;</span>, <span class="ident">CONSUMED</span>, <span class="ident">output</span>);
             },
-            <span class='ident'>other</span> <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Parser `take_while1_s` didn&#39;t succeed when it should have. \
-                             Got `{:?}`.&quot;</span>, <span class='ident'>other</span>),
+            <span class="ident">other</span> <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Parser `take_while1_s` didn&#39;t succeed when it should have. \
+                             Got `{:?}`.&quot;</span>, <span class="ident">other</span>),
         };
     }
 
-    <span class='attribute'>#[<span class='ident'>test</span>]</span>
-    <span class='kw'>fn</span> <span class='ident'>take_until_and_consume_s_incomplete</span>() {
-        <span class='kw'>const</span> <span class='ident'>INPUT</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřè&quot;</span>;
-        <span class='kw'>const</span> <span class='ident'>FIND</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇ&quot;</span>;
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">take_until_and_consume_s_incomplete</span>() {
+        <span class="kw">const</span> <span class="ident">INPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřè&quot;</span>;
+        <span class="kw">const</span> <span class="ident">FIND</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇ&quot;</span>;
 
-        <span class='kw'>match</span> <span class='macro'>take_until_and_consume_s</span><span class='macro'>!</span>(<span class='ident'>INPUT</span>, <span class='ident'>FIND</span>) {
-            <span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(_) <span class='op'>=&gt;</span> (),
-            <span class='ident'>other</span> <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Parser `take_until_and_consume_s` didn&#39;t require more input when it should have. \
-                             Got `{:?}`.&quot;</span>, <span class='ident'>other</span>),
+        <span class="kw">match</span> <span class="macro">take_until_and_consume_s</span><span class="macro">!</span>(<span class="ident">INPUT</span>, <span class="ident">FIND</span>) {
+            <span class="ident">IResult</span>::<span class="ident">Incomplete</span>(_) <span class="op">=&gt;</span> (),
+            <span class="ident">other</span> <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Parser `take_until_and_consume_s` didn&#39;t require more input when it should have. \
+                             Got `{:?}`.&quot;</span>, <span class="ident">other</span>),
         };
     }
 
-    <span class='attribute'>#[<span class='ident'>test</span>]</span>
-    <span class='kw'>fn</span> <span class='ident'>take_until_s_incomplete</span>() {
-        <span class='kw'>const</span> <span class='ident'>INPUT</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřè&quot;</span>;
-        <span class='kw'>const</span> <span class='ident'>FIND</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇ&quot;</span>;
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">take_until_s_incomplete</span>() {
+        <span class="kw">const</span> <span class="ident">INPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřè&quot;</span>;
+        <span class="kw">const</span> <span class="ident">FIND</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇ&quot;</span>;
 
-        <span class='kw'>match</span> <span class='macro'>take_until_s</span><span class='macro'>!</span>(<span class='ident'>INPUT</span>, <span class='ident'>FIND</span>) {
-            <span class='ident'>IResult</span>::<span class='ident'>Incomplete</span>(_) <span class='op'>=&gt;</span> (),
-            <span class='ident'>other</span> <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Parser `take_until_s` didn&#39;t require more input when it should have. \
-                             Got `{:?}`.&quot;</span>, <span class='ident'>other</span>),
+        <span class="kw">match</span> <span class="macro">take_until_s</span><span class="macro">!</span>(<span class="ident">INPUT</span>, <span class="ident">FIND</span>) {
+            <span class="ident">IResult</span>::<span class="ident">Incomplete</span>(_) <span class="op">=&gt;</span> (),
+            <span class="ident">other</span> <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Parser `take_until_s` didn&#39;t require more input when it should have. \
+                             Got `{:?}`.&quot;</span>, <span class="ident">other</span>),
         };
     }
 
-    <span class='attribute'>#[<span class='ident'>test</span>]</span>
-    <span class='kw'>fn</span> <span class='ident'>is_a_s_succeed</span>() {
-        <span class='kw'>const</span> <span class='ident'>INPUT</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
-        <span class='kw'>const</span> <span class='ident'>MATCH</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇ&quot;</span>;
-        <span class='kw'>const</span> <span class='ident'>CONSUMED</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇ&quot;</span>;
-        <span class='kw'>const</span> <span class='ident'>LEFTOVER</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;áƒƭèř&quot;</span>;
-        <span class='kw'>fn</span> <span class='ident'>test</span>(<span class='ident'>input</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span> {
-            <span class='macro'>is_a_s</span><span class='macro'>!</span>(<span class='ident'>input</span>, <span class='ident'>MATCH</span>)
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">is_a_s_succeed</span>() {
+        <span class="kw">const</span> <span class="ident">INPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
+        <span class="kw">const</span> <span class="ident">MATCH</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇ&quot;</span>;
+        <span class="kw">const</span> <span class="ident">CONSUMED</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇ&quot;</span>;
+        <span class="kw">const</span> <span class="ident">LEFTOVER</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;áƒƭèř&quot;</span>;
+        <span class="kw">fn</span> <span class="ident">test</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
+            <span class="macro">is_a_s</span><span class="macro">!</span>(<span class="ident">input</span>, <span class="ident">MATCH</span>)
         }
-        <span class='kw'>match</span> <span class='ident'>test</span>(<span class='ident'>INPUT</span>) {
-             <span class='ident'>IResult</span>::<span class='ident'>Done</span>(<span class='ident'>extra</span>, <span class='ident'>output</span>) <span class='op'>=&gt;</span> {
-                <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>extra</span> <span class='op'>==</span> <span class='ident'>LEFTOVER</span>, <span class='string'>&quot;Parser `is_a_s` consumed leftover input. Leftover `{}`.&quot;</span>, <span class='ident'>extra</span>);
-                <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>output</span> <span class='op'>==</span> <span class='ident'>CONSUMED</span>,
-                    <span class='string'>&quot;Parser `is_a_s` doens&#39;t return the string it consumed on success. Expected `{}`, got `{}`.&quot;</span>,
-                    <span class='ident'>CONSUMED</span>, <span class='ident'>output</span>);
+        <span class="kw">match</span> <span class="ident">test</span>(<span class="ident">INPUT</span>) {
+             <span class="ident">IResult</span>::<span class="ident">Done</span>(<span class="ident">extra</span>, <span class="ident">output</span>) <span class="op">=&gt;</span> {
+                <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">extra</span> <span class="op">==</span> <span class="ident">LEFTOVER</span>, <span class="string">&quot;Parser `is_a_s` consumed leftover input. Leftover `{}`.&quot;</span>, <span class="ident">extra</span>);
+                <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">output</span> <span class="op">==</span> <span class="ident">CONSUMED</span>,
+                    <span class="string">&quot;Parser `is_a_s` doens&#39;t return the string it consumed on success. Expected `{}`, got `{}`.&quot;</span>,
+                    <span class="ident">CONSUMED</span>, <span class="ident">output</span>);
             },
-            <span class='ident'>other</span> <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Parser `is_a_s` didn&#39;t succeed when it should have. \
-                             Got `{:?}`.&quot;</span>, <span class='ident'>other</span>),
+            <span class="ident">other</span> <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Parser `is_a_s` didn&#39;t succeed when it should have. \
+                             Got `{:?}`.&quot;</span>, <span class="ident">other</span>),
         };
     }
 
-    <span class='attribute'>#[<span class='ident'>test</span>]</span>
-    <span class='kw'>fn</span> <span class='ident'>take_while1_s_fail</span>() {
-        <span class='kw'>const</span> <span class='ident'>INPUT</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
-        <span class='kw'>fn</span> <span class='ident'>while1_s</span>(<span class='ident'>c</span>: <span class='ident'>char</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
-            <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;9&#39;</span>
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">take_while1_s_fail</span>() {
+        <span class="kw">const</span> <span class="ident">INPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
+        <span class="kw">fn</span> <span class="ident">while1_s</span>(<span class="ident">c</span>: <span class="ident">char</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+            <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;9&#39;</span>
         }
-        <span class='kw'>fn</span> <span class='ident'>test</span>(<span class='ident'>input</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span> {
-          <span class='macro'>take_while1_s</span><span class='macro'>!</span>(<span class='ident'>input</span>, <span class='ident'>while1_s</span>)
+        <span class="kw">fn</span> <span class="ident">test</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
+          <span class="macro">take_while1_s</span><span class="macro">!</span>(<span class="ident">input</span>, <span class="ident">while1_s</span>)
         }
-        <span class='kw'>match</span> <span class='ident'>test</span>(<span class='ident'>INPUT</span>) {
-            <span class='ident'>IResult</span>::<span class='ident'>Error</span>(_) <span class='op'>=&gt;</span> (),
-            <span class='ident'>other</span> <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Parser `take_while1_s` didn&#39;t fail when it should have. \
-                             Got `{:?}`.&quot;</span>, <span class='ident'>other</span>),
+        <span class="kw">match</span> <span class="ident">test</span>(<span class="ident">INPUT</span>) {
+            <span class="ident">IResult</span>::<span class="ident">Error</span>(_) <span class="op">=&gt;</span> (),
+            <span class="ident">other</span> <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Parser `take_while1_s` didn&#39;t fail when it should have. \
+                             Got `{:?}`.&quot;</span>, <span class="ident">other</span>),
         };
     }
 
-    <span class='attribute'>#[<span class='ident'>test</span>]</span>
-    <span class='kw'>fn</span> <span class='ident'>is_a_s_fail</span>() {
-        <span class='kw'>const</span> <span class='ident'>INPUT</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
-        <span class='kw'>const</span> <span class='ident'>MATCH</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;Ûñℓúçƙ¥&quot;</span>;
-        <span class='kw'>fn</span> <span class='ident'>test</span>(<span class='ident'>input</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>IResult</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span> {
-            <span class='macro'>is_a_s</span><span class='macro'>!</span>(<span class='ident'>input</span>, <span class='ident'>MATCH</span>)
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">is_a_s_fail</span>() {
+        <span class="kw">const</span> <span class="ident">INPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
+        <span class="kw">const</span> <span class="ident">MATCH</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;Ûñℓúçƙ¥&quot;</span>;
+        <span class="kw">fn</span> <span class="ident">test</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
+            <span class="macro">is_a_s</span><span class="macro">!</span>(<span class="ident">input</span>, <span class="ident">MATCH</span>)
         }
-        <span class='kw'>match</span> <span class='ident'>test</span>(<span class='ident'>INPUT</span>) {
-            <span class='ident'>IResult</span>::<span class='ident'>Error</span>(_) <span class='op'>=&gt;</span> (),
-            <span class='ident'>other</span> <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Parser `is_a_s` didn&#39;t fail when it should have. Got `{:?}`.&quot;</span>, <span class='ident'>other</span>),
+        <span class="kw">match</span> <span class="ident">test</span>(<span class="ident">INPUT</span>) {
+            <span class="ident">IResult</span>::<span class="ident">Error</span>(_) <span class="op">=&gt;</span> (),
+            <span class="ident">other</span> <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Parser `is_a_s` didn&#39;t fail when it should have. Got `{:?}`.&quot;</span>, <span class="ident">other</span>),
         };
     }
 
-    <span class='attribute'>#[<span class='ident'>test</span>]</span>
-    <span class='kw'>fn</span> <span class='ident'>take_until_and_consume_s_error</span>() {
-        <span class='kw'>const</span> <span class='ident'>INPUT</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
-        <span class='kw'>const</span> <span class='ident'>FIND</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;Ráñδô₥&quot;</span>;
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">take_until_and_consume_s_error</span>() {
+        <span class="kw">const</span> <span class="ident">INPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
+        <span class="kw">const</span> <span class="ident">FIND</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;Ráñδô₥&quot;</span>;
 
-        <span class='kw'>match</span> <span class='macro'>take_until_and_consume_s</span><span class='macro'>!</span>(<span class='ident'>INPUT</span>, <span class='ident'>FIND</span>) {
-            <span class='ident'>IResult</span>::<span class='ident'>Error</span>(_) <span class='op'>=&gt;</span> (),
-            <span class='ident'>other</span> <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Parser `take_until_and_consume_s` didn&#39;t fail when it should have. \
-                             Got `{:?}`.&quot;</span>, <span class='ident'>other</span>),
+        <span class="kw">match</span> <span class="macro">take_until_and_consume_s</span><span class="macro">!</span>(<span class="ident">INPUT</span>, <span class="ident">FIND</span>) {
+            <span class="ident">IResult</span>::<span class="ident">Error</span>(_) <span class="op">=&gt;</span> (),
+            <span class="ident">other</span> <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Parser `take_until_and_consume_s` didn&#39;t fail when it should have. \
+                             Got `{:?}`.&quot;</span>, <span class="ident">other</span>),
         };
     }
 
-    <span class='attribute'>#[<span class='ident'>test</span>]</span>
-    <span class='kw'>fn</span> <span class='ident'>take_until_s_error</span>() {
-        <span class='kw'>const</span> <span class='ident'>INPUT</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
-        <span class='kw'>const</span> <span class='ident'>FIND</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span> <span class='op'>=</span> <span class='string'>&quot;Ráñδô₥&quot;</span>;
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">take_until_s_error</span>() {
+        <span class="kw">const</span> <span class="ident">INPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;βèƒôřèÂßÇáƒƭèř&quot;</span>;
+        <span class="kw">const</span> <span class="ident">FIND</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;Ráñδô₥&quot;</span>;
 
-        <span class='kw'>match</span> <span class='macro'>take_until_s</span><span class='macro'>!</span>(<span class='ident'>INPUT</span>, <span class='ident'>FIND</span>) {
-            <span class='ident'>IResult</span>::<span class='ident'>Error</span>(_) <span class='op'>=&gt;</span> (),
-            <span class='ident'>other</span> <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Parser `take_until_and_consume_s` didn&#39;t fail when it should have. \
-                             Got `{:?}`.&quot;</span>, <span class='ident'>other</span>),
+        <span class="kw">match</span> <span class="macro">take_until_s</span><span class="macro">!</span>(<span class="ident">INPUT</span>, <span class="ident">FIND</span>) {
+            <span class="ident">IResult</span>::<span class="ident">Error</span>(_) <span class="op">=&gt;</span> (),
+            <span class="ident">other</span> <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Parser `take_until_and_consume_s` didn&#39;t fail when it should have. \
+                             Got `{:?}`.&quot;</span>, <span class="ident">other</span>),
         };
     }
 }
@@ -1569,7 +1570,6 @@
         window.rootPath = "../../";
         window.currentCrate = "nom";
     </script>
-    <script src="../../jquery.js"></script>
     <script src="../../main.js"></script>
     <script defer src="../../search-index.js"></script>
 </body>

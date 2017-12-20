@@ -9,6 +9,7 @@
 
     <title>nom::alt - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
     <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
     
@@ -16,7 +17,7 @@
     
     
 </head>
-<body class="rustdoc">
+<body class="rustdoc macro">
     <!--[if lte IE 8]>
     <div class="warning">
         This old browser is unsupported and will most likely display funky
@@ -42,15 +43,15 @@
         </form>
     </nav>
 
-    <section id='main' class="content macro">
-<h1 class='fqn'><span class='in-band'>Macro <a href='index.html'>nom</a>::<wbr><a class='macro' href=''>alt</a></span><span class='out-of-band'><span id='render-detail'>
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Macro <a href='index.html'>nom</a>::<wbr><a class="macro" href=''>alt</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-1793' class='srclink' href='../src/nom/macros.rs.html#1208-1214' title='goto source code'>[src]</a></span></h1>
-<pre class='rust macro'>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>alt</span> {
-    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>i</span>:<span class='ident'>expr</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rest</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> { ... };
+               </span><a class='srclink' href='../src/nom/macros.rs.html#1208-1214' title='goto source code'>[src]</a></span></h1>
+<pre class="rust macro">
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">alt</span> {
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>:<span class="ident">expr</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>) <span class="op">=&gt;</span> { ... };
 }</pre>
 <div class='docblock'><p><code>alt!(I -&gt; IResult&lt;I,O&gt; | I -&gt; IResult&lt;I,O&gt; | ... | I -&gt; IResult&lt;I,O&gt; ) =&gt; I -&gt; IResult&lt;I, O&gt;</code>
 try a list of parsers, return the result of the first successful one</p>
@@ -59,40 +60,40 @@ try a list of parsers, return the result of the first successful one</p>
 once you get more input. Note that it is better for performance to know the
 minimum size of data you need before you get into alt.</p>
 
-<pre class='rust rust-example-rendered'>
- <span class='macro'>named</span><span class='macro'>!</span>( <span class='ident'>test</span>, <span class='macro'>alt</span><span class='macro'>!</span>( <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;abcd&quot;</span> ) <span class='op'>|</span> <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;efgh&quot;</span> ) ) );
- <span class='kw'>let</span> <span class='ident'>r1</span> <span class='op'>=</span> <span class='ident'>test</span>(<span class='string'>b&quot;abcdefgh&quot;</span>);
- <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>r1</span>, <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;efgh&quot;</span>[..], <span class='kw-2'>&amp;</span><span class='string'>b&quot;abcd&quot;</span>[..]));
- <span class='kw'>let</span> <span class='ident'>r2</span> <span class='op'>=</span> <span class='ident'>test</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;efghijkl&quot;</span>[..]);
- <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>r2</span>, <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;ijkl&quot;</span>[..], <span class='kw-2'>&amp;</span><span class='string'>b&quot;efgh&quot;</span>[..]));</pre>
+<pre class="rust rust-example-rendered">
+ <span class="macro">named</span><span class="macro">!</span>( <span class="ident">test</span>, <span class="macro">alt</span><span class="macro">!</span>( <span class="macro">tag</span><span class="macro">!</span>( <span class="string">&quot;abcd&quot;</span> ) <span class="op">|</span> <span class="macro">tag</span><span class="macro">!</span>( <span class="string">&quot;efgh&quot;</span> ) ) );
+ <span class="kw">let</span> <span class="ident">r1</span> <span class="op">=</span> <span class="ident">test</span>(<span class="string">b&quot;abcdefgh&quot;</span>);
+ <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">r1</span>, <span class="ident">Done</span>(<span class="kw-2">&amp;</span><span class="string">b&quot;efgh&quot;</span>[..], <span class="kw-2">&amp;</span><span class="string">b&quot;abcd&quot;</span>[..]));
+ <span class="kw">let</span> <span class="ident">r2</span> <span class="op">=</span> <span class="ident">test</span>(<span class="kw-2">&amp;</span><span class="string">b&quot;efghijkl&quot;</span>[..]);
+ <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">r2</span>, <span class="ident">Done</span>(<span class="kw-2">&amp;</span><span class="string">b&quot;ijkl&quot;</span>[..], <span class="kw-2">&amp;</span><span class="string">b&quot;efgh&quot;</span>[..]));</pre>
 
 <p>There is another syntax for alt allowing a block to manipulate the result:</p>
 
-<pre class='rust rust-example-rendered'>
-    <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>,<span class='ident'>PartialEq</span>,<span class='ident'>Eq</span>)]</span>
-    <span class='kw'>enum</span> <span class='ident'>Tagged</span> {
-      <span class='ident'>Abcd</span>,
-      <span class='ident'>Efgh</span>,
-      <span class='ident'>Took</span>(<span class='ident'>usize</span>)
+<pre class="rust rust-example-rendered">
+    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>,<span class="ident">PartialEq</span>,<span class="ident">Eq</span>)]</span>
+    <span class="kw">enum</span> <span class="ident">Tagged</span> {
+      <span class="ident">Abcd</span>,
+      <span class="ident">Efgh</span>,
+      <span class="ident">Took</span>(<span class="ident">usize</span>)
     }
-    <span class='macro'>named</span><span class='macro'>!</span>(<span class='ident'>test</span><span class='op'>&lt;</span><span class='ident'>Tagged</span><span class='op'>&gt;</span>, <span class='macro'>alt</span><span class='macro'>!</span>(
-        <span class='macro'>tag</span><span class='macro'>!</span>(<span class='string'>&quot;abcd&quot;</span>) <span class='op'>=&gt;</span> { <span class='op'>|</span>_<span class='op'>|</span>          <span class='ident'>Tagged</span>::<span class='ident'>Abcd</span> }
-      <span class='op'>|</span> <span class='macro'>tag</span><span class='macro'>!</span>(<span class='string'>&quot;efgh&quot;</span>) <span class='op'>=&gt;</span> { <span class='op'>|</span>_<span class='op'>|</span>          <span class='ident'>Tagged</span>::<span class='ident'>Efgh</span> }
-      <span class='op'>|</span> <span class='macro'>take</span><span class='macro'>!</span>(<span class='number'>5</span>)     <span class='op'>=&gt;</span> { <span class='op'>|</span><span class='ident'>res</span>: <span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>]<span class='op'>|</span> <span class='ident'>Tagged</span>::<span class='ident'>Took</span>(<span class='ident'>res</span>.<span class='ident'>len</span>()) } <span class='comment'>// the closure takes the result as argument if the parser is successful</span>
+    <span class="macro">named</span><span class="macro">!</span>(<span class="ident">test</span><span class="op">&lt;</span><span class="ident">Tagged</span><span class="op">&gt;</span>, <span class="macro">alt</span><span class="macro">!</span>(
+        <span class="macro">tag</span><span class="macro">!</span>(<span class="string">&quot;abcd&quot;</span>) <span class="op">=&gt;</span> { <span class="op">|</span>_<span class="op">|</span>          <span class="ident">Tagged</span>::<span class="ident">Abcd</span> }
+      <span class="op">|</span> <span class="macro">tag</span><span class="macro">!</span>(<span class="string">&quot;efgh&quot;</span>) <span class="op">=&gt;</span> { <span class="op">|</span>_<span class="op">|</span>          <span class="ident">Tagged</span>::<span class="ident">Efgh</span> }
+      <span class="op">|</span> <span class="macro">take</span><span class="macro">!</span>(<span class="number">5</span>)     <span class="op">=&gt;</span> { <span class="op">|</span><span class="ident">res</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]<span class="op">|</span> <span class="ident">Tagged</span>::<span class="ident">Took</span>(<span class="ident">res</span>.<span class="ident">len</span>()) } <span class="comment">// the closure takes the result as argument if the parser is successful</span>
     ));
-    <span class='kw'>let</span> <span class='ident'>r1</span> <span class='op'>=</span> <span class='ident'>test</span>(<span class='string'>b&quot;abcdefgh&quot;</span>);
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>r1</span>, <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;efgh&quot;</span>[..], <span class='ident'>Tagged</span>::<span class='ident'>Abcd</span>));
-    <span class='kw'>let</span> <span class='ident'>r2</span> <span class='op'>=</span> <span class='ident'>test</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;efghijkl&quot;</span>[..]);
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>r2</span>, <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;ijkl&quot;</span>[..], <span class='ident'>Tagged</span>::<span class='ident'>Efgh</span>));
-    <span class='kw'>let</span> <span class='ident'>r3</span> <span class='op'>=</span> <span class='ident'>test</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;mnopqrst&quot;</span>[..]);
-    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>r3</span>, <span class='ident'>Done</span>(<span class='kw-2'>&amp;</span><span class='string'>b&quot;rst&quot;</span>[..],  <span class='ident'>Tagged</span>::<span class='ident'>Took</span>(<span class='number'>5</span>)));</pre>
+    <span class="kw">let</span> <span class="ident">r1</span> <span class="op">=</span> <span class="ident">test</span>(<span class="string">b&quot;abcdefgh&quot;</span>);
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">r1</span>, <span class="ident">Done</span>(<span class="kw-2">&amp;</span><span class="string">b&quot;efgh&quot;</span>[..], <span class="ident">Tagged</span>::<span class="ident">Abcd</span>));
+    <span class="kw">let</span> <span class="ident">r2</span> <span class="op">=</span> <span class="ident">test</span>(<span class="kw-2">&amp;</span><span class="string">b&quot;efghijkl&quot;</span>[..]);
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">r2</span>, <span class="ident">Done</span>(<span class="kw-2">&amp;</span><span class="string">b&quot;ijkl&quot;</span>[..], <span class="ident">Tagged</span>::<span class="ident">Efgh</span>));
+    <span class="kw">let</span> <span class="ident">r3</span> <span class="op">=</span> <span class="ident">test</span>(<span class="kw-2">&amp;</span><span class="string">b&quot;mnopqrst&quot;</span>[..]);
+    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">r3</span>, <span class="ident">Done</span>(<span class="kw-2">&amp;</span><span class="string">b&quot;rst&quot;</span>[..],  <span class="ident">Tagged</span>::<span class="ident">Took</span>(<span class="number">5</span>)));</pre>
 
 <p><strong>BE CAREFUL</strong> there is a case where the behaviour of <code>alt!</code> can be confusing:</p>
 
 <p>when the alternatives have different lengths, like this case:</p>
 
-<pre class='rust rust-example-rendered'>
- <span class='macro'>named</span><span class='macro'>!</span>( <span class='ident'>test</span>, <span class='macro'>alt</span><span class='macro'>!</span>( <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;abcd&quot;</span> ) <span class='op'>|</span> <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;ef&quot;</span> ) <span class='op'>|</span> <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;ghi&quot;</span> ) <span class='op'>|</span> <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;kl&quot;</span> ) ) );</pre>
+<div class='information'><div class='tooltip ignore'>⚠<span class='tooltiptext'>Be careful when using this code, it's not being tested!</span></div></div><pre class="rust rust-example-rendered ignore">
+<span class="macro">named</span><span class="macro">!</span>( <span class="ident">test</span>, <span class="macro">alt</span><span class="macro">!</span>( <span class="macro">tag</span><span class="macro">!</span>( <span class="string">&quot;abcd&quot;</span> ) <span class="op">|</span> <span class="macro">tag</span><span class="macro">!</span>( <span class="string">&quot;ef&quot;</span> ) <span class="op">|</span> <span class="macro">tag</span><span class="macro">!</span>( <span class="string">&quot;ghi&quot;</span> ) <span class="op">|</span> <span class="macro">tag</span><span class="macro">!</span>( <span class="string">&quot;kl&quot;</span> ) ) );</pre>
 
 <p>With this parser, if you pass <code>&quot;abcd&quot;</code> as input, the first alternative parses it correctly,
 but if you pass <code>&quot;efg&quot;</code>, the first alternative will return <code>Incomplete</code>, since it needs an input
@@ -103,8 +104,8 @@ that it cannot decide with limited information.</p>
 <p>There are two ways to fix this behaviour. The first one consists in ordering the alternatives
 by size, like this:</p>
 
-<pre class='rust rust-example-rendered'>
- <span class='macro'>named</span><span class='macro'>!</span>( <span class='ident'>test</span>, <span class='macro'>alt</span><span class='macro'>!</span>( <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;ef&quot;</span> ) <span class='op'>|</span> <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;kl&quot;</span>) <span class='op'>|</span> <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;ghi&quot;</span> ) <span class='op'>|</span> <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;abcd&quot;</span> ) ) );</pre>
+<div class='information'><div class='tooltip ignore'>⚠<span class='tooltiptext'>Be careful when using this code, it's not being tested!</span></div></div><pre class="rust rust-example-rendered ignore">
+<span class="macro">named</span><span class="macro">!</span>( <span class="ident">test</span>, <span class="macro">alt</span><span class="macro">!</span>( <span class="macro">tag</span><span class="macro">!</span>( <span class="string">&quot;ef&quot;</span> ) <span class="op">|</span> <span class="macro">tag</span><span class="macro">!</span>( <span class="string">&quot;kl&quot;</span>) <span class="op">|</span> <span class="macro">tag</span><span class="macro">!</span>( <span class="string">&quot;ghi&quot;</span> ) <span class="op">|</span> <span class="macro">tag</span><span class="macro">!</span>( <span class="string">&quot;abcd&quot;</span> ) ) );</pre>
 
 <p>With this solution, the largest alternative will be tested last.</p>
 
@@ -113,13 +114,13 @@ by size, like this:</p>
 <code>alt!</code> will try the next alternative. This is useful when you know that
 you will not get partial input:</p>
 
-<pre class='rust rust-example-rendered'>
- <span class='macro'>named</span><span class='macro'>!</span>( <span class='ident'>test</span>,
-   <span class='macro'>alt</span><span class='macro'>!</span>(
-     <span class='macro'>complete</span><span class='macro'>!</span>( <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;abcd&quot;</span> ) ) <span class='op'>|</span>
-     <span class='macro'>complete</span><span class='macro'>!</span>( <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;ef&quot;</span>   ) ) <span class='op'>|</span>
-     <span class='macro'>complete</span><span class='macro'>!</span>( <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;ghi&quot;</span>  ) ) <span class='op'>|</span>
-     <span class='macro'>complete</span><span class='macro'>!</span>( <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;kl&quot;</span>   ) )
+<div class='information'><div class='tooltip ignore'>⚠<span class='tooltiptext'>Be careful when using this code, it's not being tested!</span></div></div><pre class="rust rust-example-rendered ignore">
+<span class="macro">named</span><span class="macro">!</span>( <span class="ident">test</span>,
+   <span class="macro">alt</span><span class="macro">!</span>(
+     <span class="macro">complete</span><span class="macro">!</span>( <span class="macro">tag</span><span class="macro">!</span>( <span class="string">&quot;abcd&quot;</span> ) ) <span class="op">|</span>
+     <span class="macro">complete</span><span class="macro">!</span>( <span class="macro">tag</span><span class="macro">!</span>( <span class="string">&quot;ef&quot;</span>   ) ) <span class="op">|</span>
+     <span class="macro">complete</span><span class="macro">!</span>( <span class="macro">tag</span><span class="macro">!</span>( <span class="string">&quot;ghi&quot;</span>  ) ) <span class="op">|</span>
+     <span class="macro">complete</span><span class="macro">!</span>( <span class="macro">tag</span><span class="macro">!</span>( <span class="string">&quot;kl&quot;</span>   ) )
    )
  );</pre>
 
@@ -129,25 +130,25 @@ you will not get partial input:</p>
 <p>This behaviour of <code>alt!</code> can get especially confusing if multiple alternatives have different
 sizes but a common prefix, like this:</p>
 
-<pre class='rust rust-example-rendered'>
- <span class='macro'>named</span><span class='macro'>!</span>( <span class='ident'>test</span>, <span class='macro'>alt</span><span class='macro'>!</span>( <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;abcd&quot;</span> ) <span class='op'>|</span> <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;ab&quot;</span> ) <span class='op'>|</span> <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;ef&quot;</span> ) ) );</pre>
+<div class='information'><div class='tooltip ignore'>⚠<span class='tooltiptext'>Be careful when using this code, it's not being tested!</span></div></div><pre class="rust rust-example-rendered ignore">
+<span class="macro">named</span><span class="macro">!</span>( <span class="ident">test</span>, <span class="macro">alt</span><span class="macro">!</span>( <span class="macro">tag</span><span class="macro">!</span>( <span class="string">&quot;abcd&quot;</span> ) <span class="op">|</span> <span class="macro">tag</span><span class="macro">!</span>( <span class="string">&quot;ab&quot;</span> ) <span class="op">|</span> <span class="macro">tag</span><span class="macro">!</span>( <span class="string">&quot;ef&quot;</span> ) ) );</pre>
 
 <p>in that case, if you order by size, passing <code>&quot;abcd&quot;</code> as input will always be matched by the
 smallest parser, so the solution using <code>complete!</code> is better suited.</p>
 
 <p>You can also nest multiple <code>alt!</code>, like this:</p>
 
-<pre class='rust rust-example-rendered'>
- <span class='macro'>named</span><span class='macro'>!</span>( <span class='ident'>test</span>,
-   <span class='macro'>alt</span><span class='macro'>!</span>(
-     <span class='macro'>preceded</span><span class='macro'>!</span>(
-       <span class='macro'>tag</span><span class='macro'>!</span>(<span class='string'>&quot;ab&quot;</span>),
-       <span class='macro'>alt</span><span class='macro'>!</span>(
-         <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;cd&quot;</span> ) <span class='op'>|</span>
-         <span class='ident'>eof</span>
+<div class='information'><div class='tooltip ignore'>⚠<span class='tooltiptext'>Be careful when using this code, it's not being tested!</span></div></div><pre class="rust rust-example-rendered ignore">
+<span class="macro">named</span><span class="macro">!</span>( <span class="ident">test</span>,
+   <span class="macro">alt</span><span class="macro">!</span>(
+     <span class="macro">preceded</span><span class="macro">!</span>(
+       <span class="macro">tag</span><span class="macro">!</span>(<span class="string">&quot;ab&quot;</span>),
+       <span class="macro">alt</span><span class="macro">!</span>(
+         <span class="macro">tag</span><span class="macro">!</span>( <span class="string">&quot;cd&quot;</span> ) <span class="op">|</span>
+         <span class="ident">eof</span>
        )
      )
-   <span class='op'>|</span> <span class='macro'>tag</span><span class='macro'>!</span>( <span class='string'>&quot;ef&quot;</span> )
+   <span class="op">|</span> <span class="macro">tag</span><span class="macro">!</span>( <span class="string">&quot;ef&quot;</span> )
    )
  );</pre>
 
@@ -211,7 +212,6 @@ smallest parser, so the solution using <code>complete!</code> is better suited.<
         window.rootPath = "../";
         window.currentCrate = "nom";
     </script>
-    <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     <script defer src="../search-index.js"></script>
 </body>

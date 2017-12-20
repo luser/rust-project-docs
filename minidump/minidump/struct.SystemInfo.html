@@ -9,6 +9,7 @@
 
     <title>minidump::SystemInfo - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
     <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
     
@@ -16,7 +17,7 @@
     
     
 </head>
-<body class="rustdoc">
+<body class="rustdoc struct">
     <!--[if lte IE 8]>
     <div class="warning">
         This old browser is unsupported and will most likely display funky
@@ -28,7 +29,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'><a href='index.html'>minidump</a></p><script>window.sidebarCurrent = {name: 'SystemInfo', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'>Struct SystemInfo</p><div class="block items"><ul><li><a href="#fields">Fields</a></li></ul></div><p class='location'><a href='index.html'>minidump</a></p><script>window.sidebarCurrent = {name: 'SystemInfo', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -42,41 +43,47 @@
         </form>
     </nav>
 
-    <section id='main' class="content struct">
-<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>minidump</a>::<wbr><a class='struct' href=''>SystemInfo</a></span><span class='out-of-band'><span id='render-detail'>
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>minidump</a>::<wbr><a class="struct" href=''>SystemInfo</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-3831' class='srclink' href='../src/minidump/src/system_info.rs.html#46-60' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../src/minidump/system_info.rs.html#46-60' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct SystemInfo {
-    pub os: <a class='enum' href='../minidump/enum.OS.html' title='minidump::OS'>OS</a>,
-    pub os_version: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
-    pub cpu: <a class='enum' href='../minidump/enum.CPU.html' title='minidump::CPU'>CPU</a>,
-    pub cpu_info: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
-    pub cpu_count: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,
+    pub os: <a class="enum" href="../minidump/enum.OS.html" title="enum minidump::OS">OS</a>,
+    pub os_version: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;,
+    pub cpu: <a class="enum" href="../minidump/enum.CPU.html" title="enum minidump::CPU">CPU</a>,
+    pub cpu_info: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;,
+    pub cpu_count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>,
 }</pre><div class='docblock'><p>Information about the system that produced a <code>Minidump</code>.</p>
-</div><h2 class='fields'>Fields</h2><span id='structfield.os' class='structfield'>
-                           <span id='os.v' class='invisible'>
-                           <code>os: <a class='enum' href='../minidump/enum.OS.html' title='minidump::OS'>OS</a></code>
-                           </span></span><span class='stab '></span><div class='docblock'><p>The operating system that produced the minidump.</p>
-</div><span id='structfield.os_version' class='structfield'>
-                           <span id='os_version.v' class='invisible'>
-                           <code>os_version: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;</code>
-                           </span></span><span class='stab '></span><div class='docblock'><p>A string identifying the version of the operating system, such as
+</div><h2 id='fields' class='fields small-section-header'>
+                       Fields<a href='#fields' class='anchor'></a></h2><span id="structfield.os" class="structfield small-section-header">
+                           <a href="#structfield.os" class="anchor field"></a>
+                           <span id="os.v" class='invisible'>
+                           <code>os: <a class="enum" href="../minidump/enum.OS.html" title="enum minidump::OS">OS</a></code>
+                           </span></span><div class='docblock'><p>The operating system that produced the minidump.</p>
+</div><span id="structfield.os_version" class="structfield small-section-header">
+                           <a href="#structfield.os_version" class="anchor field"></a>
+                           <span id="os_version.v" class='invisible'>
+                           <code>os_version: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;</code>
+                           </span></span><div class='docblock'><p>A string identifying the version of the operating system, such as
 &quot;5.1.2600 Service Pack 2&quot; or &quot;10.4.8 8L2127&quot;, if present.</p>
-</div><span id='structfield.cpu' class='structfield'>
-                           <span id='cpu.v' class='invisible'>
-                           <code>cpu: <a class='enum' href='../minidump/enum.CPU.html' title='minidump::CPU'>CPU</a></code>
-                           </span></span><span class='stab '></span><div class='docblock'><p>The CPU on which the dump was produced.</p>
-</div><span id='structfield.cpu_info' class='structfield'>
-                           <span id='cpu_info.v' class='invisible'>
-                           <code>cpu_info: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;</code>
-                           </span></span><span class='stab '></span><div class='docblock'><p>A string further identifying the specific CPU, such as
+</div><span id="structfield.cpu" class="structfield small-section-header">
+                           <a href="#structfield.cpu" class="anchor field"></a>
+                           <span id="cpu.v" class='invisible'>
+                           <code>cpu: <a class="enum" href="../minidump/enum.CPU.html" title="enum minidump::CPU">CPU</a></code>
+                           </span></span><div class='docblock'><p>The CPU on which the dump was produced.</p>
+</div><span id="structfield.cpu_info" class="structfield small-section-header">
+                           <a href="#structfield.cpu_info" class="anchor field"></a>
+                           <span id="cpu_info.v" class='invisible'>
+                           <code>cpu_info: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;</code>
+                           </span></span><div class='docblock'><p>A string further identifying the specific CPU, such as
 &quot;GenuineIntel level 6 model 13 stepping 8&quot;, if present.</p>
-</div><span id='structfield.cpu_count' class='structfield'>
-                           <span id='cpu_count.v' class='invisible'>
-                           <code>cpu_count: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a></code>
-                           </span></span><span class='stab '></span><div class='docblock'><p>The number of processors in the system. Will be greater than one for
+</div><span id="structfield.cpu_count" class="structfield small-section-header">
+                           <a href="#structfield.cpu_count" class="anchor field"></a>
+                           <span id="cpu_count.v" class='invisible'>
+                           <code>cpu_count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a></code>
+                           </span></span><div class='docblock'><p>The number of processors in the system. Will be greater than one for
 multi-core systems.</p>
 </div></section>
     <section id='search' class="content hidden"></section>
@@ -135,7 +142,6 @@ multi-core systems.</p>
         window.rootPath = "../";
         window.currentCrate = "minidump";
     </script>
-    <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     <script defer src="../search-index.js"></script>
 </body>

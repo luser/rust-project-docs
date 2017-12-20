@@ -9,6 +9,7 @@
 
     <title>minidump::MinidumpThreadList - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
     <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
     
@@ -16,7 +17,7 @@
     
     
 </head>
-<body class="rustdoc">
+<body class="rustdoc struct">
     <!--[if lte IE 8]>
     <div class="warning">
         This old browser is unsupported and will most likely display funky
@@ -28,7 +29,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'><a href='index.html'>minidump</a></p><script>window.sidebarCurrent = {name: 'MinidumpThreadList', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'>Struct MinidumpThreadList</p><div class="block items"><ul><li><a href="#fields">Fields</a></li><li><a href="#methods">Methods</a></li></ul></div><p class='location'><a href='index.html'>minidump</a></p><script>window.sidebarCurrent = {name: 'MinidumpThreadList', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -42,24 +43,30 @@
         </form>
     </nav>
 
-    <section id='main' class="content struct">
-<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>minidump</a>::<wbr><a class='struct' href=''>MinidumpThreadList</a></span><span class='out-of-band'><span id='render-detail'>
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>minidump</a>::<wbr><a class="struct" href=''>MinidumpThreadList</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-3225' class='srclink' href='../src/minidump/src/minidump.rs.html#138-143' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../src/minidump/minidump.rs.html#138-143' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct MinidumpThreadList {
-    pub threads: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../minidump/struct.MinidumpThread.html' title='minidump::MinidumpThread'>MinidumpThread</a>&gt;,
+    pub threads: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../minidump/struct.MinidumpThread.html" title="struct minidump::MinidumpThread">MinidumpThread</a>&gt;,
     // some fields omitted
 }</pre><div class='docblock'><p>A list of <code>MinidumpThread</code>s contained in a <code>Minidump</code>.</p>
-</div><h2 class='fields'>Fields</h2><span id='structfield.threads' class='structfield'>
-                           <span id='threads.v' class='invisible'>
-                           <code>threads: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../minidump/struct.MinidumpThread.html' title='minidump::MinidumpThread'>MinidumpThread</a>&gt;</code>
-                           </span></span><span class='stab '></span><div class='docblock'><p>The threads, in the order they were present in the <code>Minidump</code>.</p>
-</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../minidump/struct.MinidumpThreadList.html' title='minidump::MinidumpThreadList'>MinidumpThreadList</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-3482' class='srclink' href='../src/minidump/src/minidump.rs.html#924-948' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.get_thread' class='method'><span id='get_thread.v' class='invisible'><code>fn <a href='#method.get_thread' class='fnname'>get_thread</a>(&amp;self, id: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;&amp;<a class='struct' href='../minidump/struct.MinidumpThread.html' title='minidump::MinidumpThread'>MinidumpThread</a>&gt;</code></span></h4>
+</div><h2 id='fields' class='fields small-section-header'>
+                       Fields<a href='#fields' class='anchor'></a></h2><span id="structfield.threads" class="structfield small-section-header">
+                           <a href="#structfield.threads" class="anchor field"></a>
+                           <span id="threads.v" class='invisible'>
+                           <code>threads: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../minidump/struct.MinidumpThread.html" title="struct minidump::MinidumpThread">MinidumpThread</a>&gt;</code>
+                           </span></span><div class='docblock'><p>The threads, in the order they were present in the <code>Minidump</code>.</p>
+</div>
+                    <h2 id='methods' class='small-section-header'>
+                      Methods<a href='#methods' class='anchor'></a>
+                    </h2>
+                <h3 id='impl' class='impl'><span class='in-band'><code>impl <a class="struct" href="../minidump/struct.MinidumpThreadList.html" title="struct minidump::MinidumpThreadList">MinidumpThreadList</a></code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#952-976' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.get_thread' class="method"><span id='get_thread.v' class='invisible'><code>pub fn <a href='#method.get_thread' class='fnname'>get_thread</a>(&amp;self, id: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../minidump/struct.MinidumpThread.html" title="struct minidump::MinidumpThread">MinidumpThread</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#954-959' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Get the thread with id <code>id</code> from this thread list if it exists.</p>
-</div><h4 id='method.print' class='method'><span id='print.v' class='invisible'><code>fn <a href='#method.print' class='fnname'>print</a>&lt;T:&nbsp;<a class='trait' href='https://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>&gt;(&amp;self, f: &amp;mut T) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></span></h4>
+</div><h4 id='method.print' class="method"><span id='print.v' class='invisible'><code>pub fn <a href='#method.print' class='fnname'>print</a>&lt;T:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/std/io/trait.Write.html" title="trait std::io::Write">Write</a>&gt;(&amp;self, f: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut </a>T) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/std/io/error/type.Result.html" title="type std::io::error::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">()</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#964-975' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Write a human-readable description of this <code>MinidumpThreadList</code> to <code>f</code>.</p>
 
 <p>This is very verbose, it is the format used by <code>minidump_dump</code>.</p>
@@ -120,7 +127,6 @@
         window.rootPath = "../";
         window.currentCrate = "minidump";
     </script>
-    <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     <script defer src="../search-index.js"></script>
 </body>

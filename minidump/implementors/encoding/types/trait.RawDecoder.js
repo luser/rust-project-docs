@@ -1,5 +1,5 @@
 (function() {var implementors = {};
-implementors["encoding"] = [];implementors["minidump"] = [];
+implementors["encoding"] = [];
 
             if (window.register_implementors) {
                 window.register_implementors(implementors);
