@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Struct_Unnamed6` struct in crate `minidump_common`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Struct_Unnamed6">
+
+    <title>minidump_common::format::Struct_Unnamed6 - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc struct">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'>Struct Struct_Unnamed6</p><div class="block items"><ul><li><a href="#fields">Fields</a></li><li><a href="#methods">Methods</a></li><li><a href="#implementations">Trait Implementations</a></li></ul></div><p class='location'><a href='../index.html'>minidump_common</a>::<wbr><a href='index.html'>format</a></p><script>window.sidebarCurrent = {name: 'Struct_Unnamed6', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>minidump_common</a>::<wbr><a href='index.html'>format</a>::<wbr><a class="struct" href=''>Struct_Unnamed6</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/minidump_common/format.rs.html#278-325' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'><div class="docblock attributes">#[repr(C, packed)]
+</div>pub struct Struct_Unnamed6 {
+    pub p1_home: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub p2_home: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub p3_home: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub p4_home: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub p5_home: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub p6_home: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub context_flags: <a class="type" href="../../minidump_common/format/type.uint32_t.html" title="type minidump_common::format::uint32_t">uint32_t</a>,
+    pub mx_csr: <a class="type" href="../../minidump_common/format/type.uint32_t.html" title="type minidump_common::format::uint32_t">uint32_t</a>,
+    pub cs: <a class="type" href="../../minidump_common/format/type.uint16_t.html" title="type minidump_common::format::uint16_t">uint16_t</a>,
+    pub ds: <a class="type" href="../../minidump_common/format/type.uint16_t.html" title="type minidump_common::format::uint16_t">uint16_t</a>,
+    pub es: <a class="type" href="../../minidump_common/format/type.uint16_t.html" title="type minidump_common::format::uint16_t">uint16_t</a>,
+    pub fs: <a class="type" href="../../minidump_common/format/type.uint16_t.html" title="type minidump_common::format::uint16_t">uint16_t</a>,
+    pub gs: <a class="type" href="../../minidump_common/format/type.uint16_t.html" title="type minidump_common::format::uint16_t">uint16_t</a>,
+    pub ss: <a class="type" href="../../minidump_common/format/type.uint16_t.html" title="type minidump_common::format::uint16_t">uint16_t</a>,
+    pub eflags: <a class="type" href="../../minidump_common/format/type.uint32_t.html" title="type minidump_common::format::uint32_t">uint32_t</a>,
+    pub dr0: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub dr1: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub dr2: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub dr3: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub dr6: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub dr7: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub rax: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub rcx: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub rdx: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub rbx: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub rsp: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub rbp: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub rsi: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub rdi: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub r8: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub r9: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub r10: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub r11: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub r12: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub r13: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub r14: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub r15: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub rip: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub _bindgen_data_1_: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 64]</a>,
+    pub vector_register: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="type" href="../../minidump_common/format/type.uint128_struct.html" title="type minidump_common::format::uint128_struct">uint128_struct</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 26]</a>,
+    pub vector_control: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub debug_control: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub last_branch_to_rip: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub last_branch_from_rip: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub last_exception_to_rip: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+    pub last_exception_from_rip: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a>,
+}</pre><h2 id='fields' class='fields small-section-header'>
+                       Fields<a href='#fields' class='anchor'></a></h2><span id="structfield.p1_home" class="structfield small-section-header">
+                           <a href="#structfield.p1_home" class="anchor field"></a>
+                           <span id="p1_home.v" class='invisible'>
+                           <code>p1_home: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.p2_home" class="structfield small-section-header">
+                           <a href="#structfield.p2_home" class="anchor field"></a>
+                           <span id="p2_home.v" class='invisible'>
+                           <code>p2_home: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.p3_home" class="structfield small-section-header">
+                           <a href="#structfield.p3_home" class="anchor field"></a>
+                           <span id="p3_home.v" class='invisible'>
+                           <code>p3_home: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.p4_home" class="structfield small-section-header">
+                           <a href="#structfield.p4_home" class="anchor field"></a>
+                           <span id="p4_home.v" class='invisible'>
+                           <code>p4_home: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.p5_home" class="structfield small-section-header">
+                           <a href="#structfield.p5_home" class="anchor field"></a>
+                           <span id="p5_home.v" class='invisible'>
+                           <code>p5_home: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.p6_home" class="structfield small-section-header">
+                           <a href="#structfield.p6_home" class="anchor field"></a>
+                           <span id="p6_home.v" class='invisible'>
+                           <code>p6_home: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.context_flags" class="structfield small-section-header">
+                           <a href="#structfield.context_flags" class="anchor field"></a>
+                           <span id="context_flags.v" class='invisible'>
+                           <code>context_flags: <a class="type" href="../../minidump_common/format/type.uint32_t.html" title="type minidump_common::format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.mx_csr" class="structfield small-section-header">
+                           <a href="#structfield.mx_csr" class="anchor field"></a>
+                           <span id="mx_csr.v" class='invisible'>
+                           <code>mx_csr: <a class="type" href="../../minidump_common/format/type.uint32_t.html" title="type minidump_common::format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.cs" class="structfield small-section-header">
+                           <a href="#structfield.cs" class="anchor field"></a>
+                           <span id="cs.v" class='invisible'>
+                           <code>cs: <a class="type" href="../../minidump_common/format/type.uint16_t.html" title="type minidump_common::format::uint16_t">uint16_t</a></code>
+                           </span></span><span id="structfield.ds" class="structfield small-section-header">
+                           <a href="#structfield.ds" class="anchor field"></a>
+                           <span id="ds.v" class='invisible'>
+                           <code>ds: <a class="type" href="../../minidump_common/format/type.uint16_t.html" title="type minidump_common::format::uint16_t">uint16_t</a></code>
+                           </span></span><span id="structfield.es" class="structfield small-section-header">
+                           <a href="#structfield.es" class="anchor field"></a>
+                           <span id="es.v" class='invisible'>
+                           <code>es: <a class="type" href="../../minidump_common/format/type.uint16_t.html" title="type minidump_common::format::uint16_t">uint16_t</a></code>
+                           </span></span><span id="structfield.fs" class="structfield small-section-header">
+                           <a href="#structfield.fs" class="anchor field"></a>
+                           <span id="fs.v" class='invisible'>
+                           <code>fs: <a class="type" href="../../minidump_common/format/type.uint16_t.html" title="type minidump_common::format::uint16_t">uint16_t</a></code>
+                           </span></span><span id="structfield.gs" class="structfield small-section-header">
+                           <a href="#structfield.gs" class="anchor field"></a>
+                           <span id="gs.v" class='invisible'>
+                           <code>gs: <a class="type" href="../../minidump_common/format/type.uint16_t.html" title="type minidump_common::format::uint16_t">uint16_t</a></code>
+                           </span></span><span id="structfield.ss" class="structfield small-section-header">
+                           <a href="#structfield.ss" class="anchor field"></a>
+                           <span id="ss.v" class='invisible'>
+                           <code>ss: <a class="type" href="../../minidump_common/format/type.uint16_t.html" title="type minidump_common::format::uint16_t">uint16_t</a></code>
+                           </span></span><span id="structfield.eflags" class="structfield small-section-header">
+                           <a href="#structfield.eflags" class="anchor field"></a>
+                           <span id="eflags.v" class='invisible'>
+                           <code>eflags: <a class="type" href="../../minidump_common/format/type.uint32_t.html" title="type minidump_common::format::uint32_t">uint32_t</a></code>
+                           </span></span><span id="structfield.dr0" class="structfield small-section-header">
+                           <a href="#structfield.dr0" class="anchor field"></a>
+                           <span id="dr0.v" class='invisible'>
+                           <code>dr0: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.dr1" class="structfield small-section-header">
+                           <a href="#structfield.dr1" class="anchor field"></a>
+                           <span id="dr1.v" class='invisible'>
+                           <code>dr1: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.dr2" class="structfield small-section-header">
+                           <a href="#structfield.dr2" class="anchor field"></a>
+                           <span id="dr2.v" class='invisible'>
+                           <code>dr2: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.dr3" class="structfield small-section-header">
+                           <a href="#structfield.dr3" class="anchor field"></a>
+                           <span id="dr3.v" class='invisible'>
+                           <code>dr3: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.dr6" class="structfield small-section-header">
+                           <a href="#structfield.dr6" class="anchor field"></a>
+                           <span id="dr6.v" class='invisible'>
+                           <code>dr6: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.dr7" class="structfield small-section-header">
+                           <a href="#structfield.dr7" class="anchor field"></a>
+                           <span id="dr7.v" class='invisible'>
+                           <code>dr7: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.rax" class="structfield small-section-header">
+                           <a href="#structfield.rax" class="anchor field"></a>
+                           <span id="rax.v" class='invisible'>
+                           <code>rax: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.rcx" class="structfield small-section-header">
+                           <a href="#structfield.rcx" class="anchor field"></a>
+                           <span id="rcx.v" class='invisible'>
+                           <code>rcx: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.rdx" class="structfield small-section-header">
+                           <a href="#structfield.rdx" class="anchor field"></a>
+                           <span id="rdx.v" class='invisible'>
+                           <code>rdx: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.rbx" class="structfield small-section-header">
+                           <a href="#structfield.rbx" class="anchor field"></a>
+                           <span id="rbx.v" class='invisible'>
+                           <code>rbx: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.rsp" class="structfield small-section-header">
+                           <a href="#structfield.rsp" class="anchor field"></a>
+                           <span id="rsp.v" class='invisible'>
+                           <code>rsp: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.rbp" class="structfield small-section-header">
+                           <a href="#structfield.rbp" class="anchor field"></a>
+                           <span id="rbp.v" class='invisible'>
+                           <code>rbp: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.rsi" class="structfield small-section-header">
+                           <a href="#structfield.rsi" class="anchor field"></a>
+                           <span id="rsi.v" class='invisible'>
+                           <code>rsi: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.rdi" class="structfield small-section-header">
+                           <a href="#structfield.rdi" class="anchor field"></a>
+                           <span id="rdi.v" class='invisible'>
+                           <code>rdi: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.r8" class="structfield small-section-header">
+                           <a href="#structfield.r8" class="anchor field"></a>
+                           <span id="r8.v" class='invisible'>
+                           <code>r8: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.r9" class="structfield small-section-header">
+                           <a href="#structfield.r9" class="anchor field"></a>
+                           <span id="r9.v" class='invisible'>
+                           <code>r9: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.r10" class="structfield small-section-header">
+                           <a href="#structfield.r10" class="anchor field"></a>
+                           <span id="r10.v" class='invisible'>
+                           <code>r10: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.r11" class="structfield small-section-header">
+                           <a href="#structfield.r11" class="anchor field"></a>
+                           <span id="r11.v" class='invisible'>
+                           <code>r11: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.r12" class="structfield small-section-header">
+                           <a href="#structfield.r12" class="anchor field"></a>
+                           <span id="r12.v" class='invisible'>
+                           <code>r12: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.r13" class="structfield small-section-header">
+                           <a href="#structfield.r13" class="anchor field"></a>
+                           <span id="r13.v" class='invisible'>
+                           <code>r13: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.r14" class="structfield small-section-header">
+                           <a href="#structfield.r14" class="anchor field"></a>
+                           <span id="r14.v" class='invisible'>
+                           <code>r14: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.r15" class="structfield small-section-header">
+                           <a href="#structfield.r15" class="anchor field"></a>
+                           <span id="r15.v" class='invisible'>
+                           <code>r15: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.rip" class="structfield small-section-header">
+                           <a href="#structfield.rip" class="anchor field"></a>
+                           <span id="rip.v" class='invisible'>
+                           <code>rip: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield._bindgen_data_1_" class="structfield small-section-header">
+                           <a href="#structfield._bindgen_data_1_" class="anchor field"></a>
+                           <span id="_bindgen_data_1_.v" class='invisible'>
+                           <code>_bindgen_data_1_: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 64]</a></code>
+                           </span></span><span id="structfield.vector_register" class="structfield small-section-header">
+                           <a href="#structfield.vector_register" class="anchor field"></a>
+                           <span id="vector_register.v" class='invisible'>
+                           <code>vector_register: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="type" href="../../minidump_common/format/type.uint128_struct.html" title="type minidump_common::format::uint128_struct">uint128_struct</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 26]</a></code>
+                           </span></span><span id="structfield.vector_control" class="structfield small-section-header">
+                           <a href="#structfield.vector_control" class="anchor field"></a>
+                           <span id="vector_control.v" class='invisible'>
+                           <code>vector_control: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.debug_control" class="structfield small-section-header">
+                           <a href="#structfield.debug_control" class="anchor field"></a>
+                           <span id="debug_control.v" class='invisible'>
+                           <code>debug_control: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.last_branch_to_rip" class="structfield small-section-header">
+                           <a href="#structfield.last_branch_to_rip" class="anchor field"></a>
+                           <span id="last_branch_to_rip.v" class='invisible'>
+                           <code>last_branch_to_rip: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.last_branch_from_rip" class="structfield small-section-header">
+                           <a href="#structfield.last_branch_from_rip" class="anchor field"></a>
+                           <span id="last_branch_from_rip.v" class='invisible'>
+                           <code>last_branch_from_rip: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.last_exception_to_rip" class="structfield small-section-header">
+                           <a href="#structfield.last_exception_to_rip" class="anchor field"></a>
+                           <span id="last_exception_to_rip.v" class='invisible'>
+                           <code>last_exception_to_rip: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span><span id="structfield.last_exception_from_rip" class="structfield small-section-header">
+                           <a href="#structfield.last_exception_from_rip" class="anchor field"></a>
+                           <span id="last_exception_from_rip.v" class='invisible'>
+                           <code>last_exception_from_rip: <a class="type" href="../../minidump_common/format/type.uint64_t.html" title="type minidump_common::format::uint64_t">uint64_t</a></code>
+                           </span></span>
+                    <h2 id='methods' class='small-section-header'>
+                      Methods<a href='#methods' class='anchor'></a>
+                    </h2>
+                <h3 id='impl' class='impl'><span class='in-band'><code>impl <a class="struct" href="../../minidump_common/format/struct.Struct_Unnamed6.html" title="struct minidump_common::format::Struct_Unnamed6">Struct_Unnamed6</a></code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#326-335' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.flt_save' class="method"><span id='flt_save.v' class='invisible'><code>pub unsafe fn <a href='#method.flt_save' class='fnname'>flt_save</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*mut </a><a class="type" href="../../minidump_common/format/type.MDXmmSaveArea32AMD64.html" title="type minidump_common::format::MDXmmSaveArea32AMD64">MDXmmSaveArea32AMD64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#327-330' title='goto source code'>[src]</a></span></h4>
+<h4 id='method.sse_registers' class="method"><span id='sse_registers.v' class='invisible'><code>pub unsafe fn <a href='#method.sse_registers' class='fnname'>sse_registers</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*mut </a><a class="struct" href="../../minidump_common/format/struct.Struct_Unnamed7.html" title="struct minidump_common::format::Struct_Unnamed7">Struct_Unnamed7</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#331-334' title='goto source code'>[src]</a></span></h4>
+</div>
+            <h2 id='implementations' class='small-section-header'>
+              Trait Implementations<a href='#implementations' class='anchor'></a>
+            </h2>
+        <h3 id='impl-Copy' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html" title="trait core::marker::Copy">Copy</a> for <a class="struct" href="../../minidump_common/format/struct.Struct_Unnamed6.html" title="struct minidump_common::format::Struct_Unnamed6">Struct_Unnamed6</a></code><a href='#impl-Copy' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#277' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'></div><h3 id='impl-Clone' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="../../minidump_common/format/struct.Struct_Unnamed6.html" title="struct minidump_common::format::Struct_Unnamed6">Struct_Unnamed6</a></code><a href='#impl-Clone' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#336-338' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class="method"><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; Self</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#337' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class="method"><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</code></span><span class='out-of-band'><div class='ghost'></div><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div><a class='srclink' href='https://doc.rust-lang.org/nightly/src/core/clone.rs.html#112-114' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div><h3 id='impl-Default' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html" title="trait core::default::Default">Default</a> for <a class="struct" href="../../minidump_common/format/struct.Struct_Unnamed6.html" title="struct minidump_common::format::Struct_Unnamed6">Struct_Unnamed6</a></code><a href='#impl-Default' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#339-341' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.default' class="method"><span id='default.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default' class='fnname'>default</a>() -&gt; Self</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#340' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns the &quot;default value&quot; for a type. <a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default">Read more</a></p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "minidump_common";
+    </script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

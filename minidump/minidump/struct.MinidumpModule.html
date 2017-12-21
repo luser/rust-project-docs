@@ -50,26 +50,26 @@
                    </a>
                </span><a class='srclink' href='../src/minidump/minidump.rs.html#107-116' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct MinidumpModule {
-    pub raw: <a class="type" href="../minidump/minidump_format/type.MDRawModule.html" title="type minidump::minidump_format::MDRawModule">MDRawModule</a>,
-    pub codeview_info: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;CodeView&gt;,
-    pub misc_info: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../minidump/minidump_format/type.MDImageDebugMisc.html" title="type minidump::minidump_format::MDImageDebugMisc">MDImageDebugMisc</a>&gt;,
+    pub raw: <a class="type" href="../minidump/format/type.MDRawModule.html" title="type minidump::format::MDRawModule">MDRawModule</a>,
+    pub codeview_info: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="enum" href="../minidump/enum.CodeView.html" title="enum minidump::CodeView">CodeView</a>&gt;,
+    pub misc_info: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../minidump/format/type.MDImageDebugMisc.html" title="type minidump::format::MDImageDebugMisc">MDImageDebugMisc</a>&gt;,
     // some fields omitted
 }</pre><div class='docblock'><p>An executable or shared library loaded in the process at the time the <code>Minidump</code> was written.</p>
 </div><h2 id='fields' class='fields small-section-header'>
                        Fields<a href='#fields' class='anchor'></a></h2><span id="structfield.raw" class="structfield small-section-header">
                            <a href="#structfield.raw" class="anchor field"></a>
                            <span id="raw.v" class='invisible'>
-                           <code>raw: <a class="type" href="../minidump/minidump_format/type.MDRawModule.html" title="type minidump::minidump_format::MDRawModule">MDRawModule</a></code>
+                           <code>raw: <a class="type" href="../minidump/format/type.MDRawModule.html" title="type minidump::format::MDRawModule">MDRawModule</a></code>
                            </span></span><div class='docblock'><p>The <code>MDRawModule</code> direct from the minidump file.</p>
 </div><span id="structfield.codeview_info" class="structfield small-section-header">
                            <a href="#structfield.codeview_info" class="anchor field"></a>
                            <span id="codeview_info.v" class='invisible'>
-                           <code>codeview_info: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;CodeView&gt;</code>
+                           <code>codeview_info: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="enum" href="../minidump/enum.CodeView.html" title="enum minidump::CodeView">CodeView</a>&gt;</code>
                            </span></span><div class='docblock'><p>A <code>CodeView</code> record, if one is present.</p>
 </div><span id="structfield.misc_info" class="structfield small-section-header">
                            <a href="#structfield.misc_info" class="anchor field"></a>
                            <span id="misc_info.v" class='invisible'>
-                           <code>misc_info: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../minidump/minidump_format/type.MDImageDebugMisc.html" title="type minidump::minidump_format::MDImageDebugMisc">MDImageDebugMisc</a>&gt;</code>
+                           <code>misc_info: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../minidump/format/type.MDImageDebugMisc.html" title="type minidump::format::MDImageDebugMisc">MDImageDebugMisc</a>&gt;</code>
                            </span></span><div class='docblock'><p>A misc debug record, if one is present.</p>
 </div>
                     <h2 id='methods' class='small-section-header'>
@@ -80,7 +80,7 @@
 <div class='docblock'><p>Create a <code>MinidumpModule</code> with some basic info.</p>
 
 <p>Useful for testing.</p>
-</div><h4 id='method.read' class="method"><span id='read.v' class='invisible'><code>pub fn <a href='#method.read' class='fnname'>read</a>&lt;T:&nbsp;<a class="trait" href="../minidump/trait.Readable.html" title="trait minidump::Readable">Readable</a>&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;f: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut </a>T, <br>&nbsp;&nbsp;&nbsp;&nbsp;raw: <a class="type" href="../minidump/minidump_format/type.MDRawModule.html" title="type minidump::minidump_format::MDRawModule">MDRawModule</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../minidump/struct.MinidumpModule.html" title="struct minidump::MinidumpModule">MinidumpModule</a>, <a class="enum" href="../minidump/enum.Error.html" title="enum minidump::Error">Error</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#312-327' title='goto source code'>[src]</a></span></h4>
+</div><h4 id='method.read' class="method"><span id='read.v' class='invisible'><code>pub fn <a href='#method.read' class='fnname'>read</a>&lt;T:&nbsp;<a class="trait" href="../minidump/trait.Readable.html" title="trait minidump::Readable">Readable</a>&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;f: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut </a>T, <br>&nbsp;&nbsp;&nbsp;&nbsp;raw: <a class="type" href="../minidump/format/type.MDRawModule.html" title="type minidump::format::MDRawModule">MDRawModule</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../minidump/struct.MinidumpModule.html" title="struct minidump::MinidumpModule">MinidumpModule</a>, <a class="enum" href="../minidump/enum.Error.html" title="enum minidump::Error">Error</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#312-327' title='goto source code'>[src]</a></span></h4>
 <h4 id='method.print' class="method"><span id='print.v' class='invisible'><code>pub fn <a href='#method.print' class='fnname'>print</a>&lt;T:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/std/io/trait.Write.html" title="trait std::io::Write">Write</a>&gt;(&amp;self, f: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut </a>T) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/std/io/error/type.Result.html" title="type std::io::error::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">()</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#332-461' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Write a human-readable description of this <code>MinidumpModule</code> to <code>f</code>.</p>
 
