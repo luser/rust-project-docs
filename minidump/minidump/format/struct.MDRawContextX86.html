@@ -10,11 +10,8 @@
     <title>minidump::format::MDRawContextX86 - Rust</title>
 
     <link rel="stylesheet" type="text/css" href="../../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle">
-    
-    <link rel="stylesheet" type="text/css" href="../../dark.css">
-    <link rel="stylesheet" type="text/css" href="../../main.css" id="themeStyle">
-    <script src="../../storage.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
     
 
     
@@ -33,16 +30,9 @@
     <nav class="sidebar">
         <div class="sidebar-menu">&#9776;</div>
         
-        <p class='location'>Struct MDRawContextX86</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#fields">Fields</a><div class="sidebar-links"><a href="#structfield.context_flags">context_flags</a><a href="#structfield.dr0">dr0</a><a href="#structfield.dr1">dr1</a><a href="#structfield.dr2">dr2</a><a href="#structfield.dr3">dr3</a><a href="#structfield.dr6">dr6</a><a href="#structfield.dr7">dr7</a><a href="#structfield.float_save">float_save</a><a href="#structfield.gs">gs</a><a href="#structfield.fs">fs</a><a href="#structfield.es">es</a><a href="#structfield.ds">ds</a><a href="#structfield.edi">edi</a><a href="#structfield.esi">esi</a><a href="#structfield.ebx">ebx</a><a href="#structfield.edx">edx</a><a href="#structfield.ecx">ecx</a><a href="#structfield.eax">eax</a><a href="#structfield.ebp">ebp</a><a href="#structfield.eip">eip</a><a href="#structfield.cs">cs</a><a href="#structfield.eflags">eflags</a><a href="#structfield.esp">esp</a><a href="#structfield.ss">ss</a><a href="#structfield.extended_registers">extended_registers</a></div><a class="sidebar-title" href="#implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-Default">Default</a><a href="#impl-Clone">Clone</a><a href="#impl-Copy">Copy</a><a href="#impl-CPUContext">CPUContext</a></div></div><p class='location'><a href='../index.html'>minidump</a>::<wbr><a href='index.html'>format</a></p><script>window.sidebarCurrent = {name: 'MDRawContextX86', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
+        <p class='location'>Struct MDRawContextX86</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#fields">Fields</a><div class="sidebar-links"><a href="#structfield.context_flags">context_flags</a><a href="#structfield.dr0">dr0</a><a href="#structfield.dr1">dr1</a><a href="#structfield.dr2">dr2</a><a href="#structfield.dr3">dr3</a><a href="#structfield.dr6">dr6</a><a href="#structfield.dr7">dr7</a><a href="#structfield.float_save">float_save</a><a href="#structfield.gs">gs</a><a href="#structfield.fs">fs</a><a href="#structfield.es">es</a><a href="#structfield.ds">ds</a><a href="#structfield.edi">edi</a><a href="#structfield.esi">esi</a><a href="#structfield.ebx">ebx</a><a href="#structfield.edx">edx</a><a href="#structfield.ecx">ecx</a><a href="#structfield.eax">eax</a><a href="#structfield.ebp">ebp</a><a href="#structfield.eip">eip</a><a href="#structfield.cs">cs</a><a href="#structfield.eflags">eflags</a><a href="#structfield.esp">esp</a><a href="#structfield.ss">ss</a><a href="#structfield.extended_registers">extended_registers</a></div><a class="sidebar-title" href="#implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-Default">Default</a><a href="#impl-Copy">Copy</a><a href="#impl-Clone">Clone</a><a href="#impl-CPUContext">CPUContext</a></div></div><p class='location'><a href='../index.html'>minidump</a>::<wbr><a href='index.html'>format</a></p><script>window.sidebarCurrent = {name: 'MDRawContextX86', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
     </nav>
 
-    <div class="theme-picker">
-        <button id="theme-picker" aria-label="Pick another theme!">
-            <img src="../../brush.svg" width="18" alt="Pick another theme!">
-        </button>
-        <div id="theme-choices"></div>
-    </div>
-    <script src="../../theme.js"></script>
     <nav class="sub">
         <form class="search-form js-only">
             <div class="search-container">
@@ -194,14 +184,13 @@
             </h2>
         <h3 id='impl-Default' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html" title="trait core::default::Default">Default</a> for <a class="struct" href="../../minidump/format/struct.MDRawContextX86.html" title="struct minidump::format::MDRawContextX86">MDRawContextX86</a></code><a href='#impl-Default' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#607-611' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.default' class="method"><span id='default.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default' class='fnname'>default</a>() -&gt; <a class="struct" href="../../minidump/format/struct.MDRawContextX86.html" title="struct minidump::format::MDRawContextX86">MDRawContextX86</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#608-610' title='goto source code'>[src]</a></span></h4>
-<div class='docblock'><p>Returns the &quot;default value&quot; for a type. <a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default">Read more</a></p>
-</div></div><h3 id='impl-Clone' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="../../minidump/format/struct.MDRawContextX86.html" title="struct minidump::format::MDRawContextX86">MDRawContextX86</a></code><a href='#impl-Clone' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#602-606' title='goto source code'>[src]</a></span></h3>
+</div><h3 id='impl-Copy' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html" title="trait core::marker::Copy">Copy</a> for <a class="struct" href="../../minidump/format/struct.MDRawContextX86.html" title="struct minidump::format::MDRawContextX86">MDRawContextX86</a></code><a href='#impl-Copy' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#574' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'></div><h3 id='impl-Clone' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="../../minidump/format/struct.MDRawContextX86.html" title="struct minidump::format::MDRawContextX86">MDRawContextX86</a></code><a href='#impl-Clone' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#602-606' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.clone' class="method"><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class="struct" href="../../minidump/format/struct.MDRawContextX86.html" title="struct minidump::format::MDRawContextX86">MDRawContextX86</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#603-605' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
 </div><h4 id='method.clone_from' class="method"><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</code></span><span class='out-of-band'><div class='ghost'></div><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div><a class='srclink' href='https://doc.rust-lang.org/nightly/src/core/clone.rs.html#112-114' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
-</div></div><h3 id='impl-Copy' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html" title="trait core::marker::Copy">Copy</a> for <a class="struct" href="../../minidump/format/struct.MDRawContextX86.html" title="struct minidump::format::MDRawContextX86">MDRawContextX86</a></code><a href='#impl-Copy' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#574' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'></div><h3 id='impl-CPUContext' class='impl'><span class='in-band'><code>impl <a class="trait" href="../../minidump/trait.CPUContext.html" title="trait minidump::CPUContext">CPUContext</a> for <a class="struct" href="../../minidump/format/struct.MDRawContextX86.html" title="struct minidump::format::MDRawContextX86">MDRawContextX86</a></code><a href='#impl-CPUContext' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump/context.rs.html#61-79' title='goto source code'>[src]</a></span></h3>
+</div></div><h3 id='impl-CPUContext' class='impl'><span class='in-band'><code>impl <a class="trait" href="../../minidump/trait.CPUContext.html" title="trait minidump::CPUContext">CPUContext</a> for <a class="struct" href="../../minidump/format/struct.MDRawContextX86.html" title="struct minidump::format::MDRawContextX86">MDRawContextX86</a></code><a href='#impl-CPUContext' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump/context.rs.html#61-79' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='associatedtype.Register' class="type"><span id='Register.t' class='invisible'><code>type <a href='../../minidump/trait.CPUContext.html#associatedtype.Register' class="type">Register</a> = <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></code></span></h4>
 <div class='docblock'><p>The word size of general-purpose registers in the context.</p>
 </div><h4 id='method.get_register_always' class="method"><span id='get_register_always.v' class='invisible'><code>fn <a href='../../minidump/trait.CPUContext.html#tymethod.get_register_always' class='fnname'>get_register_always</a>(&amp;self, reg: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump/context.rs.html#64-78' title='goto source code'>[src]</a></span></h4>
@@ -223,22 +212,20 @@
                 <h2>Keyboard Shortcuts</h2>
 
                 <dl>
-                    <dt><kbd>?</kbd></dt>
+                    <dt>?</dt>
                     <dd>Show this help dialog</dd>
-                    <dt><kbd>S</kbd></dt>
+                    <dt>S</dt>
                     <dd>Focus the search field</dd>
-                    <dt><kbd>↑</kbd></dt>
+                    <dt>↑</dt>
                     <dd>Move up in search results</dd>
-                    <dt><kbd>↓</kbd></dt>
+                    <dt>↓</dt>
                     <dd>Move down in search results</dd>
-                    <dt><kbd>↹</kbd></dt>
+                    <dt>↹</dt>
                     <dd>Switch tab</dd>
-                    <dt><kbd>&#9166;</kbd></dt>
+                    <dt>&#9166;</dt>
                     <dd>Go to active search result</dd>
-                    <dt><kbd>+</kbd></dt>
-                    <dd>Expand all sections</dd>
-                    <dt><kbd>-</kbd></dt>
-                    <dd>Collapse all sections</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
                 </dl>
             </div>
 

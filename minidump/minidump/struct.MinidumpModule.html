@@ -10,11 +10,8 @@
     <title>minidump::MinidumpModule - Rust</title>
 
     <link rel="stylesheet" type="text/css" href="../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle">
-    
-    <link rel="stylesheet" type="text/css" href="../dark.css">
-    <link rel="stylesheet" type="text/css" href="../main.css" id="themeStyle">
-    <script src="../storage.js"></script>
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
     
 
     
@@ -36,13 +33,6 @@
         <p class='location'>Struct MinidumpModule</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#fields">Fields</a><div class="sidebar-links"><a href="#structfield.raw">raw</a><a href="#structfield.codeview_info">codeview_info</a><a href="#structfield.misc_info">misc_info</a></div><a class="sidebar-title" href="#methods">Methods</a><div class="sidebar-links"><a href="#method.new">new</a><a href="#method.read">read</a><a href="#method.print">print</a></div><a class="sidebar-title" href="#implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-Clone">Clone</a><a href="#impl-Module">Module</a></div></div><p class='location'><a href='index.html'>minidump</a></p><script>window.sidebarCurrent = {name: 'MinidumpModule', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
     </nav>
 
-    <div class="theme-picker">
-        <button id="theme-picker" aria-label="Pick another theme!">
-            <img src="../brush.svg" width="18" alt="Pick another theme!">
-        </button>
-        <div id="theme-choices"></div>
-    </div>
-    <script src="../theme.js"></script>
     <nav class="sub">
         <form class="search-form js-only">
             <div class="search-container">
@@ -89,10 +79,12 @@
                 <h3 id='impl' class='impl'><span class='in-band'><code>impl <a class="struct" href="../minidump/struct.MinidumpModule.html" title="struct minidump::MinidumpModule">MinidumpModule</a></code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#317-507' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.new' class="method"><span id='new.v' class='invisible'><code>pub fn <a href='#method.new' class='fnname'>new</a>(base: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>, size: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="struct" href="../minidump/struct.MinidumpModule.html" title="struct minidump::MinidumpModule">MinidumpModule</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#321-332' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Create a <code>MinidumpModule</code> with some basic info.</p>
+
 <p>Useful for testing.</p>
 </div><h4 id='method.read' class="method"><span id='read.v' class='invisible'><code>pub fn <a href='#method.read' class='fnname'>read</a>&lt;T:&nbsp;<a class="trait" href="../minidump/trait.Readable.html" title="trait minidump::Readable">Readable</a>&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;f: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut </a>T, <br>&nbsp;&nbsp;&nbsp;&nbsp;raw: <a class="struct" href="../minidump/format/struct.MDRawModule.html" title="struct minidump::format::MDRawModule">MDRawModule</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../minidump/struct.MinidumpModule.html" title="struct minidump::MinidumpModule">MinidumpModule</a>, <a class="enum" href="../minidump/enum.Error.html" title="enum minidump::Error">Error</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#334-351' title='goto source code'>[src]</a></span></h4>
 <h4 id='method.print' class="method"><span id='print.v' class='invisible'><code>pub fn <a href='#method.print' class='fnname'>print</a>&lt;T:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/std/io/trait.Write.html" title="trait std::io::Write">Write</a>&gt;(&amp;self, f: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut </a>T) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/std/io/error/type.Result.html" title="type std::io::error::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#356-502' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Write a human-readable description of this <code>MinidumpModule</code> to <code>f</code>.</p>
+
 <p>This is very verbose, it is the format used by <code>minidump_dump</code>.</p>
 </div></div>
             <h2 id='implementations' class='small-section-header'>
@@ -117,7 +109,7 @@
 </div><h4 id='method.debug_identifier' class="method"><span id='debug_identifier.v' class='invisible'><code>fn <a href='../minidump/trait.Module.html#tymethod.debug_identifier' class='fnname'>debug_identifier</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="enum" href="https://doc.rust-lang.org/nightly/alloc/borrow/enum.Cow.html" title="enum alloc::borrow::Cow">Cow</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#593-629' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>An identifying string similar to code_identifier, but identifies a specific version and build of the associated debug file.  This may be the same as code_identifier when the debug_file and code_file are identical or when the same identifier is used to identify distinct debug and code files. <a href="../minidump/trait.Module.html#tymethod.debug_identifier">Read more</a></p>
 </div><h4 id='method.version' class="method"><span id='version.v' class='invisible'><code>fn <a href='../minidump/trait.Module.html#tymethod.version' class='fnname'>version</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="enum" href="https://doc.rust-lang.org/nightly/alloc/borrow/enum.Cow.html" title="enum alloc::borrow::Cow">Cow</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/minidump.rs.html#630-647' title='goto source code'>[src]</a></span></h4>
-<div class='docblock'><p>A human-readable representation of the code module's version.</p>
+<div class='docblock'><p>A human-readable representation of the code module&#39;s version.</p>
 </div></div></section>
     <section id='search' class="content hidden"></section>
 
@@ -131,22 +123,20 @@
                 <h2>Keyboard Shortcuts</h2>
 
                 <dl>
-                    <dt><kbd>?</kbd></dt>
+                    <dt>?</dt>
                     <dd>Show this help dialog</dd>
-                    <dt><kbd>S</kbd></dt>
+                    <dt>S</dt>
                     <dd>Focus the search field</dd>
-                    <dt><kbd>↑</kbd></dt>
+                    <dt>↑</dt>
                     <dd>Move up in search results</dd>
-                    <dt><kbd>↓</kbd></dt>
+                    <dt>↓</dt>
                     <dd>Move down in search results</dd>
-                    <dt><kbd>↹</kbd></dt>
+                    <dt>↹</dt>
                     <dd>Switch tab</dd>
-                    <dt><kbd>&#9166;</kbd></dt>
+                    <dt>&#9166;</dt>
                     <dd>Go to active search result</dd>
-                    <dt><kbd>+</kbd></dt>
-                    <dd>Expand all sections</dd>
-                    <dt><kbd>-</kbd></dt>
-                    <dd>Collapse all sections</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
                 </dl>
             </div>
 
