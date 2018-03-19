@@ -10,8 +10,11 @@
     <title>context.rs.html -- source</title>
 
     <link rel="stylesheet" type="text/css" href="../../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle">
+    
+    <link rel="stylesheet" type="text/css" href="../../dark.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css" id="themeStyle">
+    <script src="../../storage.js"></script>
     
 
     
@@ -28,10 +31,18 @@
     
 
     <nav class="sidebar">
+        <div class="sidebar-menu">&#9776;</div>
         
         
     </nav>
 
+    <div class="theme-picker">
+        <button id="theme-picker" aria-label="Pick another theme!">
+            <img src="../../brush.svg" width="18" alt="Pick another theme!">
+        </button>
+        <div id="theme-choices"></div>
+    </div>
+    <script src="../../theme.js"></script>
     <nav class="sub">
         <form class="search-form js-only">
             <div class="search-container">
@@ -529,6 +540,26 @@
 <span id="484">484</span>
 <span id="485">485</span>
 <span id="486">486</span>
+<span id="487">487</span>
+<span id="488">488</span>
+<span id="489">489</span>
+<span id="490">490</span>
+<span id="491">491</span>
+<span id="492">492</span>
+<span id="493">493</span>
+<span id="494">494</span>
+<span id="495">495</span>
+<span id="496">496</span>
+<span id="497">497</span>
+<span id="498">498</span>
+<span id="499">499</span>
+<span id="500">500</span>
+<span id="501">501</span>
+<span id="502">502</span>
+<span id="503">503</span>
+<span id="504">504</span>
+<span id="505">505</span>
+<span id="506">506</span>
 </pre><pre class="rust ">
 <span class="comment">// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class="comment">// file at the top-level directory of this distribution.</span>
@@ -561,16 +592,14 @@
 <span class="doccomment">/// Generic over the specifics of a CPU context.</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CPUContext</span> {
     <span class="doccomment">/// The word size of general-purpose registers in the context.</span>
-    <span class="kw">type</span> <span class="ident">Register</span> : <span class="ident">fmt</span>::<span class="ident">LowerHex</span>;
+    <span class="kw">type</span> <span class="ident">Register</span>: <span class="ident">fmt</span>::<span class="ident">LowerHex</span>;
 
     <span class="doccomment">/// Get a register value if it is valid.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Get the value of the register named `reg` from this CPU context</span>
     <span class="doccomment">/// if `valid` indicates that it has a valid value, otherwise return</span>
     <span class="doccomment">/// `None`.</span>
-    <span class="kw">fn</span> <span class="ident">get_register</span>(<span class="kw-2">&amp;</span><span class="self">self</span>,
-                    <span class="ident">reg</span> : <span class="kw-2">&amp;</span><span class="ident">str</span>,
-                    <span class="ident">valid</span> : <span class="kw-2">&amp;</span><span class="ident">MinidumpContextValidity</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Register</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_register</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">reg</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">valid</span>: <span class="kw-2">&amp;</span><span class="ident">MinidumpContextValidity</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Register</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="kw">let</span> <span class="kw-2">&amp;</span><span class="ident">MinidumpContextValidity</span>::<span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">which</span>) <span class="op">=</span> <span class="ident">valid</span> {
             <span class="kw">if</span> <span class="op">!</span><span class="ident">which</span>.<span class="ident">contains</span>(<span class="ident">reg</span>) {
                 <span class="kw">return</span> <span class="prelude-val">None</span>;
@@ -580,20 +609,22 @@
     }
 
     <span class="doccomment">/// Return a String containing the value of `reg` formatted to its natural width.</span>
-    <span class="kw">fn</span> <span class="ident">format_register</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">reg</span> : <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
-        <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;0x{:01$x}&quot;</span>,
-                <span class="self">self</span>.<span class="ident">get_register_always</span>(<span class="ident">reg</span>),
-                <span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Register</span><span class="op">&gt;</span>() <span class="op">*</span> <span class="number">2</span>)
+    <span class="kw">fn</span> <span class="ident">format_register</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">reg</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
+        <span class="macro">format</span><span class="macro">!</span>(
+            <span class="string">&quot;0x{:01$x}&quot;</span>,
+            <span class="self">self</span>.<span class="ident">get_register_always</span>(<span class="ident">reg</span>),
+            <span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Register</span><span class="op">&gt;</span>() <span class="op">*</span> <span class="number">2</span>
+        )
     }
 
     <span class="doccomment">/// Get a register value regardless of whether it is valid.</span>
-    <span class="kw">fn</span> <span class="ident">get_register_always</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">reg</span> : <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Register</span>;
+    <span class="kw">fn</span> <span class="ident">get_register_always</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">reg</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Register</span>;
 }
 
 <span class="kw">impl</span> <span class="ident">CPUContext</span> <span class="kw">for</span> <span class="ident">md</span>::<span class="ident">MDRawContextX86</span> {
     <span class="kw">type</span> <span class="ident">Register</span> <span class="op">=</span> <span class="ident">u32</span>;
 
-    <span class="kw">fn</span> <span class="ident">get_register_always</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">reg</span> : <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">get_register_always</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">reg</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
         <span class="kw">match</span> <span class="ident">reg</span> {
             <span class="string">&quot;eip&quot;</span> <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">eip</span>,
             <span class="string">&quot;esp&quot;</span> <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">esp</span>,
@@ -613,7 +644,7 @@
 <span class="kw">impl</span> <span class="ident">CPUContext</span> <span class="kw">for</span> <span class="ident">md</span>::<span class="ident">MDRawContextAMD64</span> {
     <span class="kw">type</span> <span class="ident">Register</span> <span class="op">=</span> <span class="ident">u64</span>;
 
-    <span class="kw">fn</span> <span class="ident">get_register_always</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">reg</span> : <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">u64</span> {
+    <span class="kw">fn</span> <span class="ident">get_register_always</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">reg</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">u64</span> {
         <span class="kw">match</span> <span class="ident">reg</span> {
             <span class="string">&quot;rax&quot;</span> <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">rax</span>,
             <span class="string">&quot;rdx&quot;</span> <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">rdx</span>,
@@ -646,7 +677,6 @@
     <span class="prelude-val">Some</span>(<span class="ident">HashSet</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>),
 }
 
-
 <span class="doccomment">/// CPU context such as register states.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// MinidumpContext carries a CPU-specific MDRawContext structure, which</span>
@@ -662,9 +692,9 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MinidumpContext</span> {
     <span class="doccomment">/// The raw CPU register state.</span>
-    <span class="kw">pub</span> <span class="ident">raw</span> : <span class="ident">MinidumpRawContext</span>,
+    <span class="kw">pub</span> <span class="ident">raw</span>: <span class="ident">MinidumpRawContext</span>,
     <span class="doccomment">/// Which registers are valid in `raw`.</span>
-    <span class="kw">pub</span> <span class="ident">valid</span> : <span class="ident">MinidumpContextValidity</span>,
+    <span class="kw">pub</span> <span class="ident">valid</span>: <span class="ident">MinidumpContextValidity</span>,
 }
 
 <span class="doccomment">/// Errors encountered while reading a `MinidumpContext`.</span>
@@ -676,20 +706,22 @@
 }
 
 <span class="doccomment">/// General-purpose registers for x86.</span>
-<span class="kw">static</span> <span class="ident">X86_REGS</span> : [<span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>; <span class="number">10</span>] <span class="op">=</span>
-    [<span class="string">&quot;eip&quot;</span>, <span class="string">&quot;esp&quot;</span>, <span class="string">&quot;ebp&quot;</span>, <span class="string">&quot;ebx&quot;</span>, <span class="string">&quot;esi&quot;</span>, <span class="string">&quot;edi&quot;</span>, <span class="string">&quot;eax&quot;</span>, <span class="string">&quot;ecx&quot;</span>, <span class="string">&quot;edx&quot;</span>, <span class="string">&quot;efl&quot;</span>];
+<span class="kw">static</span> <span class="ident">X86_REGS</span>: [<span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>; <span class="number">10</span>] <span class="op">=</span> [
+    <span class="string">&quot;eip&quot;</span>, <span class="string">&quot;esp&quot;</span>, <span class="string">&quot;ebp&quot;</span>, <span class="string">&quot;ebx&quot;</span>, <span class="string">&quot;esi&quot;</span>, <span class="string">&quot;edi&quot;</span>, <span class="string">&quot;eax&quot;</span>, <span class="string">&quot;ecx&quot;</span>, <span class="string">&quot;edx&quot;</span>, <span class="string">&quot;efl&quot;</span>
+];
 
 <span class="doccomment">/// General-purpose registers for x86-64.</span>
-<span class="kw">static</span> <span class="ident">X86_64_REGS</span> : [<span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>; <span class="number">17</span>] <span class="op">=</span>
-    [<span class="string">&quot;rax&quot;</span>, <span class="string">&quot;rdx&quot;</span>, <span class="string">&quot;rcx&quot;</span>, <span class="string">&quot;rbx&quot;</span>, <span class="string">&quot;rsi&quot;</span>, <span class="string">&quot;rdi&quot;</span>, <span class="string">&quot;rbp&quot;</span>, <span class="string">&quot;rsp&quot;</span>,
-     <span class="string">&quot;r8&quot;</span>,  <span class="string">&quot;r9&quot;</span>,  <span class="string">&quot;r10&quot;</span>, <span class="string">&quot;r11&quot;</span>, <span class="string">&quot;r12&quot;</span>, <span class="string">&quot;r13&quot;</span>, <span class="string">&quot;r14&quot;</span>, <span class="string">&quot;r15&quot;</span>, <span class="string">&quot;rip&quot;</span>];
+<span class="kw">static</span> <span class="ident">X86_64_REGS</span>: [<span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>; <span class="number">17</span>] <span class="op">=</span> [
+    <span class="string">&quot;rax&quot;</span>, <span class="string">&quot;rdx&quot;</span>, <span class="string">&quot;rcx&quot;</span>, <span class="string">&quot;rbx&quot;</span>, <span class="string">&quot;rsi&quot;</span>, <span class="string">&quot;rdi&quot;</span>, <span class="string">&quot;rbp&quot;</span>, <span class="string">&quot;rsp&quot;</span>, <span class="string">&quot;r8&quot;</span>, <span class="string">&quot;r9&quot;</span>, <span class="string">&quot;r10&quot;</span>, <span class="string">&quot;r11&quot;</span>, <span class="string">&quot;r12&quot;</span>, <span class="string">&quot;r13&quot;</span>,
+    <span class="string">&quot;r14&quot;</span>, <span class="string">&quot;r15&quot;</span>, <span class="string">&quot;rip&quot;</span>,
+];
 
 <span class="comment">//======================================================</span>
 <span class="comment">// Implementations</span>
 
 <span class="kw">impl</span> <span class="ident">MinidumpContext</span> {
     <span class="doccomment">/// Return a MinidumpContext given a `MinidumpRawContext`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span> : <span class="ident">MinidumpRawContext</span>) <span class="op">-&gt;</span> <span class="ident">MinidumpContext</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="ident">MinidumpRawContext</span>) <span class="op">-&gt;</span> <span class="ident">MinidumpContext</span> {
         <span class="ident">MinidumpContext</span> {
             <span class="ident">raw</span>: <span class="ident">raw</span>,
             <span class="ident">valid</span>: <span class="ident">MinidumpContextValidity</span>::<span class="ident">All</span>,
@@ -697,27 +729,33 @@
     }
 
     <span class="doccomment">/// Read a `MinidumpContext` from a file.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read</span><span class="op">&lt;</span><span class="ident">T</span> : <span class="ident">Readable</span><span class="op">&gt;</span>(<span class="ident">f</span> : <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>, <span class="ident">location</span> : <span class="kw-2">&amp;</span><span class="ident">md</span>::<span class="ident">MDLocationDescriptor</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MinidumpContext</span>, <span class="ident">ContextError</span><span class="op">&gt;</span> {
-        <span class="macro">try</span><span class="macro">!</span>(<span class="ident">f</span>.<span class="ident">seek</span>(<span class="ident">SeekFrom</span>::<span class="ident">Start</span>(<span class="ident">location</span>.<span class="ident">rva</span> <span class="kw">as</span> <span class="ident">u64</span>)).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>)));
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Readable</span><span class="op">&gt;</span>(
+        <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>,
+        <span class="ident">location</span>: <span class="kw-2">&amp;</span><span class="ident">md</span>::<span class="ident">MDLocationDescriptor</span>,
+    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MinidumpContext</span>, <span class="ident">ContextError</span><span class="op">&gt;</span> {
+        <span class="macro">try</span><span class="macro">!</span>(
+            <span class="ident">f</span>.<span class="ident">seek</span>(<span class="ident">SeekFrom</span>::<span class="ident">Start</span>(<span class="ident">location</span>.<span class="ident">rva</span> <span class="kw">as</span> <span class="ident">u64</span>))
+                .<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>))
+        );
         <span class="kw">let</span> <span class="ident">expected_size</span> <span class="op">=</span> <span class="ident">location</span>.<span class="ident">data_size</span> <span class="kw">as</span> <span class="ident">usize</span>;
         <span class="comment">// Some contexts don&#39;t have a context flags word at the beginning,</span>
         <span class="comment">// so special-case them by size.</span>
         <span class="kw">if</span> <span class="ident">expected_size</span> <span class="op">==</span> <span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">md</span>::<span class="ident">MDRawContextAMD64</span><span class="op">&gt;</span>() {
-            <span class="kw">let</span> <span class="ident">ctx</span> : <span class="ident">md</span>::<span class="ident">MDRawContextAMD64</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">read</span>(<span class="ident">f</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>)));
+            <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">MDRawContextAMD64</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">read</span>(<span class="ident">f</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>)));
             <span class="kw">if</span> <span class="ident">ctx</span>.<span class="ident">context_flags</span> <span class="op">&amp;</span> <span class="ident">md</span>::<span class="ident">MD_CONTEXT_CPU_MASK</span> <span class="op">!=</span> <span class="ident">md</span>::<span class="ident">MD_CONTEXT_AMD64</span> {
                 <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>);
             } <span class="kw">else</span> {
                 <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">MinidumpContext</span>::<span class="ident">from_raw</span>(<span class="ident">MinidumpRawContext</span>::<span class="ident">AMD64</span>(<span class="ident">ctx</span>)));
             }
         } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">expected_size</span> <span class="op">==</span> <span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">md</span>::<span class="ident">MDRawContextPPC64</span><span class="op">&gt;</span>() {
-            <span class="kw">let</span> <span class="ident">ctx</span> : <span class="ident">md</span>::<span class="ident">MDRawContextPPC64</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">read</span>(<span class="ident">f</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>)));
+            <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">MDRawContextPPC64</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">read</span>(<span class="ident">f</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>)));
             <span class="kw">if</span> <span class="ident">ctx</span>.<span class="ident">context_flags</span> <span class="op">&amp;</span> (<span class="ident">md</span>::<span class="ident">MD_CONTEXT_CPU_MASK</span> <span class="kw">as</span> <span class="ident">u64</span>) <span class="op">!=</span> <span class="ident">md</span>::<span class="ident">MD_CONTEXT_PPC64</span> <span class="kw">as</span> <span class="ident">u64</span> {
                 <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>);
             } <span class="kw">else</span> {
                 <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">MinidumpContext</span>::<span class="ident">from_raw</span>(<span class="ident">MinidumpRawContext</span>::<span class="ident">PPC64</span>(<span class="ident">ctx</span>)));
             }
         } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">expected_size</span> <span class="op">==</span> <span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">md</span>::<span class="ident">MDRawContextARM64</span><span class="op">&gt;</span>() {
-            <span class="kw">let</span> <span class="ident">ctx</span> : <span class="ident">md</span>::<span class="ident">MDRawContextARM64</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">read</span>(<span class="ident">f</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>)));
+            <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">MDRawContextARM64</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">read</span>(<span class="ident">f</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>)));
             <span class="kw">if</span> <span class="ident">ctx</span>.<span class="ident">context_flags</span> <span class="op">&amp;</span> (<span class="ident">md</span>::<span class="ident">MD_CONTEXT_CPU_MASK</span> <span class="kw">as</span> <span class="ident">u64</span>) <span class="op">!=</span> <span class="ident">md</span>::<span class="ident">MD_CONTEXT_ARM64</span> <span class="kw">as</span> <span class="ident">u64</span> {
                 <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>);
             } <span class="kw">else</span> {
@@ -727,36 +765,41 @@
             <span class="comment">// For everything else, read the flags and determine context</span>
             <span class="comment">// type from that.</span>
             <span class="comment">// TODO: swap</span>
-            <span class="kw">let</span> <span class="ident">flags</span> : <span class="ident">u32</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">read</span>(<span class="ident">f</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>)));
-            <span class="macro">try</span><span class="macro">!</span>(<span class="ident">f</span>.<span class="ident">seek</span>(<span class="ident">SeekFrom</span>::<span class="ident">Current</span>(<span class="op">-</span><span class="number">4</span>)).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>)));
+            <span class="kw">let</span> <span class="ident">flags</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">read</span>(<span class="ident">f</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>)));
+            <span class="macro">try</span><span class="macro">!</span>(
+                <span class="ident">f</span>.<span class="ident">seek</span>(<span class="ident">SeekFrom</span>::<span class="ident">Current</span>(<span class="op">-</span><span class="number">4</span>))
+                    .<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>))
+            );
             <span class="kw">let</span> <span class="ident">cpu_type</span> <span class="op">=</span> <span class="ident">flags</span> <span class="op">&amp;</span> <span class="ident">md</span>::<span class="ident">MD_CONTEXT_CPU_MASK</span>;
             <span class="comment">// TODO: handle dumps with MD_CONTEXT_ARM_OLD</span>
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ctx</span>) <span class="op">=</span> <span class="kw">match</span> <span class="ident">cpu_type</span> {
                 <span class="ident">md</span>::<span class="ident">MD_CONTEXT_X86</span> <span class="op">=&gt;</span> {
-                    <span class="kw">let</span> <span class="ident">ctx</span> : <span class="ident">md</span>::<span class="ident">MDRawContextX86</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">read</span>(<span class="ident">f</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>)));
+                    <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">MDRawContextX86</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">read</span>(<span class="ident">f</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>)));
                     <span class="prelude-val">Some</span>(<span class="ident">MinidumpRawContext</span>::<span class="ident">X86</span>(<span class="ident">ctx</span>))
-                },
+                }
                 <span class="ident">md</span>::<span class="ident">MD_CONTEXT_PPC</span> <span class="op">=&gt;</span> {
-                    <span class="kw">let</span> <span class="ident">ctx</span> : <span class="ident">md</span>::<span class="ident">MDRawContextPPC</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">read</span>(<span class="ident">f</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>)));
+                    <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">MDRawContextPPC</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">read</span>(<span class="ident">f</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>)));
                     <span class="prelude-val">Some</span>(<span class="ident">MinidumpRawContext</span>::<span class="ident">PPC</span>(<span class="ident">ctx</span>))
-                },
+                }
                 <span class="ident">md</span>::<span class="ident">MD_CONTEXT_SPARC</span> <span class="op">=&gt;</span> {
-                    <span class="kw">let</span> <span class="ident">ctx</span> : <span class="ident">md</span>::<span class="ident">MDRawContextSPARC</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">read</span>(<span class="ident">f</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>)));
+                    <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">MDRawContextSPARC</span> <span class="op">=</span>
+                        <span class="macro">try</span><span class="macro">!</span>(<span class="ident">read</span>(<span class="ident">f</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>)));
                     <span class="prelude-val">Some</span>(<span class="ident">MinidumpRawContext</span>::<span class="ident">SPARC</span>(<span class="ident">ctx</span>))
-                },
+                }
                 <span class="ident">md</span>::<span class="ident">MD_CONTEXT_ARM</span> <span class="op">=&gt;</span> {
-                    <span class="kw">let</span> <span class="ident">ctx</span> : <span class="ident">md</span>::<span class="ident">MDRawContextARM</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">read</span>(<span class="ident">f</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>)));
+                    <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">MDRawContextARM</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">read</span>(<span class="ident">f</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>)));
                     <span class="prelude-val">Some</span>(<span class="ident">MinidumpRawContext</span>::<span class="ident">ARM</span>(<span class="ident">ctx</span>))
-                },
+                }
                 <span class="ident">md</span>::<span class="ident">MD_CONTEXT_MIPS</span> <span class="op">=&gt;</span> {
-                    <span class="kw">let</span> <span class="ident">ctx</span> : <span class="ident">md</span>::<span class="ident">MDRawContextMIPS</span> <span class="op">=</span> <span class="macro">try</span><span class="macro">!</span>(<span class="ident">read</span>(<span class="ident">f</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>)));
+                    <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">MDRawContextMIPS</span> <span class="op">=</span>
+                        <span class="macro">try</span><span class="macro">!</span>(<span class="ident">read</span>(<span class="ident">f</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>)));
                     <span class="prelude-val">Some</span>(<span class="ident">MinidumpRawContext</span>::<span class="ident">MIPS</span>(<span class="ident">ctx</span>))
-                },
+                }
                 _ <span class="op">=&gt;</span> <span class="prelude-val">None</span>,
             } {
                 <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">MinidumpContext</span>::<span class="ident">from_raw</span>(<span class="ident">ctx</span>));
             }
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">UnknownCPUContext</span>)
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">UnknownCPUContext</span>);
         }
     }
 
@@ -786,9 +829,7 @@
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">format_register</span>(<span class="kw-2">&amp;</span><span class="self">self</span>,
-                           <span class="ident">reg</span> : <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
-
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">format_register</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">reg</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">raw</span> {
             <span class="ident">MinidumpRawContext</span>::<span class="ident">AMD64</span>(<span class="ident">raw</span>) <span class="op">=&gt;</span> <span class="ident">raw</span>.<span class="ident">format_register</span>(<span class="ident">reg</span>),
             <span class="ident">MinidumpRawContext</span>::<span class="ident">ARM</span>(_) <span class="op">=&gt;</span> <span class="macro">unimplemented</span><span class="macro">!</span>(),
@@ -800,7 +841,6 @@
             <span class="ident">MinidumpRawContext</span>::<span class="ident">MIPS</span>(_) <span class="op">=&gt;</span> <span class="macro">unimplemented</span><span class="macro">!</span>(),
         }
     }
-
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">general_purpose_registers</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>] {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">raw</span> {
@@ -815,14 +855,15 @@
         }
     }
 
-
     <span class="doccomment">/// Write a human-readable description of this `MinidumpContext` to `f`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is very verbose, it is the format used by `minidump_dump`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">print</span><span class="op">&lt;</span><span class="ident">T</span> : <span class="ident">Write</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span> : <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">print</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Write</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">raw</span> {
             <span class="ident">MinidumpRawContext</span>::<span class="ident">X86</span>(<span class="ident">raw</span>) <span class="op">=&gt;</span> {
-                <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">r#&quot;MDRawContextX86
+                <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(
+                    <span class="ident">f</span>,
+                    <span class="string">r#&quot;MDRawContextX86
   context_flags                = {:#x}
   dr0                          = {:#x}
   dr1                          = {:#x}
@@ -838,25 +879,27 @@
   float_save.data_offset       = {:#x}
   float_save.data_selector     = {:#x}
   float_save.register_area[{:2}] = 0x&quot;#</span>,
-                            <span class="ident">raw</span>.<span class="ident">context_flags</span>,
-                            <span class="ident">raw</span>.<span class="ident">dr0</span>,
-                            <span class="ident">raw</span>.<span class="ident">dr1</span>,
-                            <span class="ident">raw</span>.<span class="ident">dr2</span>,
-                            <span class="ident">raw</span>.<span class="ident">dr3</span>,
-                            <span class="ident">raw</span>.<span class="ident">dr6</span>,
-                            <span class="ident">raw</span>.<span class="ident">dr7</span>,
-                            <span class="ident">raw</span>.<span class="ident">float_save</span>.<span class="ident">control_word</span>,
-                            <span class="ident">raw</span>.<span class="ident">float_save</span>.<span class="ident">status_word</span>,
-                            <span class="ident">raw</span>.<span class="ident">float_save</span>.<span class="ident">tag_word</span>,
-                            <span class="ident">raw</span>.<span class="ident">float_save</span>.<span class="ident">error_offset</span>,
-                            <span class="ident">raw</span>.<span class="ident">float_save</span>.<span class="ident">error_selector</span>,
-                            <span class="ident">raw</span>.<span class="ident">float_save</span>.<span class="ident">data_offset</span>,
-                            <span class="ident">raw</span>.<span class="ident">float_save</span>.<span class="ident">data_selector</span>,
-                            <span class="ident">md</span>::<span class="ident">MD_FLOATINGSAVEAREA_X86_REGISTERAREA_SIZE</span>,
-                            ));
+                    <span class="ident">raw</span>.<span class="ident">context_flags</span>,
+                    <span class="ident">raw</span>.<span class="ident">dr0</span>,
+                    <span class="ident">raw</span>.<span class="ident">dr1</span>,
+                    <span class="ident">raw</span>.<span class="ident">dr2</span>,
+                    <span class="ident">raw</span>.<span class="ident">dr3</span>,
+                    <span class="ident">raw</span>.<span class="ident">dr6</span>,
+                    <span class="ident">raw</span>.<span class="ident">dr7</span>,
+                    <span class="ident">raw</span>.<span class="ident">float_save</span>.<span class="ident">control_word</span>,
+                    <span class="ident">raw</span>.<span class="ident">float_save</span>.<span class="ident">status_word</span>,
+                    <span class="ident">raw</span>.<span class="ident">float_save</span>.<span class="ident">tag_word</span>,
+                    <span class="ident">raw</span>.<span class="ident">float_save</span>.<span class="ident">error_offset</span>,
+                    <span class="ident">raw</span>.<span class="ident">float_save</span>.<span class="ident">error_selector</span>,
+                    <span class="ident">raw</span>.<span class="ident">float_save</span>.<span class="ident">data_offset</span>,
+                    <span class="ident">raw</span>.<span class="ident">float_save</span>.<span class="ident">data_selector</span>,
+                    <span class="ident">md</span>::<span class="ident">MD_FLOATINGSAVEAREA_X86_REGISTERAREA_SIZE</span>,
+                ));
                 <span class="macro">try</span><span class="macro">!</span>(<span class="ident">write_bytes</span>(<span class="ident">f</span>, <span class="kw-2">&amp;</span><span class="ident">raw</span>.<span class="ident">float_save</span>.<span class="ident">register_area</span>));
                 <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;\n&quot;</span>));
-                <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">r#&quot;  float_save.cr0_npx_state     = {:#x}
+                <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(
+                    <span class="ident">f</span>,
+                    <span class="string">r#&quot;  float_save.cr0_npx_state     = {:#x}
   gs                           = {:#x}
   fs                           = {:#x}
   es                           = {:#x}
@@ -874,36 +917,38 @@
   esp                          = {:#x}
   ss                           = {:#x}
   extended_registers[{:3}]      = 0x&quot;#</span>,
-                            <span class="ident">raw</span>.<span class="ident">float_save</span>.<span class="ident">cr0_npx_state</span>,
-                            <span class="ident">raw</span>.<span class="ident">gs</span>,
-                            <span class="ident">raw</span>.<span class="ident">fs</span>,
-                            <span class="ident">raw</span>.<span class="ident">es</span>,
-                            <span class="ident">raw</span>.<span class="ident">ds</span>,
-                            <span class="ident">raw</span>.<span class="ident">edi</span>,
-                            <span class="ident">raw</span>.<span class="ident">esi</span>,
-                            <span class="ident">raw</span>.<span class="ident">ebx</span>,
-                            <span class="ident">raw</span>.<span class="ident">edx</span>,
-                            <span class="ident">raw</span>.<span class="ident">ecx</span>,
-                            <span class="ident">raw</span>.<span class="ident">eax</span>,
-                            <span class="ident">raw</span>.<span class="ident">ebp</span>,
-                            <span class="ident">raw</span>.<span class="ident">eip</span>,
-                            <span class="ident">raw</span>.<span class="ident">cs</span>,
-                            <span class="ident">raw</span>.<span class="ident">eflags</span>,
-                            <span class="ident">raw</span>.<span class="ident">esp</span>,
-                            <span class="ident">raw</span>.<span class="ident">ss</span>,
-                            <span class="ident">md</span>::<span class="ident">MD_CONTEXT_X86_EXTENDED_REGISTERS_SIZE</span>,
-                            ));
+                    <span class="ident">raw</span>.<span class="ident">float_save</span>.<span class="ident">cr0_npx_state</span>,
+                    <span class="ident">raw</span>.<span class="ident">gs</span>,
+                    <span class="ident">raw</span>.<span class="ident">fs</span>,
+                    <span class="ident">raw</span>.<span class="ident">es</span>,
+                    <span class="ident">raw</span>.<span class="ident">ds</span>,
+                    <span class="ident">raw</span>.<span class="ident">edi</span>,
+                    <span class="ident">raw</span>.<span class="ident">esi</span>,
+                    <span class="ident">raw</span>.<span class="ident">ebx</span>,
+                    <span class="ident">raw</span>.<span class="ident">edx</span>,
+                    <span class="ident">raw</span>.<span class="ident">ecx</span>,
+                    <span class="ident">raw</span>.<span class="ident">eax</span>,
+                    <span class="ident">raw</span>.<span class="ident">ebp</span>,
+                    <span class="ident">raw</span>.<span class="ident">eip</span>,
+                    <span class="ident">raw</span>.<span class="ident">cs</span>,
+                    <span class="ident">raw</span>.<span class="ident">eflags</span>,
+                    <span class="ident">raw</span>.<span class="ident">esp</span>,
+                    <span class="ident">raw</span>.<span class="ident">ss</span>,
+                    <span class="ident">md</span>::<span class="ident">MD_CONTEXT_X86_EXTENDED_REGISTERS_SIZE</span>,
+                ));
                 <span class="macro">try</span><span class="macro">!</span>(<span class="ident">write_bytes</span>(<span class="ident">f</span>, <span class="kw-2">&amp;</span><span class="ident">raw</span>.<span class="ident">extended_registers</span>));
                 <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;\n\n&quot;</span>));
-            },
+            }
             <span class="ident">MinidumpRawContext</span>::<span class="ident">PPC</span>(<span class="ident">_raw</span>) <span class="op">=&gt;</span> {
                 <span class="macro">unimplemented</span><span class="macro">!</span>();
-            },
+            }
             <span class="ident">MinidumpRawContext</span>::<span class="ident">PPC64</span>(<span class="ident">_raw</span>) <span class="op">=&gt;</span> {
                 <span class="macro">unimplemented</span><span class="macro">!</span>();
-            },
+            }
             <span class="ident">MinidumpRawContext</span>::<span class="ident">AMD64</span>(<span class="ident">raw</span>) <span class="op">=&gt;</span> {
-                <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">r#&quot;MDRawContextAMD64
+                <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(
+                    <span class="ident">f</span>,
+                    <span class="string">r#&quot;MDRawContextAMD64
   p1_home       = {:#x}
   p2_home       = {:#x}
   p3_home       = {:#x}
@@ -944,74 +989,80 @@
   rip           = {:#x}
 
 &quot;#</span>,
-                            <span class="ident">raw</span>.<span class="ident">p1_home</span>,
-                            <span class="ident">raw</span>.<span class="ident">p2_home</span>,
-                            <span class="ident">raw</span>.<span class="ident">p3_home</span>,
-                            <span class="ident">raw</span>.<span class="ident">p4_home</span>,
-                            <span class="ident">raw</span>.<span class="ident">p5_home</span>,
-                            <span class="ident">raw</span>.<span class="ident">p6_home</span>,
-                            <span class="ident">raw</span>.<span class="ident">context_flags</span>,
-                            <span class="ident">raw</span>.<span class="ident">mx_csr</span>,
-                            <span class="ident">raw</span>.<span class="ident">cs</span>,
-                            <span class="ident">raw</span>.<span class="ident">ds</span>,
-                            <span class="ident">raw</span>.<span class="ident">es</span>,
-                            <span class="ident">raw</span>.<span class="ident">fs</span>,
-                            <span class="ident">raw</span>.<span class="ident">gs</span>,
-                            <span class="ident">raw</span>.<span class="ident">ss</span>,
-                            <span class="ident">raw</span>.<span class="ident">eflags</span>,
-                            <span class="ident">raw</span>.<span class="ident">dr0</span>,
-                            <span class="ident">raw</span>.<span class="ident">dr1</span>,
-                            <span class="ident">raw</span>.<span class="ident">dr2</span>,
-                            <span class="ident">raw</span>.<span class="ident">dr3</span>,
-                            <span class="ident">raw</span>.<span class="ident">dr6</span>,
-                            <span class="ident">raw</span>.<span class="ident">dr7</span>,
-                            <span class="ident">raw</span>.<span class="ident">rax</span>,
-                            <span class="ident">raw</span>.<span class="ident">rcx</span>,
-                            <span class="ident">raw</span>.<span class="ident">rdx</span>,
-                            <span class="ident">raw</span>.<span class="ident">rbx</span>,
-                            <span class="ident">raw</span>.<span class="ident">rsp</span>,
-                            <span class="ident">raw</span>.<span class="ident">rbp</span>,
-                            <span class="ident">raw</span>.<span class="ident">rsi</span>,
-                            <span class="ident">raw</span>.<span class="ident">rdi</span>,
-                            <span class="ident">raw</span>.<span class="ident">r8</span>,
-                            <span class="ident">raw</span>.<span class="ident">r9</span>,
-                            <span class="ident">raw</span>.<span class="ident">r10</span>,
-                            <span class="ident">raw</span>.<span class="ident">r11</span>,
-                            <span class="ident">raw</span>.<span class="ident">r12</span>,
-                            <span class="ident">raw</span>.<span class="ident">r13</span>,
-                            <span class="ident">raw</span>.<span class="ident">r14</span>,
-                            <span class="ident">raw</span>.<span class="ident">r15</span>,
-                            <span class="ident">raw</span>.<span class="ident">rip</span>,
-                            ));
-            },
+                    <span class="ident">raw</span>.<span class="ident">p1_home</span>,
+                    <span class="ident">raw</span>.<span class="ident">p2_home</span>,
+                    <span class="ident">raw</span>.<span class="ident">p3_home</span>,
+                    <span class="ident">raw</span>.<span class="ident">p4_home</span>,
+                    <span class="ident">raw</span>.<span class="ident">p5_home</span>,
+                    <span class="ident">raw</span>.<span class="ident">p6_home</span>,
+                    <span class="ident">raw</span>.<span class="ident">context_flags</span>,
+                    <span class="ident">raw</span>.<span class="ident">mx_csr</span>,
+                    <span class="ident">raw</span>.<span class="ident">cs</span>,
+                    <span class="ident">raw</span>.<span class="ident">ds</span>,
+                    <span class="ident">raw</span>.<span class="ident">es</span>,
+                    <span class="ident">raw</span>.<span class="ident">fs</span>,
+                    <span class="ident">raw</span>.<span class="ident">gs</span>,
+                    <span class="ident">raw</span>.<span class="ident">ss</span>,
+                    <span class="ident">raw</span>.<span class="ident">eflags</span>,
+                    <span class="ident">raw</span>.<span class="ident">dr0</span>,
+                    <span class="ident">raw</span>.<span class="ident">dr1</span>,
+                    <span class="ident">raw</span>.<span class="ident">dr2</span>,
+                    <span class="ident">raw</span>.<span class="ident">dr3</span>,
+                    <span class="ident">raw</span>.<span class="ident">dr6</span>,
+                    <span class="ident">raw</span>.<span class="ident">dr7</span>,
+                    <span class="ident">raw</span>.<span class="ident">rax</span>,
+                    <span class="ident">raw</span>.<span class="ident">rcx</span>,
+                    <span class="ident">raw</span>.<span class="ident">rdx</span>,
+                    <span class="ident">raw</span>.<span class="ident">rbx</span>,
+                    <span class="ident">raw</span>.<span class="ident">rsp</span>,
+                    <span class="ident">raw</span>.<span class="ident">rbp</span>,
+                    <span class="ident">raw</span>.<span class="ident">rsi</span>,
+                    <span class="ident">raw</span>.<span class="ident">rdi</span>,
+                    <span class="ident">raw</span>.<span class="ident">r8</span>,
+                    <span class="ident">raw</span>.<span class="ident">r9</span>,
+                    <span class="ident">raw</span>.<span class="ident">r10</span>,
+                    <span class="ident">raw</span>.<span class="ident">r11</span>,
+                    <span class="ident">raw</span>.<span class="ident">r12</span>,
+                    <span class="ident">raw</span>.<span class="ident">r13</span>,
+                    <span class="ident">raw</span>.<span class="ident">r14</span>,
+                    <span class="ident">raw</span>.<span class="ident">r15</span>,
+                    <span class="ident">raw</span>.<span class="ident">rip</span>,
+                ));
+            }
             <span class="ident">MinidumpRawContext</span>::<span class="ident">SPARC</span>(<span class="ident">_raw</span>) <span class="op">=&gt;</span> {
                 <span class="macro">unimplemented</span><span class="macro">!</span>();
-            },
+            }
             <span class="ident">MinidumpRawContext</span>::<span class="ident">ARM</span>(<span class="ident">raw</span>) <span class="op">=&gt;</span> {
-                <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">r#&quot;MDRawContextARM
+                <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(
+                    <span class="ident">f</span>,
+                    <span class="string">r#&quot;MDRawContextARM
   context_flags       = {:#x}
-&quot;#</span>, <span class="ident">raw</span>.<span class="ident">context_flags</span>));
+&quot;#</span>,
+                    <span class="ident">raw</span>.<span class="ident">context_flags</span>
+                ));
                 <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">reg</span>) <span class="kw">in</span> <span class="ident">raw</span>.<span class="ident">iregs</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
                     <span class="macro">try</span><span class="macro">!</span>(<span class="macro">writeln</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;  iregs[{:2}]            = {:#x}&quot;</span>, <span class="ident">i</span>, <span class="ident">reg</span>));
                 }
-                <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">r#&quot;  cpsr                = {:#x}
+                <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(
+                    <span class="ident">f</span>,
+                    <span class="string">r#&quot;  cpsr                = {:#x}
   float_save.fpscr     = {:#x}
 &quot;#</span>,
-                            <span class="ident">raw</span>.<span class="ident">cpsr</span>,
-                            <span class="ident">raw</span>.<span class="ident">float_save</span>.<span class="ident">fpscr</span>));
+                    <span class="ident">raw</span>.<span class="ident">cpsr</span>, <span class="ident">raw</span>.<span class="ident">float_save</span>.<span class="ident">fpscr</span>
+                ));
                 <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">reg</span>) <span class="kw">in</span> <span class="ident">raw</span>.<span class="ident">float_save</span>.<span class="ident">regs</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
                     <span class="macro">try</span><span class="macro">!</span>(<span class="macro">writeln</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;  float_save.regs[{:2}] = {:#x}&quot;</span>, <span class="ident">i</span>, <span class="ident">reg</span>));
                 }
                 <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">reg</span>) <span class="kw">in</span> <span class="ident">raw</span>.<span class="ident">float_save</span>.<span class="ident">extra</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
                     <span class="macro">try</span><span class="macro">!</span>(<span class="macro">writeln</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;  float_save.extra[{:2}] = {:#x}&quot;</span>, <span class="ident">i</span>, <span class="ident">reg</span>));
                 }
-            },
+            }
             <span class="ident">MinidumpRawContext</span>::<span class="ident">ARM64</span>(<span class="ident">_raw</span>) <span class="op">=&gt;</span> {
                 <span class="macro">unimplemented</span><span class="macro">!</span>();
-            },
+            }
             <span class="ident">MinidumpRawContext</span>::<span class="ident">MIPS</span>(<span class="ident">_raw</span>) <span class="op">=&gt;</span> {
                 <span class="macro">unimplemented</span><span class="macro">!</span>();
-            },
+            }
         }
         <span class="prelude-val">Ok</span>(())
     }
@@ -1030,18 +1081,22 @@
                 <h2>Keyboard Shortcuts</h2>
 
                 <dl>
-                    <dt>?</dt>
+                    <dt><kbd>?</kbd></dt>
                     <dd>Show this help dialog</dd>
-                    <dt>S</dt>
+                    <dt><kbd>S</kbd></dt>
                     <dd>Focus the search field</dd>
-                    <dt>&larrb;</dt>
+                    <dt><kbd>↑</kbd></dt>
                     <dd>Move up in search results</dd>
-                    <dt>&rarrb;</dt>
+                    <dt><kbd>↓</kbd></dt>
                     <dd>Move down in search results</dd>
-                    <dt>&#9166;</dt>
+                    <dt><kbd>↹</kbd></dt>
+                    <dd>Switch tab</dd>
+                    <dt><kbd>&#9166;</kbd></dt>
                     <dd>Go to active search result</dd>
-                    <dt>+</dt>
-                    <dd>Collapse/expand all sections</dd>
+                    <dt><kbd>+</kbd></dt>
+                    <dd>Expand all sections</dd>
+                    <dt><kbd>-</kbd></dt>
+                    <dd>Collapse all sections</dd>
                 </dl>
             </div>
 

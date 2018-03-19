@@ -10,8 +10,11 @@
     <title>minidump::format::Struct_Unnamed7 - Rust</title>
 
     <link rel="stylesheet" type="text/css" href="../../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle">
+    
+    <link rel="stylesheet" type="text/css" href="../../dark.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css" id="themeStyle">
+    <script src="../../storage.js"></script>
     
 
     
@@ -28,10 +31,18 @@
     
 
     <nav class="sidebar">
+        <div class="sidebar-menu">&#9776;</div>
         
-        <p class='location'>Struct Struct_Unnamed7</p><div class="block items"><ul><li><a href="#fields">Fields</a></li><li><a href="#implementations">Trait Implementations</a></li></ul></div><p class='location'><a href='../index.html'>minidump</a>::<wbr><a href='index.html'>format</a></p><script>window.sidebarCurrent = {name: 'Struct_Unnamed7', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'>Struct Struct_Unnamed7</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#fields">Fields</a><div class="sidebar-links"><a href="#structfield.header">header</a><a href="#structfield.legacy">legacy</a><a href="#structfield.xmm0">xmm0</a><a href="#structfield.xmm1">xmm1</a><a href="#structfield.xmm2">xmm2</a><a href="#structfield.xmm3">xmm3</a><a href="#structfield.xmm4">xmm4</a><a href="#structfield.xmm5">xmm5</a><a href="#structfield.xmm6">xmm6</a><a href="#structfield.xmm7">xmm7</a><a href="#structfield.xmm8">xmm8</a><a href="#structfield.xmm9">xmm9</a><a href="#structfield.xmm10">xmm10</a><a href="#structfield.xmm11">xmm11</a><a href="#structfield.xmm12">xmm12</a><a href="#structfield.xmm13">xmm13</a><a href="#structfield.xmm14">xmm14</a><a href="#structfield.xmm15">xmm15</a></div><a class="sidebar-title" href="#implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-Default">Default</a><a href="#impl-Clone">Clone</a><a href="#impl-Copy">Copy</a></div></div><p class='location'><a href='../index.html'>minidump</a>::<wbr><a href='index.html'>format</a></p><script>window.sidebarCurrent = {name: 'Struct_Unnamed7', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
     </nav>
 
+    <div class="theme-picker">
+        <button id="theme-picker" aria-label="Pick another theme!">
+            <img src="../../brush.svg" width="18" alt="Pick another theme!">
+        </button>
+        <div id="theme-choices"></div>
+    </div>
+    <script src="../../theme.js"></script>
     <nav class="sub">
         <form class="search-form js-only">
             <div class="search-container">
@@ -48,112 +59,113 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/minidump_common/format.rs.html#344-363' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../../src/minidump_common/format.rs.html#245-264' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'><div class="docblock attributes">#[repr(C, packed)]
 </div>pub struct Struct_Unnamed7 {
-    pub header: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 2usize]</a>,
-    pub legacy: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 8usize]</a>,
-    pub xmm0: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a>,
-    pub xmm1: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a>,
-    pub xmm2: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a>,
-    pub xmm3: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a>,
-    pub xmm4: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a>,
-    pub xmm5: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a>,
-    pub xmm6: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a>,
-    pub xmm7: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a>,
-    pub xmm8: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a>,
-    pub xmm9: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a>,
-    pub xmm10: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a>,
-    pub xmm11: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a>,
-    pub xmm12: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a>,
-    pub xmm13: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a>,
-    pub xmm14: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a>,
-    pub xmm15: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a>,
+    pub header: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 2]</a>,
+    pub legacy: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 8]</a>,
+    pub xmm0: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a>,
+    pub xmm1: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a>,
+    pub xmm2: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a>,
+    pub xmm3: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a>,
+    pub xmm4: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a>,
+    pub xmm5: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a>,
+    pub xmm6: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a>,
+    pub xmm7: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a>,
+    pub xmm8: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a>,
+    pub xmm9: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a>,
+    pub xmm10: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a>,
+    pub xmm11: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a>,
+    pub xmm12: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a>,
+    pub xmm13: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a>,
+    pub xmm14: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a>,
+    pub xmm15: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a>,
 }</pre><h2 id='fields' class='fields small-section-header'>
                        Fields<a href='#fields' class='anchor'></a></h2><span id="structfield.header" class="structfield small-section-header">
                            <a href="#structfield.header" class="anchor field"></a>
                            <span id="header.v" class='invisible'>
-                           <code>header: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 2usize]</a></code>
+                           <code>header: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 2]</a></code>
                            </span></span><span id="structfield.legacy" class="structfield small-section-header">
                            <a href="#structfield.legacy" class="anchor field"></a>
                            <span id="legacy.v" class='invisible'>
-                           <code>legacy: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 8usize]</a></code>
+                           <code>legacy: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 8]</a></code>
                            </span></span><span id="structfield.xmm0" class="structfield small-section-header">
                            <a href="#structfield.xmm0" class="anchor field"></a>
                            <span id="xmm0.v" class='invisible'>
-                           <code>xmm0: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a></code>
+                           <code>xmm0: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a></code>
                            </span></span><span id="structfield.xmm1" class="structfield small-section-header">
                            <a href="#structfield.xmm1" class="anchor field"></a>
                            <span id="xmm1.v" class='invisible'>
-                           <code>xmm1: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a></code>
+                           <code>xmm1: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a></code>
                            </span></span><span id="structfield.xmm2" class="structfield small-section-header">
                            <a href="#structfield.xmm2" class="anchor field"></a>
                            <span id="xmm2.v" class='invisible'>
-                           <code>xmm2: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a></code>
+                           <code>xmm2: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a></code>
                            </span></span><span id="structfield.xmm3" class="structfield small-section-header">
                            <a href="#structfield.xmm3" class="anchor field"></a>
                            <span id="xmm3.v" class='invisible'>
-                           <code>xmm3: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a></code>
+                           <code>xmm3: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a></code>
                            </span></span><span id="structfield.xmm4" class="structfield small-section-header">
                            <a href="#structfield.xmm4" class="anchor field"></a>
                            <span id="xmm4.v" class='invisible'>
-                           <code>xmm4: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a></code>
+                           <code>xmm4: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a></code>
                            </span></span><span id="structfield.xmm5" class="structfield small-section-header">
                            <a href="#structfield.xmm5" class="anchor field"></a>
                            <span id="xmm5.v" class='invisible'>
-                           <code>xmm5: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a></code>
+                           <code>xmm5: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a></code>
                            </span></span><span id="structfield.xmm6" class="structfield small-section-header">
                            <a href="#structfield.xmm6" class="anchor field"></a>
                            <span id="xmm6.v" class='invisible'>
-                           <code>xmm6: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a></code>
+                           <code>xmm6: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a></code>
                            </span></span><span id="structfield.xmm7" class="structfield small-section-header">
                            <a href="#structfield.xmm7" class="anchor field"></a>
                            <span id="xmm7.v" class='invisible'>
-                           <code>xmm7: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a></code>
+                           <code>xmm7: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a></code>
                            </span></span><span id="structfield.xmm8" class="structfield small-section-header">
                            <a href="#structfield.xmm8" class="anchor field"></a>
                            <span id="xmm8.v" class='invisible'>
-                           <code>xmm8: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a></code>
+                           <code>xmm8: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a></code>
                            </span></span><span id="structfield.xmm9" class="structfield small-section-header">
                            <a href="#structfield.xmm9" class="anchor field"></a>
                            <span id="xmm9.v" class='invisible'>
-                           <code>xmm9: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a></code>
+                           <code>xmm9: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a></code>
                            </span></span><span id="structfield.xmm10" class="structfield small-section-header">
                            <a href="#structfield.xmm10" class="anchor field"></a>
                            <span id="xmm10.v" class='invisible'>
-                           <code>xmm10: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a></code>
+                           <code>xmm10: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a></code>
                            </span></span><span id="structfield.xmm11" class="structfield small-section-header">
                            <a href="#structfield.xmm11" class="anchor field"></a>
                            <span id="xmm11.v" class='invisible'>
-                           <code>xmm11: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a></code>
+                           <code>xmm11: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a></code>
                            </span></span><span id="structfield.xmm12" class="structfield small-section-header">
                            <a href="#structfield.xmm12" class="anchor field"></a>
                            <span id="xmm12.v" class='invisible'>
-                           <code>xmm12: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a></code>
+                           <code>xmm12: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a></code>
                            </span></span><span id="structfield.xmm13" class="structfield small-section-header">
                            <a href="#structfield.xmm13" class="anchor field"></a>
                            <span id="xmm13.v" class='invisible'>
-                           <code>xmm13: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a></code>
+                           <code>xmm13: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a></code>
                            </span></span><span id="structfield.xmm14" class="structfield small-section-header">
                            <a href="#structfield.xmm14" class="anchor field"></a>
                            <span id="xmm14.v" class='invisible'>
-                           <code>xmm14: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a></code>
+                           <code>xmm14: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a></code>
                            </span></span><span id="structfield.xmm15" class="structfield small-section-header">
                            <a href="#structfield.xmm15" class="anchor field"></a>
                            <span id="xmm15.v" class='invisible'>
-                           <code>xmm15: <a class="struct" href="../../minidump/format/struct.Struct_Unnamed2.html" title="struct minidump::format::Struct_Unnamed2">Struct_Unnamed2</a></code>
+                           <code>xmm15: <a class="struct" href="../../minidump/format/struct.uint128_struct.html" title="struct minidump::format::uint128_struct">uint128_struct</a></code>
                            </span></span>
             <h2 id='implementations' class='small-section-header'>
               Trait Implementations<a href='#implementations' class='anchor'></a>
             </h2>
-        <h3 id='impl-Default' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html" title="trait core::default::Default">Default</a> for <a class="struct" href="../../minidump/format/struct.Struct_Unnamed7.html" title="struct minidump::format::Struct_Unnamed7">Struct_Unnamed7</a></code><a href='#impl-Default' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#367-369' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.default' class="method"><span id='default.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default' class='fnname'>default</a>() -&gt; <a class="struct" href="../../minidump/format/struct.Struct_Unnamed7.html" title="struct minidump::format::Struct_Unnamed7">Struct_Unnamed7</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#368' title='goto source code'>[src]</a></span></h4>
-</div><h3 id='impl-Clone' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="../../minidump/format/struct.Struct_Unnamed7.html" title="struct minidump::format::Struct_Unnamed7">Struct_Unnamed7</a></code><a href='#impl-Clone' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#364-366' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.clone' class="method"><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class="struct" href="../../minidump/format/struct.Struct_Unnamed7.html" title="struct minidump::format::Struct_Unnamed7">Struct_Unnamed7</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#365' title='goto source code'>[src]</a></span></h4>
+        <h3 id='impl-Default' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html" title="trait core::default::Default">Default</a> for <a class="struct" href="../../minidump/format/struct.Struct_Unnamed7.html" title="struct minidump::format::Struct_Unnamed7">Struct_Unnamed7</a></code><a href='#impl-Default' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#270-274' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.default' class="method"><span id='default.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default' class='fnname'>default</a>() -&gt; <a class="struct" href="../../minidump/format/struct.Struct_Unnamed7.html" title="struct minidump::format::Struct_Unnamed7">Struct_Unnamed7</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#271-273' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns the &quot;default value&quot; for a type. <a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default">Read more</a></p>
+</div></div><h3 id='impl-Clone' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="../../minidump/format/struct.Struct_Unnamed7.html" title="struct minidump::format::Struct_Unnamed7">Struct_Unnamed7</a></code><a href='#impl-Clone' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#265-269' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class="method"><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class="struct" href="../../minidump/format/struct.Struct_Unnamed7.html" title="struct minidump::format::Struct_Unnamed7">Struct_Unnamed7</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#266-268' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
 </div><h4 id='method.clone_from' class="method"><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</code></span><span class='out-of-band'><div class='ghost'></div><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div><a class='srclink' href='https://doc.rust-lang.org/nightly/src/core/clone.rs.html#112-114' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
-</div></div><h3 id='impl-Copy' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html" title="trait core::marker::Copy">Copy</a> for <a class="struct" href="../../minidump/format/struct.Struct_Unnamed7.html" title="struct minidump::format::Struct_Unnamed7">Struct_Unnamed7</a></code><a href='#impl-Copy' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#343' title='goto source code'>[src]</a></span></h3>
+</div></div><h3 id='impl-Copy' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html" title="trait core::marker::Copy">Copy</a> for <a class="struct" href="../../minidump/format/struct.Struct_Unnamed7.html" title="struct minidump::format::Struct_Unnamed7">Struct_Unnamed7</a></code><a href='#impl-Copy' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/format.rs.html#244' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'></div></section>
     <section id='search' class="content hidden"></section>
 
@@ -167,18 +179,22 @@
                 <h2>Keyboard Shortcuts</h2>
 
                 <dl>
-                    <dt>?</dt>
+                    <dt><kbd>?</kbd></dt>
                     <dd>Show this help dialog</dd>
-                    <dt>S</dt>
+                    <dt><kbd>S</kbd></dt>
                     <dd>Focus the search field</dd>
-                    <dt>&larrb;</dt>
+                    <dt><kbd>↑</kbd></dt>
                     <dd>Move up in search results</dd>
-                    <dt>&rarrb;</dt>
+                    <dt><kbd>↓</kbd></dt>
                     <dd>Move down in search results</dd>
-                    <dt>&#9166;</dt>
+                    <dt><kbd>↹</kbd></dt>
+                    <dd>Switch tab</dd>
+                    <dt><kbd>&#9166;</kbd></dt>
                     <dd>Go to active search result</dd>
-                    <dt>+</dt>
-                    <dd>Collapse/expand all sections</dd>
+                    <dt><kbd>+</kbd></dt>
+                    <dd>Expand all sections</dd>
+                    <dt><kbd>-</kbd></dt>
+                    <dd>Collapse all sections</dd>
                 </dl>
             </div>
 

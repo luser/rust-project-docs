@@ -10,8 +10,11 @@
     <title>minidump::MinidumpContext - Rust</title>
 
     <link rel="stylesheet" type="text/css" href="../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../main.css">
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle">
+    
+    <link rel="stylesheet" type="text/css" href="../dark.css">
+    <link rel="stylesheet" type="text/css" href="../main.css" id="themeStyle">
+    <script src="../storage.js"></script>
     
 
     
@@ -28,10 +31,18 @@
     
 
     <nav class="sidebar">
+        <div class="sidebar-menu">&#9776;</div>
         
-        <p class='location'>Struct MinidumpContext</p><div class="block items"><ul><li><a href="#fields">Fields</a></li><li><a href="#methods">Methods</a></li><li><a href="#implementations">Trait Implementations</a></li></ul></div><p class='location'><a href='index.html'>minidump</a></p><script>window.sidebarCurrent = {name: 'MinidumpContext', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'>Struct MinidumpContext</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#fields">Fields</a><div class="sidebar-links"><a href="#structfield.raw">raw</a><a href="#structfield.valid">valid</a></div><a class="sidebar-title" href="#methods">Methods</a><div class="sidebar-links"><a href="#method.from_raw">from_raw</a><a href="#method.read">read</a><a href="#method.get_instruction_pointer">get_instruction_pointer</a><a href="#method.get_stack_pointer">get_stack_pointer</a><a href="#method.format_register">format_register</a><a href="#method.general_purpose_registers">general_purpose_registers</a><a href="#method.print">print</a></div><a class="sidebar-title" href="#implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-Clone">Clone</a></div></div><p class='location'><a href='index.html'>minidump</a></p><script>window.sidebarCurrent = {name: 'MinidumpContext', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
     </nav>
 
+    <div class="theme-picker">
+        <button id="theme-picker" aria-label="Pick another theme!">
+            <img src="../brush.svg" width="18" alt="Pick another theme!">
+        </button>
+        <div id="theme-choices"></div>
+    </div>
+    <script src="../theme.js"></script>
     <nav class="sub">
         <form class="search-form js-only">
             <div class="search-container">
@@ -48,19 +59,18 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../src/minidump/context.rs.html#131-136' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../src/minidump/context.rs.html#130-135' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct MinidumpContext {
     pub raw: <a class="enum" href="../minidump/enum.MinidumpRawContext.html" title="enum minidump::MinidumpRawContext">MinidumpRawContext</a>,
     pub valid: <a class="enum" href="../minidump/enum.MinidumpContextValidity.html" title="enum minidump::MinidumpContextValidity">MinidumpContextValidity</a>,
 }</pre><div class='docblock'><p>CPU context such as register states.</p>
-
 <p>MinidumpContext carries a CPU-specific MDRawContext structure, which
 contains CPU context such as register states.  Each thread has its
 own context, and the exception record, if present, also has its own
 context.  Note that if the exception record is present, the context it
 refers to is probably what the user wants to use for the exception
-thread, instead of that thread&#39;s own context.  The exception thread&#39;s
-context (as opposed to the exception record&#39;s context) will contain
+thread, instead of that thread's own context.  The exception thread's
+context (as opposed to the exception record's context) will contain
 context for the exception handler (which performs minidump generation),
 and not the context that caused the exception (which is probably what the
 user wants).</p>
@@ -79,25 +89,24 @@ user wants).</p>
                     <h2 id='methods' class='small-section-header'>
                       Methods<a href='#methods' class='anchor'></a>
                     </h2>
-                <h3 id='impl' class='impl'><span class='in-band'><code>impl <a class="struct" href="../minidump/struct.MinidumpContext.html" title="struct minidump::MinidumpContext">MinidumpContext</a></code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/context.rs.html#158-486' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.from_raw' class="method"><span id='from_raw.v' class='invisible'><code>pub fn <a href='#method.from_raw' class='fnname'>from_raw</a>(raw: <a class="enum" href="../minidump/enum.MinidumpRawContext.html" title="enum minidump::MinidumpRawContext">MinidumpRawContext</a>) -&gt; <a class="struct" href="../minidump/struct.MinidumpContext.html" title="struct minidump::MinidumpContext">MinidumpContext</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/context.rs.html#160-165' title='goto source code'>[src]</a></span></h4>
+                <h3 id='impl' class='impl'><span class='in-band'><code>impl <a class="struct" href="../minidump/struct.MinidumpContext.html" title="struct minidump::MinidumpContext">MinidumpContext</a></code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/context.rs.html#159-506' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.from_raw' class="method"><span id='from_raw.v' class='invisible'><code>pub fn <a href='#method.from_raw' class='fnname'>from_raw</a>(raw: <a class="enum" href="../minidump/enum.MinidumpRawContext.html" title="enum minidump::MinidumpRawContext">MinidumpRawContext</a>) -&gt; <a class="struct" href="../minidump/struct.MinidumpContext.html" title="struct minidump::MinidumpContext">MinidumpContext</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/context.rs.html#161-166' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Return a MinidumpContext given a <code>MinidumpRawContext</code>.</p>
-</div><h4 id='method.read' class="method"><span id='read.v' class='invisible'><code>pub fn <a href='#method.read' class='fnname'>read</a>&lt;T:&nbsp;<a class="trait" href="../minidump/trait.Readable.html" title="trait minidump::Readable">Readable</a>&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;f: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut </a>T, <br>&nbsp;&nbsp;&nbsp;&nbsp;location: &amp;<a class="type" href="../minidump/format/type.MDLocationDescriptor.html" title="type minidump::format::MDLocationDescriptor">MDLocationDescriptor</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../minidump/struct.MinidumpContext.html" title="struct minidump::MinidumpContext">MinidumpContext</a>, <a class="enum" href="../minidump/enum.ContextError.html" title="enum minidump::ContextError">ContextError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/context.rs.html#168-229' title='goto source code'>[src]</a></span></h4>
+</div><h4 id='method.read' class="method"><span id='read.v' class='invisible'><code>pub fn <a href='#method.read' class='fnname'>read</a>&lt;T:&nbsp;<a class="trait" href="../minidump/trait.Readable.html" title="trait minidump::Readable">Readable</a>&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;f: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut </a>T, <br>&nbsp;&nbsp;&nbsp;&nbsp;location: &amp;<a class="struct" href="../minidump/format/struct.MDLocationDescriptor.html" title="struct minidump::format::MDLocationDescriptor">MDLocationDescriptor</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../minidump/struct.MinidumpContext.html" title="struct minidump::MinidumpContext">MinidumpContext</a>, <a class="enum" href="../minidump/enum.ContextError.html" title="enum minidump::ContextError">ContextError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/context.rs.html#169-241' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Read a <code>MinidumpContext</code> from a file.</p>
-</div><h4 id='method.get_instruction_pointer' class="method"><span id='get_instruction_pointer.v' class='invisible'><code>pub fn <a href='#method.get_instruction_pointer' class='fnname'>get_instruction_pointer</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/context.rs.html#231-242' title='goto source code'>[src]</a></span></h4>
-<h4 id='method.get_stack_pointer' class="method"><span id='get_stack_pointer.v' class='invisible'><code>pub fn <a href='#method.get_stack_pointer' class='fnname'>get_stack_pointer</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/context.rs.html#244-255' title='goto source code'>[src]</a></span></h4>
-<h4 id='method.format_register' class="method"><span id='format_register.v' class='invisible'><code>pub fn <a href='#method.format_register' class='fnname'>format_register</a>(&amp;self, reg: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/context.rs.html#257-270' title='goto source code'>[src]</a></span></h4>
-<h4 id='method.general_purpose_registers' class="method"><span id='general_purpose_registers.v' class='invisible'><code>pub fn <a href='#method.general_purpose_registers' class='fnname'>general_purpose_registers</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;'static [</a>&amp;'static <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/context.rs.html#273-284' title='goto source code'>[src]</a></span></h4>
-<h4 id='method.print' class="method"><span id='print.v' class='invisible'><code>pub fn <a href='#method.print' class='fnname'>print</a>&lt;T:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/std/io/trait.Write.html" title="trait std::io::Write">Write</a>&gt;(&amp;self, f: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut </a>T) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/std/io/error/type.Result.html" title="type std::io::error::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">()</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/context.rs.html#290-485' title='goto source code'>[src]</a></span></h4>
+</div><h4 id='method.get_instruction_pointer' class="method"><span id='get_instruction_pointer.v' class='invisible'><code>pub fn <a href='#method.get_instruction_pointer' class='fnname'>get_instruction_pointer</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/context.rs.html#243-254' title='goto source code'>[src]</a></span></h4>
+<h4 id='method.get_stack_pointer' class="method"><span id='get_stack_pointer.v' class='invisible'><code>pub fn <a href='#method.get_stack_pointer' class='fnname'>get_stack_pointer</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/context.rs.html#256-267' title='goto source code'>[src]</a></span></h4>
+<h4 id='method.format_register' class="method"><span id='format_register.v' class='invisible'><code>pub fn <a href='#method.format_register' class='fnname'>format_register</a>(&amp;self, reg: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/context.rs.html#269-280' title='goto source code'>[src]</a></span></h4>
+<h4 id='method.general_purpose_registers' class="method"><div class="important-traits"><div class='tooltip'>ⓘ<span class='tooltiptext'>Important traits for <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;'a [</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a></span></div><div class="content hidden"><h3 class="important">Important traits for <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;'a [</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a></h3><code class="content"><span class="where fmt-newline">impl&lt;'a&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/std/io/trait.Read.html" title="trait std::io::Read">Read</a> for <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;'a [</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a></span><span class="where fmt-newline">impl&lt;'a&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/std/io/trait.Write.html" title="trait std::io::Write">Write</a> for <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;'a mut [</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a></span></code></div></div><span id='general_purpose_registers.v' class='invisible'><code>pub fn <a href='#method.general_purpose_registers' class='fnname'>general_purpose_registers</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;'static [</a>&amp;'static <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/context.rs.html#282-293' title='goto source code'>[src]</a></span></h4>
+<h4 id='method.print' class="method"><span id='print.v' class='invisible'><code>pub fn <a href='#method.print' class='fnname'>print</a>&lt;T:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/std/io/trait.Write.html" title="trait std::io::Write">Write</a>&gt;(&amp;self, f: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut </a>T) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/std/io/error/type.Result.html" title="type std::io::error::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/context.rs.html#298-505' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Write a human-readable description of this <code>MinidumpContext</code> to <code>f</code>.</p>
-
 <p>This is very verbose, it is the format used by <code>minidump_dump</code>.</p>
 </div></div>
             <h2 id='implementations' class='small-section-header'>
               Trait Implementations<a href='#implementations' class='anchor'></a>
             </h2>
-        <h3 id='impl-Clone' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="../minidump/struct.MinidumpContext.html" title="struct minidump::MinidumpContext">MinidumpContext</a></code><a href='#impl-Clone' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/context.rs.html#130' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.clone' class="method"><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class="struct" href="../minidump/struct.MinidumpContext.html" title="struct minidump::MinidumpContext">MinidumpContext</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/context.rs.html#130' title='goto source code'>[src]</a></span></h4>
+        <h3 id='impl-Clone' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="../minidump/struct.MinidumpContext.html" title="struct minidump::MinidumpContext">MinidumpContext</a></code><a href='#impl-Clone' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/context.rs.html#129' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class="method"><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class="struct" href="../minidump/struct.MinidumpContext.html" title="struct minidump::MinidumpContext">MinidumpContext</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/minidump/context.rs.html#129' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
 </div><h4 id='method.clone_from' class="method"><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</code></span><span class='out-of-band'><div class='ghost'></div><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div><a class='srclink' href='https://doc.rust-lang.org/nightly/src/core/clone.rs.html#112-114' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
@@ -114,18 +123,22 @@ user wants).</p>
                 <h2>Keyboard Shortcuts</h2>
 
                 <dl>
-                    <dt>?</dt>
+                    <dt><kbd>?</kbd></dt>
                     <dd>Show this help dialog</dd>
-                    <dt>S</dt>
+                    <dt><kbd>S</kbd></dt>
                     <dd>Focus the search field</dd>
-                    <dt>&larrb;</dt>
+                    <dt><kbd>↑</kbd></dt>
                     <dd>Move up in search results</dd>
-                    <dt>&rarrb;</dt>
+                    <dt><kbd>↓</kbd></dt>
                     <dd>Move down in search results</dd>
-                    <dt>&#9166;</dt>
+                    <dt><kbd>↹</kbd></dt>
+                    <dd>Switch tab</dd>
+                    <dt><kbd>&#9166;</kbd></dt>
                     <dd>Go to active search result</dd>
-                    <dt>+</dt>
-                    <dd>Collapse/expand all sections</dd>
+                    <dt><kbd>+</kbd></dt>
+                    <dd>Expand all sections</dd>
+                    <dt><kbd>-</kbd></dt>
+                    <dd>Collapse all sections</dd>
                 </dl>
             </div>
 
