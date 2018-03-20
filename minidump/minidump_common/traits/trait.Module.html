@@ -10,8 +10,11 @@
     <title>minidump_common::traits::Module - Rust</title>
 
     <link rel="stylesheet" type="text/css" href="../../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle">
+    
+    <link rel="stylesheet" type="text/css" href="../../dark.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css" id="themeStyle">
+    <script src="../../storage.js"></script>
     
 
     
@@ -33,6 +36,13 @@
         <p class='location'>Trait Module</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#required-methods">Required Methods</a><div class="sidebar-links"><a href="#tymethod.base_address">base_address</a><a href="#tymethod.size">size</a><a href="#tymethod.code_file">code_file</a><a href="#tymethod.code_identifier">code_identifier</a><a href="#tymethod.debug_file">debug_file</a><a href="#tymethod.debug_identifier">debug_identifier</a><a href="#tymethod.version">version</a></div><a class="sidebar-title" href="#foreign-impls">Implementations on Foreign Types</a><div class="sidebar-links"><a href="#impl-Module">(&amp;&#39;a str, &amp;&#39;a str)</a></div><a class="sidebar-title" href="#implementors">Implementors</a></div><p class='location'><a href='../index.html'>minidump_common</a>::<wbr><a href='index.html'>traits</a></p><script>window.sidebarCurrent = {name: 'Module', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
     </nav>
 
+    <div class="theme-picker">
+        <button id="theme-picker" aria-label="Pick another theme!">
+            <img src="../../brush.svg" width="18" alt="Pick another theme!">
+        </button>
+        <div id="theme-choices"></div>
+    </div>
+    <script src="../../theme.js"></script>
     <nav class="sub">
         <form class="search-form js-only">
             <div class="search-container">
@@ -82,14 +92,14 @@ specific version and build of the associated debug file.  This may be
 the same as code_identifier when the debug_file and code_file are
 identical or when the same identifier is used to identify distinct
 debug and code files.</p>
-</div><h3 id='tymethod.version' class='method'><span id='version.v' class='invisible'><code>fn <a href='#tymethod.version' class='fnname'>version</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="enum" href="https://doc.rust-lang.org/nightly/alloc/borrow/enum.Cow.html" title="enum alloc::borrow::Cow">Cow</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;&gt;</code></span></h3><div class='docblock'><p>A human-readable representation of the code module&#39;s version.</p>
+</div><h3 id='tymethod.version' class='method'><span id='version.v' class='invisible'><code>fn <a href='#tymethod.version' class='fnname'>version</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="enum" href="https://doc.rust-lang.org/nightly/alloc/borrow/enum.Cow.html" title="enum alloc::borrow::Cow">Cow</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;&gt;</code></span></h3><div class='docblock'><p>A human-readable representation of the code module's version.</p>
 </div></div>
                 <h2 id='foreign-impls' class='small-section-header'>
                   Implementations on Foreign Types<a href='#foreign-impls' class='anchor'></a>
                 </h2>
             <h3 id='impl-Module' class='impl'><span class='in-band'><code>impl&lt;'a&gt; <a class="trait" href="../../minidump_common/traits/trait.Module.html" title="trait minidump_common::traits::Module">Module</a> for <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a>&amp;'a <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, &amp;'a <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></code><a href='#impl-Module' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/traits.rs.html#35-59' title='goto source code'>[src]</a></span></h3>
 <div class='docblock'><p>Implement Module for 2-tuples of &amp;str for convenience.
-<code>breakpad-symbols</code>&#39; <code>Symbolizer::get_symbol_at_address</code> uses this.</p>
+<code>breakpad-symbols</code>' <code>Symbolizer::get_symbol_at_address</code> uses this.</p>
 </div><span class='docblock autohide'><div class='impl-items'><h4 id='method.base_address' class="method"><span id='base_address.v-1' class='invisible'><code>fn <a href='#method.base_address' class='fnname'>base_address</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/traits.rs.html#36-38' title='goto source code'>[src]</a></span></h4>
 <h4 id='method.size' class="method"><span id='size.v-1' class='invisible'><code>fn <a href='#method.size' class='fnname'>size</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/traits.rs.html#39-41' title='goto source code'>[src]</a></span></h4>
 <h4 id='method.code_file' class="method"><span id='code_file.v-1' class='invisible'><code>fn <a href='#method.code_file' class='fnname'>code_file</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/alloc/borrow/enum.Cow.html" title="enum alloc::borrow::Cow">Cow</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/minidump_common/traits.rs.html#42-44' title='goto source code'>[src]</a></span></h4>
@@ -117,20 +127,22 @@ debug and code files.</p>
                 <h2>Keyboard Shortcuts</h2>
 
                 <dl>
-                    <dt>?</dt>
+                    <dt><kbd>?</kbd></dt>
                     <dd>Show this help dialog</dd>
-                    <dt>S</dt>
+                    <dt><kbd>S</kbd></dt>
                     <dd>Focus the search field</dd>
-                    <dt>↑</dt>
+                    <dt><kbd>↑</kbd></dt>
                     <dd>Move up in search results</dd>
-                    <dt>↓</dt>
+                    <dt><kbd>↓</kbd></dt>
                     <dd>Move down in search results</dd>
-                    <dt>↹</dt>
+                    <dt><kbd>↹</kbd></dt>
                     <dd>Switch tab</dd>
-                    <dt>&#9166;</dt>
+                    <dt><kbd>&#9166;</kbd></dt>
                     <dd>Go to active search result</dd>
-                    <dt style="width:31px;">+ / -</dt>
-                    <dd>Collapse/expand all sections</dd>
+                    <dt><kbd>+</kbd></dt>
+                    <dd>Expand all sections</dd>
+                    <dt><kbd>-</kbd></dt>
+                    <dd>Collapse all sections</dd>
                 </dl>
             </div>
 
