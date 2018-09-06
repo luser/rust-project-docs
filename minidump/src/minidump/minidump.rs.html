@@ -1722,7 +1722,7 @@
 <span class="comment">// file at the top-level directory of this distribution.</span>
 
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">chrono</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">chrono</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">failure</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">borrow</span>::<span class="ident">Cow</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span>;
@@ -1901,7 +1901,7 @@ pub struct MinidumpMemoryInfoList;
     <span class="doccomment">/// The `MDRawMiscInfo` struct direct from the minidump.</span>
     <span class="kw">pub</span> <span class="ident">raw</span>: <span class="ident">md</span>::<span class="ident">MDRawMiscInfo</span>,
     <span class="doccomment">/// When the process started, if available.</span>
-    <span class="kw">pub</span> <span class="ident">process_create_time</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">UTC</span><span class="op">&gt;&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">process_create_time</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;&gt;</span>,
 }
 
 <span class="doccomment">/// Additional information about process state.</span>
@@ -2890,7 +2890,7 @@ Memory
             <span class="kw-2">&amp;</span><span class="ident">bytes</span>[..<span class="ident">struct_size</span>]
         });
         <span class="kw">let</span> <span class="ident">process_create_time</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">flag</span>(<span class="ident">raw</span>.<span class="ident">flags1</span>, <span class="ident">md</span>::<span class="ident">MD_MISCINFO_FLAGS1_PROCESS_TIMES</span>) {
-            <span class="prelude-val">Some</span>(<span class="ident">UTC</span>.<span class="ident">timestamp</span>(<span class="ident">raw</span>.<span class="ident">process_create_time</span> <span class="kw">as</span> <span class="ident">i64</span>, <span class="number">0</span>))
+            <span class="prelude-val">Some</span>(<span class="ident">Utc</span>.<span class="ident">timestamp</span>(<span class="ident">raw</span>.<span class="ident">process_create_time</span> <span class="kw">as</span> <span class="ident">i64</span>, <span class="number">0</span>))
         } <span class="kw">else</span> {
             <span class="prelude-val">None</span>
         };
@@ -3414,7 +3414,7 @@ MDRawDirectory
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">misc</span>.<span class="ident">raw</span>.<span class="ident">process_id</span>, <span class="ident">PID</span>);
         <span class="macro">assert_eq</span><span class="macro">!</span>(
             <span class="ident">misc</span>.<span class="ident">process_create_time</span>.<span class="ident">unwrap</span>(),
-            <span class="ident">UTC</span>.<span class="ident">timestamp</span>(<span class="ident">CREATE_TIME</span> <span class="kw">as</span> <span class="ident">i64</span>, <span class="number">0</span>)
+            <span class="ident">Utc</span>.<span class="ident">timestamp</span>(<span class="ident">CREATE_TIME</span> <span class="kw">as</span> <span class="ident">i64</span>, <span class="number">0</span>)
         );
     }
 
@@ -3433,7 +3433,7 @@ MDRawDirectory
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">misc</span>.<span class="ident">raw</span>.<span class="ident">process_id</span>, <span class="ident">PID</span>);
         <span class="macro">assert_eq</span><span class="macro">!</span>(
             <span class="ident">misc</span>.<span class="ident">process_create_time</span>.<span class="ident">unwrap</span>(),
-            <span class="ident">UTC</span>.<span class="ident">timestamp</span>(<span class="ident">CREATE_TIME</span> <span class="kw">as</span> <span class="ident">i64</span>, <span class="number">0</span>)
+            <span class="ident">Utc</span>.<span class="ident">timestamp</span>(<span class="ident">CREATE_TIME</span> <span class="kw">as</span> <span class="ident">i64</span>, <span class="number">0</span>)
         );
     }
 }
