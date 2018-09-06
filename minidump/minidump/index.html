@@ -1,62 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `minidump` crate.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, minidump">
-
-    <title>minidump - Rust</title>
-
-    <link rel="stylesheet" type="text/css" href="../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../main.css">
-    
-
-    
-    
-</head>
-<body class="rustdoc mod">
-    <!--[if lte IE 8]>
-    <div class="warning">
-        This old browser is unsupported and will most likely display funky
-        things.
-    </div>
-    <![endif]-->
-
-    
-
-    <nav class="sidebar">
-        <div class="sidebar-menu">&#9776;</div>
-        
-        <p class='location'>Crate minidump</p><div class="sidebar-elems"><div class="block items"><ul><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#traits">Traits</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'minidump', ty: 'mod', relpath: '../'};</script></div>
-    </nav>
-
-    <nav class="sub">
-        <form class="search-form js-only">
-            <div class="search-container">
-                <input class="search-input" name="search"
-                       autocomplete="off"
-                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
-                       type="search">
-            </div>
-        </form>
-    </nav>
-
-    <section id='main' class="content">
-<h1 class='fqn'><span class='in-band'>Crate <a class="mod" href=''>minidump</a></span><span class='out-of-band'><span id='render-detail'>
-                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
-                       [<span class='inner'>&#x2212;</span>]
-                   </a>
-               </span><a class='srclink' href='../src/minidump/lib.rs.html#4-42' title='goto source code'>[src]</a></span></h1>
-<div class='docblock'><p>A parser for the minidump file format.</p>
-
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `minidump` crate."><meta name="keywords" content="rust, rustlang, rust-lang, minidump"><title>minidump - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../dark.css"><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script src="../storage.js"></script></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><p class='location'>Crate minidump</p><div class="sidebar-elems"><div class="block items"><ul><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#traits">Traits</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'minidump', ty: 'mod', relpath: '../'};</script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='in-band'>Crate <a class="mod" href=''>minidump</a></span><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../src/minidump/lib.rs.html#4-42' title='goto source code'>[src]</a></span></h1><div class='docblock'><p>A parser for the minidump file format.</p>
 <p>The <code>minidump</code> module provides a parser for the
-<a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms680369%28v=vs.85%29.aspx">minidump</a> file format as produced by Microsoft&#39;s
+<a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms680369%28v=vs.85%29.aspx">minidump</a> file format as produced by Microsoft's
 <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms680360%28v=vs.85%29.aspx"><code>MinidumpWriteDump</code></a> API and the
 <a href="https://chromium.googlesource.com/breakpad/breakpad/+/master/">Google Breakpad</a> library.</p>
-
 <p>The primary API for this module is the <a href="struct.Minidump.html"><code>Minidump</code></a>
 struct, which can be instantiated by calling the <a href="struct.Minidump.html#method.read"><code>Minidump::read</code></a> or
 <a href="struct.Minidump.html#method.read_path"><code>Minidump::read_path</code></a> methods.</p>
@@ -67,6 +13,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='mod minidump::format'>format</a></td>
                            <td class='docblock-short'>
                                 <p>Minidump structure definitions (autogenerated from C headers).</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -74,6 +21,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='mod minidump::system_info'>system_info</a></td>
                            <td class='docblock-short'>
                                 <p>Information about the system that produced a <code>Minidump</code>.</p>
+
                            </td>
                        </tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
@@ -82,6 +30,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='struct minidump::MemoryRegions'>MemoryRegions</a></td>
                            <td class='docblock-short'>
                                 <p>An iterator over <code>MinidumpMemory</code>s.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -89,6 +38,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='struct minidump::Minidump'>Minidump</a></td>
                            <td class='docblock-short'>
                                 <p>An index into the contents of a minidump.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -96,6 +46,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='struct minidump::MinidumpBreakpadInfo'>MinidumpBreakpadInfo</a></td>
                            <td class='docblock-short'>
                                 <p>Additional information about process state.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -103,6 +54,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='struct minidump::MinidumpContext'>MinidumpContext</a></td>
                            <td class='docblock-short'>
                                 <p>CPU context such as register states.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -110,6 +62,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='struct minidump::MinidumpException'>MinidumpException</a></td>
                            <td class='docblock-short'>
                                 <p>Information about the exception that caused the minidump to be generated.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -117,6 +70,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='struct minidump::MinidumpMemory'>MinidumpMemory</a></td>
                            <td class='docblock-short'>
                                 <p>A region of memory from the process that wrote the minidump.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -124,6 +78,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='struct minidump::MinidumpMemoryList'>MinidumpMemoryList</a></td>
                            <td class='docblock-short'>
                                 <p>A list of memory regions included in a minidump.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -131,6 +86,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='struct minidump::MinidumpMiscInfo'>MinidumpMiscInfo</a></td>
                            <td class='docblock-short'>
                                 <p>Miscellaneous information about the process that wrote the minidump.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -138,6 +94,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='struct minidump::MinidumpModule'>MinidumpModule</a></td>
                            <td class='docblock-short'>
                                 <p>An executable or shared library loaded in the process at the time the <code>Minidump</code> was written.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -145,6 +102,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='struct minidump::MinidumpModuleList'>MinidumpModuleList</a></td>
                            <td class='docblock-short'>
                                 <p>A list of <code>MinidumpModule</code>s contained in a <code>Minidump</code>.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -152,6 +110,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='struct minidump::MinidumpSystemInfo'>MinidumpSystemInfo</a></td>
                            <td class='docblock-short'>
                                 <p>Information about the system that generated the minidump.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -159,6 +118,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='struct minidump::MinidumpThread'>MinidumpThread</a></td>
                            <td class='docblock-short'>
                                 <p>The state of a thread from the process when the minidump was written.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -166,6 +126,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='struct minidump::MinidumpThreadList'>MinidumpThreadList</a></td>
                            <td class='docblock-short'>
                                 <p>A list of <code>MinidumpThread</code>s contained in a <code>Minidump</code>.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -173,6 +134,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='struct minidump::Modules'>Modules</a></td>
                            <td class='docblock-short'>
                                 <p>An iterator over <code>MinidumpModule</code>s.</p>
+
                            </td>
                        </tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
 <table>
@@ -181,6 +143,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='enum minidump::CodeView'>CodeView</a></td>
                            <td class='docblock-short'>
                                 <p>CodeView data describes how to locate debug symbols.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -188,6 +151,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='enum minidump::CodeViewPDBRaw'>CodeViewPDBRaw</a></td>
                            <td class='docblock-short'>
                                 <p>Raw bytes of CodeView data in a minidump file.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -195,6 +159,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='enum minidump::ContextError'>ContextError</a></td>
                            <td class='docblock-short'>
                                 <p>Errors encountered while reading a <code>MinidumpContext</code>.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -202,6 +167,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='enum minidump::CrashReason'>CrashReason</a></td>
                            <td class='docblock-short'>
                                 <p>The reason for a process crash.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -209,6 +175,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='enum minidump::Error'>Error</a></td>
                            <td class='docblock-short'>
                                 <p>Errors encountered while reading a <code>Minidump</code>.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -216,6 +183,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='enum minidump::MinidumpContextValidity'>MinidumpContextValidity</a></td>
                            <td class='docblock-short'>
                                 <p>Information about which registers are valid in a <code>MinidumpContext</code>.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -223,6 +191,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='enum minidump::MinidumpRawContext'>MinidumpRawContext</a></td>
                            <td class='docblock-short'>
                                 <p>The CPU-specific context structure.</p>
+
                            </td>
                        </tr></table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
 <table>
@@ -231,6 +200,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='trait minidump::CPUContext'>CPUContext</a></td>
                            <td class='docblock-short'>
                                 <p>Generic over the specifics of a CPU context.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -238,6 +208,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='trait minidump::MinidumpStream'>MinidumpStream</a></td>
                            <td class='docblock-short'>
                                 <p>The fundamental unit of data in a <code>Minidump</code>.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -245,6 +216,7 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='trait minidump::Module'>Module</a></td>
                            <td class='docblock-short'>
                                 <p>An executable or shared library loaded in a process.</p>
+
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -252,67 +224,6 @@ struct, which can be instantiated by calling the <a href="struct.Minidump.html#m
                                   title='trait minidump::Readable'>Readable</a></td>
                            <td class='docblock-short'>
                                 <p>Shorthand for Read + Seek</p>
+
                            </td>
-                       </tr></table></section>
-    <section id='search' class="content hidden"></section>
-
-    <section class="footer"></section>
-
-    <aside id="help" class="hidden">
-        <div>
-            <h1 class="hidden">Help</h1>
-
-            <div class="shortcuts">
-                <h2>Keyboard Shortcuts</h2>
-
-                <dl>
-                    <dt>?</dt>
-                    <dd>Show this help dialog</dd>
-                    <dt>S</dt>
-                    <dd>Focus the search field</dd>
-                    <dt>↑</dt>
-                    <dd>Move up in search results</dd>
-                    <dt>↓</dt>
-                    <dd>Move down in search results</dd>
-                    <dt>↹</dt>
-                    <dd>Switch tab</dd>
-                    <dt>&#9166;</dt>
-                    <dd>Go to active search result</dd>
-                    <dt style="width:31px;">+ / -</dt>
-                    <dd>Collapse/expand all sections</dd>
-                </dl>
-            </div>
-
-            <div class="infos">
-                <h2>Search Tricks</h2>
-
-                <p>
-                    Prefix searches with a type followed by a colon (e.g.
-                    <code>fn:</code>) to restrict the search to a given type.
-                </p>
-
-                <p>
-                    Accepted types are: <code>fn</code>, <code>mod</code>,
-                    <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>type</code>, <code>macro</code>,
-                    and <code>const</code>.
-                </p>
-
-                <p>
-                    Search functions by type signature (e.g.
-                    <code>vec -> usize</code> or <code>* -> vec</code>)
-                </p>
-            </div>
-        </div>
-    </aside>
-
-    
-
-    <script>
-        window.rootPath = "../";
-        window.currentCrate = "minidump";
-    </script>
-    <script src="../main.js"></script>
-    <script defer src="../search-index.js"></script>
-</body>
-</html>
+                       </tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../";window.currentCrate = "minidump";</script><script src="../aliases.js"></script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>
