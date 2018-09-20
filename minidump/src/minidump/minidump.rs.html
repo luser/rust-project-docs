@@ -1803,6 +1803,23 @@
 <span id="1803">1803</span>
 <span id="1804">1804</span>
 <span id="1805">1805</span>
+<span id="1806">1806</span>
+<span id="1807">1807</span>
+<span id="1808">1808</span>
+<span id="1809">1809</span>
+<span id="1810">1810</span>
+<span id="1811">1811</span>
+<span id="1812">1812</span>
+<span id="1813">1813</span>
+<span id="1814">1814</span>
+<span id="1815">1815</span>
+<span id="1816">1816</span>
+<span id="1817">1817</span>
+<span id="1818">1818</span>
+<span id="1819">1819</span>
+<span id="1820">1820</span>
+<span id="1821">1821</span>
+<span id="1822">1822</span>
 </pre><pre class="rust ">
 <span class="comment">// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class="comment">// file at the top-level directory of this distribution.</span>
@@ -1814,7 +1831,7 @@
 <span class="kw">use</span> <span class="ident">encoding</span>::{<span class="ident">DecoderTrap</span>, <span class="ident">Encoding</span>};
 <span class="kw">use</span> <span class="ident">failure</span>;
 <span class="kw">use</span> <span class="ident">memmap</span>::<span class="ident">Mmap</span>;
-<span class="kw">use</span> <span class="ident">scroll</span>::{<span class="self">self</span>, <span class="ident">LE</span>, <span class="ident">Pread</span>};
+<span class="kw">use</span> <span class="ident">scroll</span>::{<span class="self">self</span>, <span class="ident">BE</span>, <span class="ident">LE</span>, <span class="ident">Pread</span>};
 <span class="kw">use</span> <span class="ident">scroll</span>::<span class="ident">ctx</span>::{<span class="ident">SizeWith</span>, <span class="ident">TryFromCtx</span>};
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">borrow</span>::<span class="ident">Cow</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span>;
@@ -1859,9 +1876,11 @@
     <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Deref</span><span class="op">&lt;</span><span class="ident">Target</span><span class="op">=</span>[<span class="ident">u8</span>]<span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;a</span>,
 {
     <span class="ident">data</span>: <span class="ident">T</span>,
+    <span class="doccomment">/// The raw minidump header from the file.</span>
     <span class="kw">pub</span> <span class="ident">header</span>: <span class="ident">md</span>::<span class="ident">MDRawHeader</span>,
     <span class="ident">streams</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">u32</span>, (<span class="ident">u32</span>, <span class="ident">md</span>::<span class="ident">MDRawDirectory</span>)<span class="op">&gt;</span>,
-    <span class="ident">swap</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// The endianness of this minidump file.</span>
+    <span class="kw">pub</span> <span class="ident">endian</span>: <span class="ident">scroll</span>::<span class="ident">Endian</span>,
     <span class="ident">_phantom</span>: <span class="ident">PhantomData</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]<span class="op">&gt;</span>,
 }
 
@@ -1876,8 +1895,6 @@
     <span class="ident">MissingHeader</span>,
     <span class="attribute">#[<span class="ident">fail</span>(<span class="ident">display</span> <span class="op">=</span> <span class="string">&quot;Header mismatch&quot;</span>)]</span>
     <span class="ident">HeaderMismatch</span>,
-    <span class="attribute">#[<span class="ident">fail</span>(<span class="ident">display</span> <span class="op">=</span> <span class="string">&quot;Cannot read minidump of opposite endianness&quot;</span>)]</span>
-    <span class="ident">SwapNotImplemented</span>,
     <span class="attribute">#[<span class="ident">fail</span>(<span class="ident">display</span> <span class="op">=</span> <span class="string">&quot;Minidump version mismatch&quot;</span>)]</span>
     <span class="ident">VersionMismatch</span>,
     <span class="attribute">#[<span class="ident">fail</span>(<span class="ident">display</span> <span class="op">=</span> <span class="string">&quot;Missing stream directory&quot;</span>)]</span>
@@ -1912,7 +1929,7 @@ pub struct MinidumpMemoryInfoList;
     <span class="doccomment">/// `bytes` is the contents of this specific stream.</span>
     <span class="doccomment">/// `all` refers to the full contents of the minidump, for reading auxilliary data</span>
     <span class="doccomment">/// referred to with `MDLocationDescriptor`s.</span>
-    <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">all</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">Error</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">all</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">endian</span>: <span class="ident">scroll</span>::<span class="ident">Endian</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">Error</span><span class="op">&gt;</span>;
 }
 
 <span class="doccomment">/// Raw bytes of CodeView data in a minidump file.</span>
@@ -2080,10 +2097,9 @@ pub struct MinidumpMemoryInfoList;
 }
 
 <span class="doccomment">/// Read a u32 length-prefixed UTF-16 string from `bytes` at `offset`.</span>
-<span class="kw">fn</span> <span class="ident">read_string_utf16</span>(<span class="ident">offset</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">usize</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, ()<span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">u</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">LE</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(()))<span class="question-mark">?</span>;
+<span class="kw">fn</span> <span class="ident">read_string_utf16</span>(<span class="ident">offset</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">usize</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">endian</span>: <span class="ident">scroll</span>::<span class="ident">Endian</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, ()<span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">u</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endian</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(()))<span class="question-mark">?</span>;
     <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">u</span> <span class="kw">as</span> <span class="ident">usize</span>;
-    <span class="comment">// TODO: swap</span>
     <span class="kw">if</span> <span class="ident">size</span> <span class="op">%</span> <span class="number">2</span> <span class="op">!=</span> <span class="number">0</span> <span class="op">||</span> (<span class="kw-2">*</span><span class="ident">offset</span> <span class="op">+</span> <span class="ident">size</span>) <span class="op">&gt;</span> <span class="ident">bytes</span>.<span class="ident">len</span>() {
         <span class="kw">return</span> <span class="prelude-val">Err</span>(());
     }
@@ -2096,16 +2112,16 @@ pub struct MinidumpMemoryInfoList;
     }
 }
 
-<span class="kw">fn</span> <span class="ident">read_codeview_pdb</span>(<span class="ident">signature</span>: <span class="ident">u32</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">CodeView</span>, <span class="ident">failure</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">read_codeview_pdb</span>(<span class="ident">signature</span>: <span class="ident">u32</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">endian</span>: <span class="ident">scroll</span>::<span class="ident">Endian</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">CodeView</span>, <span class="ident">failure</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0</span>;
     <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">signature</span> {
         <span class="ident">md</span>::<span class="ident">MD_CVINFOPDB70_SIGNATURE</span> <span class="op">=&gt;</span> {
             <span class="comment">// ::&lt;md::MDCVInfoPDB70&gt;</span>
-            <span class="ident">CodeViewPDBRaw</span>::<span class="ident">PDB70</span>(<span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">LE</span>)<span class="question-mark">?</span>)
+            <span class="ident">CodeViewPDBRaw</span>::<span class="ident">PDB70</span>(<span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)<span class="question-mark">?</span>)
         }
         <span class="ident">md</span>::<span class="ident">MD_CVINFOPDB20_SIGNATURE</span> <span class="op">=&gt;</span> {
             <span class="comment">// ::&lt;md::MDCVInfoPDB20&gt;</span>
-            <span class="ident">CodeViewPDBRaw</span>::<span class="ident">PDB20</span>(<span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">LE</span>)<span class="question-mark">?</span>)
+            <span class="ident">CodeViewPDBRaw</span>::<span class="ident">PDB20</span>(<span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)<span class="question-mark">?</span>)
         }
         <span class="kw">_</span> <span class="op">=&gt;</span> <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">CodeViewReadFailure</span>.<span class="ident">into</span>()),
     };
@@ -2125,18 +2141,17 @@ pub struct MinidumpMemoryInfoList;
 }
 
 <span class="doccomment">/// Attempt to read a CodeView record from `data` at `location`.</span>
-<span class="kw">fn</span> <span class="ident">read_codeview</span>(<span class="ident">location</span>: <span class="kw-2">&amp;</span><span class="ident">md</span>::<span class="ident">MDLocationDescriptor</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">CodeView</span>, <span class="ident">failure</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">read_codeview</span>(<span class="ident">location</span>: <span class="kw-2">&amp;</span><span class="ident">md</span>::<span class="ident">MDLocationDescriptor</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">endian</span>: <span class="ident">scroll</span>::<span class="ident">Endian</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">CodeView</span>, <span class="ident">failure</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">location_slice</span>(<span class="ident">data</span>, <span class="ident">location</span>)<span class="question-mark">?</span>;
     <span class="comment">// The CodeView data can contain a variable-length string at the end</span>
     <span class="comment">// and also can be one of a few different formats. Try to read the</span>
     <span class="comment">// signature first to figure out what format the data is.</span>
-    <span class="comment">// TODO: swap</span>
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0</span>;
-    <span class="kw">let</span> <span class="ident">signature</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">LE</span>)<span class="question-mark">?</span>;
+    <span class="kw">let</span> <span class="ident">signature</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)<span class="question-mark">?</span>;
     <span class="kw">match</span> <span class="ident">signature</span> {
         <span class="ident">md</span>::<span class="ident">MD_CVINFOPDB70_SIGNATURE</span> <span class="op">|</span> <span class="ident">md</span>::<span class="ident">MD_CVINFOPDB20_SIGNATURE</span> <span class="op">=&gt;</span> {
             <span class="comment">// One of the PDB formats.</span>
-            <span class="ident">read_codeview_pdb</span>(<span class="ident">signature</span>, <span class="ident">bytes</span>)
+            <span class="ident">read_codeview_pdb</span>(<span class="ident">signature</span>, <span class="ident">bytes</span>, <span class="ident">endian</span>)
         },
         <span class="ident">md</span>::<span class="ident">MD_CVINFOELF_SIGNATURE</span> <span class="op">=&gt;</span> {
             <span class="comment">// Breakpad&#39;s ELF build ID format.</span>
@@ -2174,13 +2189,13 @@ pub struct MinidumpMemoryInfoList;
 
     <span class="doccomment">/// Read additional data to construct a `MinidumpModule` from `bytes` using the information</span>
     <span class="doccomment">/// from the module list in `raw`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">raw</span>: <span class="ident">md</span>::<span class="ident">MDRawModule</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MinidumpModule</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">raw</span>: <span class="ident">md</span>::<span class="ident">MDRawModule</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">endian</span>: <span class="ident">scroll</span>::<span class="ident">Endian</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MinidumpModule</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">raw</span>.<span class="ident">module_name_rva</span> <span class="kw">as</span> <span class="ident">usize</span>;
-        <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">read_string_utf16</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">bytes</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">CodeViewReadFailure</span>))<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">read_string_utf16</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">bytes</span>, <span class="ident">endian</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">CodeViewReadFailure</span>))<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">codeview_info</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">raw</span>.<span class="ident">cv_record</span>.<span class="ident">data_size</span> <span class="op">==</span> <span class="number">0</span> {
             <span class="prelude-val">None</span>
         } <span class="kw">else</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">read_codeview</span>(<span class="kw-2">&amp;</span><span class="ident">raw</span>.<span class="ident">cv_record</span>, <span class="ident">bytes</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">CodeViewReadFailure</span>))<span class="question-mark">?</span>)
+            <span class="prelude-val">Some</span>(<span class="ident">read_codeview</span>(<span class="kw-2">&amp;</span><span class="ident">raw</span>.<span class="ident">cv_record</span>, <span class="ident">bytes</span>, <span class="ident">endian</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">CodeViewReadFailure</span>))<span class="question-mark">?</span>)
         };
         <span class="prelude-val">Ok</span>(<span class="ident">MinidumpModule</span> {
             <span class="ident">raw</span>,
@@ -2447,14 +2462,13 @@ pub struct MinidumpMemoryInfoList;
     }
 }
 
-<span class="kw">fn</span> <span class="ident">read_stream_list</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">offset</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">usize</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span>
+<span class="kw">fn</span> <span class="ident">read_stream_list</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">offset</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">usize</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">endian</span>: <span class="ident">scroll</span>::<span class="ident">Endian</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span>
     <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">scroll</span>::<span class="ident">Endian</span>, [<span class="ident">u8</span>], <span class="ident">Error</span><span class="op">=</span><span class="ident">scroll</span>::<span class="ident">Error</span>, <span class="ident">Size</span><span class="op">=</span><span class="ident">usize</span><span class="op">&gt;</span>,
           <span class="ident">T</span>: <span class="ident">SizeWith</span><span class="op">&lt;</span><span class="ident">scroll</span>::<span class="ident">Endian</span>, <span class="ident">Units</span><span class="op">=</span><span class="ident">usize</span><span class="op">&gt;</span>,
 {
-    <span class="comment">// TODO: swap</span>
-    <span class="kw">let</span> <span class="ident">u</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">LE</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">StreamReadFailure</span>))<span class="question-mark">?</span>;
+    <span class="kw">let</span> <span class="ident">u</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endian</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">StreamReadFailure</span>))<span class="question-mark">?</span>;
     <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="ident">u</span> <span class="kw">as</span> <span class="ident">usize</span>;
-    <span class="kw">let</span> <span class="ident">counted_size</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">count</span>.<span class="ident">checked_mul</span>(<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>::<span class="ident">size_with</span>(<span class="kw-2">&amp;</span><span class="ident">LE</span>)).<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">v</span><span class="op">|</span> <span class="ident">v</span>.<span class="ident">checked_add</span>(<span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>())) {
+    <span class="kw">let</span> <span class="ident">counted_size</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">count</span>.<span class="ident">checked_mul</span>(<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>::<span class="ident">size_with</span>(<span class="kw-2">&amp;</span><span class="ident">endian</span>)).<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">v</span><span class="op">|</span> <span class="ident">v</span>.<span class="ident">checked_add</span>(<span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>())) {
         <span class="prelude-val">Some</span>(<span class="ident">s</span>) <span class="op">=&gt;</span> <span class="ident">s</span>,
         <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">StreamReadFailure</span>),
     };
@@ -2480,7 +2494,7 @@ pub struct MinidumpMemoryInfoList;
     <span class="comment">// read count T raw stream entries</span>
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">raw_entries</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="ident">with_capacity</span>(<span class="ident">count</span>);
     <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">count</span> {
-        <span class="kw">let</span> <span class="ident">raw</span>: <span class="ident">T</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">LE</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">StreamReadFailure</span>))<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">raw</span>: <span class="ident">T</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endian</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">StreamReadFailure</span>))<span class="question-mark">?</span>;
         <span class="ident">raw_entries</span>.<span class="ident">push</span>(<span class="ident">raw</span>);
     }
     <span class="prelude-val">Ok</span>(<span class="ident">raw_entries</span>)
@@ -2587,13 +2601,12 @@ pub struct MinidumpMemoryInfoList;
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">MinidumpStream</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">MinidumpModuleList</span> {
     <span class="kw">const</span> <span class="ident">STREAM_TYPE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">md</span>::<span class="ident">MD_MODULE_LIST_STREAM</span>;
 
-    <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">all</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MinidumpModuleList</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">all</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">endian</span>: <span class="ident">scroll</span>::<span class="ident">Endian</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MinidumpModuleList</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="ident">raw_modules</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">md</span>::<span class="ident">MDRawModule</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">read_stream_list</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">bytes</span>)<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">raw_modules</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">md</span>::<span class="ident">MDRawModule</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">read_stream_list</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">bytes</span>, <span class="ident">endian</span>)<span class="question-mark">?</span>;
         <span class="comment">// read auxiliary data for each module</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">modules</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="ident">with_capacity</span>(<span class="ident">raw_modules</span>.<span class="ident">len</span>());
         <span class="kw">for</span> <span class="ident">raw</span> <span class="kw">in</span> <span class="ident">raw_modules</span>.<span class="ident">into_iter</span>() {
-            <span class="comment">// TODO: swap</span>
             <span class="kw">if</span> <span class="ident">raw</span>.<span class="ident">size_of_image</span> <span class="op">==</span> <span class="number">0</span>
                 <span class="op">||</span> <span class="ident">raw</span>.<span class="ident">size_of_image</span> <span class="kw">as</span> <span class="ident">u64</span> <span class="op">&gt;</span> (<span class="ident">u64</span>::<span class="ident">max_value</span>() <span class="op">-</span> <span class="ident">raw</span>.<span class="ident">base_of_image</span>)
             {
@@ -2601,7 +2614,7 @@ pub struct MinidumpMemoryInfoList;
                 <span class="comment">// TODO: just drop this module, keep the rest?</span>
                 <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">ModuleReadFailure</span>);
             }
-            <span class="ident">modules</span>.<span class="ident">push</span>(<span class="ident">MinidumpModule</span>::<span class="ident">read</span>(<span class="ident">raw</span>, <span class="ident">all</span>)<span class="question-mark">?</span>);
+            <span class="ident">modules</span>.<span class="ident">push</span>(<span class="ident">MinidumpModule</span>::<span class="ident">read</span>(<span class="ident">raw</span>, <span class="ident">all</span>, <span class="ident">endian</span>)<span class="question-mark">?</span>);
         }
         <span class="prelude-val">Ok</span>(<span class="ident">MinidumpModuleList</span>::<span class="ident">from_modules</span>(<span class="ident">modules</span>))
     }
@@ -2763,13 +2776,12 @@ Memory
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">MinidumpStream</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">MinidumpMemoryList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">const</span> <span class="ident">STREAM_TYPE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">md</span>::<span class="ident">MD_MEMORY_LIST_STREAM</span>;
 
-    <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">all</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MinidumpMemoryList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">all</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">endian</span>: <span class="ident">scroll</span>::<span class="ident">Endian</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MinidumpMemoryList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="ident">descriptors</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">md</span>::<span class="ident">MDMemoryDescriptor</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">read_stream_list</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">bytes</span>)<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">descriptors</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">md</span>::<span class="ident">MDMemoryDescriptor</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">read_stream_list</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">bytes</span>, <span class="ident">endian</span>)<span class="question-mark">?</span>;
         <span class="comment">// read memory contents for each region</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">regions</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="ident">with_capacity</span>(<span class="ident">descriptors</span>.<span class="ident">len</span>());
         <span class="kw">for</span> <span class="ident">raw</span> <span class="kw">in</span> <span class="ident">descriptors</span>.<span class="ident">into_iter</span>() {
-            <span class="comment">// TODO: swap</span>
             <span class="kw">if</span> <span class="ident">raw</span>.<span class="ident">memory</span>.<span class="ident">data_size</span> <span class="op">==</span> <span class="number">0</span>
                 <span class="op">||</span> <span class="ident">raw</span>.<span class="ident">memory</span>.<span class="ident">data_size</span> <span class="kw">as</span> <span class="ident">u64</span> <span class="op">&gt;</span> (<span class="ident">u64</span>::<span class="ident">max_value</span>() <span class="op">-</span> <span class="ident">raw</span>.<span class="ident">start_of_memory_range</span>)
             {
@@ -2834,16 +2846,15 @@ Memory
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">MinidumpStream</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">MinidumpThreadList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">const</span> <span class="ident">STREAM_TYPE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">md</span>::<span class="ident">MD_THREAD_LIST_STREAM</span>;
 
-    <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">all</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MinidumpThreadList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">all</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">endian</span>: <span class="ident">scroll</span>::<span class="ident">Endian</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MinidumpThreadList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="ident">raw_threads</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">md</span>::<span class="ident">MDRawThread</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">read_stream_list</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">bytes</span>)<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">raw_threads</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">md</span>::<span class="ident">MDRawThread</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">read_stream_list</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">bytes</span>, <span class="ident">endian</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">threads</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="ident">with_capacity</span>(<span class="ident">raw_threads</span>.<span class="ident">len</span>());
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">thread_ids</span> <span class="op">=</span> <span class="ident">HashMap</span>::<span class="ident">with_capacity</span>(<span class="ident">raw_threads</span>.<span class="ident">len</span>());
         <span class="kw">for</span> <span class="ident">raw</span> <span class="kw">in</span> <span class="ident">raw_threads</span>.<span class="ident">into_iter</span>() {
-            <span class="comment">// TODO: swap</span>
             <span class="ident">thread_ids</span>.<span class="ident">insert</span>(<span class="ident">raw</span>.<span class="ident">thread_id</span>, <span class="ident">threads</span>.<span class="ident">len</span>());
             <span class="kw">let</span> <span class="ident">context_data</span> <span class="op">=</span> <span class="ident">location_slice</span>(<span class="ident">all</span>, <span class="kw-2">&amp;</span><span class="ident">raw</span>.<span class="ident">thread_context</span>)<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">MinidumpContext</span>::<span class="ident">read</span>(<span class="ident">context_data</span>).<span class="ident">ok</span>();
+            <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">MinidumpContext</span>::<span class="ident">read</span>(<span class="ident">context_data</span>, <span class="ident">endian</span>).<span class="ident">ok</span>();
             <span class="comment">// TODO: check memory region</span>
             <span class="kw">let</span> <span class="ident">stack</span> <span class="op">=</span> <span class="ident">MinidumpMemory</span>::<span class="ident">read</span>(<span class="kw-2">&amp;</span><span class="ident">raw</span>.<span class="ident">stack</span>, <span class="ident">all</span>).<span class="ident">ok</span>();
             <span class="ident">threads</span>.<span class="ident">push</span>(<span class="ident">MinidumpThread</span> {
@@ -2892,8 +2903,8 @@ Memory
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">MinidumpStream</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">MinidumpSystemInfo</span> {
     <span class="kw">const</span> <span class="ident">STREAM_TYPE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">md</span>::<span class="ident">MD_SYSTEM_INFO_STREAM</span>;
 
-    <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">_all</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MinidumpSystemInfo</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">raw</span>: <span class="ident">md</span>::<span class="ident">MDRawSystemInfo</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="number">0</span>, <span class="ident">LE</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">StreamReadFailure</span>))<span class="question-mark">?</span>;
+    <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">_all</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">endian</span>: <span class="ident">scroll</span>::<span class="ident">Endian</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MinidumpSystemInfo</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">raw</span>: <span class="ident">md</span>::<span class="ident">MDRawSystemInfo</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="number">0</span>, <span class="ident">endian</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">StreamReadFailure</span>))<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">os</span> <span class="op">=</span> <span class="ident">OS</span>::<span class="ident">from_u32</span>(<span class="ident">raw</span>.<span class="ident">platform_id</span>);
         <span class="kw">let</span> <span class="ident">cpu</span> <span class="op">=</span> <span class="ident">CPU</span>::<span class="ident">from_u32</span>(<span class="ident">raw</span>.<span class="ident">processor_architecture</span> <span class="kw">as</span> <span class="ident">u32</span>);
         <span class="prelude-val">Ok</span>(<span class="ident">MinidumpSystemInfo</span> {
@@ -2986,15 +2997,15 @@ Memory
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">MinidumpStream</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">MinidumpMiscInfo</span> {
     <span class="kw">const</span> <span class="ident">STREAM_TYPE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">md</span>::<span class="ident">MD_MISC_INFO_STREAM</span>;
 
-    <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">_all</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MinidumpMiscInfo</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">_all</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">endian</span>: <span class="ident">scroll</span>::<span class="ident">Endian</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MinidumpMiscInfo</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="comment">// The misc info has gone through several revisions, so try to read the largest known</span>
         <span class="comment">// struct possible.</span>
         <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">do_read</span> {
             ($((<span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant</span>:<span class="ident">ident</span>),)<span class="op">+</span>) <span class="op">=&gt;</span> {
                 $(
-                    <span class="kw">if</span> <span class="ident">bytes</span>.<span class="ident">len</span>() <span class="op">&gt;=</span> <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span><span class="op">&gt;</span>::<span class="ident">size_with</span>(<span class="kw-2">&amp;</span><span class="ident">LE</span>) {
+                    <span class="kw">if</span> <span class="ident">bytes</span>.<span class="ident">len</span>() <span class="op">&gt;=</span> <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span><span class="op">&gt;</span>::<span class="ident">size_with</span>(<span class="kw-2">&amp;</span><span class="ident">endian</span>) {
                         <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">MinidumpMiscInfo</span> {
-                            <span class="ident">raw</span>: <span class="ident">RawMiscInfo</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant</span>(<span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="number">0</span>, <span class="ident">LE</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">StreamReadFailure</span>))<span class="question-mark">?</span>),
+                            <span class="ident">raw</span>: <span class="ident">RawMiscInfo</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant</span>(<span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="number">0</span>, <span class="ident">endian</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">StreamReadFailure</span>))<span class="question-mark">?</span>),
                         });
                     }
                 )<span class="op">+</span>
@@ -3066,8 +3077,8 @@ Memory
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">MinidumpStream</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">MinidumpBreakpadInfo</span> {
     <span class="kw">const</span> <span class="ident">STREAM_TYPE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">md</span>::<span class="ident">MD_BREAKPAD_INFO_STREAM</span>;
 
-    <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">_all</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MinidumpBreakpadInfo</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">raw</span>: <span class="ident">md</span>::<span class="ident">MDRawBreakpadInfo</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="number">0</span>, <span class="ident">LE</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">StreamReadFailure</span>))<span class="question-mark">?</span>;
+    <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">_all</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">endian</span>: <span class="ident">scroll</span>::<span class="ident">Endian</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MinidumpBreakpadInfo</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">raw</span>: <span class="ident">md</span>::<span class="ident">MDRawBreakpadInfo</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="number">0</span>, <span class="ident">endian</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">StreamReadFailure</span>))<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">dump_thread_id</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">flag</span>(<span class="ident">raw</span>.<span class="ident">validity</span>, <span class="ident">md</span>::<span class="ident">MD_BREAKPAD_INFO_VALID_DUMP_THREAD_ID</span>) {
             <span class="prelude-val">Some</span>(<span class="ident">raw</span>.<span class="ident">dump_thread_id</span>)
         } <span class="kw">else</span> {
@@ -3145,10 +3156,10 @@ Memory
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">MinidumpStream</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">MinidumpException</span> {
     <span class="kw">const</span> <span class="ident">STREAM_TYPE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">md</span>::<span class="ident">MD_EXCEPTION_STREAM</span>;
 
-    <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">all</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MinidumpException</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">raw</span>: <span class="ident">md</span>::<span class="ident">MDRawExceptionStream</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="number">0</span>, <span class="ident">LE</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">StreamReadFailure</span>))<span class="question-mark">?</span>;
+    <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">all</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">endian</span>: <span class="ident">scroll</span>::<span class="ident">Endian</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MinidumpException</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">raw</span>: <span class="ident">md</span>::<span class="ident">MDRawExceptionStream</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="number">0</span>, <span class="ident">endian</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">StreamReadFailure</span>))<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">context_data</span> <span class="op">=</span> <span class="ident">location_slice</span>(<span class="ident">all</span>, <span class="kw-2">&amp;</span><span class="ident">raw</span>.<span class="ident">thread_context</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">MinidumpContext</span>::<span class="ident">read</span>(<span class="ident">context_data</span>).<span class="ident">ok</span>();
+        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">MinidumpContext</span>::<span class="ident">read</span>(<span class="ident">context_data</span>, <span class="ident">endian</span>).<span class="ident">ok</span>();
         <span class="kw">let</span> <span class="ident">thread_id</span> <span class="op">=</span> <span class="ident">raw</span>.<span class="ident">thread_id</span>;
         <span class="prelude-val">Ok</span>(<span class="ident">MinidumpException</span> {
             <span class="ident">raw</span>,
@@ -3255,16 +3266,21 @@ Memory
     <span class="doccomment">/// but you can also use something like `memmap::Mmap`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">data</span>: <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Minidump</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="ident">header</span>: <span class="ident">md</span>::<span class="ident">MDRawHeader</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">LE</span>)
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">endian</span> <span class="op">=</span> <span class="ident">LE</span>;
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">header</span>: <span class="ident">md</span>::<span class="ident">MDRawHeader</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
             .<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">MissingHeader</span>))<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">swap</span> <span class="op">=</span> <span class="bool-val">false</span>;
         <span class="kw">if</span> <span class="ident">header</span>.<span class="ident">signature</span> <span class="op">!=</span> <span class="ident">md</span>::<span class="ident">MD_HEADER_SIGNATURE</span> {
             <span class="kw">if</span> <span class="ident">header</span>.<span class="ident">signature</span>.<span class="ident">swap_bytes</span>() <span class="op">!=</span> <span class="ident">md</span>::<span class="ident">MD_HEADER_SIGNATURE</span> {
                 <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">HeaderMismatch</span>);
             }
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">SwapNotImplemented</span>);
-            <span class="comment">// TODO: implement swapping</span>
-            <span class="comment">//swap = true;</span>
+            <span class="comment">// Try again with big-endian.</span>
+            <span class="ident">endian</span> <span class="op">=</span> <span class="ident">BE</span>;
+            <span class="ident">offset</span> <span class="op">=</span> <span class="number">0</span>;
+            <span class="ident">header</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
+                .<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">MissingHeader</span>))<span class="question-mark">?</span>;
+            <span class="kw">if</span> <span class="ident">header</span>.<span class="ident">signature</span> <span class="op">!=</span> <span class="ident">md</span>::<span class="ident">MD_HEADER_SIGNATURE</span> {
+                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">HeaderMismatch</span>);
+            }
         }
         <span class="kw">if</span> (<span class="ident">header</span>.<span class="ident">version</span> <span class="op">&amp;</span> <span class="number">0x0000ffff</span>) <span class="op">!=</span> <span class="ident">md</span>::<span class="ident">MD_HEADER_VERSION</span> {
             <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">VersionMismatch</span>);
@@ -3272,15 +3288,15 @@ Memory
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">streams</span> <span class="op">=</span> <span class="ident">HashMap</span>::<span class="ident">with_capacity</span>(<span class="ident">header</span>.<span class="ident">stream_count</span> <span class="kw">as</span> <span class="ident">usize</span>);
         <span class="ident">offset</span> <span class="op">=</span> <span class="ident">header</span>.<span class="ident">stream_directory_rva</span> <span class="kw">as</span> <span class="ident">usize</span>;
         <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">header</span>.<span class="ident">stream_count</span> {
-            <span class="kw">let</span> <span class="ident">dir</span>: <span class="ident">md</span>::<span class="ident">MDRawDirectory</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">LE</span>)
+            <span class="kw">let</span> <span class="ident">dir</span>: <span class="ident">md</span>::<span class="ident">MDRawDirectory</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
                 .<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">MissingDirectory</span>))<span class="question-mark">?</span>;
             <span class="ident">streams</span>.<span class="ident">insert</span>(<span class="ident">dir</span>.<span class="ident">stream_type</span>, (<span class="ident">i</span>, <span class="ident">dir</span>));
         }
         <span class="prelude-val">Ok</span>(<span class="ident">Minidump</span> {
             <span class="ident">data</span>,
-            <span class="ident">header</span>: <span class="ident">header</span>,
-            <span class="ident">streams</span>: <span class="ident">streams</span>,
-            <span class="ident">swap</span>: <span class="ident">swap</span>,
+            <span class="ident">header</span>,
+            <span class="ident">streams</span>,
+            <span class="ident">endian</span>,
             <span class="ident">_phantom</span>: <span class="ident">PhantomData</span>,
         })
     }
@@ -3300,7 +3316,7 @@ Memory
             <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">StreamNotFound</span>),
             <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>(<span class="kw">_</span>, <span class="kw-2">ref</span> <span class="ident">dir</span>)) <span class="op">=&gt;</span> {
                 <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">deref</span>();
-                <span class="ident">S</span>::<span class="ident">read</span>(<span class="ident">location_slice</span>(<span class="ident">bytes</span>, <span class="kw-2">&amp;</span><span class="ident">dir</span>.<span class="ident">location</span>)<span class="question-mark">?</span>, <span class="ident">bytes</span>)
+                <span class="ident">S</span>::<span class="ident">read</span>(<span class="ident">location_slice</span>(<span class="ident">bytes</span>, <span class="kw-2">&amp;</span><span class="ident">dir</span>.<span class="ident">location</span>)<span class="question-mark">?</span>, <span class="ident">bytes</span>, <span class="self">self</span>.<span class="ident">endian</span>)
             }
         }
     }
@@ -3441,9 +3457,27 @@ MDRawDirectory
             <span class="ident">section</span>: <span class="ident">Section</span>::<span class="ident">with_endian</span>(<span class="ident">Endian</span>::<span class="ident">Little</span>).<span class="ident">D32</span>(<span class="number">0x55667788</span>),
         });
         <span class="kw">let</span> <span class="ident">dump</span> <span class="op">=</span> <span class="ident">read_synth_dump</span>(<span class="ident">dump</span>).<span class="ident">unwrap</span>();
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">dump</span>.<span class="ident">endian</span>, <span class="ident">LE</span>);
         <span class="macro">assert_eq</span><span class="macro">!</span>(
             <span class="ident">dump</span>.<span class="ident">get_raw_stream</span>(<span class="ident">STREAM_TYPE</span>).<span class="ident">unwrap</span>(),
             <span class="kw-2">&amp;</span>[<span class="number">0x88</span>, <span class="number">0x77</span>, <span class="number">0x66</span>, <span class="number">0x55</span>]
+        );
+
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">dump</span>.<span class="ident">get_raw_stream</span>(<span class="number">0xaabbccdd</span>), <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">StreamNotFound</span>));
+    }
+
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">test_simple_synth_dump_bigendian</span>() {
+        <span class="kw">const</span> <span class="ident">STREAM_TYPE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x11223344</span>;
+        <span class="kw">let</span> <span class="ident">dump</span> <span class="op">=</span> <span class="ident">SynthMinidump</span>::<span class="ident">with_endian</span>(<span class="ident">Endian</span>::<span class="ident">Big</span>).<span class="ident">add_stream</span>(<span class="ident">SimpleStream</span> {
+            <span class="ident">stream_type</span>: <span class="ident">STREAM_TYPE</span>,
+            <span class="ident">section</span>: <span class="ident">Section</span>::<span class="ident">with_endian</span>(<span class="ident">Endian</span>::<span class="ident">Big</span>).<span class="ident">D32</span>(<span class="number">0x55667788</span>),
+        });
+        <span class="kw">let</span> <span class="ident">dump</span> <span class="op">=</span> <span class="ident">read_synth_dump</span>(<span class="ident">dump</span>).<span class="ident">unwrap</span>();
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">dump</span>.<span class="ident">endian</span>, <span class="ident">BE</span>);
+        <span class="macro">assert_eq</span><span class="macro">!</span>(
+            <span class="ident">dump</span>.<span class="ident">get_raw_stream</span>(<span class="ident">STREAM_TYPE</span>).<span class="ident">unwrap</span>(),
+            <span class="kw-2">&amp;</span>[<span class="number">0x55</span>, <span class="number">0x66</span>, <span class="number">0x77</span>, <span class="number">0x88</span>]
         );
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">dump</span>.<span class="ident">get_raw_stream</span>(<span class="number">0xaabbccdd</span>), <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">StreamNotFound</span>));
