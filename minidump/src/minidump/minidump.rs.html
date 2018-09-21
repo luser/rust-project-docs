@@ -1820,6 +1820,66 @@
 <span id="1820">1820</span>
 <span id="1821">1821</span>
 <span id="1822">1822</span>
+<span id="1823">1823</span>
+<span id="1824">1824</span>
+<span id="1825">1825</span>
+<span id="1826">1826</span>
+<span id="1827">1827</span>
+<span id="1828">1828</span>
+<span id="1829">1829</span>
+<span id="1830">1830</span>
+<span id="1831">1831</span>
+<span id="1832">1832</span>
+<span id="1833">1833</span>
+<span id="1834">1834</span>
+<span id="1835">1835</span>
+<span id="1836">1836</span>
+<span id="1837">1837</span>
+<span id="1838">1838</span>
+<span id="1839">1839</span>
+<span id="1840">1840</span>
+<span id="1841">1841</span>
+<span id="1842">1842</span>
+<span id="1843">1843</span>
+<span id="1844">1844</span>
+<span id="1845">1845</span>
+<span id="1846">1846</span>
+<span id="1847">1847</span>
+<span id="1848">1848</span>
+<span id="1849">1849</span>
+<span id="1850">1850</span>
+<span id="1851">1851</span>
+<span id="1852">1852</span>
+<span id="1853">1853</span>
+<span id="1854">1854</span>
+<span id="1855">1855</span>
+<span id="1856">1856</span>
+<span id="1857">1857</span>
+<span id="1858">1858</span>
+<span id="1859">1859</span>
+<span id="1860">1860</span>
+<span id="1861">1861</span>
+<span id="1862">1862</span>
+<span id="1863">1863</span>
+<span id="1864">1864</span>
+<span id="1865">1865</span>
+<span id="1866">1866</span>
+<span id="1867">1867</span>
+<span id="1868">1868</span>
+<span id="1869">1869</span>
+<span id="1870">1870</span>
+<span id="1871">1871</span>
+<span id="1872">1872</span>
+<span id="1873">1873</span>
+<span id="1874">1874</span>
+<span id="1875">1875</span>
+<span id="1876">1876</span>
+<span id="1877">1877</span>
+<span id="1878">1878</span>
+<span id="1879">1879</span>
+<span id="1880">1880</span>
+<span id="1881">1881</span>
+<span id="1882">1882</span>
 </pre><pre class="rust ">
 <span class="comment">// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class="comment">// file at the top-level directory of this distribution.</span>
@@ -1916,7 +1976,6 @@
 }
 
 <span class="comment">/* TODO
-pub struct MinidumpAssertion;
 pub struct MinidumpMemoryInfoList;
 */</span>
 
@@ -2067,6 +2126,11 @@ pub struct MinidumpMemoryInfoList;
     <span class="ident">regions</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">MinidumpMemory</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>,
     <span class="doccomment">/// Map from address range to index in regions. Use `MinidumpMemoryList::memory_at_address`.</span>
     <span class="ident">regions_by_addr</span>: <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">u64</span>, <span class="ident">usize</span><span class="op">&gt;</span>,
+}
+
+<span class="doccomment">/// Information about an assertion that caused a crash.</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MinidumpAssertion</span> {
+    <span class="kw">pub</span> <span class="ident">raw</span>: <span class="ident">md</span>::<span class="ident">MDRawAssertionInfo</span>,
 }
 
 <span class="comment">//======================================================</span>
@@ -3118,6 +3182,7 @@ Memory
   validity             = {:#x}
   dump_thread_id       = {}
   requesting_thread_id = {}
+
 &quot;</span>,
             <span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">validity</span>,
             <span class="ident">option_or_invalid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">dump_thread_id</span>),
@@ -3239,6 +3304,61 @@ Memory
 &quot;</span>
             ));
         }
+        <span class="prelude-val">Ok</span>(())
+    }
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">MinidumpStream</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">MinidumpAssertion</span> {
+    <span class="kw">const</span> <span class="ident">STREAM_TYPE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">md</span>::<span class="ident">MD_ASSERTION_INFO_STREAM</span>;
+
+    <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">_all</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">endian</span>: <span class="ident">scroll</span>::<span class="ident">Endian</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MinidumpAssertion</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">raw</span>: <span class="ident">md</span>::<span class="ident">MDRawAssertionInfo</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="number">0</span>, <span class="ident">endian</span>)
+            .<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">StreamReadFailure</span>))<span class="question-mark">?</span>;
+        <span class="prelude-val">Ok</span>(<span class="ident">MinidumpAssertion</span> { <span class="ident">raw</span> })
+    }
+}
+
+<span class="kw">fn</span> <span class="ident">utf16_to_string</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u16</span>]) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
+    <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">slice</span>;
+
+    <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">iter</span>().<span class="ident">take_while</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="kw-2">*</span><span class="kw-2">*</span><span class="ident">c</span> <span class="op">!=</span> <span class="number">0</span>).<span class="ident">count</span>();
+    <span class="kw">let</span> <span class="ident">s16</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">data</span>[..<span class="ident">len</span>];
+    <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">slice</span>::<span class="ident">from_raw_parts</span>(<span class="ident">s16</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>, <span class="ident">s16</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="number">2</span>) };
+    <span class="ident">UTF_16LE</span>.<span class="ident">decode</span>(<span class="ident">bytes</span>, <span class="ident">DecoderTrap</span>::<span class="ident">Strict</span>).<span class="ident">ok</span>()
+}
+
+<span class="kw">impl</span> <span class="ident">MinidumpAssertion</span> {
+    <span class="doccomment">/// Get the assertion expression as a `String` if one exists.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">expression</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
+        <span class="ident">utf16_to_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">expression</span>)
+    }
+    <span class="doccomment">/// Get the function name where the assertion happened as a `String` if it exists.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">function</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
+        <span class="ident">utf16_to_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">function</span>)
+    }
+    <span class="doccomment">/// Get the source file name where the assertion happened as a `String` if it exists.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">file</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
+        <span class="ident">utf16_to_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">file</span>)
+    }
+
+    <span class="doccomment">/// Write a human-readable description of this `MinidumpAssertion` to `f`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is very verbose, it is the format used by `minidump_dump`.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">print</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Write</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;MDAssertion
+  expression                                 = {}
+  function                                   = {}
+  file                                       = {}
+  line                                       = {}
+  type                                       = {}
+
+&quot;</span>,
+               <span class="self">self</span>.<span class="ident">expression</span>().<span class="ident">unwrap_or_else</span>(<span class="op">||</span> <span class="ident">String</span>::<span class="ident">new</span>()),
+               <span class="self">self</span>.<span class="ident">function</span>().<span class="ident">unwrap_or_else</span>(<span class="op">||</span> <span class="ident">String</span>::<span class="ident">new</span>()),
+               <span class="self">self</span>.<span class="ident">file</span>().<span class="ident">unwrap_or_else</span>(<span class="op">||</span> <span class="ident">String</span>::<span class="ident">new</span>()),
+               <span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">line</span>,
+               <span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">_type</span>,
+        )<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 }
