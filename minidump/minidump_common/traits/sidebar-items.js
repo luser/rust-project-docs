@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["Module","An executable or shared library loaded in a process."]]});
+initSidebarItems({"trait":[["IntoRangeMapSafe","This trait exists to allow creating `RangeMap`s from possibly-overlapping input data."],["Module","An executable or shared library loaded in a process."]]});
