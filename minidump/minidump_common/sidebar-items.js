@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["format","Minidump structure definitions."],["traits",""]]});
+initSidebarItems({"mod":[["format","Minidump structure definitions."],["traits","Some common traits used by minidump-related crates."]]});

@@ -108,7 +108,7 @@
 
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">streams</span> {
     ( $( <span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>:<span class="ident">ident</span> ),<span class="op">*</span> ) <span class="op">=&gt;</span> {
-        <span class="kw-2">&amp;</span>[$( ( <span class="ident">minidump_common</span>::<span class="ident">format</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>, <span class="macro">stringify</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>) ) ),<span class="kw-2">*</span>]
+        <span class="kw-2">&amp;</span>[$( ( <span class="ident">minidump_common</span>::<span class="ident">format</span>::<span class="ident">MINIDUMP_STREAM_TYPE</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>, <span class="macro">stringify</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>) ) ),<span class="kw-2">*</span>]
     };
 }
 
@@ -154,12 +154,12 @@
             }
             <span class="comment">// TODO: MemoryInfoList</span>
             <span class="kw">for</span> <span class="kw-2">&amp;</span>(<span class="ident">stream</span>, <span class="ident">name</span>) <span class="kw">in</span> <span class="macro">streams</span><span class="macro">!</span>(
-                <span class="ident">MD_LINUX_CMD_LINE</span>,
-                <span class="ident">MD_LINUX_ENVIRON</span>,
-                <span class="ident">MD_LINUX_LSB_RELEASE</span>,
-                <span class="ident">MD_LINUX_PROC_STATUS</span>,
-                <span class="ident">MD_LINUX_CPU_INFO</span>,
-                <span class="ident">MD_LINUX_MAPS</span>
+                <span class="ident">LinuxCmdLine</span>,
+                <span class="ident">LinuxEnviron</span>,
+                <span class="ident">LinuxLsbRelease</span>,
+                <span class="ident">LinuxProcStatus</span>,
+                <span class="ident">LinuxCpuInfo</span>,
+                <span class="ident">LinuxMaps</span>
             ) {
                 <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">contents</span>) <span class="op">=</span> <span class="ident">dump</span>.<span class="ident">get_raw_stream</span>(<span class="ident">stream</span>) {
                     <span class="ident">print_raw_stream</span>(<span class="ident">name</span>, <span class="ident">contents</span>, <span class="ident">stdout</span>).<span class="ident">unwrap</span>();

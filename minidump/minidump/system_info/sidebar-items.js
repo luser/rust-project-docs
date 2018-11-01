@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["CPU","Known CPU types."],["OS","Known operating systems."]],"trait":[["EnumFromPrimitive","Derive an enum value from a primitive."]]});
+initSidebarItems({"enum":[["Cpu","Known CPU types"],["Os","Known operating systems"]]});
