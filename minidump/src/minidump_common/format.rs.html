@@ -1543,6 +1543,54 @@
 <span id="1543">1543</span>
 <span id="1544">1544</span>
 <span id="1545">1545</span>
+<span id="1546">1546</span>
+<span id="1547">1547</span>
+<span id="1548">1548</span>
+<span id="1549">1549</span>
+<span id="1550">1550</span>
+<span id="1551">1551</span>
+<span id="1552">1552</span>
+<span id="1553">1553</span>
+<span id="1554">1554</span>
+<span id="1555">1555</span>
+<span id="1556">1556</span>
+<span id="1557">1557</span>
+<span id="1558">1558</span>
+<span id="1559">1559</span>
+<span id="1560">1560</span>
+<span id="1561">1561</span>
+<span id="1562">1562</span>
+<span id="1563">1563</span>
+<span id="1564">1564</span>
+<span id="1565">1565</span>
+<span id="1566">1566</span>
+<span id="1567">1567</span>
+<span id="1568">1568</span>
+<span id="1569">1569</span>
+<span id="1570">1570</span>
+<span id="1571">1571</span>
+<span id="1572">1572</span>
+<span id="1573">1573</span>
+<span id="1574">1574</span>
+<span id="1575">1575</span>
+<span id="1576">1576</span>
+<span id="1577">1577</span>
+<span id="1578">1578</span>
+<span id="1579">1579</span>
+<span id="1580">1580</span>
+<span id="1581">1581</span>
+<span id="1582">1582</span>
+<span id="1583">1583</span>
+<span id="1584">1584</span>
+<span id="1585">1585</span>
+<span id="1586">1586</span>
+<span id="1587">1587</span>
+<span id="1588">1588</span>
+<span id="1589">1589</span>
+<span id="1590">1590</span>
+<span id="1591">1591</span>
+<span id="1592">1592</span>
+<span id="1593">1593</span>
 </pre><pre class="rust ">
 <span class="doccomment">//! Minidump structure definitions.</span>
 <span class="doccomment">//!</span>
@@ -1555,6 +1603,8 @@
 <span class="doccomment">//! [crashpad]: https://chromium.googlesource.com/crashpad/crashpad/+/master/README.md</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">non_camel_case_types</span>)]</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">non_upper_case_globals</span>)]</span>
+
+<span class="kw">use</span> <span class="ident">scroll</span>::{<span class="ident">Endian</span>, <span class="ident">Pread</span>};
 
 <span class="doccomment">/// An offset from the start of the minidump file.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">RVA</span> <span class="op">=</span> <span class="ident">u32</span>;
@@ -1790,10 +1840,17 @@
     <span class="kw">pub</span> <span class="ident">version_info</span>: <span class="ident">VS_FIXEDFILEINFO</span>,
     <span class="doccomment">/// The location of a CodeView record describing debug information for this module.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This should be one of `CV_INFO_PDB70`, `CV_INFO_PDB20`, or `CV_INFO_ELF`. `PDB70` is</span>
-    <span class="doccomment">/// the most common in practice, describing a standalone PDB file by way of GUID, age, and</span>
-    <span class="doccomment">/// PDB filename, and `ELF` is a Breakpad extension for describing ELF modules with Build IDs.</span>
-    <span class="doccomment">/// The `CV_HEADER` struct defines the header common to all CodeView records.</span>
+    <span class="doccomment">/// This should be one of [`CV_INFO_PDB70`][pdb70], [`CV_INFO_PDB20`][pdb20], or</span>
+    <span class="doccomment">/// [`CV_INFO_ELF`][elf]. `PDB70` is the most common in practice, describing a standalone PDB</span>
+    <span class="doccomment">/// file by way of GUID, age, and PDB filename, and `ELF` is a Breakpad extension for</span>
+    <span class="doccomment">/// describing ELF modules with Build IDs.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// See [Matching Debug Information][dbg] for more information.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// [dbg]: http://www.debuginfo.com/articles/debuginfomatch.html</span>
+    <span class="doccomment">/// [pdb70]: struct.CV_INFO_PDB70.html</span>
+    <span class="doccomment">/// [pdb20]: struct.CV_INFO_PDB20.html</span>
+    <span class="doccomment">/// [elf]: struct.CV_INFO_ELF.html</span>
     <span class="kw">pub</span> <span class="ident">cv_record</span>: <span class="ident">MINIDUMP_LOCATION_DESCRIPTOR</span>,
     <span class="doccomment">/// The location of an `IMAGE_DEBUG_MISC` record describing debug information for this module.</span>
     <span class="kw">pub</span> <span class="ident">misc_record</span>: <span class="ident">MINIDUMP_LOCATION_DESCRIPTOR</span>,
@@ -1831,22 +1888,7 @@
 <span class="doccomment">/// The expected value of `VS_FIXEDFILEINFO.struct_version`</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VS_FFI_STRUCVERSION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x00010000</span>;
 
-<span class="doccomment">/// The header common to `CV_INFO_PDB20`, `CV_INFO_PDB70`, and `CV_INFO_ELF` CodeView records.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// See [Matching Debug Information][dbg] for more information.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [dbg]: http://www.debuginfo.com/articles/debuginfomatch.html</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Pread</span>, <span class="ident">SizeWith</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CV_HEADER</span> {
-    <span class="doccomment">/// One of the values of [`CvSignature`](enum.CvSignature.html).</span>
-    <span class="kw">pub</span> <span class="ident">signature</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// For older debug formats, the offset of the debug info within this record.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Not used in current formats like PDB 7.0.</span>
-    <span class="kw">pub</span> <span class="ident">offset</span>: <span class="ident">u32</span>,
-}
-
-<span class="doccomment">/// Known values for the `signature` field of [`CV_HEADER`](struct.CV_HEADER.html).</span>
+<span class="doccomment">/// Known values for the `signature` field of CodeView records</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// In addition to the two CodeView record formats used for linking</span>
 <span class="doccomment">/// to external pdb files it is possible for debugging data to be carried</span>
@@ -1877,29 +1919,67 @@
 <span class="doccomment">/// CodeView debug information in the older PDB 2.0 (&quot;NB10&quot;) format.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This struct is defined as variable-length in C with a trailing PDB filename member.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Pread</span>, <span class="ident">SizeWith</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CV_INFO_PDB20</span> {
-    <span class="doccomment">/// The `signature` field of this struct will always be `CvSignature::Pdb20`.</span>
-    <span class="kw">pub</span> <span class="ident">cv_header</span>: <span class="ident">CV_HEADER</span>,
+    <span class="doccomment">/// This field will always be [`CvSignature::Pdb20`](enum.CvSignature.html#variant.Pdb20).</span>
+    <span class="kw">pub</span> <span class="ident">cv_signature</span>: <span class="ident">u32</span>,
+    <span class="kw">pub</span> <span class="ident">cv_offset</span>: <span class="ident">u32</span>,
     <span class="kw">pub</span> <span class="ident">signature</span>: <span class="ident">u32</span>,
     <span class="kw">pub</span> <span class="ident">age</span>: <span class="ident">u32</span>,
-    <span class="comment">// This is a variable-length byte array.</span>
-    <span class="comment">// pub pdb_file_name: [u8; 1],</span>
+    <span class="doccomment">/// The PDB filename as a zero-terminated byte string</span>
+    <span class="kw">pub</span> <span class="ident">pdb_file_name</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">scroll</span>::<span class="ident">ctx</span>::<span class="ident">TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CV_INFO_PDB20</span> {
+    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">scroll</span>::<span class="ident">Error</span>;
+    <span class="kw">type</span> <span class="ident">Size</span> <span class="op">=</span> <span class="ident">usize</span>;
+
+    <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">src</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">endian</span>: <span class="ident">Endian</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="self">Self</span>::<span class="ident">Size</span>), <span class="self">Self</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="number">0</span>;
+        <span class="prelude-val">Ok</span>((<span class="ident">CV_INFO_PDB20</span> {
+            <span class="ident">cv_signature</span>: <span class="ident">src</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endian</span>)<span class="question-mark">?</span>,
+            <span class="ident">cv_offset</span>: <span class="ident">src</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endian</span>)<span class="question-mark">?</span>,
+            <span class="ident">signature</span>: <span class="ident">src</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endian</span>)<span class="question-mark">?</span>,
+            <span class="ident">age</span>: <span class="ident">src</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endian</span>)<span class="question-mark">?</span>,
+            <span class="ident">pdb_file_name</span>: {
+                <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">src</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="kw-2">*</span><span class="ident">offset</span>;
+                <span class="ident">src</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="kw-2">&amp;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span>(<span class="ident">offset</span>, <span class="ident">size</span>)<span class="question-mark">?</span>.<span class="ident">to_owned</span>()
+            }
+        }, <span class="kw-2">*</span><span class="ident">offset</span>))
+    }
 }
 
 <span class="doccomment">/// CodeView debug information in the current PDB 7.0 (&quot;RSDS&quot;) format.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This struct is defined as variable-length in C with a trailing PDB filename member.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Pread</span>, <span class="ident">SizeWith</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CV_INFO_PDB70</span> {
-    <span class="doccomment">/// This will always be `CvSignature::Pdb70`.</span>
+    <span class="doccomment">/// This will always be [`CvSignature::Pdb70`](enum.CvSignature.html#variant.Pdb70)</span>
     <span class="kw">pub</span> <span class="ident">cv_signature</span>: <span class="ident">u32</span>,
     <span class="doccomment">/// A unique identifer for a module created on first build.</span>
     <span class="kw">pub</span> <span class="ident">signature</span>: <span class="ident">GUID</span>,
     <span class="doccomment">/// A counter, incremented for each rebuild that updates the PDB file.</span>
     <span class="kw">pub</span> <span class="ident">age</span>: <span class="ident">u32</span>,
-    <span class="comment">// This is a variable-length byte array.</span>
-    <span class="comment">//pub pdb_file_name: [u8; 1],</span>
+    <span class="doccomment">/// The PDB filename as a zero-terminated byte string</span>
+    <span class="kw">pub</span> <span class="ident">pdb_file_name</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">scroll</span>::<span class="ident">ctx</span>::<span class="ident">TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CV_INFO_PDB70</span> {
+    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">scroll</span>::<span class="ident">Error</span>;
+    <span class="kw">type</span> <span class="ident">Size</span> <span class="op">=</span> <span class="ident">usize</span>;
+
+    <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">src</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">endian</span>: <span class="ident">Endian</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="self">Self</span>::<span class="ident">Size</span>), <span class="self">Self</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="number">0</span>;
+        <span class="prelude-val">Ok</span>((<span class="ident">CV_INFO_PDB70</span> {
+            <span class="ident">cv_signature</span>: <span class="ident">src</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endian</span>)<span class="question-mark">?</span>,
+            <span class="ident">signature</span>: <span class="ident">src</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endian</span>)<span class="question-mark">?</span>,
+            <span class="ident">age</span>: <span class="ident">src</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endian</span>)<span class="question-mark">?</span>,
+            <span class="ident">pdb_file_name</span>: {
+                <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">src</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="kw-2">*</span><span class="ident">offset</span>;
+                <span class="ident">src</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="kw-2">&amp;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span>(<span class="ident">offset</span>, <span class="ident">size</span>)<span class="question-mark">?</span>.<span class="ident">to_owned</span>()
+            }
+        }, <span class="kw-2">*</span><span class="ident">offset</span>))
+    }
 }
 
 <span class="doccomment">/// A GUID as specified in Rpcdce.h</span>
@@ -1924,12 +2004,28 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [buildid]: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/developer_guide/compiling-build-id</span>
 <span class="doccomment">/// [binutils]: https://sourceware.org/binutils/docs-2.26/ld/Options.html#index-g_t_002d_002dbuild_002did-292</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Pread</span>, <span class="ident">SizeWith</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CV_INFO_ELF</span> {
-    <span class="doccomment">/// This will always be `CvSignature::Elf`.</span>
+    <span class="doccomment">/// This will always be [`CvSignature::Elf`](enum.CvSignature.html#variant.Elf)</span>
     <span class="kw">pub</span> <span class="ident">cv_signature</span>: <span class="ident">u32</span>,
-    <span class="comment">// This is a variable-length byte array.</span>
-    <span class="comment">//pub build_id: [u8; 1],</span>
+    <span class="doccomment">/// The build id, a variable number of bytes</span>
+    <span class="kw">pub</span> <span class="ident">build_id</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">scroll</span>::<span class="ident">ctx</span>::<span class="ident">TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CV_INFO_ELF</span> {
+    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">scroll</span>::<span class="ident">Error</span>;
+    <span class="kw">type</span> <span class="ident">Size</span> <span class="op">=</span> <span class="ident">usize</span>;
+
+    <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">src</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">endian</span>: <span class="ident">Endian</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="self">Self</span>::<span class="ident">Size</span>), <span class="self">Self</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="number">0</span>;
+        <span class="prelude-val">Ok</span>((<span class="ident">CV_INFO_ELF</span> {
+            <span class="ident">cv_signature</span>: <span class="ident">src</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endian</span>)<span class="question-mark">?</span>,
+            <span class="ident">build_id</span>: {
+                <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">src</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="kw-2">*</span><span class="ident">offset</span>;
+                <span class="ident">src</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="kw-2">&amp;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span>(<span class="ident">offset</span>, <span class="ident">size</span>)<span class="question-mark">?</span>.<span class="ident">to_owned</span>()
+            }
+        }, <span class="kw-2">*</span><span class="ident">offset</span>))
+    }
 }
 
 <span class="doccomment">/// Obsolete debug record type defined in WinNT.h.</span>
