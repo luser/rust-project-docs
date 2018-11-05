@@ -1,1 +1,1 @@
-initSidebarItems({"derive":[["IOread",""],["IOwrite",""],["Pread",""],["Pwrite",""],["SizeWith",""]]});
+initSidebarItems({"fn":[["derive_ioread",""],["derive_iowrite",""],["derive_pread",""],["derive_pwrite",""],["derive_sizewith",""]]});
