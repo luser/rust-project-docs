@@ -1,627 +1,88 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `format` mod in crate `minidump`."><meta name="keywords" content="rust, rustlang, rust-lang, format"><title>minidump::format - Rust</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><p class='location'>Module format</p><div class="sidebar-elems"><div class="block items"><ul><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li><li><a href="#types">Type Definitions</a></li></ul></div><p class='location'><a href='../index.html'>minidump</a></p><script>window.sidebarCurrent = {name: 'format', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../../src/minidump_common/lib.rs.html#22' title='goto source code'>[src]</a></span><span class='in-band'>Module <a href='../index.html'>minidump</a>::<wbr><a class="mod" href=''>format</a></span></h1><div class='docblock'><p>Minidump structure definitions.</p>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `format` mod in crate `minidump`."><meta name="keywords" content="rust, rustlang, rust-lang, format"><title>minidump::format - Rust</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><p class='location'>Module format</p><div class="sidebar-elems"><div class="block items"><ul><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li><li><a href="#types">Type Definitions</a></li></ul></div><p class='location'><a href='../index.html'>minidump</a></p><script>window.sidebarCurrent = {name: 'format', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../../src/minidump_common/lib.rs.html#22' title='goto source code'>[src]</a></span><span class='in-band'>Module <a href='../index.html'>minidump</a>::<wbr><a class="mod" href=''>format</a></span></h1><div class='docblock'><p>Minidump structure definitions.</p>
 <p>Types defined here should match those defined in <a href="https://docs.microsoft.com/en-us/windows/desktop/api/minidumpapiset/">Microsoft's headers</a>. Additionally
 some <a href="https://chromium.googlesource.com/breakpad/breakpad/">Breakpad</a> and <a href="https://chromium.googlesource.com/crashpad/crashpad/+/master/README.md">Crashpad</a> extension types are defined here and should
 match the definitions from those projects.</p>
 </div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.ARMCpuInfo.html"
-                                  title='struct minidump::format::ARMCpuInfo'>ARMCpuInfo</a></td>
-                           <td class='docblock-short'>
-                                <p>Arm-specific CPU information (Breakpad extension)</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.ArmElfHwCaps.html"
-                                  title='struct minidump::format::ArmElfHwCaps'>ArmElfHwCaps</a></td>
-                           <td class='docblock-short'>
-                                <p>Possible values of <code>ARMCpuInfo.elf_hwcaps</code></p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.BreakpadInfoValid.html"
-                                  title='struct minidump::format::BreakpadInfoValid'>BreakpadInfoValid</a></td>
-                           <td class='docblock-short'>
-                                <p>Potential values for <code>MINIDUMP_BREAKPAD_INFO.validity</code></p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.CONTEXT_AMD64.html"
-                                  title='struct minidump::format::CONTEXT_AMD64'>CONTEXT_AMD64</a></td>
-                           <td class='docblock-short'>
-                                <p>An x86-64 (amd64) CPU context</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.CONTEXT_ARM.html"
-                                  title='struct minidump::format::CONTEXT_ARM'>CONTEXT_ARM</a></td>
-                           <td class='docblock-short'>
-                                <p>An ARM CPU context</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.CONTEXT_ARM64.html"
-                                  title='struct minidump::format::CONTEXT_ARM64'>CONTEXT_ARM64</a></td>
-                           <td class='docblock-short'>
-                                <p>An aarch64 (arm64) CPU context</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.CONTEXT_MIPS.html"
-                                  title='struct minidump::format::CONTEXT_MIPS'>CONTEXT_MIPS</a></td>
-                           <td class='docblock-short'>
-                                <p>A MIPS CPU context</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.CONTEXT_PPC.html"
-                                  title='struct minidump::format::CONTEXT_PPC'>CONTEXT_PPC</a></td>
-                           <td class='docblock-short'>
-                                <p>A PPC CPU context</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.CONTEXT_PPC64.html"
-                                  title='struct minidump::format::CONTEXT_PPC64'>CONTEXT_PPC64</a></td>
-                           <td class='docblock-short'>
-                                <p>A PPC64 CPU context</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.CONTEXT_SPARC.html"
-                                  title='struct minidump::format::CONTEXT_SPARC'>CONTEXT_SPARC</a></td>
-                           <td class='docblock-short'>
-                                <p>A SPARC CPU context</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.CONTEXT_X86.html"
-                                  title='struct minidump::format::CONTEXT_X86'>CONTEXT_X86</a></td>
-                           <td class='docblock-short'>
-                                <p>An x86 CPU context</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.CPU_INFORMATION.html"
-                                  title='struct minidump::format::CPU_INFORMATION'>CPU_INFORMATION</a></td>
-                           <td class='docblock-short'>
-                                <p>CPU information contained within the <code>MINIDUMP_SYSTEM_INFO</code> struct</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.CV_INFO_ELF.html"
-                                  title='struct minidump::format::CV_INFO_ELF'>CV_INFO_ELF</a></td>
-                           <td class='docblock-short'>
-                                <p>An ELF Build ID.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.CV_INFO_PDB20.html"
-                                  title='struct minidump::format::CV_INFO_PDB20'>CV_INFO_PDB20</a></td>
-                           <td class='docblock-short'>
-                                <p>CodeView debug information in the older PDB 2.0 (&quot;NB10&quot;) format.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.CV_INFO_PDB70.html"
-                                  title='struct minidump::format::CV_INFO_PDB70'>CV_INFO_PDB70</a></td>
-                           <td class='docblock-short'>
-                                <p>CodeView debug information in the current PDB 7.0 (&quot;RSDS&quot;) format.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.ContextFlagsCpu.html"
-                                  title='struct minidump::format::ContextFlagsCpu'>ContextFlagsCpu</a></td>
-                           <td class='docblock-short'>
-                                <p>CPU type values in the <code>context_flags</code> member of <code>CONTEXT_</code> structs</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.DSO_DEBUG_32.html"
-                                  title='struct minidump::format::DSO_DEBUG_32'>DSO_DEBUG_32</a></td>
-                           <td class='docblock-short'>
-                                <p>DSO debug data for 32-bit Linux minidumps</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.DSO_DEBUG_64.html"
-                                  title='struct minidump::format::DSO_DEBUG_64'>DSO_DEBUG_64</a></td>
-                           <td class='docblock-short'>
-                                <p>DSO debug data for 64-bit Linux minidumps</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.FLOATING_SAVE_AREA_ARM.html"
-                                  title='struct minidump::format::FLOATING_SAVE_AREA_ARM'>FLOATING_SAVE_AREA_ARM</a></td>
-                           <td class='docblock-short'>
-                                <p>ARM floating point state</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.FLOATING_SAVE_AREA_ARM64.html"
-                                  title='struct minidump::format::FLOATING_SAVE_AREA_ARM64'>FLOATING_SAVE_AREA_ARM64</a></td>
-                           <td class='docblock-short'>
-                                <p>aarch64 floating point state</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.FLOATING_SAVE_AREA_MIPS.html"
-                                  title='struct minidump::format::FLOATING_SAVE_AREA_MIPS'>FLOATING_SAVE_AREA_MIPS</a></td>
-                           <td class='docblock-short'>
-                                <p>MIPS floating point state</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.FLOATING_SAVE_AREA_PPC.html"
-                                  title='struct minidump::format::FLOATING_SAVE_AREA_PPC'>FLOATING_SAVE_AREA_PPC</a></td>
-                           <td class='docblock-short'>
-                                <p>PPC floating point state</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.FLOATING_SAVE_AREA_SPARC.html"
-                                  title='struct minidump::format::FLOATING_SAVE_AREA_SPARC'>FLOATING_SAVE_AREA_SPARC</a></td>
-                           <td class='docblock-short'>
-                                <p>SPARC floating point state</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.FLOATING_SAVE_AREA_X86.html"
-                                  title='struct minidump::format::FLOATING_SAVE_AREA_X86'>FLOATING_SAVE_AREA_X86</a></td>
-                           <td class='docblock-short'>
-                                <p>x86 floating point state</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.GUID.html"
-                                  title='struct minidump::format::GUID'>GUID</a></td>
-                           <td class='docblock-short'>
-                                <p>A GUID as specified in Rpcdce.h</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.IMAGE_DEBUG_MISC.html"
-                                  title='struct minidump::format::IMAGE_DEBUG_MISC'>IMAGE_DEBUG_MISC</a></td>
-                           <td class='docblock-short'>
-                                <p>Obsolete debug record type defined in WinNT.h.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.LINK_MAP_32.html"
-                                  title='struct minidump::format::LINK_MAP_32'>LINK_MAP_32</a></td>
-                           <td class='docblock-short'>
-                                <p>Dynamic linker information for a shared library on 32-bit Linux</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.LINK_MAP_64.html"
-                                  title='struct minidump::format::LINK_MAP_64'>LINK_MAP_64</a></td>
-                           <td class='docblock-short'>
-                                <p>Dynamic linker information for a shared library on 64-bit Linux</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.MINIDUMP_ASSERTION_INFO.html"
-                                  title='struct minidump::format::MINIDUMP_ASSERTION_INFO'>MINIDUMP_ASSERTION_INFO</a></td>
-                           <td class='docblock-short'>
-                                <p>A Breakpad extension containing information about an assertion that terminated the process</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.MINIDUMP_BREAKPAD_INFO.html"
-                                  title='struct minidump::format::MINIDUMP_BREAKPAD_INFO'>MINIDUMP_BREAKPAD_INFO</a></td>
-                           <td class='docblock-short'>
-                                <p>A Breakpad extension containing some additional process information</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.MINIDUMP_DIRECTORY.html"
-                                  title='struct minidump::format::MINIDUMP_DIRECTORY'>MINIDUMP_DIRECTORY</a></td>
-                           <td class='docblock-short'>
-                                <p>Information about a data stream contained in a minidump file.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.MINIDUMP_EXCEPTION.html"
-                                  title='struct minidump::format::MINIDUMP_EXCEPTION'>MINIDUMP_EXCEPTION</a></td>
-                           <td class='docblock-short'>
-                                <p>Detailed information about an exception.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.MINIDUMP_EXCEPTION_STREAM.html"
-                                  title='struct minidump::format::MINIDUMP_EXCEPTION_STREAM'>MINIDUMP_EXCEPTION_STREAM</a></td>
-                           <td class='docblock-short'>
-                                <p>Information about the exception that caused the process to terminate.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.MINIDUMP_HEADER.html"
-                                  title='struct minidump::format::MINIDUMP_HEADER'>MINIDUMP_HEADER</a></td>
-                           <td class='docblock-short'>
-                                <p>The header at the start of a minidump file.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.MINIDUMP_LOCATION_DESCRIPTOR.html"
-                                  title='struct minidump::format::MINIDUMP_LOCATION_DESCRIPTOR'>MINIDUMP_LOCATION_DESCRIPTOR</a></td>
-                           <td class='docblock-short'>
-                                <p>A location within a minidump file comprised of an offset and a size.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.MINIDUMP_MEMORY_DESCRIPTOR.html"
-                                  title='struct minidump::format::MINIDUMP_MEMORY_DESCRIPTOR'>MINIDUMP_MEMORY_DESCRIPTOR</a></td>
-                           <td class='docblock-short'>
-                                <p>A range of memory contained within a minidump consisting of a base address and a
+<table><tr class='module-item'><td><a class="struct" href="struct.ARMCpuInfo.html" title='minidump::format::ARMCpuInfo struct'>ARMCpuInfo</a></td><td class='docblock-short'><p>Arm-specific CPU information (Breakpad extension)</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.ArmElfHwCaps.html" title='minidump::format::ArmElfHwCaps struct'>ArmElfHwCaps</a></td><td class='docblock-short'><p>Possible values of <code>ARMCpuInfo.elf_hwcaps</code></p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.BreakpadInfoValid.html" title='minidump::format::BreakpadInfoValid struct'>BreakpadInfoValid</a></td><td class='docblock-short'><p>Potential values for <code>MINIDUMP_BREAKPAD_INFO.validity</code></p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.CONTEXT_AMD64.html" title='minidump::format::CONTEXT_AMD64 struct'>CONTEXT_AMD64</a></td><td class='docblock-short'><p>An x86-64 (amd64) CPU context</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.CONTEXT_ARM.html" title='minidump::format::CONTEXT_ARM struct'>CONTEXT_ARM</a></td><td class='docblock-short'><p>An ARM CPU context</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.CONTEXT_ARM64.html" title='minidump::format::CONTEXT_ARM64 struct'>CONTEXT_ARM64</a></td><td class='docblock-short'><p>An aarch64 (arm64) CPU context</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.CONTEXT_MIPS.html" title='minidump::format::CONTEXT_MIPS struct'>CONTEXT_MIPS</a></td><td class='docblock-short'><p>A MIPS CPU context</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.CONTEXT_PPC.html" title='minidump::format::CONTEXT_PPC struct'>CONTEXT_PPC</a></td><td class='docblock-short'><p>A PPC CPU context</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.CONTEXT_PPC64.html" title='minidump::format::CONTEXT_PPC64 struct'>CONTEXT_PPC64</a></td><td class='docblock-short'><p>A PPC64 CPU context</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.CONTEXT_SPARC.html" title='minidump::format::CONTEXT_SPARC struct'>CONTEXT_SPARC</a></td><td class='docblock-short'><p>A SPARC CPU context</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.CONTEXT_X86.html" title='minidump::format::CONTEXT_X86 struct'>CONTEXT_X86</a></td><td class='docblock-short'><p>An x86 CPU context</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.CPU_INFORMATION.html" title='minidump::format::CPU_INFORMATION struct'>CPU_INFORMATION</a></td><td class='docblock-short'><p>CPU information contained within the <code>MINIDUMP_SYSTEM_INFO</code> struct</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.CV_INFO_ELF.html" title='minidump::format::CV_INFO_ELF struct'>CV_INFO_ELF</a></td><td class='docblock-short'><p>An ELF Build ID.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.CV_INFO_PDB20.html" title='minidump::format::CV_INFO_PDB20 struct'>CV_INFO_PDB20</a></td><td class='docblock-short'><p>CodeView debug information in the older PDB 2.0 (&quot;NB10&quot;) format.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.CV_INFO_PDB70.html" title='minidump::format::CV_INFO_PDB70 struct'>CV_INFO_PDB70</a></td><td class='docblock-short'><p>CodeView debug information in the current PDB 7.0 (&quot;RSDS&quot;) format.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.ContextFlagsCpu.html" title='minidump::format::ContextFlagsCpu struct'>ContextFlagsCpu</a></td><td class='docblock-short'><p>CPU type values in the <code>context_flags</code> member of <code>CONTEXT_</code> structs</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.DSO_DEBUG_32.html" title='minidump::format::DSO_DEBUG_32 struct'>DSO_DEBUG_32</a></td><td class='docblock-short'><p>DSO debug data for 32-bit Linux minidumps</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.DSO_DEBUG_64.html" title='minidump::format::DSO_DEBUG_64 struct'>DSO_DEBUG_64</a></td><td class='docblock-short'><p>DSO debug data for 64-bit Linux minidumps</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.FLOATING_SAVE_AREA_ARM.html" title='minidump::format::FLOATING_SAVE_AREA_ARM struct'>FLOATING_SAVE_AREA_ARM</a></td><td class='docblock-short'><p>ARM floating point state</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.FLOATING_SAVE_AREA_ARM64.html" title='minidump::format::FLOATING_SAVE_AREA_ARM64 struct'>FLOATING_SAVE_AREA_ARM64</a></td><td class='docblock-short'><p>aarch64 floating point state</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.FLOATING_SAVE_AREA_MIPS.html" title='minidump::format::FLOATING_SAVE_AREA_MIPS struct'>FLOATING_SAVE_AREA_MIPS</a></td><td class='docblock-short'><p>MIPS floating point state</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.FLOATING_SAVE_AREA_PPC.html" title='minidump::format::FLOATING_SAVE_AREA_PPC struct'>FLOATING_SAVE_AREA_PPC</a></td><td class='docblock-short'><p>PPC floating point state</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.FLOATING_SAVE_AREA_SPARC.html" title='minidump::format::FLOATING_SAVE_AREA_SPARC struct'>FLOATING_SAVE_AREA_SPARC</a></td><td class='docblock-short'><p>SPARC floating point state</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.FLOATING_SAVE_AREA_X86.html" title='minidump::format::FLOATING_SAVE_AREA_X86 struct'>FLOATING_SAVE_AREA_X86</a></td><td class='docblock-short'><p>x86 floating point state</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.GUID.html" title='minidump::format::GUID struct'>GUID</a></td><td class='docblock-short'><p>A GUID as specified in Rpcdce.h</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.IMAGE_DEBUG_MISC.html" title='minidump::format::IMAGE_DEBUG_MISC struct'>IMAGE_DEBUG_MISC</a></td><td class='docblock-short'><p>Obsolete debug record type defined in WinNT.h.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.LINK_MAP_32.html" title='minidump::format::LINK_MAP_32 struct'>LINK_MAP_32</a></td><td class='docblock-short'><p>Dynamic linker information for a shared library on 32-bit Linux</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.LINK_MAP_64.html" title='minidump::format::LINK_MAP_64 struct'>LINK_MAP_64</a></td><td class='docblock-short'><p>Dynamic linker information for a shared library on 64-bit Linux</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.MINIDUMP_ASSERTION_INFO.html" title='minidump::format::MINIDUMP_ASSERTION_INFO struct'>MINIDUMP_ASSERTION_INFO</a></td><td class='docblock-short'><p>A Breakpad extension containing information about an assertion that terminated the process</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.MINIDUMP_BREAKPAD_INFO.html" title='minidump::format::MINIDUMP_BREAKPAD_INFO struct'>MINIDUMP_BREAKPAD_INFO</a></td><td class='docblock-short'><p>A Breakpad extension containing some additional process information</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.MINIDUMP_DIRECTORY.html" title='minidump::format::MINIDUMP_DIRECTORY struct'>MINIDUMP_DIRECTORY</a></td><td class='docblock-short'><p>Information about a data stream contained in a minidump file.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.MINIDUMP_EXCEPTION.html" title='minidump::format::MINIDUMP_EXCEPTION struct'>MINIDUMP_EXCEPTION</a></td><td class='docblock-short'><p>Detailed information about an exception.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.MINIDUMP_EXCEPTION_STREAM.html" title='minidump::format::MINIDUMP_EXCEPTION_STREAM struct'>MINIDUMP_EXCEPTION_STREAM</a></td><td class='docblock-short'><p>Information about the exception that caused the process to terminate.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.MINIDUMP_HEADER.html" title='minidump::format::MINIDUMP_HEADER struct'>MINIDUMP_HEADER</a></td><td class='docblock-short'><p>The header at the start of a minidump file.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.MINIDUMP_LOCATION_DESCRIPTOR.html" title='minidump::format::MINIDUMP_LOCATION_DESCRIPTOR struct'>MINIDUMP_LOCATION_DESCRIPTOR</a></td><td class='docblock-short'><p>A location within a minidump file comprised of an offset and a size.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.MINIDUMP_MEMORY_DESCRIPTOR.html" title='minidump::format::MINIDUMP_MEMORY_DESCRIPTOR struct'>MINIDUMP_MEMORY_DESCRIPTOR</a></td><td class='docblock-short'><p>A range of memory contained within a minidump consisting of a base address and a
 location descriptor.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.MINIDUMP_MEMORY_INFO.html"
-                                  title='struct minidump::format::MINIDUMP_MEMORY_INFO'>MINIDUMP_MEMORY_INFO</a></td>
-                           <td class='docblock-short'>
-                                <p>Information about a memory region in a minidump</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.MINIDUMP_MEMORY_INFO_LIST.html"
-                                  title='struct minidump::format::MINIDUMP_MEMORY_INFO_LIST'>MINIDUMP_MEMORY_INFO_LIST</a></td>
-                           <td class='docblock-short'>
-                                <p>A list of memory regions in a minidump</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.MINIDUMP_MISC_INFO.html"
-                                  title='struct minidump::format::MINIDUMP_MISC_INFO'>MINIDUMP_MISC_INFO</a></td>
-                           <td class='docblock-short'>
-                                <p>Miscellaneous process information</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.MINIDUMP_MISC_INFO2.html"
-                                  title='struct minidump::format::MINIDUMP_MISC_INFO2'>MINIDUMP_MISC_INFO2</a></td>
-                           <td class='docblock-short'>
-                                <p>Miscellaneous process and system information</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.MINIDUMP_MISC_INFO3.html"
-                                  title='struct minidump::format::MINIDUMP_MISC_INFO3'>MINIDUMP_MISC_INFO3</a></td>
-                           <td class='docblock-short'>
-                                <p>Miscellaneous process and system information</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.MINIDUMP_MISC_INFO4.html"
-                                  title='struct minidump::format::MINIDUMP_MISC_INFO4'>MINIDUMP_MISC_INFO4</a></td>
-                           <td class='docblock-short'>
-                                <p>Miscellaneous process and system information</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.MINIDUMP_MODULE.html"
-                                  title='struct minidump::format::MINIDUMP_MODULE'>MINIDUMP_MODULE</a></td>
-                           <td class='docblock-short'>
-                                <p>Information about a single module (executable or shared library) from a minidump</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.MINIDUMP_SYSTEM_INFO.html"
-                                  title='struct minidump::format::MINIDUMP_SYSTEM_INFO'>MINIDUMP_SYSTEM_INFO</a></td>
-                           <td class='docblock-short'>
-                                <p>Processor and operating system information</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.MINIDUMP_THREAD.html"
-                                  title='struct minidump::format::MINIDUMP_THREAD'>MINIDUMP_THREAD</a></td>
-                           <td class='docblock-short'>
-                                <p>Information about a single thread from a minidump</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.MemoryProtection.html"
-                                  title='struct minidump::format::MemoryProtection'>MemoryProtection</a></td>
-                           <td class='docblock-short'>
-                                <p>Potential values for <code>MINIDUMP_MEMORY_INFO.protection</code> and <code>allocation_protection</code></p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.MemoryState.html"
-                                  title='struct minidump::format::MemoryState'>MemoryState</a></td>
-                           <td class='docblock-short'>
-                                <p>Potential values for <code>MINIDUMP_MEMORY_INFO.state</code></p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.MemoryType.html"
-                                  title='struct minidump::format::MemoryType'>MemoryType</a></td>
-                           <td class='docblock-short'>
-                                <p>Potential values for <code>MINIDUMP_MEMORY_INFO._type</code></p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.MiscInfoFlags.html"
-                                  title='struct minidump::format::MiscInfoFlags'>MiscInfoFlags</a></td>
-                           <td class='docblock-short'>
-                                <p>Known flags for <code>MINIDUMP_MISC_INFO*.flags1</code></p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.OtherCpuInfo.html"
-                                  title='struct minidump::format::OtherCpuInfo'>OtherCpuInfo</a></td>
-                           <td class='docblock-short'>
-                                <p>CPU information for non-x86 CPUs</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.SSE_REGISTERS.html"
-                                  title='struct minidump::format::SSE_REGISTERS'>SSE_REGISTERS</a></td>
-                           <td class='docblock-short'>
-                                <p>Possible contents of <code>CONTEXT_AMD64.float_save</code>.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.SYSTEMTIME.html"
-                                  title='struct minidump::format::SYSTEMTIME'>SYSTEMTIME</a></td>
-                           <td class='docblock-short'>
-                                <p>A date and time</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.TIME_ZONE_INFORMATION.html"
-                                  title='struct minidump::format::TIME_ZONE_INFORMATION'>TIME_ZONE_INFORMATION</a></td>
-                           <td class='docblock-short'>
-                                <p>Settings for a time zone</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.VECTOR_SAVE_AREA_PPC.html"
-                                  title='struct minidump::format::VECTOR_SAVE_AREA_PPC'>VECTOR_SAVE_AREA_PPC</a></td>
-                           <td class='docblock-short'>
-                                <p>PPC vector state</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.VS_FIXEDFILEINFO.html"
-                                  title='struct minidump::format::VS_FIXEDFILEINFO'>VS_FIXEDFILEINFO</a></td>
-                           <td class='docblock-short'>
-                                <p>Version information for a file</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.X86CpuInfo.html"
-                                  title='struct minidump::format::X86CpuInfo'>X86CpuInfo</a></td>
-                           <td class='docblock-short'>
-                                <p>x86-specific CPU information derived from the <code>cpuid</code> instruction</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.XMM_SAVE_AREA32.html"
-                                  title='struct minidump::format::XMM_SAVE_AREA32'>XMM_SAVE_AREA32</a></td>
-                           <td class='docblock-short'>
-                                <p>Possible contents of <code>CONTEXT_AMD64.float_save</code>.</p>
-
-                           </td>
-                       </tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.Arm64RegisterNumbers.html"
-                                  title='enum minidump::format::Arm64RegisterNumbers'>Arm64RegisterNumbers</a></td>
-                           <td class='docblock-short'>
-                                <p>Offsets into <code>CONTEXT_ARM64.iregs</code> for registers with a dediated or conventional purpose</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.ArmRegisterNumbers.html"
-                                  title='enum minidump::format::ArmRegisterNumbers'>ArmRegisterNumbers</a></td>
-                           <td class='docblock-short'>
-                                <p>Offsets into <code>CONTEXT_ARM.iregs</code> for registers with a dediated or conventional purpose</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.AssertionType.html"
-                                  title='enum minidump::format::AssertionType'>AssertionType</a></td>
-                           <td class='docblock-short'>
-                                <p>Known values of <code>MINIDUMP_ASSERTION_INFO._type</code>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.MINIDUMP_MEMORY_INFO.html" title='minidump::format::MINIDUMP_MEMORY_INFO struct'>MINIDUMP_MEMORY_INFO</a></td><td class='docblock-short'><p>Information about a memory region in a minidump</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.MINIDUMP_MEMORY_INFO_LIST.html" title='minidump::format::MINIDUMP_MEMORY_INFO_LIST struct'>MINIDUMP_MEMORY_INFO_LIST</a></td><td class='docblock-short'><p>A list of memory regions in a minidump</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.MINIDUMP_MISC_INFO.html" title='minidump::format::MINIDUMP_MISC_INFO struct'>MINIDUMP_MISC_INFO</a></td><td class='docblock-short'><p>Miscellaneous process information</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.MINIDUMP_MISC_INFO2.html" title='minidump::format::MINIDUMP_MISC_INFO2 struct'>MINIDUMP_MISC_INFO2</a></td><td class='docblock-short'><p>Miscellaneous process and system information</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.MINIDUMP_MISC_INFO3.html" title='minidump::format::MINIDUMP_MISC_INFO3 struct'>MINIDUMP_MISC_INFO3</a></td><td class='docblock-short'><p>Miscellaneous process and system information</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.MINIDUMP_MISC_INFO4.html" title='minidump::format::MINIDUMP_MISC_INFO4 struct'>MINIDUMP_MISC_INFO4</a></td><td class='docblock-short'><p>Miscellaneous process and system information</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.MINIDUMP_MODULE.html" title='minidump::format::MINIDUMP_MODULE struct'>MINIDUMP_MODULE</a></td><td class='docblock-short'><p>Information about a single module (executable or shared library) from a minidump</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.MINIDUMP_SYSTEM_INFO.html" title='minidump::format::MINIDUMP_SYSTEM_INFO struct'>MINIDUMP_SYSTEM_INFO</a></td><td class='docblock-short'><p>Processor and operating system information</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.MINIDUMP_THREAD.html" title='minidump::format::MINIDUMP_THREAD struct'>MINIDUMP_THREAD</a></td><td class='docblock-short'><p>Information about a single thread from a minidump</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.MemoryProtection.html" title='minidump::format::MemoryProtection struct'>MemoryProtection</a></td><td class='docblock-short'><p>Potential values for <code>MINIDUMP_MEMORY_INFO.protection</code> and <code>allocation_protection</code></p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.MemoryState.html" title='minidump::format::MemoryState struct'>MemoryState</a></td><td class='docblock-short'><p>Potential values for <code>MINIDUMP_MEMORY_INFO.state</code></p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.MemoryType.html" title='minidump::format::MemoryType struct'>MemoryType</a></td><td class='docblock-short'><p>Potential values for <code>MINIDUMP_MEMORY_INFO._type</code></p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.MiscInfoFlags.html" title='minidump::format::MiscInfoFlags struct'>MiscInfoFlags</a></td><td class='docblock-short'><p>Known flags for <code>MINIDUMP_MISC_INFO*.flags1</code></p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.OtherCpuInfo.html" title='minidump::format::OtherCpuInfo struct'>OtherCpuInfo</a></td><td class='docblock-short'><p>CPU information for non-x86 CPUs</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.SSE_REGISTERS.html" title='minidump::format::SSE_REGISTERS struct'>SSE_REGISTERS</a></td><td class='docblock-short'><p>Possible contents of <code>CONTEXT_AMD64.float_save</code>.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.SYSTEMTIME.html" title='minidump::format::SYSTEMTIME struct'>SYSTEMTIME</a></td><td class='docblock-short'><p>A date and time</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.TIME_ZONE_INFORMATION.html" title='minidump::format::TIME_ZONE_INFORMATION struct'>TIME_ZONE_INFORMATION</a></td><td class='docblock-short'><p>Settings for a time zone</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.VECTOR_SAVE_AREA_PPC.html" title='minidump::format::VECTOR_SAVE_AREA_PPC struct'>VECTOR_SAVE_AREA_PPC</a></td><td class='docblock-short'><p>PPC vector state</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.VS_FIXEDFILEINFO.html" title='minidump::format::VS_FIXEDFILEINFO struct'>VS_FIXEDFILEINFO</a></td><td class='docblock-short'><p>Version information for a file</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.X86CpuInfo.html" title='minidump::format::X86CpuInfo struct'>X86CpuInfo</a></td><td class='docblock-short'><p>x86-specific CPU information derived from the <code>cpuid</code> instruction</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.XMM_SAVE_AREA32.html" title='minidump::format::XMM_SAVE_AREA32 struct'>XMM_SAVE_AREA32</a></td><td class='docblock-short'><p>Possible contents of <code>CONTEXT_AMD64.float_save</code>.</p>
+</td></tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
+<table><tr class='module-item'><td><a class="enum" href="enum.Arm64RegisterNumbers.html" title='minidump::format::Arm64RegisterNumbers enum'>Arm64RegisterNumbers</a></td><td class='docblock-short'><p>Offsets into <code>CONTEXT_ARM64.iregs</code> for registers with a dedicated or conventional purpose</p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.ArmRegisterNumbers.html" title='minidump::format::ArmRegisterNumbers enum'>ArmRegisterNumbers</a></td><td class='docblock-short'><p>Offsets into <code>CONTEXT_ARM.iregs</code> for registers with a dedicated or conventional purpose</p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.AssertionType.html" title='minidump::format::AssertionType enum'>AssertionType</a></td><td class='docblock-short'><p>Known values of <code>MINIDUMP_ASSERTION_INFO._type</code>
 Taken from the definition in Breakpad's <a href="https://chromium.googlesource.com/breakpad/breakpad/+/88d8114fda3e4a7292654bd6ac0c34d6c88a8121/src/google_breakpad/common/minidump_format.h#1011">minidump_format.h</a>.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.CvSignature.html"
-                                  title='enum minidump::format::CvSignature'>CvSignature</a></td>
-                           <td class='docblock-short'>
-                                <p>Known values for the <code>signature</code> field of CodeView records</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.ExceptionCodeLinux.html"
-                                  title='enum minidump::format::ExceptionCodeLinux'>ExceptionCodeLinux</a></td>
-                           <td class='docblock-short'>
-                                <p>Values for <code>MINIDUMP_EXCEPTION.exception_code</code> for crashes on Linux</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.ExceptionCodeMac.html"
-                                  title='enum minidump::format::ExceptionCodeMac'>ExceptionCodeMac</a></td>
-                           <td class='docblock-short'>
-                                <p>Values for <code>MINIDUMP_EXCEPTION.exception_code</code> for crashes on macOS</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.ExceptionCodeWindows.html"
-                                  title='enum minidump::format::ExceptionCodeWindows'>ExceptionCodeWindows</a></td>
-                           <td class='docblock-short'>
-                                <p>Values for <code>MINIDUMP_EXCEPTION.exception_code</code> for crashes on Windows</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.MINIDUMP_STREAM_TYPE.html"
-                                  title='enum minidump::format::MINIDUMP_STREAM_TYPE'>MINIDUMP_STREAM_TYPE</a></td>
-                           <td class='docblock-short'>
-                                <p>The types of known minidump data streams.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.MipsRegisterNumbers.html"
-                                  title='enum minidump::format::MipsRegisterNumbers'>MipsRegisterNumbers</a></td>
-                           <td class='docblock-short'>
-                                <p>Offsets into <code>CONTEXT_MIPS.iregs</code> for registers with a dediated or conventional purpose</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.PlatformId.html"
-                                  title='enum minidump::format::PlatformId'>PlatformId</a></td>
-                           <td class='docblock-short'>
-                                <p>Known values of <code>MINIDUMP_SYSTEM_INFO.platform_id</code></p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.Ppc64RegisterNumbers.html"
-                                  title='enum minidump::format::Ppc64RegisterNumbers'>Ppc64RegisterNumbers</a></td>
-                           <td class='docblock-short'>
-                                <p>Offsets into <code>CONTEXT_PPC64.gpr</code> for registers with a dediated or conventional purpose</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.PpcRegisterNumbers.html"
-                                  title='enum minidump::format::PpcRegisterNumbers'>PpcRegisterNumbers</a></td>
-                           <td class='docblock-short'>
-                                <p>Offsets into <code>CONTEXT_PPC.gpr</code> for registers with a dediated or conventional purpose</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.ProcessorArchitecture.html"
-                                  title='enum minidump::format::ProcessorArchitecture'>ProcessorArchitecture</a></td>
-                           <td class='docblock-short'>
-                                <p>Known values of <code>MINIDUMP_SYSTEM_INFO.processor_architecture</code></p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.SparcRegisterNumbers.html"
-                                  title='enum minidump::format::SparcRegisterNumbers'>SparcRegisterNumbers</a></td>
-                           <td class='docblock-short'>
-                                <p>Offsets into <code>CONTEXT_SPARC.g_r</code> for registers with a dediated or conventional purpose</p>
-
-                           </td>
-                       </tr></table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="constant" href="constant.CONTEXT_CPU_MASK.html"
-                                  title='constant minidump::format::CONTEXT_CPU_MASK'>CONTEXT_CPU_MASK</a></td>
-                           <td class='docblock-short'>
-                                <p>Valid bits in a <code>context_flags</code> for <code>ContextFlagsCpu</code></p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="constant" href="constant.MINIDUMP_SIGNATURE.html"
-                                  title='constant minidump::format::MINIDUMP_SIGNATURE'>MINIDUMP_SIGNATURE</a></td>
-                           <td class='docblock-short'>
-                                <p>The 4-byte magic number at the start of a minidump file.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="constant" href="constant.MINIDUMP_VERSION.html"
-                                  title='constant minidump::format::MINIDUMP_VERSION'>MINIDUMP_VERSION</a></td>
-                           <td class='docblock-short'>
-                                <p>The version of the minidump format.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="constant" href="constant.VS_FFI_SIGNATURE.html"
-                                  title='constant minidump::format::VS_FFI_SIGNATURE'>VS_FFI_SIGNATURE</a></td>
-                           <td class='docblock-short'>
-                                <p>The expected value of <code>VS_FIXEDFILEINFO.signature</code></p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="constant" href="constant.VS_FFI_STRUCVERSION.html"
-                                  title='constant minidump::format::VS_FFI_STRUCVERSION'>VS_FFI_STRUCVERSION</a></td>
-                           <td class='docblock-short'>
-                                <p>The expected value of <code>VS_FIXEDFILEINFO.struct_version</code></p>
-
-                           </td>
-                       </tr></table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="type" href="type.RVA.html"
-                                  title='type minidump::format::RVA'>RVA</a></td>
-                           <td class='docblock-short'>
-                                <p>An offset from the start of the minidump file.</p>
-
-                           </td>
-                       </tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../../";window.currentCrate = "minidump";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script defer src="../../search-index.js"></script></body></html>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.CvSignature.html" title='minidump::format::CvSignature enum'>CvSignature</a></td><td class='docblock-short'><p>Known values for the <code>signature</code> field of CodeView records</p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.ExceptionCodeLinux.html" title='minidump::format::ExceptionCodeLinux enum'>ExceptionCodeLinux</a></td><td class='docblock-short'><p>Values for <code>MINIDUMP_EXCEPTION.exception_code</code> for crashes on Linux</p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.ExceptionCodeMac.html" title='minidump::format::ExceptionCodeMac enum'>ExceptionCodeMac</a></td><td class='docblock-short'><p>Values for <code>MINIDUMP_EXCEPTION.exception_code</code> for crashes on macOS</p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.ExceptionCodeWindows.html" title='minidump::format::ExceptionCodeWindows enum'>ExceptionCodeWindows</a></td><td class='docblock-short'><p>Values for <code>MINIDUMP_EXCEPTION.exception_code</code> for crashes on Windows</p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.MINIDUMP_STREAM_TYPE.html" title='minidump::format::MINIDUMP_STREAM_TYPE enum'>MINIDUMP_STREAM_TYPE</a></td><td class='docblock-short'><p>The types of known minidump data streams.</p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.MipsRegisterNumbers.html" title='minidump::format::MipsRegisterNumbers enum'>MipsRegisterNumbers</a></td><td class='docblock-short'><p>Offsets into <code>CONTEXT_MIPS.iregs</code> for registers with a dedicated or conventional purpose</p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.PlatformId.html" title='minidump::format::PlatformId enum'>PlatformId</a></td><td class='docblock-short'><p>Known values of <code>MINIDUMP_SYSTEM_INFO.platform_id</code></p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.Ppc64RegisterNumbers.html" title='minidump::format::Ppc64RegisterNumbers enum'>Ppc64RegisterNumbers</a></td><td class='docblock-short'><p>Offsets into <code>CONTEXT_PPC64.gpr</code> for registers with a dedicated or conventional purpose</p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.PpcRegisterNumbers.html" title='minidump::format::PpcRegisterNumbers enum'>PpcRegisterNumbers</a></td><td class='docblock-short'><p>Offsets into <code>CONTEXT_PPC.gpr</code> for registers with a dedicated or conventional purpose</p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.ProcessorArchitecture.html" title='minidump::format::ProcessorArchitecture enum'>ProcessorArchitecture</a></td><td class='docblock-short'><p>Known values of <code>MINIDUMP_SYSTEM_INFO.processor_architecture</code></p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.SparcRegisterNumbers.html" title='minidump::format::SparcRegisterNumbers enum'>SparcRegisterNumbers</a></td><td class='docblock-short'><p>Offsets into <code>CONTEXT_SPARC.g_r</code> for registers with a dedicated or conventional purpose</p>
+</td></tr></table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
+<table><tr class='module-item'><td><a class="constant" href="constant.CONTEXT_CPU_MASK.html" title='minidump::format::CONTEXT_CPU_MASK constant'>CONTEXT_CPU_MASK</a></td><td class='docblock-short'><p>Valid bits in a <code>context_flags</code> for <code>ContextFlagsCpu</code></p>
+</td></tr><tr class='module-item'><td><a class="constant" href="constant.MINIDUMP_SIGNATURE.html" title='minidump::format::MINIDUMP_SIGNATURE constant'>MINIDUMP_SIGNATURE</a></td><td class='docblock-short'><p>The 4-byte magic number at the start of a minidump file.</p>
+</td></tr><tr class='module-item'><td><a class="constant" href="constant.MINIDUMP_VERSION.html" title='minidump::format::MINIDUMP_VERSION constant'>MINIDUMP_VERSION</a></td><td class='docblock-short'><p>The version of the minidump format.</p>
+</td></tr><tr class='module-item'><td><a class="constant" href="constant.VS_FFI_SIGNATURE.html" title='minidump::format::VS_FFI_SIGNATURE constant'>VS_FFI_SIGNATURE</a></td><td class='docblock-short'><p>The expected value of <code>VS_FIXEDFILEINFO.signature</code></p>
+</td></tr><tr class='module-item'><td><a class="constant" href="constant.VS_FFI_STRUCVERSION.html" title='minidump::format::VS_FFI_STRUCVERSION constant'>VS_FFI_STRUCVERSION</a></td><td class='docblock-short'><p>The expected value of <code>VS_FIXEDFILEINFO.struct_version</code></p>
+</td></tr></table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
+<table><tr class='module-item'><td><a class="type" href="type.RVA.html" title='minidump::format::RVA type'>RVA</a></td><td class='docblock-short'><p>An offset from the start of the minidump file.</p>
+</td></tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g., <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g., <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g., <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../../";window.currentCrate = "minidump";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script defer src="../../search-index.js"></script></body></html>
