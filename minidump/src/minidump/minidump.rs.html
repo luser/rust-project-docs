@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/minidump.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>minidump.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/minidump.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>minidump.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -2372,7 +2372,7 @@ pub struct MinidumpMemoryInfoList;
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is very verbose, it is the format used by `minidump_dump`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">print</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Write</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(
+        <span class="macro">write</span><span class="macro">!</span>(
             <span class="ident">f</span>,
             <span class="string">&quot;MINIDUMP_MODULE
   base_of_image                   = {:#x}
@@ -2422,7 +2422,7 @@ pub struct MinidumpMemoryInfoList;
             <span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">misc_record</span>.<span class="ident">rva</span>,
             <span class="self">self</span>.<span class="ident">code_file</span>(),
             <span class="self">self</span>.<span class="ident">code_identifier</span>(),
-        ));
+        )<span class="question-mark">?</span>;
         <span class="comment">// Print CodeView data.</span>
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">codeview_info</span> {
             <span class="prelude-val">Some</span>(<span class="ident">CodeView</span>::<span class="ident">Pdb70</span>(<span class="kw-2">ref</span> <span class="ident">raw</span>)) <span class="op">=&gt;</span> {
@@ -2494,16 +2494,16 @@ pub struct MinidumpMemoryInfoList;
         <span class="comment">// Print misc record data.</span>
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">_misc</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">misc_info</span> {
             <span class="comment">//TODO, not terribly important.</span>
-            <span class="macro">try</span><span class="macro">!</span>(<span class="macro">writeln</span><span class="macro">!</span>(
+            <span class="macro">writeln</span><span class="macro">!</span>(
                 <span class="ident">f</span>,
                 <span class="string">&quot;  (misc_record)                   = (unimplemented)&quot;</span>
-            ));
+            )<span class="question-mark">?</span>;
         } <span class="kw">else</span> {
-            <span class="macro">try</span><span class="macro">!</span>(<span class="macro">writeln</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;  (misc_record)                   = (null)&quot;</span>));
+            <span class="macro">writeln</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;  (misc_record)                   = (null)&quot;</span>)<span class="question-mark">?</span>;
         }
 
         <span class="comment">// Print remaining data.</span>
-        <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(
+        <span class="macro">write</span><span class="macro">!</span>(
             <span class="ident">f</span>,
             <span class="string">r#&quot;  (debug_file)                    = &quot;{}&quot;
   (debug_identifier)              = &quot;{}&quot;
@@ -2513,7 +2513,7 @@ pub struct MinidumpMemoryInfoList;
             <span class="self">self</span>.<span class="ident">debug_file</span>().<span class="ident">unwrap_or</span>(<span class="ident">Cow</span>::<span class="ident">Borrowed</span>(<span class="string">&quot;&quot;</span>)),
             <span class="self">self</span>.<span class="ident">debug_identifier</span>().<span class="ident">unwrap_or</span>(<span class="ident">Cow</span>::<span class="ident">Borrowed</span>(<span class="string">&quot;&quot;</span>)),
             <span class="self">self</span>.<span class="ident">version</span>().<span class="ident">unwrap_or</span>(<span class="ident">Cow</span>::<span class="ident">Borrowed</span>(<span class="string">&quot;&quot;</span>)),
-        ));
+        )<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 
@@ -2723,17 +2723,17 @@ pub struct MinidumpMemoryInfoList;
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is very verbose, it is the format used by `minidump_dump`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">print</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Write</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(
+        <span class="macro">write</span><span class="macro">!</span>(
             <span class="ident">f</span>,
             <span class="string">&quot;MinidumpModuleList
   module_count = {}
 
 &quot;</span>,
             <span class="self">self</span>.<span class="ident">modules</span>.<span class="ident">len</span>()
-        ));
+        )<span class="question-mark">?</span>;
         <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">module</span>) <span class="kw">in</span> <span class="self">self</span>.<span class="ident">modules</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
-            <span class="macro">try</span><span class="macro">!</span>(<span class="macro">writeln</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;module[{}]&quot;</span>, <span class="ident">i</span>));
-            <span class="macro">try</span><span class="macro">!</span>(<span class="ident">module</span>.<span class="ident">print</span>(<span class="ident">f</span>));
+            <span class="macro">writeln</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;module[{}]&quot;</span>, <span class="ident">i</span>)<span class="question-mark">?</span>;
+            <span class="ident">module</span>.<span class="ident">print</span>(<span class="ident">f</span>)<span class="question-mark">?</span>;
         }
         <span class="prelude-val">Ok</span>(())
     }
@@ -2793,7 +2793,7 @@ pub struct MinidumpMemoryInfoList;
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is very verbose, it is the format used by `minidump_dump`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">print</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Write</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(
+        <span class="macro">write</span><span class="macro">!</span>(
             <span class="ident">f</span>,
             <span class="string">&quot;MINIDUMP_MEMORY_DESCRIPTOR
   start_of_memory_range = {:#x}
@@ -2802,18 +2802,18 @@ pub struct MinidumpMemoryInfoList;
 Memory
 &quot;</span>,
             <span class="self">self</span>.<span class="ident">desc</span>.<span class="ident">start_of_memory_range</span>, <span class="self">self</span>.<span class="ident">desc</span>.<span class="ident">memory</span>.<span class="ident">data_size</span>, <span class="self">self</span>.<span class="ident">desc</span>.<span class="ident">memory</span>.<span class="ident">rva</span>,
-        ));
-        <span class="macro">try</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">print_contents</span>(<span class="ident">f</span>));
+        )<span class="question-mark">?</span>;
+        <span class="self">self</span>.<span class="ident">print_contents</span>(<span class="ident">f</span>)<span class="question-mark">?</span>;
         <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;\n&quot;</span>)
     }
 
     <span class="doccomment">/// Write the contents of this `MinidumpMemory` to `f` as a hex string.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">print_contents</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Write</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;0x&quot;</span>));
+        <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;0x&quot;</span>)<span class="question-mark">?</span>;
         <span class="kw">for</span> <span class="ident">byte</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">bytes</span>.<span class="ident">iter</span>() {
-            <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;{:02x}&quot;</span>, <span class="ident">byte</span>));
+            <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;{:02x}&quot;</span>, <span class="ident">byte</span>)<span class="question-mark">?</span>;
         }
-        <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;\n&quot;</span>));
+        <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;\n&quot;</span>)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 
@@ -2886,17 +2886,17 @@ Memory
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is very verbose, it is the format used by `minidump_dump`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">print</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Write</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(
+        <span class="macro">write</span><span class="macro">!</span>(
             <span class="ident">f</span>,
             <span class="string">&quot;MinidumpMemoryList
   region_count = {}
 
 &quot;</span>,
             <span class="self">self</span>.<span class="ident">regions</span>.<span class="ident">len</span>()
-        ));
+        )<span class="question-mark">?</span>;
         <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">region</span>) <span class="kw">in</span> <span class="self">self</span>.<span class="ident">regions</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
-            <span class="macro">try</span><span class="macro">!</span>(<span class="macro">writeln</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;region[{}]&quot;</span>, <span class="ident">i</span>));
-            <span class="macro">try</span><span class="macro">!</span>(<span class="ident">region</span>.<span class="ident">print</span>(<span class="ident">f</span>));
+            <span class="macro">writeln</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;region[{}]&quot;</span>, <span class="ident">i</span>)<span class="question-mark">?</span>;
+            <span class="ident">region</span>.<span class="ident">print</span>(<span class="ident">f</span>)<span class="question-mark">?</span>;
         }
         <span class="prelude-val">Ok</span>(())
     }
@@ -2929,7 +2929,7 @@ Memory
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is very verbose, it is the format used by `minidump_dump`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">print</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Write</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(
+        <span class="macro">write</span><span class="macro">!</span>(
             <span class="ident">f</span>,
             <span class="string">r#&quot;MINIDUMP_THREAD
   thread_id                   = {:#x}
@@ -2954,20 +2954,20 @@ Memory
             <span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">stack</span>.<span class="ident">memory</span>.<span class="ident">rva</span>,
             <span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">thread_context</span>.<span class="ident">data_size</span>,
             <span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">thread_context</span>.<span class="ident">rva</span>,
-        ));
+        )<span class="question-mark">?</span>;
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">context</span> {
-            <span class="macro">try</span><span class="macro">!</span>(<span class="ident">ctx</span>.<span class="ident">print</span>(<span class="ident">f</span>));
+            <span class="ident">ctx</span>.<span class="ident">print</span>(<span class="ident">f</span>)<span class="question-mark">?</span>;
         } <span class="kw">else</span> {
-            <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;  (no context)\n\n&quot;</span>));
+            <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;  (no context)\n\n&quot;</span>)<span class="question-mark">?</span>;
         }
 
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">stack</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">stack</span> {
-            <span class="macro">try</span><span class="macro">!</span>(<span class="macro">writeln</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;Stack&quot;</span>));
-            <span class="macro">try</span><span class="macro">!</span>(<span class="ident">stack</span>.<span class="ident">print_contents</span>(<span class="ident">f</span>));
+            <span class="macro">writeln</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;Stack&quot;</span>)<span class="question-mark">?</span>;
+            <span class="ident">stack</span>.<span class="ident">print_contents</span>(<span class="ident">f</span>)<span class="question-mark">?</span>;
         } <span class="kw">else</span> {
-            <span class="macro">try</span><span class="macro">!</span>(<span class="macro">writeln</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;No stack&quot;</span>));
+            <span class="macro">writeln</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;No stack&quot;</span>)<span class="question-mark">?</span>;
         }
-        <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;\n&quot;</span>));
+        <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;\n&quot;</span>)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 }
@@ -3012,18 +3012,18 @@ Memory
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is very verbose, it is the format used by `minidump_dump`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">print</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Write</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(
+        <span class="macro">write</span><span class="macro">!</span>(
             <span class="ident">f</span>,
             <span class="string">r#&quot;MinidumpThreadList
   thread_count = {}
 
 &quot;#</span>,
             <span class="self">self</span>.<span class="ident">threads</span>.<span class="ident">len</span>()
-        ));
+        )<span class="question-mark">?</span>;
 
         <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">thread</span>) <span class="kw">in</span> <span class="self">self</span>.<span class="ident">threads</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
-            <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;thread[{}]\n&quot;</span>, <span class="ident">i</span>));
-            <span class="macro">try</span><span class="macro">!</span>(<span class="ident">thread</span>.<span class="ident">print</span>(<span class="ident">f</span>));
+            <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;thread[{}]\n&quot;</span>, <span class="ident">i</span>)<span class="question-mark">?</span>;
+            <span class="ident">thread</span>.<span class="ident">print</span>(<span class="ident">f</span>)<span class="question-mark">?</span>;
         }
         <span class="prelude-val">Ok</span>(())
     }
@@ -3049,7 +3049,7 @@ Memory
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is very verbose, it is the format used by `minidump_dump`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">print</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Write</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(
+        <span class="macro">write</span><span class="macro">!</span>(
             <span class="ident">f</span>,
             <span class="string">&quot;MINIDUMP_SYSTEM_INFO
   processor_architecture                     = {:#x}
@@ -3076,7 +3076,7 @@ Memory
             <span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">platform_id</span>,
             <span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">csd_version_rva</span>,
             <span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">suite_mask</span>
-        ));
+        )<span class="question-mark">?</span>;
         <span class="comment">// TODO: cpu info etc</span>
         <span class="prelude-val">Ok</span>(())
     }
@@ -3239,7 +3239,7 @@ Memory
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is very verbose, it is the format used by `minidump_dump`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">print</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Write</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(
+        <span class="macro">write</span><span class="macro">!</span>(
             <span class="ident">f</span>,
             <span class="string">&quot;MINIDUMP_BREAKPAD_INFO
   validity             = {:#x}
@@ -3250,7 +3250,7 @@ Memory
             <span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">validity</span>,
             <span class="ident">option_or_invalid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">dump_thread_id</span>),
             <span class="ident">option_or_invalid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">requesting_thread_id</span>),
-        ));
+        )<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 }
@@ -3316,7 +3316,7 @@ Memory
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is very verbose, it is the format used by `minidump_dump`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">print</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Write</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(
+        <span class="macro">write</span><span class="macro">!</span>(
             <span class="ident">f</span>,
             <span class="string">&quot;MINIDUMP_EXCEPTION
   thread_id                                  = {:#x}
@@ -3332,31 +3332,31 @@ Memory
             <span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">exception_record</span>.<span class="ident">exception_record</span>,
             <span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">exception_record</span>.<span class="ident">exception_address</span>,
             <span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">exception_record</span>.<span class="ident">number_parameters</span>,
-        ));
+        )<span class="question-mark">?</span>;
         <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">exception_record</span>.<span class="ident">number_parameters</span> <span class="kw">as</span> <span class="ident">usize</span> {
-            <span class="macro">try</span><span class="macro">!</span>(<span class="macro">writeln</span><span class="macro">!</span>(
+            <span class="macro">writeln</span><span class="macro">!</span>(
                 <span class="ident">f</span>,
                 <span class="string">&quot;  exception_record.exception_information[{:2}] = {:#x}&quot;</span>,
                 <span class="ident">i</span>, <span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">exception_record</span>.<span class="ident">exception_information</span>[<span class="ident">i</span>]
-            ));
+            )<span class="question-mark">?</span>;
         }
-        <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(
+        <span class="macro">write</span><span class="macro">!</span>(
             <span class="ident">f</span>,
             <span class="string">&quot;  thread_context.data_size                   = {}
   thread_context.rva                         = {:#x}
 &quot;</span>,
             <span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">thread_context</span>.<span class="ident">data_size</span>, <span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">thread_context</span>.<span class="ident">rva</span>
-        ));
+        )<span class="question-mark">?</span>;
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">context</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">context</span> {
-            <span class="macro">try</span><span class="macro">!</span>(<span class="macro">writeln</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;&quot;</span>));
-            <span class="macro">try</span><span class="macro">!</span>(<span class="ident">context</span>.<span class="ident">print</span>(<span class="ident">f</span>));
+            <span class="macro">writeln</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;&quot;</span>)<span class="question-mark">?</span>;
+            <span class="ident">context</span>.<span class="ident">print</span>(<span class="ident">f</span>)<span class="question-mark">?</span>;
         } <span class="kw">else</span> {
-            <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(
+            <span class="macro">write</span><span class="macro">!</span>(
                 <span class="ident">f</span>,
                 <span class="string">&quot;  (no context)
 
 &quot;</span>
-            ));
+            )<span class="question-mark">?</span>;
         }
         <span class="prelude-val">Ok</span>(())
     }
@@ -3525,7 +3525,7 @@ Memory
             }
         }
 
-        <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(
+        <span class="macro">write</span><span class="macro">!</span>(
             <span class="ident">f</span>,
             <span class="string">r#&quot;MDRawHeader
   signature            = {:#x}
@@ -3545,11 +3545,11 @@ Memory
             <span class="self">self</span>.<span class="ident">header</span>.<span class="ident">time_date_stamp</span>,
             <span class="ident">format_time_t</span>(<span class="self">self</span>.<span class="ident">header</span>.<span class="ident">time_date_stamp</span>),
             <span class="self">self</span>.<span class="ident">header</span>.<span class="ident">flags</span>,
-        ));
+        )<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">streams</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">streams</span>.<span class="ident">iter</span>().<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;&gt;</span>();
         <span class="ident">streams</span>.<span class="ident">sort_by</span>(<span class="op">|</span><span class="kw-2">&amp;</span>(<span class="kw-2">&amp;</span><span class="kw">_</span>, <span class="kw-2">&amp;</span>(<span class="ident">a</span>, <span class="kw">_</span>)), <span class="kw-2">&amp;</span>(<span class="kw-2">&amp;</span><span class="kw">_</span>, <span class="kw-2">&amp;</span>(<span class="ident">b</span>, <span class="kw">_</span>))<span class="op">|</span> <span class="ident">a</span>.<span class="ident">cmp</span>(<span class="kw-2">&amp;</span><span class="ident">b</span>));
         <span class="kw">for</span> <span class="kw-2">&amp;</span>(<span class="kw">_</span>, <span class="kw-2">&amp;</span>(<span class="ident">i</span>, <span class="kw-2">ref</span> <span class="ident">stream</span>)) <span class="kw">in</span> <span class="ident">streams</span>.<span class="ident">iter</span>() {
-            <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(
+            <span class="macro">write</span><span class="macro">!</span>(
                 <span class="ident">f</span>,
                 <span class="string">r#&quot;mDirectory[{}]
 MDRawDirectory
@@ -3563,20 +3563,20 @@ MDRawDirectory
                 <span class="ident">get_stream_name</span>(<span class="ident">stream</span>.<span class="ident">stream_type</span>),
                 <span class="ident">stream</span>.<span class="ident">location</span>.<span class="ident">data_size</span>,
                 <span class="ident">stream</span>.<span class="ident">location</span>.<span class="ident">rva</span>
-            ));
+            )<span class="question-mark">?</span>;
         }
-        <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;Streams:\n&quot;</span>));
+        <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;Streams:\n&quot;</span>)<span class="question-mark">?</span>;
         <span class="ident">streams</span>.<span class="ident">sort_by</span>(<span class="op">|</span><span class="kw-2">&amp;</span>(<span class="kw-2">&amp;</span><span class="ident">a</span>, <span class="kw-2">&amp;</span>(<span class="kw">_</span>, <span class="kw">_</span>)), <span class="kw-2">&amp;</span>(<span class="kw-2">&amp;</span><span class="ident">b</span>, <span class="kw-2">&amp;</span>(<span class="kw">_</span>, <span class="kw">_</span>))<span class="op">|</span> <span class="ident">a</span>.<span class="ident">cmp</span>(<span class="kw-2">&amp;</span><span class="ident">b</span>));
         <span class="kw">for</span> (<span class="kw">_</span>, <span class="kw-2">&amp;</span>(<span class="ident">i</span>, <span class="kw-2">ref</span> <span class="ident">stream</span>)) <span class="kw">in</span> <span class="ident">streams</span> {
-            <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(
+            <span class="macro">write</span><span class="macro">!</span>(
                 <span class="ident">f</span>,
                 <span class="string">&quot;  stream type {:#x} ({}) at index {}\n&quot;</span>,
                 <span class="ident">stream</span>.<span class="ident">stream_type</span>,
                 <span class="ident">get_stream_name</span>(<span class="ident">stream</span>.<span class="ident">stream_type</span>),
                 <span class="ident">i</span>
-            ));
+            )<span class="question-mark">?</span>;
         }
-        <span class="macro">try</span><span class="macro">!</span>(<span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;\n&quot;</span>));
+        <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;\n&quot;</span>)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 }
@@ -4014,4 +4014,4 @@ MDRawDirectory
     }
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../../";window.currentCrate = "minidump";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script src="../../source-files.js"></script><script src="../../source-script.js"></script><script defer src="../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g., <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g., <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g., <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../../";window.currentCrate = "minidump";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
