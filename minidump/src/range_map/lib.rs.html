@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/range-map-0.1.5/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../range_map/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/range-map-0.1.5/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../range_map/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+                <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -1050,7 +1051,7 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Debug</span><span class="op">&gt;</span> <span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="macro">try</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">start</span>.<span class="ident">fmt</span>(<span class="ident">f</span>));
         <span class="macro">try</span><span class="macro">!</span>(<span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot; -- &quot;</span>));
         <span class="macro">try</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">end</span>.<span class="ident">fmt</span>(<span class="ident">f</span>));
@@ -1063,7 +1064,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Panics</span>
     <span class="doccomment">///  - if `start` is strictly larger than `end`</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">start</span>: <span class="ident">T</span>, <span class="ident">end</span>: <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">start</span>: <span class="ident">T</span>, <span class="ident">end</span>: <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="ident">start</span> <span class="op">&gt;</span> <span class="ident">end</span> {
             <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Ranges must be ordered&quot;</span>);
         }
@@ -1071,27 +1072,27 @@
     }
 
     <span class="doccomment">/// Creates a new range containing everything.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">full</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">full</span>() <span class="op">-&gt;</span> <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="ident">Range</span> { <span class="ident">start</span>: <span class="ident">T</span>::<span class="ident">min_value</span>(), <span class="ident">end</span>: <span class="ident">T</span>::<span class="ident">max_value</span>() }
     }
 
     <span class="doccomment">/// Creates a new range containing a single thing.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">single</span>(<span class="ident">x</span>: <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">single</span>(<span class="ident">x</span>: <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="ident">Range</span>::<span class="ident">new</span>(<span class="ident">x</span>, <span class="ident">x</span>)
     }
 
     <span class="doccomment">/// Tests whether a given element belongs to this range.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">x</span>: <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">start</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">x</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">x</span> <span class="op">&lt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">end</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">x</span>: <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">start</span> <span class="op">&lt;=</span> <span class="ident">x</span> <span class="op">&amp;&amp;</span> <span class="ident">x</span> <span class="op">&lt;=</span> <span class="self">self</span>.<span class="ident">end</span>
     }
 
     <span class="doccomment">/// Checks whether the intersections overlap.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intersects</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">start</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">end</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">end</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">start</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intersects</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">start</span> <span class="op">&lt;=</span> <span class="ident">other</span>.<span class="ident">end</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">end</span> <span class="op">&gt;=</span> <span class="ident">other</span>.<span class="ident">start</span>
     }
 
     <span class="doccomment">/// Computes the intersection between two ranges. Returns none if the intersection is empty.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intersection</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intersection</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">intersects</span>(<span class="ident">other</span>) {
             <span class="prelude-val">Some</span>(<span class="ident">Range</span>::<span class="ident">new</span>(<span class="ident">max</span>(<span class="self">self</span>.<span class="ident">start</span>, <span class="ident">other</span>.<span class="ident">start</span>), <span class="ident">min</span>(<span class="self">self</span>.<span class="ident">end</span>, <span class="ident">other</span>.<span class="ident">end</span>)))
         } <span class="kw">else</span> {
@@ -1100,19 +1101,19 @@
     }
 
     <span class="doccomment">/// Returns the smallest range that covers `self` and `other`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cover</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cover</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
         <span class="ident">Range</span>::<span class="ident">new</span>(<span class="ident">min</span>(<span class="self">self</span>.<span class="ident">start</span>, <span class="ident">other</span>.<span class="ident">start</span>), <span class="ident">max</span>(<span class="self">self</span>.<span class="ident">end</span>, <span class="ident">other</span>.<span class="ident">end</span>))
     }
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">PrimInt</span><span class="op">&gt;</span> <span class="ident">PartialEq</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">x</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">x</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">contains</span>(<span class="kw-2">*</span><span class="ident">x</span>)
     }
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">PrimInt</span><span class="op">&gt;</span> <span class="ident">PartialOrd</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">partial_cmp</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">x</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Ordering</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">partial_cmp</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">x</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Ordering</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">end</span> <span class="op">&lt;</span> <span class="kw-2">*</span><span class="ident">x</span> {
             <span class="prelude-val">Some</span>(<span class="ident">Ordering</span>::<span class="ident">Less</span>)
         } <span class="kw">else</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">start</span> <span class="op">&gt;</span> <span class="kw-2">*</span><span class="ident">x</span> {
@@ -1131,7 +1132,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Debug</span>, <span class="ident">V</span>: <span class="ident">Debug</span><span class="op">&gt;</span> <span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
     <span class="comment">// When alternate formatting is specified, only prints out the first buch of mappings.</span>
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="macro">try</span><span class="macro">!</span>(<span class="ident">f</span>.<span class="ident">write_fmt</span>(<span class="macro">format_args</span><span class="macro">!</span>(<span class="string">&quot;RangeMap (&quot;</span>)));
 
         <span class="kw">if</span> <span class="ident">f</span>.<span class="ident">alternate</span>() {
@@ -1157,7 +1158,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Panics</span>
     <span class="doccomment">///  - if there are ranges that overlap and do not map to the same value.</span>
-    <span class="kw">fn</span> <span class="ident">from_iter</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">=</span>(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">V</span>)<span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">iter</span>: <span class="ident">I</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from_iter</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">=</span>(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">V</span>)<span class="op">&gt;&gt;</span>(<span class="ident">iter</span>: <span class="ident">I</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">vec</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">iter</span>.<span class="ident">into_iter</span>().<span class="ident">collect</span>();
         <span class="ident">vec</span>.<span class="ident">sort_by</span>(<span class="op">|</span><span class="ident">x</span>, <span class="ident">y</span><span class="op">|</span> <span class="ident">x</span>.<span class="number">0</span>.<span class="ident">cmp</span>(<span class="kw-2">&amp;</span><span class="ident">y</span>.<span class="number">0</span>));
 
@@ -1167,7 +1168,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">PrimInt</span>, <span class="ident">V</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">Eq</span><span class="op">&gt;</span> <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Creates a new empty `RangeMap`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
         <span class="ident">RangeMap</span> {
             <span class="ident">elts</span>: <span class="ident">Vec</span>::<span class="ident">new</span>(),
         }
@@ -1177,7 +1178,7 @@
     <span class="doccomment">/// ranges overlap, they must map to the same value.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Panics if the ranges are not sorted, or if they overlap without mapping to the same value.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_sorted_vec</span>(<span class="ident">vec</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">V</span>)<span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_sorted_vec</span>(<span class="ident">vec</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">V</span>)<span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">RangeMap</span> { <span class="ident">elts</span>: <span class="ident">vec</span> };
         <span class="ident">ret</span>.<span class="ident">normalize</span>();
         <span class="ident">ret</span>
@@ -1186,15 +1187,15 @@
     <span class="comment">// Creates a RangeMap from a Vec, which must be sorted and normalized.</span>
     <span class="comment">//</span>
     <span class="comment">// Panics unless `vec` is sorted and normalized.</span>
-    <span class="kw">fn</span> <span class="ident">from_norm_vec</span>(<span class="ident">vec</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">V</span>)<span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">from_norm_vec</span>(<span class="ident">vec</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">V</span>)<span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
         <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">1</span>..<span class="ident">vec</span>.<span class="ident">len</span>() {
-            <span class="kw">if</span> <span class="ident">vec</span>[<span class="ident">i</span>].<span class="number">0</span>.<span class="ident">start</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">vec</span>[<span class="ident">i</span><span class="op">-</span><span class="number">1</span>].<span class="number">0</span>.<span class="ident">end</span> {
+            <span class="kw">if</span> <span class="ident">vec</span>[<span class="ident">i</span>].<span class="number">0</span>.<span class="ident">start</span> <span class="op">&lt;=</span> <span class="ident">vec</span>[<span class="ident">i</span><span class="op">-</span><span class="number">1</span>].<span class="number">0</span>.<span class="ident">end</span> {
                 <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;vector {:?} has overlapping ranges {:?} and {:?}&quot;</span>, <span class="ident">vec</span>, <span class="ident">vec</span>[<span class="ident">i</span><span class="op">-</span><span class="number">1</span>], <span class="ident">vec</span>[<span class="ident">i</span>]);
             }
             <span class="comment">// If vec[i-1].0.end is T::max_value() then we&#39;ve already panicked, so the unwrap is</span>
             <span class="comment">// safe.</span>
-            <span class="kw">if</span> <span class="ident">vec</span>[<span class="ident">i</span>].<span class="number">0</span>.<span class="ident">start</span> <span class="op">=</span><span class="op">=</span> <span class="ident">vec</span>[<span class="ident">i</span><span class="op">-</span><span class="number">1</span>].<span class="number">0</span>.<span class="ident">end</span>.<span class="ident">checked_add</span>(<span class="kw-2">&amp;</span><span class="ident">T</span>::<span class="ident">one</span>()).<span class="ident">unwrap</span>()
-                    <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">vec</span>[<span class="ident">i</span>].<span class="number">1</span> <span class="op">=</span><span class="op">=</span> <span class="ident">vec</span>[<span class="ident">i</span><span class="op">-</span><span class="number">1</span>].<span class="number">1</span> {
+            <span class="kw">if</span> <span class="ident">vec</span>[<span class="ident">i</span>].<span class="number">0</span>.<span class="ident">start</span> <span class="op">==</span> <span class="ident">vec</span>[<span class="ident">i</span><span class="op">-</span><span class="number">1</span>].<span class="number">0</span>.<span class="ident">end</span>.<span class="ident">checked_add</span>(<span class="kw-2">&amp;</span><span class="ident">T</span>::<span class="ident">one</span>()).<span class="ident">unwrap</span>()
+                    <span class="op">&amp;&amp;</span> <span class="ident">vec</span>[<span class="ident">i</span>].<span class="number">1</span> <span class="op">==</span> <span class="ident">vec</span>[<span class="ident">i</span><span class="op">-</span><span class="number">1</span>].<span class="number">1</span> {
                 <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;vector {:?} has adjacent ranges with same value {:?} and {:?}&quot;</span>,
                     <span class="ident">vec</span>, <span class="ident">vec</span>[<span class="ident">i</span><span class="op">-</span><span class="number">1</span>], <span class="ident">vec</span>[<span class="ident">i</span>]);
             }
@@ -1206,17 +1207,17 @@
     <span class="doccomment">/// Returns the number of mapped ranges.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this is not usually the same as the number of mapped values.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_ranges</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_ranges</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
         <span class="self">self</span>.<span class="ident">elts</span>.<span class="ident">len</span>()
     }
 
     <span class="doccomment">/// Tests whether this map is empty.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">elts</span>.<span class="ident">is_empty</span>()
     }
 
     <span class="doccomment">/// Tests whether this `CharMap` maps every value.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_full</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_full</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">last_end</span> <span class="op">=</span> <span class="ident">T</span>::<span class="ident">min_value</span>();
         <span class="kw">for</span> <span class="kw-2">&amp;</span>(<span class="ident">range</span>, <span class="kw">_</span>) <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">elts</span> {
             <span class="kw">if</span> <span class="ident">range</span>.<span class="ident">start</span> <span class="op">&gt;</span> <span class="ident">last_end</span> {
@@ -1224,16 +1225,16 @@
             }
             <span class="ident">last_end</span> <span class="op">=</span> <span class="ident">range</span>.<span class="ident">end</span>;
         }
-        <span class="ident">last_end</span> <span class="op">=</span><span class="op">=</span> <span class="ident">T</span>::<span class="ident">max_value</span>()
+        <span class="ident">last_end</span> <span class="op">==</span> <span class="ident">T</span>::<span class="ident">max_value</span>()
     }
 
     <span class="doccomment">/// Iterates over all the mapped ranges and values.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ranges_values</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">std</span>::<span class="ident">slice</span>::<span class="ident">Iter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, (<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">V</span>)<span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ranges_values</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">std</span>::<span class="ident">slice</span>::<span class="ident">Iter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, (<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">V</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">elts</span>.<span class="ident">iter</span>()
     }
 
     <span class="doccomment">/// Iterates over all mappings.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">keys_values</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> (<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PairIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">keys_values</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> (<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">PairIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
         <span class="ident">PairIter</span> {
             <span class="ident">map</span>: <span class="self">self</span>,
             <span class="ident">next_range_idx</span>: <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_empty</span>() { <span class="prelude-val">None</span> } <span class="kw">else</span> { <span class="prelude-val">Some</span>(<span class="number">0</span>) },
@@ -1244,7 +1245,7 @@
     <span class="doccomment">/// Finds the value that `x` maps to, if it exists.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Runs in `O(log n)` time, where `n` is the number of mapped ranges.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">x</span>: <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">V</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">x</span>: <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">V</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">elts</span>
             <span class="comment">// The unwrap is ok because Range&lt;T&gt;::partial_cmp(&amp;T) never returns None.</span>
             .<span class="ident">binary_search_by</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="ident">r</span>.<span class="number">0</span>.<span class="ident">partial_cmp</span>(<span class="kw-2">&amp;</span><span class="ident">x</span>).<span class="ident">unwrap</span>())
@@ -1264,12 +1265,12 @@
 
         <span class="kw">for</span> (<span class="ident">range</span>, <span class="ident">val</span>) <span class="kw">in</span> <span class="ident">vec</span>.<span class="ident">into_iter</span>() {
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> (<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">last_range</span>, <span class="kw-2">ref</span> <span class="ident">last_val</span>)) <span class="op">=</span> <span class="self">self</span>.<span class="ident">elts</span>.<span class="ident">last_mut</span>() {
-                <span class="kw">if</span> <span class="ident">range</span>.<span class="ident">start</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">last_range</span>.<span class="ident">end</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="kw-2">&amp;</span><span class="ident">val</span> <span class="op">!</span><span class="op">=</span> <span class="ident">last_val</span> {
+                <span class="kw">if</span> <span class="ident">range</span>.<span class="ident">start</span> <span class="op">&lt;=</span> <span class="ident">last_range</span>.<span class="ident">end</span> <span class="op">&amp;&amp;</span> <span class="kw-2">&amp;</span><span class="ident">val</span> <span class="op">!=</span> <span class="ident">last_val</span> {
                     <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;overlapping ranges {:?} and {:?} map to values {:?} and {:?}&quot;</span>,
                            <span class="ident">last_range</span>, <span class="ident">range</span>, <span class="ident">last_val</span>, <span class="ident">val</span>);
                 }
 
-                <span class="kw">if</span> <span class="ident">range</span>.<span class="ident">start</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">last_range</span>.<span class="ident">end</span>.<span class="ident">saturating_add</span>(<span class="ident">T</span>::<span class="ident">one</span>()) <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="kw-2">&amp;</span><span class="ident">val</span> <span class="op">=</span><span class="op">=</span> <span class="ident">last_val</span> {
+                <span class="kw">if</span> <span class="ident">range</span>.<span class="ident">start</span> <span class="op">&lt;=</span> <span class="ident">last_range</span>.<span class="ident">end</span>.<span class="ident">saturating_add</span>(<span class="ident">T</span>::<span class="ident">one</span>()) <span class="op">&amp;&amp;</span> <span class="kw-2">&amp;</span><span class="ident">val</span> <span class="op">==</span> <span class="ident">last_val</span> {
                     <span class="ident">last_range</span>.<span class="ident">end</span> <span class="op">=</span> <span class="ident">max</span>(<span class="ident">range</span>.<span class="ident">end</span>, <span class="ident">last_range</span>.<span class="ident">end</span>);
                     <span class="kw">continue</span>;
                 }
@@ -1280,17 +1281,17 @@
     }
 
     <span class="doccomment">/// Returns those mappings whose keys belong to the given set.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intersection</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intersection</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="ident">new</span>();
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">other_iter</span> <span class="op">=</span> <span class="ident">other</span>.<span class="ident">map</span>.<span class="ident">elts</span>.<span class="ident">iter</span>().<span class="ident">peekable</span>();
 
         <span class="kw">for</span> <span class="kw-2">&amp;</span>(<span class="kw-2">ref</span> <span class="ident">r</span>, <span class="kw-2">ref</span> <span class="ident">data</span>) <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">elts</span> {
-            <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="kw-2">&amp;</span>(<span class="kw-2">ref</span> <span class="ident">s</span>, <span class="kw">_</span>)) <span class="op">=</span> <span class="ident">other_iter</span>.<span class="ident">peek</span>() {
+            <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="op">&amp;&amp;</span>(<span class="kw-2">ref</span> <span class="ident">s</span>, <span class="kw">_</span>)) <span class="op">=</span> <span class="ident">other_iter</span>.<span class="ident">peek</span>() {
                 <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">int</span>) <span class="op">=</span> <span class="ident">s</span>.<span class="ident">intersection</span>(<span class="ident">r</span>) {
                     <span class="ident">ret</span>.<span class="ident">push</span>((<span class="ident">int</span>, <span class="ident">data</span>.<span class="ident">clone</span>()));
                 }
 
-                <span class="kw">if</span> <span class="ident">s</span>.<span class="ident">end</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">r</span>.<span class="ident">end</span> {
+                <span class="kw">if</span> <span class="ident">s</span>.<span class="ident">end</span> <span class="op">&gt;=</span> <span class="ident">r</span>.<span class="ident">end</span> {
                     <span class="kw">break</span>;
                 } <span class="kw">else</span> {
                     <span class="ident">other_iter</span>.<span class="ident">next</span>();
@@ -1304,7 +1305,7 @@
     <span class="doccomment">/// Counts the number of mapped keys.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This saturates at `usize::MAX`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_keys</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_keys</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
         <span class="self">self</span>.<span class="ident">ranges_values</span>().<span class="ident">fold</span>(<span class="number">0</span>, <span class="op">|</span><span class="ident">acc</span>, <span class="ident">range</span><span class="op">|</span> {
             <span class="ident">acc</span>.<span class="ident">saturating_add</span>((<span class="ident">range</span>.<span class="number">0</span>.<span class="ident">end</span> <span class="op">-</span> <span class="ident">range</span>.<span class="number">0</span>.<span class="ident">start</span>).<span class="ident">to_usize</span>().<span class="ident">unwrap_or</span>(<span class="ident">usize</span>::<span class="ident">MAX</span>))
                .<span class="ident">saturating_add</span>(<span class="number">1</span>)
@@ -1312,12 +1313,12 @@
     }
 
     <span class="doccomment">/// Returns the set of mapped chars, forgetting what they are mapped to.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_range_set</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_range_set</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="ident">RangeSet</span>::<span class="ident">from_sorted_vec</span>(<span class="self">self</span>.<span class="ident">elts</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> (<span class="ident">x</span>.<span class="number">0</span>, ())).<span class="ident">collect</span>())
     }
 
     <span class="doccomment">/// Modifies the values in place.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">map_values</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">f</span>: <span class="ident">F</span>) <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">V</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">V</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">map_values</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">f</span>: <span class="ident">F</span>) <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">V</span>) <span class="op">-&gt;</span> <span class="ident">V</span> {
         <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> (<span class="kw">_</span>, <span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">data</span>) <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">elts</span> {
             <span class="kw-2">*</span><span class="ident">data</span> <span class="op">=</span> <span class="ident">f</span>(<span class="ident">data</span>);
         }
@@ -1328,7 +1329,7 @@
     }
 
     <span class="doccomment">/// Modifies this map to contain only those mappings with values `v` satisfying `f(v)`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">retain_values</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">f</span>: <span class="ident">F</span>) <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">V</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">retain_values</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">f</span>: <span class="ident">F</span>) <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">V</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">elts</span>.<span class="ident">retain</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">x</span>.<span class="number">1</span>));
     }
 
@@ -1338,7 +1339,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This method will eventually be removed, probably once anonymous return values allow is to</span>
     <span class="doccomment">/// write a values_mut() iterator more easily.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_mut_slice</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">V</span>)] {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_mut_slice</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">V</span>)] {
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">elts</span>
     }
 }
@@ -1352,7 +1353,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">PrimInt</span>, <span class="ident">V</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">PairIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
     <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> (<span class="ident">T</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">V</span>);
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Item</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Item</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">idx</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">next_range_idx</span> {
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">next_key</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">map</span>.<span class="ident">elts</span>[<span class="ident">idx</span>].<span class="number">1</span>);
 
@@ -1386,10 +1387,10 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">PrimInt</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">RangeIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>;
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span> {
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">next_idx</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">set</span>.<span class="ident">num_ranges</span>() {
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">set</span>.<span class="ident">map</span>.<span class="ident">elts</span>[<span class="self">self</span>.<span class="ident">next_idx</span>].<span class="number">0</span>);
-            <span class="self">self</span>.<span class="ident">next_idx</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+            <span class="self">self</span>.<span class="ident">next_idx</span> <span class="op">+=</span> <span class="number">1</span>;
             <span class="ident">ret</span>
         } <span class="kw">else</span> {
             <span class="prelude-val">None</span>
@@ -1406,10 +1407,10 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">PrimInt</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">EltIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">T</span>;
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">idx</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">next_range_idx</span> {
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">next_elt</span>);
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">next_elt</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">set</span>.<span class="ident">map</span>.<span class="ident">elts</span>[<span class="ident">idx</span>].<span class="number">0</span>.<span class="ident">end</span> {
+            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">next_elt</span> <span class="op">&gt;=</span> <span class="self">self</span>.<span class="ident">set</span>.<span class="ident">map</span>.<span class="ident">elts</span>[<span class="ident">idx</span>].<span class="number">0</span>.<span class="ident">end</span> {
                 <span class="kw">if</span> <span class="ident">idx</span> <span class="op">+</span> <span class="number">1</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">set</span>.<span class="ident">num_ranges</span>() {
                     <span class="self">self</span>.<span class="ident">next_range_idx</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">1</span>);
                     <span class="self">self</span>.<span class="ident">next_elt</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">set</span>.<span class="ident">map</span>.<span class="ident">elts</span>[<span class="ident">idx</span> <span class="op">+</span> <span class="number">1</span>].<span class="number">0</span>.<span class="ident">start</span>;
@@ -1428,7 +1429,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">PrimInt</span><span class="op">&gt;</span> <span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="comment">// When alternate formatting is specified, only prints out the first buch of mappings.</span>
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="macro">try</span><span class="macro">!</span>(<span class="ident">f</span>.<span class="ident">write_fmt</span>(<span class="macro">format_args</span><span class="macro">!</span>(<span class="string">&quot;RangeSet (&quot;</span>)));
 
         <span class="kw">if</span> <span class="ident">f</span>.<span class="ident">alternate</span>() {
@@ -1444,9 +1445,9 @@
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">PrimInt</span><span class="op">&gt;</span> <span class="ident">FromIterator</span><span class="op">&lt;</span><span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">PrimInt</span><span class="op">&gt;</span> <span class="ident">FromIterator</span><span class="op">&lt;</span><span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span> <span class="kw">for</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Builds a `RangeSet` from an iterator over `Range`s.</span>
-    <span class="kw">fn</span> <span class="ident">from_iter</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">=</span><span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">iter</span>: <span class="ident">I</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from_iter</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">=</span><span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span>(<span class="ident">iter</span>: <span class="ident">I</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
         <span class="ident">RangeSet</span> {
             <span class="ident">map</span>: <span class="ident">iter</span>.<span class="ident">into_iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> (<span class="ident">x</span>, ())).<span class="ident">collect</span>()
         }
@@ -1455,35 +1456,35 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">PrimInt</span><span class="op">&gt;</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Creates a new empty `RangeSet`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="ident">RangeSet</span> { <span class="ident">map</span>: <span class="ident">RangeMap</span>::<span class="ident">new</span>() }
     }
 
     <span class="doccomment">/// Tests if this set is empty.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">map</span>.<span class="ident">is_empty</span>()
     }
 
     <span class="doccomment">/// Tests whether this set contains every valid value of `T`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_full</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_full</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
         <span class="comment">// We are assuming normalization here.</span>
-        <span class="self">self</span>.<span class="ident">num_ranges</span>() <span class="op">=</span><span class="op">=</span> <span class="number">1</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">map</span>.<span class="ident">elts</span>[<span class="number">0</span>].<span class="number">0</span> <span class="op">=</span><span class="op">=</span> <span class="ident">Range</span>::<span class="ident">full</span>()
+        <span class="self">self</span>.<span class="ident">num_ranges</span>() <span class="op">==</span> <span class="number">1</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">map</span>.<span class="ident">elts</span>[<span class="number">0</span>].<span class="number">0</span> <span class="op">==</span> <span class="ident">Range</span>::<span class="ident">full</span>()
     }
 
     <span class="doccomment">/// Returns the number of ranges used to represent this set.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_ranges</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_ranges</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
         <span class="self">self</span>.<span class="ident">map</span>.<span class="ident">num_ranges</span>()
     }
 
     <span class="doccomment">/// Returns the number of elements in the set.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This saturates at `usize::MAX`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_elements</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_elements</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
         <span class="self">self</span>.<span class="ident">map</span>.<span class="ident">num_keys</span>()
     }
 
     <span class="doccomment">/// Returns an iterator over all ranges in this set.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ranges</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RangeIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ranges</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">RangeIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> {
         <span class="ident">RangeIter</span> {
             <span class="ident">set</span>: <span class="self">self</span>,
             <span class="ident">next_idx</span>: <span class="number">0</span>,
@@ -1491,7 +1492,7 @@
     }
 
     <span class="doccomment">/// Returns an iterator over all elements in this set.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">elements</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EltIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">elements</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">EltIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">map</span>.<span class="ident">elts</span>.<span class="ident">is_empty</span>() {
             <span class="ident">EltIter</span> { <span class="ident">set</span>: <span class="self">self</span>, <span class="ident">next_range_idx</span>: <span class="prelude-val">None</span>, <span class="ident">next_elt</span>: <span class="ident">T</span>::<span class="ident">min_value</span>() }
         } <span class="kw">else</span> {
@@ -1504,24 +1505,24 @@
     }
 
     <span class="doccomment">/// Checks if this set contains a value.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">val</span>: <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">val</span>: <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">map</span>.<span class="ident">get</span>(<span class="ident">val</span>).<span class="ident">is_some</span>()
     }
 
     <span class="comment">// Creates a RangeSet from a vector. The vector must be sorted, but it does not need to be</span>
     <span class="comment">// normalized.</span>
-    <span class="kw">fn</span> <span class="ident">from_sorted_vec</span>(<span class="ident">vec</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, ())<span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">from_sorted_vec</span>(<span class="ident">vec</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, ())<span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="ident">RangeSet</span> { <span class="ident">map</span>: <span class="ident">RangeMap</span>::<span class="ident">from_sorted_vec</span>(<span class="ident">vec</span>) }
     }
 
     <span class="comment">// Creates a RangeSet from a vector. The vector must be normalized, in the sense that it should</span>
     <span class="comment">// contain no adjacent ranges.</span>
-    <span class="kw">fn</span> <span class="ident">from_norm_vec</span>(<span class="ident">vec</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, ())<span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">from_norm_vec</span>(<span class="ident">vec</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, ())<span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="ident">RangeSet</span> { <span class="ident">map</span>: <span class="ident">RangeMap</span>::<span class="ident">from_norm_vec</span>(<span class="ident">vec</span>) }
     }
 
     <span class="doccomment">/// Returns the union between `self` and `other`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">union</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">union</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_empty</span>() {
             <span class="kw">return</span> <span class="ident">other</span>.<span class="ident">clone</span>();
         } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">other</span>.<span class="ident">is_empty</span>() {
@@ -1533,9 +1534,9 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">it2</span> <span class="op">=</span> <span class="ident">other</span>.<span class="ident">map</span>.<span class="ident">elts</span>.<span class="ident">iter</span>();
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">r1</span> <span class="op">=</span> <span class="ident">it1</span>.<span class="ident">next</span>();
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">r2</span> <span class="op">=</span> <span class="ident">it2</span>.<span class="ident">next</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cur_range</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cur_range</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-        <span class="kw">while</span> <span class="ident">r1</span>.<span class="ident">is_some</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">r2</span>.<span class="ident">is_some</span>() {
+        <span class="kw">while</span> <span class="ident">r1</span>.<span class="ident">is_some</span>() <span class="op">||</span> <span class="ident">r2</span>.<span class="ident">is_some</span>() {
             <span class="kw">let</span> <span class="ident">r1_start</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>(<span class="ident">r</span>, <span class="kw">_</span>)) <span class="op">=</span> <span class="ident">r1</span> { <span class="ident">r</span>.<span class="ident">start</span> } <span class="kw">else</span> { <span class="ident">T</span>::<span class="ident">max_value</span>() };
             <span class="kw">let</span> <span class="ident">r2_start</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>(<span class="ident">r</span>, <span class="kw">_</span>)) <span class="op">=</span> <span class="ident">r2</span> { <span class="ident">r</span>.<span class="ident">start</span> } <span class="kw">else</span> { <span class="ident">T</span>::<span class="ident">max_value</span>() };
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">cur</span>) <span class="op">=</span> <span class="ident">cur_range</span> {
@@ -1545,7 +1546,7 @@
                 }
             }
 
-            <span class="kw">let</span> <span class="ident">cover</span> <span class="op">=</span> <span class="op">|</span><span class="ident">cur</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>, <span class="ident">next</span>: <span class="kw-2">&amp;</span><span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">|</span> {
+            <span class="kw">let</span> <span class="ident">cover</span> <span class="op">=</span> <span class="op">|</span><span class="ident">cur</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span>, <span class="ident">next</span>: <span class="kw-2">&amp;</span><span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">|</span> {
                 <span class="kw">if</span> <span class="kw">let</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">r</span>) <span class="op">=</span> <span class="ident">cur</span> {
                     <span class="kw-2">*</span><span class="ident">r</span> <span class="op">=</span> <span class="ident">r</span>.<span class="ident">cover</span>(<span class="ident">next</span>);
                 } <span class="kw">else</span> {
@@ -1553,7 +1554,7 @@
                 }
             };
 
-            <span class="kw">if</span> <span class="ident">r1_start</span> <span class="op">&lt;</span> <span class="ident">r2_start</span> <span class="op">|</span><span class="op">|</span> <span class="ident">r2</span>.<span class="ident">is_none</span>() {
+            <span class="kw">if</span> <span class="ident">r1_start</span> <span class="op">&lt;</span> <span class="ident">r2_start</span> <span class="op">||</span> <span class="ident">r2</span>.<span class="ident">is_none</span>() {
                 <span class="ident">cover</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">cur_range</span>, <span class="kw-2">&amp;</span><span class="ident">r1</span>.<span class="ident">unwrap</span>().<span class="number">0</span>);
                 <span class="ident">r1</span> <span class="op">=</span> <span class="ident">it1</span>.<span class="ident">next</span>();
             } <span class="kw">else</span> {
@@ -1570,12 +1571,12 @@
     }
 
     <span class="doccomment">/// Creates a set that contains every value of `T`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">full</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">full</span>() <span class="op">-&gt;</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="ident">RangeSet</span>::<span class="ident">from_norm_vec</span>(<span class="macro">vec</span><span class="macro">!</span>[(<span class="ident">Range</span>::<span class="ident">full</span>(), ())])
     }
 
     <span class="doccomment">/// Creates a set containing a single element.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">single</span>(<span class="ident">x</span>: <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">single</span>(<span class="ident">x</span>: <span class="ident">T</span>) <span class="op">-&gt;</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="ident">RangeSet</span>::<span class="ident">from_norm_vec</span>(<span class="macro">vec</span><span class="macro">!</span>[(<span class="ident">Range</span>::<span class="ident">single</span>(<span class="ident">x</span>), ())])
     }
 
@@ -1583,7 +1584,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Panics</span>
     <span class="doccomment">///  - if `chars` is not sorted or not unique.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">except</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">=</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">it</span>: <span class="ident">I</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">except</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">=</span><span class="ident">T</span><span class="op">&gt;&gt;</span>(<span class="ident">it</span>: <span class="ident">I</span>) <span class="op">-&gt;</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="ident">new</span>();
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">next_allowed</span> <span class="op">=</span> <span class="ident">T</span>::<span class="ident">min_value</span>();
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">last_forbidden</span> <span class="op">=</span> <span class="ident">T</span>::<span class="ident">max_value</span>();
@@ -1606,12 +1607,12 @@
     }
 
     <span class="doccomment">/// Finds the intersection between this set and `other`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intersection</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intersection</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="ident">RangeSet</span> { <span class="ident">map</span>: <span class="self">self</span>.<span class="ident">map</span>.<span class="ident">intersection</span>(<span class="ident">other</span>) }
     }
 
     <span class="doccomment">/// Returns the set of all characters that are not in this set.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">negated</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">negated</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="ident">with_capacity</span>(<span class="self">self</span>.<span class="ident">num_ranges</span>() <span class="op">+</span> <span class="number">1</span>);
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">last_end</span> <span class="op">=</span> <span class="ident">T</span>::<span class="ident">min_value</span>();
 
@@ -1637,13 +1638,13 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">PrimInt</span>, <span class="ident">V</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">PartialEq</span><span class="op">&gt;</span> <span class="ident">FromIterator</span><span class="op">&lt;</span>(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">V</span>)<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">RangeMultiMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Builds a `RangeMultiMap` from an iterator over `Range` and values..</span>
-    <span class="kw">fn</span> <span class="ident">from_iter</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">=</span>(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">V</span>)<span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">iter</span>: <span class="ident">I</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from_iter</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">=</span>(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">V</span>)<span class="op">&gt;&gt;</span>(<span class="ident">iter</span>: <span class="ident">I</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
         <span class="ident">RangeMultiMap</span>::<span class="ident">from_vec</span>(<span class="ident">iter</span>.<span class="ident">into_iter</span>().<span class="ident">collect</span>())
     }
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">PrimInt</span>, <span class="ident">V</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">PartialEq</span><span class="op">&gt;</span> <span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">RangeMultiMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="macro">try</span><span class="macro">!</span>(<span class="ident">f</span>.<span class="ident">write_fmt</span>(<span class="macro">format_args</span><span class="macro">!</span>(<span class="string">&quot;RangeMultiMap (&quot;</span>)));
 
         <span class="kw">if</span> <span class="ident">f</span>.<span class="ident">alternate</span>() {
@@ -1665,17 +1666,17 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">PrimInt</span>, <span class="ident">V</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">PartialEq</span><span class="op">&gt;</span> <span class="ident">RangeMultiMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Creates a new empty map.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RangeMultiMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="ident">RangeMultiMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
         <span class="ident">RangeMultiMap</span> { <span class="ident">elts</span>: <span class="ident">Vec</span>::<span class="ident">new</span>() }
     }
 
     <span class="doccomment">/// Returns the number of mapped ranges.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_ranges</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_ranges</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
         <span class="self">self</span>.<span class="ident">elts</span>.<span class="ident">len</span>()
     }
 
     <span class="doccomment">/// Checks if the map is empty.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">elts</span>.<span class="ident">is_empty</span>()
     }
 
@@ -1685,13 +1686,13 @@
     }
 
     <span class="doccomment">/// Creates a map from a vector of pairs.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_vec</span>(<span class="ident">vec</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">V</span>)<span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RangeMultiMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_vec</span>(<span class="ident">vec</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">V</span>)<span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">RangeMultiMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
         <span class="ident">RangeMultiMap</span> { <span class="ident">elts</span>: <span class="ident">vec</span> }
     }
 
     <span class="doccomment">/// Returns a new `RangeMultiMap` containing only the mappings for keys that belong to the</span>
     <span class="doccomment">/// given set.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intersection</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RangeMultiMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intersection</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">RangeMultiMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="ident">new</span>();
         <span class="kw">for</span> <span class="kw-2">&amp;</span>(<span class="kw-2">ref</span> <span class="ident">my_range</span>, <span class="kw-2">ref</span> <span class="ident">data</span>) <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">elts</span> {
             <span class="kw">let</span> <span class="ident">start_idx</span> <span class="op">=</span> <span class="ident">other</span>.<span class="ident">map</span>.<span class="ident">elts</span>
@@ -1708,24 +1709,24 @@
         <span class="ident">RangeMultiMap</span>::<span class="ident">from_vec</span>(<span class="ident">ret</span>)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">map_values</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">f</span>: <span class="ident">F</span>) <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">V</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">V</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">map_values</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">f</span>: <span class="ident">F</span>) <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">V</span>) <span class="op">-&gt;</span> <span class="ident">V</span> {
         <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="self">self</span>.<span class="ident">elts</span>.<span class="ident">len</span>() {
             <span class="self">self</span>.<span class="ident">elts</span>[<span class="ident">i</span>].<span class="number">1</span> <span class="op">=</span> <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">elts</span>[<span class="ident">i</span>].<span class="number">1</span>);
         }
     }
 
     <span class="doccomment">/// Modifies this map in place to only contain mappings whose values `v` satisfy `f(v)`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">retain_values</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">f</span>: <span class="ident">F</span>) <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">V</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">retain_values</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">f</span>: <span class="ident">F</span>) <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">V</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">elts</span>.<span class="ident">retain</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">x</span>.<span class="number">1</span>));
     }
 
     <span class="doccomment">/// Returns the underlying `Vec`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_vec</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">V</span>)<span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_vec</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">V</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">elts</span>
     }
 
     <span class="doccomment">/// Iterates over all the mapped ranges and values.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ranges_values</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">std</span>::<span class="ident">slice</span>::<span class="ident">Iter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, (<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">V</span>)<span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ranges_values</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">std</span>::<span class="ident">slice</span>::<span class="ident">Iter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, (<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">V</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">elts</span>.<span class="ident">iter</span>()
     }
 }
@@ -1734,7 +1735,7 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">PrimInt</span>, <span class="ident">V</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">Ord</span><span class="op">&gt;</span> <span class="ident">RangeMultiMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">V</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Makes the ranges sorted and non-overlapping. The data associated with each range will</span>
     <span class="doccomment">/// be a `Vec&lt;T&gt;` instead of a single `T`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">group</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">V</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">group</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">V</span><span class="op">&gt;&gt;</span> {
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">elts</span>.<span class="ident">is_empty</span>() {
             <span class="kw">return</span> <span class="ident">RangeMap</span>::<span class="ident">new</span>();
         }
@@ -1758,9 +1759,9 @@
         <span class="kw">for</span> <span class="kw-2">&amp;</span>(<span class="ident">range</span>, <span class="kw-2">ref</span> <span class="ident">val</span>) <span class="kw">in</span> <span class="self">self</span>.<span class="ident">elts</span>.<span class="ident">iter</span>() {
             <span class="comment">// The unwrap is OK because start_chars contains range.start for every range in elts.</span>
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">idx</span> <span class="op">=</span> <span class="ident">start_chars</span>.<span class="ident">binary_search</span>(<span class="kw-2">&amp;</span><span class="ident">range</span>.<span class="ident">start</span>).<span class="ident">unwrap</span>();
-            <span class="kw">while</span> <span class="ident">idx</span> <span class="op">&lt;</span> <span class="ident">start_chars</span>.<span class="ident">len</span>() <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">start_chars</span>[<span class="ident">idx</span>] <span class="op">&lt;</span><span class="op">=</span> <span class="ident">range</span>.<span class="ident">end</span> {
+            <span class="kw">while</span> <span class="ident">idx</span> <span class="op">&lt;</span> <span class="ident">start_chars</span>.<span class="ident">len</span>() <span class="op">&amp;&amp;</span> <span class="ident">start_chars</span>[<span class="ident">idx</span>] <span class="op">&lt;=</span> <span class="ident">range</span>.<span class="ident">end</span> {
                 <span class="ident">ret</span>[<span class="ident">idx</span>].<span class="number">1</span>.<span class="ident">push</span>(<span class="ident">val</span>.<span class="ident">clone</span>());
-                <span class="ident">idx</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+                <span class="ident">idx</span> <span class="op">+=</span> <span class="number">1</span>;
             }
         }
         <span class="ident">ret</span>.<span class="ident">retain</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="op">!</span><span class="ident">x</span>.<span class="number">1</span>.<span class="ident">is_empty</span>());
@@ -1780,7 +1781,7 @@
     <span class="kw">use</span> <span class="ident">quickcheck</span>::{<span class="ident">Arbitrary</span>, <span class="ident">Gen</span>, <span class="ident">TestResult</span>, <span class="ident">quickcheck</span>};
 
     <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Arbitrary</span> <span class="op">+</span> <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">PrimInt</span><span class="op">&gt;</span> <span class="ident">Arbitrary</span> <span class="kw">for</span> <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-        <span class="kw">fn</span> <span class="ident">arbitrary</span><span class="op">&lt;</span><span class="ident">G</span>: <span class="ident">Gen</span><span class="op">&gt;</span>(<span class="ident">g</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">G</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="kw">fn</span> <span class="ident">arbitrary</span><span class="op">&lt;</span><span class="ident">G</span>: <span class="ident">Gen</span><span class="op">&gt;</span>(<span class="ident">g</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">G</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
             <span class="kw">let</span> <span class="ident">a</span> <span class="op">=</span> <span class="ident">T</span>::<span class="ident">arbitrary</span>(<span class="ident">g</span>);
             <span class="kw">let</span> <span class="ident">b</span> <span class="op">=</span> <span class="ident">T</span>::<span class="ident">arbitrary</span>(<span class="ident">g</span>);
             <span class="ident">Range</span>::<span class="ident">new</span>(<span class="ident">min</span>(<span class="ident">a</span>, <span class="ident">b</span>), <span class="ident">max</span>(<span class="ident">a</span>, <span class="ident">b</span>))
@@ -1789,56 +1790,56 @@
 
     <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Arbitrary</span> <span class="kw">for</span> <span class="ident">RangeMultiMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">i32</span><span class="op">&gt;</span>
     <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Arbitrary</span> <span class="op">+</span> <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">PrimInt</span> {
-        <span class="kw">fn</span> <span class="ident">arbitrary</span><span class="op">&lt;</span><span class="ident">G</span>: <span class="ident">Gen</span><span class="op">&gt;</span>(<span class="ident">g</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">G</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="kw">fn</span> <span class="ident">arbitrary</span><span class="op">&lt;</span><span class="ident">G</span>: <span class="ident">Gen</span><span class="op">&gt;</span>(<span class="ident">g</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">G</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
             <span class="ident">RangeMultiMap</span>::<span class="ident">from_vec</span>(<span class="ident">Vec</span>::<span class="ident">arbitrary</span>(<span class="ident">g</span>))
         }
 
-        <span class="kw">fn</span> <span class="ident">shrink</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">=</span><span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+        <span class="kw">fn</span> <span class="ident">shrink</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">=</span><span class="self">Self</span><span class="op">&gt;&gt;</span> {
             <span class="ident">Box</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">elts</span>.<span class="ident">shrink</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">v</span><span class="op">|</span> <span class="ident">RangeMultiMap</span>::<span class="ident">from_vec</span>(<span class="ident">v</span>)))
         }
     }
 
     <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Arbitrary</span> <span class="kw">for</span> <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">i32</span><span class="op">&gt;</span>
     <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Arbitrary</span> <span class="op">+</span> <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">PrimInt</span> {
-        <span class="kw">fn</span> <span class="ident">arbitrary</span><span class="op">&lt;</span><span class="ident">G</span>: <span class="ident">Gen</span><span class="op">&gt;</span>(<span class="ident">g</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">G</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-            <span class="kw">let</span> <span class="ident">map</span>: <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">RangeMultiMap</span>::<span class="ident">arbitrary</span>(<span class="ident">g</span>).<span class="ident">group</span>();
+        <span class="kw">fn</span> <span class="ident">arbitrary</span><span class="op">&lt;</span><span class="ident">G</span>: <span class="ident">Gen</span><span class="op">&gt;</span>(<span class="ident">g</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">G</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+            <span class="kw">let</span> <span class="ident">map</span>: <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;&gt;</span> <span class="op">=</span> <span class="ident">RangeMultiMap</span>::<span class="ident">arbitrary</span>(<span class="ident">g</span>).<span class="ident">group</span>();
             <span class="comment">// TODO: replace fold with sum once it&#39;s stable</span>
             <span class="ident">map</span>.<span class="ident">ranges_values</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> (<span class="ident">x</span>.<span class="number">0</span>, <span class="ident">x</span>.<span class="number">1</span>.<span class="ident">iter</span>().<span class="ident">fold</span>(<span class="number">0</span>, <span class="ident">Add</span>::<span class="ident">add</span>))).<span class="ident">collect</span>()
         }
 
-        <span class="kw">fn</span> <span class="ident">shrink</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">=</span><span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+        <span class="kw">fn</span> <span class="ident">shrink</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">=</span><span class="self">Self</span><span class="op">&gt;&gt;</span> {
             <span class="ident">Box</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">elts</span>.<span class="ident">shrink</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">v</span><span class="op">|</span> <span class="ident">RangeMap</span>::<span class="ident">from_norm_vec</span>(<span class="ident">v</span>)))
         }
     }
 
     <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Arbitrary</span> <span class="op">+</span> <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">PrimInt</span><span class="op">&gt;</span> <span class="ident">Arbitrary</span> <span class="kw">for</span> <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-        <span class="kw">fn</span> <span class="ident">arbitrary</span><span class="op">&lt;</span><span class="ident">G</span>: <span class="ident">Gen</span><span class="op">&gt;</span>(<span class="ident">g</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">G</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="kw">fn</span> <span class="ident">arbitrary</span><span class="op">&lt;</span><span class="ident">G</span>: <span class="ident">Gen</span><span class="op">&gt;</span>(<span class="ident">g</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">G</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
             <span class="ident">RangeMap</span>::<span class="ident">arbitrary</span>(<span class="ident">g</span>).<span class="ident">to_range_set</span>()
         }
 
-        <span class="kw">fn</span> <span class="ident">shrink</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">=</span><span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+        <span class="kw">fn</span> <span class="ident">shrink</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">=</span><span class="self">Self</span><span class="op">&gt;&gt;</span> {
             <span class="ident">Box</span>::<span class="ident">new</span>(<span class="self">self</span>.<span class="ident">map</span>.<span class="ident">elts</span>.<span class="ident">shrink</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">v</span><span class="op">|</span> <span class="ident">RangeSet</span>::<span class="ident">from_norm_vec</span>(<span class="ident">v</span>)))
         }
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">range_intersects_intersection</span>() {
-        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">r1</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>, <span class="ident">r2</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-            <span class="ident">r1</span>.<span class="ident">intersection</span>(<span class="kw-2">&amp;</span><span class="ident">r2</span>).<span class="ident">is_some</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">r1</span>.<span class="ident">intersects</span>(<span class="kw-2">&amp;</span><span class="ident">r2</span>)
+        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">r1</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>, <span class="ident">r2</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+            <span class="ident">r1</span>.<span class="ident">intersection</span>(<span class="kw-2">&amp;</span><span class="ident">r2</span>).<span class="ident">is_some</span>() <span class="op">==</span> <span class="ident">r1</span>.<span class="ident">intersects</span>(<span class="kw-2">&amp;</span><span class="ident">r2</span>)
         }
-        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>, <span class="kw">_</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">_</span>);
+        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>, <span class="kw">_</span>) <span class="op">-&gt;</span> <span class="kw">_</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">range_intersection_contains</span>() {
-        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">r1</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>, <span class="ident">r2</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>, <span class="ident">x</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TestResult</span> {
+        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">r1</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>, <span class="ident">r2</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>, <span class="ident">x</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">TestResult</span> {
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">r</span>) <span class="op">=</span> <span class="ident">r1</span>.<span class="ident">intersection</span>(<span class="kw-2">&amp;</span><span class="ident">r2</span>) {
-                <span class="ident">TestResult</span>::<span class="ident">from_bool</span>(<span class="ident">r</span>.<span class="ident">contains</span>(<span class="ident">x</span>) <span class="op">=</span><span class="op">=</span> (<span class="ident">r1</span>.<span class="ident">contains</span>(<span class="ident">x</span>) <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">r2</span>.<span class="ident">contains</span>(<span class="ident">x</span>)))
+                <span class="ident">TestResult</span>::<span class="ident">from_bool</span>(<span class="ident">r</span>.<span class="ident">contains</span>(<span class="ident">x</span>) <span class="op">==</span> (<span class="ident">r1</span>.<span class="ident">contains</span>(<span class="ident">x</span>) <span class="op">&amp;&amp;</span> <span class="ident">r2</span>.<span class="ident">contains</span>(<span class="ident">x</span>)))
             } <span class="kw">else</span> {
                 <span class="ident">TestResult</span>::<span class="ident">discard</span>()
             }
         }
-        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">_</span>);
+        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>) <span class="op">-&gt;</span> <span class="kw">_</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -1849,13 +1850,13 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">range_intersection_cover</span>() {
-        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">r1</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>, <span class="ident">r2</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-            <span class="ident">r1</span> <span class="op">=</span><span class="op">=</span> <span class="ident">r1</span>.<span class="ident">cover</span>(<span class="kw-2">&amp;</span><span class="ident">r2</span>).<span class="ident">intersection</span>(<span class="kw-2">&amp;</span><span class="ident">r1</span>).<span class="ident">unwrap</span>()
+        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">r1</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>, <span class="ident">r2</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+            <span class="ident">r1</span> <span class="op">==</span> <span class="ident">r1</span>.<span class="ident">cover</span>(<span class="kw-2">&amp;</span><span class="ident">r2</span>).<span class="ident">intersection</span>(<span class="kw-2">&amp;</span><span class="ident">r1</span>).<span class="ident">unwrap</span>()
         }
-        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>, <span class="kw">_</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">_</span>);
+        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>, <span class="kw">_</span>) <span class="op">-&gt;</span> <span class="kw">_</span>);
     }
 
-    <span class="kw">fn</span> <span class="ident">map</span>(<span class="ident">vec</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>)<span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">i32</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">map</span>(<span class="ident">vec</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>)<span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">i32</span><span class="op">&gt;</span> {
         <span class="ident">vec</span>.<span class="ident">into_iter</span>()
             .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">c</span>)<span class="op">|</span> (<span class="ident">Range</span>::<span class="ident">new</span>(<span class="ident">a</span>, <span class="ident">b</span>), <span class="ident">c</span>))
             .<span class="ident">collect</span>()
@@ -1876,33 +1877,33 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">rangemap_intersection</span>() {
-        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">map</span>: <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">i32</span><span class="op">&gt;</span>, <span class="ident">set</span>: <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">map</span>: <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">i32</span><span class="op">&gt;</span>, <span class="ident">set</span>: <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
             <span class="kw">let</span> <span class="ident">int</span> <span class="op">=</span> <span class="ident">map</span>.<span class="ident">intersection</span>(<span class="kw-2">&amp;</span><span class="ident">set</span>);
-            <span class="ident">set</span>.<span class="ident">elements</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">map</span>.<span class="ident">get</span>(<span class="ident">x</span>) <span class="op">=</span><span class="op">=</span> <span class="ident">int</span>.<span class="ident">get</span>(<span class="ident">x</span>))
-                <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">int</span>.<span class="ident">keys_values</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">set</span>.<span class="ident">contains</span>(<span class="ident">x</span>.<span class="number">0</span>))
+            <span class="ident">set</span>.<span class="ident">elements</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">map</span>.<span class="ident">get</span>(<span class="ident">x</span>) <span class="op">==</span> <span class="ident">int</span>.<span class="ident">get</span>(<span class="ident">x</span>))
+                <span class="op">&amp;&amp;</span> <span class="ident">int</span>.<span class="ident">keys_values</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">set</span>.<span class="ident">contains</span>(<span class="ident">x</span>.<span class="number">0</span>))
         }
-        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>, <span class="kw">_</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">_</span>);
+        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>, <span class="kw">_</span>) <span class="op">-&gt;</span> <span class="kw">_</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">rangemap_num_ranges</span>() {
-        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">map</span>: <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-            <span class="ident">map</span>.<span class="ident">num_ranges</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">map</span>.<span class="ident">ranges_values</span>().<span class="ident">count</span>()
+        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">map</span>: <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+            <span class="ident">map</span>.<span class="ident">num_ranges</span>() <span class="op">==</span> <span class="ident">map</span>.<span class="ident">ranges_values</span>().<span class="ident">count</span>()
         }
-        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">_</span>);
+        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>) <span class="op">-&gt;</span> <span class="kw">_</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">rangemap_num_keys</span>() {
-        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">map</span>: <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-            <span class="ident">map</span>.<span class="ident">num_keys</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">map</span>.<span class="ident">keys_values</span>().<span class="ident">count</span>()
+        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">map</span>: <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+            <span class="ident">map</span>.<span class="ident">num_keys</span>() <span class="op">==</span> <span class="ident">map</span>.<span class="ident">keys_values</span>().<span class="ident">count</span>()
         }
-        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">_</span>);
+        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>) <span class="op">-&gt;</span> <span class="kw">_</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">rangemap_map_values</span>() {
-        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">map</span>: <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">i32</span><span class="op">&gt;</span>, <span class="ident">x</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">map</span>: <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">i32</span><span class="op">&gt;</span>, <span class="ident">x</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
             <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> <span class="op">|</span><span class="ident">y</span>: <span class="kw-2">&amp;</span><span class="ident">i32</span><span class="op">|</span> (<span class="ident">x</span> <span class="op">+</span> <span class="kw-2">*</span><span class="ident">y</span>) <span class="op">%</span> <span class="number">10</span>;
             <span class="kw">let</span> <span class="ident">new_map</span> <span class="op">=</span> {
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">new_map</span> <span class="op">=</span> <span class="ident">map</span>.<span class="ident">clone</span>();
@@ -1915,89 +1916,89 @@
                 <span class="ident">new_map_norm</span>
             };
 
-            <span class="ident">new_map</span>.<span class="ident">keys_values</span>().<span class="ident">all</span>(<span class="op">|</span>(<span class="ident">k</span>, <span class="ident">v</span>)<span class="op">|</span> <span class="ident">f</span>(<span class="ident">map</span>.<span class="ident">get</span>(<span class="ident">k</span>).<span class="ident">unwrap</span>()) <span class="op">=</span><span class="op">=</span> <span class="kw-2">*</span><span class="ident">v</span>)
-                <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">map</span>.<span class="ident">keys_values</span>().<span class="ident">all</span>(<span class="op">|</span>(<span class="ident">k</span>, <span class="ident">v</span>)<span class="op">|</span> <span class="kw-2">*</span><span class="ident">new_map</span>.<span class="ident">get</span>(<span class="ident">k</span>).<span class="ident">unwrap</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">f</span>(<span class="ident">v</span>))
-                <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">new_map</span> <span class="op">=</span><span class="op">=</span> <span class="ident">new_map_norm</span>
+            <span class="ident">new_map</span>.<span class="ident">keys_values</span>().<span class="ident">all</span>(<span class="op">|</span>(<span class="ident">k</span>, <span class="ident">v</span>)<span class="op">|</span> <span class="ident">f</span>(<span class="ident">map</span>.<span class="ident">get</span>(<span class="ident">k</span>).<span class="ident">unwrap</span>()) <span class="op">==</span> <span class="kw-2">*</span><span class="ident">v</span>)
+                <span class="op">&amp;&amp;</span> <span class="ident">map</span>.<span class="ident">keys_values</span>().<span class="ident">all</span>(<span class="op">|</span>(<span class="ident">k</span>, <span class="ident">v</span>)<span class="op">|</span> <span class="kw-2">*</span><span class="ident">new_map</span>.<span class="ident">get</span>(<span class="ident">k</span>).<span class="ident">unwrap</span>() <span class="op">==</span> <span class="ident">f</span>(<span class="ident">v</span>))
+                <span class="op">&amp;&amp;</span> <span class="ident">new_map</span> <span class="op">==</span> <span class="ident">new_map_norm</span>
         }
-        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>, <span class="kw">_</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">_</span>);
+        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>, <span class="kw">_</span>) <span class="op">-&gt;</span> <span class="kw">_</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">rangemap_retain_values</span>() {
-        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">map</span>: <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">i32</span><span class="op">&gt;</span>, <span class="ident">r</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">map</span>: <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">i32</span><span class="op">&gt;</span>, <span class="ident">r</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">new_map</span> <span class="op">=</span> <span class="ident">map</span>.<span class="ident">clone</span>();
             <span class="ident">new_map</span>.<span class="ident">retain_values</span>(<span class="op">|</span><span class="ident">v</span><span class="op">|</span> <span class="ident">r</span>.<span class="ident">contains</span>(<span class="kw-2">*</span><span class="ident">v</span>));
             <span class="ident">new_map</span>.<span class="ident">keys_values</span>().<span class="ident">all</span>(<span class="op">|</span>(<span class="kw">_</span>, <span class="ident">v</span>)<span class="op">|</span> <span class="ident">r</span>.<span class="ident">contains</span>(<span class="kw-2">*</span><span class="ident">v</span>))
-                <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">map</span>.<span class="ident">keys_values</span>().<span class="ident">all</span>(<span class="op">|</span>(<span class="ident">k</span>, <span class="ident">v</span>)<span class="op">|</span> <span class="op">!</span><span class="ident">r</span>.<span class="ident">contains</span>(<span class="kw-2">*</span><span class="ident">v</span>) <span class="op">|</span><span class="op">|</span> <span class="ident">new_map</span>.<span class="ident">get</span>(<span class="ident">k</span>).<span class="ident">unwrap</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">v</span>)
+                <span class="op">&amp;&amp;</span> <span class="ident">map</span>.<span class="ident">keys_values</span>().<span class="ident">all</span>(<span class="op">|</span>(<span class="ident">k</span>, <span class="ident">v</span>)<span class="op">|</span> <span class="op">!</span><span class="ident">r</span>.<span class="ident">contains</span>(<span class="kw-2">*</span><span class="ident">v</span>) <span class="op">||</span> <span class="ident">new_map</span>.<span class="ident">get</span>(<span class="ident">k</span>).<span class="ident">unwrap</span>() <span class="op">==</span> <span class="ident">v</span>)
         }
-        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>, <span class="kw">_</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">_</span>);
+        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>, <span class="kw">_</span>) <span class="op">-&gt;</span> <span class="kw">_</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">rangeset_contains</span>() {
-        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">set</span>: <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">set</span>: <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
             <span class="ident">set</span>.<span class="ident">elements</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">set</span>.<span class="ident">contains</span>(<span class="ident">e</span>))
         }
-        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">_</span>);
+        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>) <span class="op">-&gt;</span> <span class="kw">_</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">rangeset_num_ranges</span>() {
-        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">set</span>: <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-            <span class="ident">set</span>.<span class="ident">num_ranges</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">set</span>.<span class="ident">ranges</span>().<span class="ident">count</span>()
+        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">set</span>: <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+            <span class="ident">set</span>.<span class="ident">num_ranges</span>() <span class="op">==</span> <span class="ident">set</span>.<span class="ident">ranges</span>().<span class="ident">count</span>()
         }
-        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">_</span>);
+        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>) <span class="op">-&gt;</span> <span class="kw">_</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">rangeset_num_elements</span>() {
-        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">set</span>: <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-            <span class="ident">set</span>.<span class="ident">num_elements</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">set</span>.<span class="ident">elements</span>().<span class="ident">count</span>()
+        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">set</span>: <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+            <span class="ident">set</span>.<span class="ident">num_elements</span>() <span class="op">==</span> <span class="ident">set</span>.<span class="ident">elements</span>().<span class="ident">count</span>()
         }
-        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">_</span>);
+        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>) <span class="op">-&gt;</span> <span class="kw">_</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">rangeset_union</span>() {
-        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">s1</span>: <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>, <span class="ident">s2</span>: <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">s1</span>: <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>, <span class="ident">s2</span>: <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
             <span class="kw">let</span> <span class="ident">un</span> <span class="op">=</span> <span class="ident">s1</span>.<span class="ident">union</span>(<span class="kw-2">&amp;</span><span class="ident">s2</span>);
-            <span class="ident">un</span>.<span class="ident">elements</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">s1</span>.<span class="ident">contains</span>(<span class="ident">e</span>) <span class="op">|</span><span class="op">|</span> <span class="ident">s2</span>.<span class="ident">contains</span>(<span class="ident">e</span>))
-                <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">s1</span>.<span class="ident">elements</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">un</span>.<span class="ident">contains</span>(<span class="ident">e</span>))
-                <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">s2</span>.<span class="ident">elements</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">un</span>.<span class="ident">contains</span>(<span class="ident">e</span>))
+            <span class="ident">un</span>.<span class="ident">elements</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">s1</span>.<span class="ident">contains</span>(<span class="ident">e</span>) <span class="op">||</span> <span class="ident">s2</span>.<span class="ident">contains</span>(<span class="ident">e</span>))
+                <span class="op">&amp;&amp;</span> <span class="ident">s1</span>.<span class="ident">elements</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">un</span>.<span class="ident">contains</span>(<span class="ident">e</span>))
+                <span class="op">&amp;&amp;</span> <span class="ident">s2</span>.<span class="ident">elements</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">un</span>.<span class="ident">contains</span>(<span class="ident">e</span>))
         }
-        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>, <span class="kw">_</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">_</span>);
+        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>, <span class="kw">_</span>) <span class="op">-&gt;</span> <span class="kw">_</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">rangeset_intersection</span>() {
-        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">s1</span>: <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>, <span class="ident">s2</span>: <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">s1</span>: <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>, <span class="ident">s2</span>: <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
             <span class="kw">let</span> <span class="ident">int</span> <span class="op">=</span> <span class="ident">s1</span>.<span class="ident">intersection</span>(<span class="kw-2">&amp;</span><span class="ident">s2</span>);
-            <span class="ident">int</span>.<span class="ident">elements</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">s1</span>.<span class="ident">contains</span>(<span class="ident">e</span>) <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">s2</span>.<span class="ident">contains</span>(<span class="ident">e</span>))
-                <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">s1</span>.<span class="ident">elements</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">int</span>.<span class="ident">contains</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">=</span> <span class="ident">s2</span>.<span class="ident">contains</span>(<span class="ident">e</span>))
+            <span class="ident">int</span>.<span class="ident">elements</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">s1</span>.<span class="ident">contains</span>(<span class="ident">e</span>) <span class="op">&amp;&amp;</span> <span class="ident">s2</span>.<span class="ident">contains</span>(<span class="ident">e</span>))
+                <span class="op">&amp;&amp;</span> <span class="ident">s1</span>.<span class="ident">elements</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">int</span>.<span class="ident">contains</span>(<span class="ident">e</span>) <span class="op">==</span> <span class="ident">s2</span>.<span class="ident">contains</span>(<span class="ident">e</span>))
         }
-        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>, <span class="kw">_</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">_</span>);
+        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>, <span class="kw">_</span>) <span class="op">-&gt;</span> <span class="kw">_</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">rangeset_negate</span>() {
-        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">set</span>: <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">i8</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">set</span>: <span class="ident">RangeSet</span><span class="op">&lt;</span><span class="ident">i8</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
             <span class="kw">let</span> <span class="ident">neg</span> <span class="op">=</span> <span class="ident">set</span>.<span class="ident">negated</span>();
             <span class="ident">neg</span>.<span class="ident">elements</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="op">!</span><span class="ident">set</span>.<span class="ident">contains</span>(<span class="ident">e</span>))
-                <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">set</span>.<span class="ident">elements</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="op">!</span><span class="ident">neg</span>.<span class="ident">contains</span>(<span class="ident">e</span>))
-                <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">neg</span>.<span class="ident">negated</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">set</span>
+                <span class="op">&amp;&amp;</span> <span class="ident">set</span>.<span class="ident">elements</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="op">!</span><span class="ident">neg</span>.<span class="ident">contains</span>(<span class="ident">e</span>))
+                <span class="op">&amp;&amp;</span> <span class="ident">neg</span>.<span class="ident">negated</span>() <span class="op">==</span> <span class="ident">set</span>
         }
-        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">_</span>);
+        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>) <span class="op">-&gt;</span> <span class="kw">_</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">rangeset_except</span>() {
-        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="kw-2">mut</span> <span class="ident">except</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">i8</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="kw-2">mut</span> <span class="ident">except</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">i8</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
             <span class="ident">except</span>.<span class="ident">sort</span>();
             <span class="kw">let</span> <span class="ident">set</span> <span class="op">=</span> <span class="ident">RangeSet</span>::<span class="ident">except</span>(<span class="ident">except</span>.<span class="ident">iter</span>().<span class="ident">cloned</span>());
             <span class="ident">set</span>.<span class="ident">elements</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">except</span>.<span class="ident">binary_search</span>(<span class="kw-2">&amp;</span><span class="ident">e</span>).<span class="ident">is_err</span>())
-                <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">except</span>.<span class="ident">iter</span>().<span class="ident">all</span>(<span class="op">|</span><span class="kw-2">&amp;</span><span class="ident">e</span><span class="op">|</span> <span class="op">!</span><span class="ident">set</span>.<span class="ident">contains</span>(<span class="ident">e</span>))
+                <span class="op">&amp;&amp;</span> <span class="ident">except</span>.<span class="ident">iter</span>().<span class="ident">all</span>(<span class="op">|</span><span class="kw-2">&amp;</span><span class="ident">e</span><span class="op">|</span> <span class="op">!</span><span class="ident">set</span>.<span class="ident">contains</span>(<span class="ident">e</span>))
         }
-        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">_</span>);
+        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>) <span class="op">-&gt;</span> <span class="kw">_</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -2025,7 +2026,7 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">rangemultimap_group</span>() {
-        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">mm_vec</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>, <span class="ident">i32</span>)<span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">fn</span> <span class="ident">prop</span>(<span class="ident">mm_vec</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>, <span class="ident">i32</span>)<span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
             <span class="kw">let</span> <span class="ident">mm</span> <span class="op">=</span> <span class="ident">RangeMultiMap</span>::<span class="ident">from_vec</span>(<span class="ident">mm_vec</span>.<span class="ident">clone</span>());
             <span class="kw">let</span> <span class="ident">grouped</span> <span class="op">=</span> <span class="ident">mm</span>.<span class="ident">group</span>();
             <span class="ident">mm_vec</span>.<span class="ident">into_iter</span>()
@@ -2035,9 +2036,9 @@
                     })
                 })
         }
-        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">_</span>);
+        <span class="ident">quickcheck</span>(<span class="ident">prop</span> <span class="kw">as</span> <span class="kw">fn</span>(<span class="kw">_</span>) <span class="op">-&gt;</span> <span class="kw">_</span>);
     }
 }
 
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "range_map";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "range_map";</script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
