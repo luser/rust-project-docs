@@ -1,6 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/scroll-0.9.2/src/lesser.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lesser.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../scroll/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/scroll-0.10.2/src/lesser.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lesser.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../scroll/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
                 <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
@@ -171,16 +169,25 @@
 <span id="168">168</span>
 <span id="169">169</span>
 <span id="170">170</span>
+<span id="171">171</span>
+<span id="172">172</span>
+<span id="173">173</span>
+<span id="174">174</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::{<span class="prelude-ty">Result</span>, <span class="ident">Read</span>, <span class="ident">Write</span>};
-<span class="kw">use</span> <span class="ident">ctx</span>::{<span class="ident">FromCtx</span>, <span class="ident">IntoCtx</span>, <span class="ident">SizeWith</span>};
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">ctx</span>::{<span class="ident">FromCtx</span>, <span class="ident">IntoCtx</span>, <span class="ident">SizeWith</span>};
 
-<span class="doccomment">/// An extension trait to `std::io::Read` streams; this only deserializes simple types, like `u8`, `i32`, `f32`, `usize`, etc.</span>
+<span class="doccomment">/// An extension trait to `std::io::Read` streams; mainly targeted at reading primitive types with</span>
+<span class="doccomment">/// a known size.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// If you implement [`FromCtx`](trait.FromCtx.html) and [`SizeWith`](ctx/trait.SizeWith.html) for your type, you can then `ioread::&lt;YourType&gt;()` on a `Read`.  Note: [`FromCtx`](trait.FromCtx.html) is only meant for very simple types, and should _never_ fail.</span>
+<span class="doccomment">/// Requires types to implement [`FromCtx`](ctx/trait.FromCtx.html) and [`SizeWith`](ctx/trait.SizeWith.html).</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// **NB** You should probably add `repr(packed)` or `repr(C)` and be very careful how you implement [`SizeWith`](ctx/trait.SizeWith.html), otherwise you</span>
-<span class="doccomment">/// will get IO errors failing to fill entire buffer (the size you specified in `SizeWith`), or out of bound errors (depending on your impl) in `from_ctx`</span>
+<span class="doccomment">/// **NB** You should probably add `repr(C)` and be very careful how you implement</span>
+<span class="doccomment">/// [`SizeWith`](ctx/trait.SizeWith.html), otherwise you will get IO errors failing to fill entire</span>
+<span class="doccomment">/// buffer (the size you specified in `SizeWith`), or out of bound errors (depending on your impl)</span>
+<span class="doccomment">/// in `from_ctx`.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Warning: Currently ioread/write uses a small 256-byte buffer and can not read/write larger types</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Example</span>
 <span class="doccomment">/// ```rust</span>
@@ -200,9 +207,8 @@
 <span class="doccomment">/// }</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// impl ctx::SizeWith&lt;scroll::Endian&gt; for Foo {</span>
-<span class="doccomment">///     type Units = usize;</span>
 <span class="doccomment">///     // our parsing context doesn&#39;t influence our size</span>
-<span class="doccomment">///     fn size_with(_: &amp;scroll::Endian) -&gt; Self::Units {</span>
+<span class="doccomment">///     fn size_with(_: &amp;scroll::Endian) -&gt; usize {</span>
 <span class="doccomment">///         ::std::mem::size_of::&lt;Foo&gt;()</span>
 <span class="doccomment">///     }</span>
 <span class="doccomment">/// }</span>
@@ -243,7 +249,7 @@
     <span class="doccomment">/// assert_eq!(0xefbe, beef);</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">ioread</span><span class="op">&lt;</span><span class="ident">N</span>: <span class="ident">FromCtx</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">SizeWith</span><span class="op">&lt;</span><span class="ident">Ctx</span>, <span class="ident">Units</span> <span class="op">=</span> <span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span> <span class="kw">where</span> <span class="ident">Ctx</span>: <span class="ident">Default</span> {
+    <span class="kw">fn</span> <span class="ident">ioread</span><span class="op">&lt;</span><span class="ident">N</span>: <span class="ident">FromCtx</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">SizeWith</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span> <span class="kw">where</span> <span class="ident">Ctx</span>: <span class="ident">Default</span> {
         <span class="kw">let</span> <span class="ident">ctx</span> <span class="op">=</span> <span class="ident">Ctx</span>::<span class="ident">default</span>();
         <span class="self">self</span>.<span class="ident">ioread_with</span>(<span class="ident">ctx</span>)
     }
@@ -269,7 +275,7 @@
     <span class="doccomment">/// assert_eq!(0xfeeddead, feeddead);</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">ioread_with</span><span class="op">&lt;</span><span class="ident">N</span>: <span class="ident">FromCtx</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">SizeWith</span><span class="op">&lt;</span><span class="ident">Ctx</span>, <span class="ident">Units</span> <span class="op">=</span> <span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">ctx</span>: <span class="ident">Ctx</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">ioread_with</span><span class="op">&lt;</span><span class="ident">N</span>: <span class="ident">FromCtx</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">SizeWith</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">ctx</span>: <span class="ident">Ctx</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">scratch</span> <span class="op">=</span> [<span class="number">0u8</span>; <span class="number">256</span>];
         <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">N</span>::<span class="ident">size_with</span>(<span class="kw-2">&amp;</span><span class="ident">ctx</span>);
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">scratch</span>[<span class="number">0</span>..<span class="ident">size</span>];
@@ -284,7 +290,7 @@
 
 <span class="doccomment">/// An extension trait to `std::io::Write` streams; this only serializes simple types, like `u8`, `i32`, `f32`, `usize`, etc.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// To write custom types with a single `iowrite::&lt;YourType&gt;` call, implement [`IntoCtx`](trait.IntoCtx.html) and [`SizeWith`](ctx/trait.SizeWith.html) for `YourType`.</span>
+<span class="doccomment">/// To write custom types with a single `iowrite::&lt;YourType&gt;` call, implement [`IntoCtx`](ctx/trait.IntoCtx.html) and [`SizeWith`](ctx/trait.SizeWith.html) for `YourType`.</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">IOwrite</span><span class="op">&lt;</span><span class="ident">Ctx</span>: <span class="ident">Copy</span><span class="op">&gt;</span>: <span class="ident">Write</span>
 {
     <span class="doccomment">/// Writes the type `N` into `Self`, with the parsing context `ctx`.</span>
@@ -307,7 +313,7 @@
     <span class="doccomment">/// assert_eq!(bytes.into_inner(), [0xde, 0xad, 0xbe, 0xef,]);</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">iowrite</span><span class="op">&lt;</span><span class="ident">N</span>: <span class="ident">SizeWith</span><span class="op">&lt;</span><span class="ident">Ctx</span>, <span class="ident">Units</span> <span class="op">=</span> <span class="ident">usize</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">IntoCtx</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">n</span>: <span class="ident">N</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> <span class="kw">where</span> <span class="ident">Ctx</span>: <span class="ident">Default</span> {
+    <span class="kw">fn</span> <span class="ident">iowrite</span><span class="op">&lt;</span><span class="ident">N</span>: <span class="ident">SizeWith</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">IntoCtx</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">n</span>: <span class="ident">N</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> <span class="kw">where</span> <span class="ident">Ctx</span>: <span class="ident">Default</span> {
         <span class="kw">let</span> <span class="ident">ctx</span> <span class="op">=</span> <span class="ident">Ctx</span>::<span class="ident">default</span>();
         <span class="self">self</span>.<span class="ident">iowrite_with</span>(<span class="ident">n</span>, <span class="ident">ctx</span>)
     }
@@ -329,7 +335,7 @@
     <span class="doccomment">/// assert_eq!(cursor.into_inner(), [0x68, 0x65, 0x6c, 0x6c, 0x6f, 0xde, 0xad, 0xbe, 0xef, 0x0]);</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">iowrite_with</span><span class="op">&lt;</span><span class="ident">N</span>: <span class="ident">SizeWith</span><span class="op">&lt;</span><span class="ident">Ctx</span>, <span class="ident">Units</span> <span class="op">=</span> <span class="ident">usize</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">IntoCtx</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">n</span>: <span class="ident">N</span>, <span class="ident">ctx</span>: <span class="ident">Ctx</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">iowrite_with</span><span class="op">&lt;</span><span class="ident">N</span>: <span class="ident">SizeWith</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">IntoCtx</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">n</span>: <span class="ident">N</span>, <span class="ident">ctx</span>: <span class="ident">Ctx</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> [<span class="number">0u8</span>; <span class="number">256</span>];
         <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">N</span>::<span class="ident">size_with</span>(<span class="kw-2">&amp;</span><span class="ident">ctx</span>);
         <span class="kw">let</span> <span class="ident">buf</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>[<span class="number">0</span>..<span class="ident">size</span>];

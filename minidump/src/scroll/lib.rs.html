@@ -1,6 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/scroll-0.9.2/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../scroll/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/scroll-0.10.2/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../scroll/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
                 <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
@@ -535,6 +533,86 @@
 <span id="532">532</span>
 <span id="533">533</span>
 <span id="534">534</span>
+<span id="535">535</span>
+<span id="536">536</span>
+<span id="537">537</span>
+<span id="538">538</span>
+<span id="539">539</span>
+<span id="540">540</span>
+<span id="541">541</span>
+<span id="542">542</span>
+<span id="543">543</span>
+<span id="544">544</span>
+<span id="545">545</span>
+<span id="546">546</span>
+<span id="547">547</span>
+<span id="548">548</span>
+<span id="549">549</span>
+<span id="550">550</span>
+<span id="551">551</span>
+<span id="552">552</span>
+<span id="553">553</span>
+<span id="554">554</span>
+<span id="555">555</span>
+<span id="556">556</span>
+<span id="557">557</span>
+<span id="558">558</span>
+<span id="559">559</span>
+<span id="560">560</span>
+<span id="561">561</span>
+<span id="562">562</span>
+<span id="563">563</span>
+<span id="564">564</span>
+<span id="565">565</span>
+<span id="566">566</span>
+<span id="567">567</span>
+<span id="568">568</span>
+<span id="569">569</span>
+<span id="570">570</span>
+<span id="571">571</span>
+<span id="572">572</span>
+<span id="573">573</span>
+<span id="574">574</span>
+<span id="575">575</span>
+<span id="576">576</span>
+<span id="577">577</span>
+<span id="578">578</span>
+<span id="579">579</span>
+<span id="580">580</span>
+<span id="581">581</span>
+<span id="582">582</span>
+<span id="583">583</span>
+<span id="584">584</span>
+<span id="585">585</span>
+<span id="586">586</span>
+<span id="587">587</span>
+<span id="588">588</span>
+<span id="589">589</span>
+<span id="590">590</span>
+<span id="591">591</span>
+<span id="592">592</span>
+<span id="593">593</span>
+<span id="594">594</span>
+<span id="595">595</span>
+<span id="596">596</span>
+<span id="597">597</span>
+<span id="598">598</span>
+<span id="599">599</span>
+<span id="600">600</span>
+<span id="601">601</span>
+<span id="602">602</span>
+<span id="603">603</span>
+<span id="604">604</span>
+<span id="605">605</span>
+<span id="606">606</span>
+<span id="607">607</span>
+<span id="608">608</span>
+<span id="609">609</span>
+<span id="610">610</span>
+<span id="611">611</span>
+<span id="612">612</span>
+<span id="613">613</span>
+<span id="614">614</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! # Scroll</span>
 <span class="doccomment">//!</span>
@@ -550,140 +628,209 @@
 <span class="doccomment">//!</span>
 <span class="doccomment">//! ```</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! Scroll is a library for efficiently and easily reading/writing types from byte arrays. All the builtin types are supported, e.g., `u32`, `i8`, etc., where the type is specified as a type parameter, or type inferred when possible. In addition, it supports zero-copy reading of string slices, or any other kind of slice.  The library can be used in a no_std context as well; the [Error](enum.Error.html) type only has the `IO` and `String` variants if the default features are used, and is `no_std` safe when compiled without default features.</span>
+<span class="doccomment">//! Scroll is a library for easily and efficiently reading/writing types from data containers like</span>
+<span class="doccomment">//! byte arrays.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! There are 3 traits for reading that you can import:</span>
+<span class="doccomment">//! ## Easily:</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! 1. [Pread](trait.Pread.html), for reading (immutable) data at an offset;</span>
-<span class="doccomment">//! 2. [Gread](trait.Gread.html), for reading data at an offset which automatically gets incremented by the size;</span>
-<span class="doccomment">//! 3. [IOread](trait.IOread.html), for reading _simple_ data out of a `std::io::Read` based interface, e.g., a stream. (**Note**: only available when compiled with `std`)</span>
+<span class="doccomment">//! Scroll sets down a number of traits:</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! Each of these interfaces also have their corresponding writer versions as well, e.g., [Pwrite](trait.Pwrite.html), [Gwrite](trait.Gwrite.html), and [IOwrite](trait.IOwrite.html), respectively.</span>
+<span class="doccomment">//! [FromCtx](ctx/trait.FromCtx.html), [IntoCtx](ctx/trait.IntoCtx.html),</span>
+<span class="doccomment">//! [TryFromCtx](ctx/trait.TryFromCtx.html) and [TryIntoCtx](ctx/trait.TryIntoCtx.html) — further</span>
+<span class="doccomment">//! explained in the [ctx module](ctx/index.html); to be implemented on custom types to allow</span>
+<span class="doccomment">//! reading, writing, and potentially fallible reading/writing respectively.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! Most familiar will likely be the `Pread` trait (inspired from the C function), which in our case takes an immutable reference to self, an immutable offset to read at, (and _optionally_ a parsing context, more on that later), and then returns the deserialized value.</span>
+<span class="doccomment">//! [Pread](trait.Pread.html) and [Pwrite](trait.Pwrite.html) which are implemented on data</span>
+<span class="doccomment">//! containers such as byte arrays to define how to read or respectively write types implementing</span>
+<span class="doccomment">//! the *Ctx traits above.</span>
+<span class="doccomment">//! In addition scroll also defines [IOread](trait.IOread.html) and</span>
+<span class="doccomment">//! [IOwrite](trait.IOwrite.html) with additional constraits that then allow reading and writing</span>
+<span class="doccomment">//! from `std::io` [Read](https://doc.rust-lang.org/nightly/std/io/trait.Read.html) and</span>
+<span class="doccomment">//! [Write](https://doc.rust-lang.org/nightly/std/io/trait.Write.html).</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! Because self is immutable, _**all** reads can be performed in parallel_ and hence are trivially parallelizable.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! For most usecases, you can use [scroll_derive](https://docs.rs/scroll_derive) to annotate your types with `derive(Pread, Pwrite, IOread, IOwrite, SizeWith)` to automatically add sensible derive defaults, and you should be ready to roll.  For more complex usescases, you can implement the conversion traits yourself, see the [context module](ctx/index.html) for more information.</span>
+<span class="doccomment">//! In most cases you can use [scroll_derive](https://docs.rs/scroll_derive) to derive sensible</span>
+<span class="doccomment">//! defaults for `Pread`, `Pwrite`, their IO counterpart and `SizeWith`.  More complex situations</span>
+<span class="doccomment">//! call for manual implementation of those traits; refer to [the ctx module](ctx/index.html) for</span>
+<span class="doccomment">//! details.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! # Example</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! A simple example demonstrates its flexibility:</span>
+<span class="doccomment">//! ## Efficiently:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Reading Slices — including [&amp;str](https://doc.rust-lang.org/std/primitive.str.html) — supports</span>
+<span class="doccomment">//! zero-copy. Scroll is designed with a `no_std` context in mind; every dependency on `std` is</span>
+<span class="doccomment">//! cfg-gated and errors need not allocate.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Reads by default take only immutable references wherever possible, allowing for trivial</span>
+<span class="doccomment">//! parallelization.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! # Examples</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Let&#39;s start with a simple example</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! ```rust</span>
-<span class="doccomment">//! use scroll::{ctx, Pread, LE};</span>
+<span class="doccomment">//! use scroll::{ctx, Pread};</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! // Let&#39;s first define some data, cfg-gated so our assertions later on hold.</span>
+<span class="doccomment">//! #[cfg(target_endian = &quot;little&quot;)]</span>
 <span class="doccomment">//! let bytes: [u8; 4] = [0xde, 0xad, 0xbe, 0xef];</span>
+<span class="doccomment">//! #[cfg(target_endian = &quot;big&quot;)]</span>
+<span class="doccomment">//! let bytes: [u8; 4] = [0xef, 0xbe, 0xad, 0xde];</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! // reads a u32 out of `b` with the endianness of the host machine, at offset 0, turbofish-style</span>
-<span class="doccomment">//! let number: u32 = bytes.pread::&lt;u32&gt;(0).unwrap();</span>
-<span class="doccomment">//! // ...or a byte, with type ascription on the binding.</span>
-<span class="doccomment">//! let byte: u8 = bytes.pread(0).unwrap();</span>
+<span class="doccomment">//! // We can read a u32 from the array `bytes` at offset 0. </span>
+<span class="doccomment">//! // This will use a default context for the type being parsed;</span>
+<span class="doccomment">//! // in the case of u32 this defines to use the host&#39;s endianess.</span>
+<span class="doccomment">//! let number = bytes.pread::&lt;u32&gt;(0).unwrap();</span>
+<span class="doccomment">//! assert_eq!(number, 0xefbeadde);</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! //If the type is known another way by the compiler, say reading into a struct field, we can omit the turbofish, and type ascription altogether!</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! // If we want, we can explicitly add a endianness to read with by calling `pread_with`.</span>
-<span class="doccomment">//! // The following reads a u32 out of `b` with Big Endian byte order, at offset 0</span>
+<span class="doccomment">//! // Similarly we can also read a single byte at offset 2</span>
+<span class="doccomment">//! // This time using type ascription instead of the turbofish (::&lt;&gt;) operator.</span>
+<span class="doccomment">//! let byte: u8 = bytes.pread(2).unwrap();</span>
+<span class="doccomment">//! assert_eq!(byte, 0xbe);</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! // If required we can also provide a specific parsing context; e.g. if we want to explicitly</span>
+<span class="doccomment">//! // define the endianess to use:</span>
 <span class="doccomment">//! let be_number: u32 = bytes.pread_with(0, scroll::BE).unwrap();</span>
-<span class="doccomment">//! // or a u16 - specify the type either on the variable or with the beloved turbofish</span>
-<span class="doccomment">//! let be_number2 = bytes.pread_with::&lt;u16&gt;(2, scroll::BE).unwrap();</span>
+<span class="doccomment">//! assert_eq!(be_number, 0xdeadbeef);</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! // Scroll has core friendly errors (no allocation). This will have the type `scroll::Error::BadOffset` because it tried to read beyond the bound</span>
-<span class="doccomment">//! let byte: scroll::Result&lt;i64&gt; = bytes.pread(0);</span>
+<span class="doccomment">//! let be_number16 = bytes.pread_with::&lt;u16&gt;(1, scroll::BE).unwrap();</span>
+<span class="doccomment">//! assert_eq!(be_number16, 0xadbe);</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! // Scroll is extensible: as long as the type implements `TryWithCtx`, then you can read your type out of the byte array!</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! // We can parse out custom datatypes, or types with lifetimes</span>
-<span class="doccomment">//! // if they implement the conversion trait `TryFromCtx`; here we parse a C-style \0 delimited &amp;str (safely)</span>
-<span class="doccomment">//! let hello: &amp;[u8] = b&quot;hello_world\0more words&quot;;</span>
+<span class="doccomment">//! // Reads may fail; in this example due to a too large read for the given container.</span>
+<span class="doccomment">//! // Scroll&#39;s error type does not by default allocate to work in environments like no_std.</span>
+<span class="doccomment">//! let byte_err: scroll::Result&lt;i64&gt; = bytes.pread(0);</span>
+<span class="doccomment">//! assert!(byte_err.is_err());</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! // We can parse out custom datatypes, or types with lifetimes, as long as they implement</span>
+<span class="doccomment">//! // the conversion traits `TryFromCtx/FromCtx`.</span>
+<span class="doccomment">//! // Here we use the default context for &amp;str which parses are C-style &#39;\0&#39;-delimited string.</span>
+<span class="doccomment">//! let hello: &amp;[u8] = b&quot;hello world\0more words&quot;;</span>
 <span class="doccomment">//! let hello_world: &amp;str = hello.pread(0).unwrap();</span>
-<span class="doccomment">//! assert_eq!(&quot;hello_world&quot;, hello_world);</span>
+<span class="doccomment">//! assert_eq!(&quot;hello world&quot;, hello_world);</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! // ... and this parses the string if its space separated!</span>
-<span class="doccomment">//! use scroll::ctx::*;</span>
-<span class="doccomment">//! let spaces: &amp;[u8] = b&quot;hello world some junk&quot;;</span>
-<span class="doccomment">//! let world: &amp;str = spaces.pread_with(6, StrCtx::Delimiter(SPACE)).unwrap();</span>
-<span class="doccomment">//! assert_eq!(&quot;world&quot;, world);</span>
+<span class="doccomment">//! // We can again provide a custom context; for example to parse Space-delimited strings.</span>
+<span class="doccomment">//! // As you can see while we still call `pread` changing the context can influence the output —</span>
+<span class="doccomment">//! // instead of splitting at &#39;\0&#39; we split at spaces</span>
+<span class="doccomment">//! let hello2: &amp;[u8] = b&quot;hello world\0more words&quot;;</span>
+<span class="doccomment">//! let world: &amp;str = hello2.pread_with(6, ctx::StrCtx::Delimiter(ctx::SPACE)).unwrap();</span>
+<span class="doccomment">//! assert_eq!(&quot;world\0more&quot;, world);</span>
 <span class="doccomment">//! ```</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! # `std::io` API</span>
+<span class="doccomment">//! ## `std::io` API</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! Scroll can also read/write simple types from a `std::io::Read` or `std::io::Write` implementor. The  built-in numeric types are taken care of for you.  If you want to read a custom type, you need to implement the [FromCtx](trait.FromCtx.html) (_how_ to parse) and [SizeWith](ctx/trait.SizeWith.html) (_how_ big the parsed thing will be) traits.  You must compile with default features. For example:</span>
+<span class="doccomment">//! Scroll also allows reading from `std::io`. For this the types to read need to implement</span>
+<span class="doccomment">//! [FromCtx](ctx/trait.FromCtx.html) and [SizeWith](ctx/trait.SizeWith.html).</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! ```rust</span>
 <span class="doccomment">//! use std::io::Cursor;</span>
-<span class="doccomment">//! use scroll::IOread;</span>
-<span class="doccomment">//! let bytes_ = [0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00, 0xef,0xbe,0x00,0x00,];</span>
-<span class="doccomment">//! let mut bytes = Cursor::new(bytes_);</span>
+<span class="doccomment">//! use scroll::{IOread, ctx, Endian};</span>
+<span class="doccomment">//! let bytes = [0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00, 0xef,0xbe,0x00,0x00,];</span>
+<span class="doccomment">//! let mut cursor = Cursor::new(bytes);</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! // this will bump the cursor&#39;s Seek</span>
-<span class="doccomment">//! let foo = bytes.ioread::&lt;u64&gt;().unwrap();</span>
-<span class="doccomment">//! // ..ditto</span>
-<span class="doccomment">//! let bar = bytes.ioread::&lt;u32&gt;().unwrap();</span>
+<span class="doccomment">//! // IOread uses std::io::Read methods, thus the Cursor will be incremented on these reads:</span>
+<span class="doccomment">//! let prev = cursor.position();</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! let integer = cursor.ioread_with::&lt;u64&gt;(Endian::Little).unwrap();</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! let after = cursor.position();</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! assert!(prev &lt; after);</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! // SizeWith allows us to define a context-sensitive size of a read type:</span>
+<span class="doccomment">//! // Contexts can have different instantiations; e.g. the `Endian` context can be either Little or</span>
+<span class="doccomment">//! // Big. This is useful if for example the context contains the word-size of fields to be</span>
+<span class="doccomment">//! // read/written, e.g. switching between ELF32 or ELF64 at runtime.</span>
+<span class="doccomment">//! let size = &lt;u64 as ctx::SizeWith&lt;Endian&gt;&gt;::size_with(&amp;Endian::Little) as u64;</span>
+<span class="doccomment">//! assert_eq!(prev + size, after);</span>
 <span class="doccomment">//! ```</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! Similarly, we can write to anything that implements `std::io::Write` quite naturally:</span>
+<span class="doccomment">//! In the same vein as IOread we can use IOwrite to write a type to anything implementing</span>
+<span class="doccomment">//! `std::io::Write`:</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! ```rust</span>
-<span class="doccomment">//! use scroll::{IOwrite, LE, BE};</span>
-<span class="doccomment">//! use std::io::{Write, Cursor};</span>
+<span class="doccomment">//! use std::io::Cursor;</span>
+<span class="doccomment">//! use scroll::{IOwrite};</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! let mut bytes = [0x0u8; 10];</span>
+<span class="doccomment">//! let mut bytes = [0x0u8; 5];</span>
 <span class="doccomment">//! let mut cursor = Cursor::new(&amp;mut bytes[..]);</span>
-<span class="doccomment">//! cursor.write_all(b&quot;hello&quot;).unwrap();</span>
-<span class="doccomment">//! cursor.iowrite_with(0xdeadbeef as u32, BE).unwrap();</span>
-<span class="doccomment">//! assert_eq!(cursor.into_inner(), [0x68, 0x65, 0x6c, 0x6c, 0x6f, 0xde, 0xad, 0xbe, 0xef, 0x0]);</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! // This of course once again increments the cursor position</span>
+<span class="doccomment">//! cursor.iowrite_with(0xdeadbeef as u32, scroll::BE).unwrap();</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! assert_eq!(cursor.into_inner(), [0xde, 0xad, 0xbe, 0xef, 0x0]);</span>
 <span class="doccomment">//! ```</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! # Advanced Uses</span>
+<span class="doccomment">//! ## Complex use cases</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! Scroll is designed to be highly configurable - it allows you to implement various context (`Ctx`) sensitive traits, which then grants the implementor _automatic_ uses of the `Pread` and/or `Pwrite` traits.</span>
+<span class="doccomment">//! Scoll is designed to be highly adaptable while providing a strong abstraction between the types</span>
+<span class="doccomment">//! being read/written and the data container containing them.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! For example, suppose we have a datatype and we want to specify how to parse or serialize this datatype out of some arbitrary</span>
-<span class="doccomment">//! byte buffer. In order to do this, we need to provide a [TryFromCtx](trait.TryFromCtx.html) impl for our datatype.</span>
-<span class="doccomment">//! </span>
-<span class="doccomment">//! In particular, if we do this for the `[u8]` target, using the convention `(usize, YourCtx)`, you will automatically get access to</span>
-<span class="doccomment">//! calling `pread_with::&lt;YourDatatype&gt;` on arrays of bytes.</span>
-<span class="doccomment">//! </span>
+<span class="doccomment">//! In this example we&#39;ll define a custom Data and allow it to be read from an arbitrary byte</span>
+<span class="doccomment">//! buffer.</span>
+<span class="doccomment">//!</span>
 <span class="doccomment">//! ```rust</span>
-<span class="doccomment">//! use scroll::{self, ctx, Pread, BE, Endian};</span>
-<span class="doccomment">//! </span>
-<span class="doccomment">//! struct Data&lt;&#39;a&gt; {</span>
-<span class="doccomment">//!   name: &amp;&#39;a str,</span>
+<span class="doccomment">//! use scroll::{self, ctx, Pread, Endian};</span>
+<span class="doccomment">//! use scroll::ctx::StrCtx;</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! // Our custom context type. In a more complex situation you could for example store details on</span>
+<span class="doccomment">//! // how to write or read your type, field-sizes or other information.</span>
+<span class="doccomment">//! // In this simple example we could also do without using a custom context in the first place.</span>
+<span class="doccomment">//! #[derive(Copy, Clone)]</span>
+<span class="doccomment">//! struct Context(Endian);</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! // Our custom data type</span>
+<span class="doccomment">//! struct Data&lt;&#39;zerocopy&gt; {</span>
+<span class="doccomment">//!   // This is only a reference to the actual data; we make use of scroll&#39;s zero-copy capability</span>
+<span class="doccomment">//!   name: &amp;&#39;zerocopy str,</span>
 <span class="doccomment">//!   id: u32,</span>
 <span class="doccomment">//! }</span>
-<span class="doccomment">//! </span>
-<span class="doccomment">//! // note the lifetime specified here</span>
-<span class="doccomment">//! impl&lt;&#39;a&gt; ctx::TryFromCtx&lt;&#39;a, Endian&gt; for Data&lt;&#39;a&gt; {</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! // To allow for safe zero-copying scroll allows to specify lifetimes explicitly:</span>
+<span class="doccomment">//! // The context </span>
+<span class="doccomment">//! impl&lt;&#39;a&gt; ctx::TryFromCtx&lt;&#39;a, Context&gt; for Data&lt;&#39;a&gt; {</span>
+<span class="doccomment">//!   // If necessary you can set a custom error type here, which will be returned by Pread/Pwrite</span>
 <span class="doccomment">//!   type Error = scroll::Error;</span>
-<span class="doccomment">//!   type Size = usize;</span>
-<span class="doccomment">//!   // and the lifetime annotation on `&amp;&#39;a [u8]` here</span>
-<span class="doccomment">//!   fn try_from_ctx (src: &amp;&#39;a [u8], endian: Endian)</span>
-<span class="doccomment">//!     -&gt; Result&lt;(Self, Self::Size), Self::Error&gt; {</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!   // Using the explicit lifetime specification again you ensure that read data doesn&#39;t outlife</span>
+<span class="doccomment">//!   // its source buffer without having to resort to copying.</span>
+<span class="doccomment">//!   fn try_from_ctx (src: &amp;&#39;a [u8], ctx: Context)</span>
+<span class="doccomment">//!     // the `usize` returned here is the amount of bytes read.</span>
+<span class="doccomment">//!     -&gt; Result&lt;(Self, usize), Self::Error&gt; </span>
+<span class="doccomment">//!   {</span>
 <span class="doccomment">//!     let offset = &amp;mut 0;</span>
-<span class="doccomment">//!     let name = src.gread::&lt;&amp;str&gt;(offset)?;</span>
-<span class="doccomment">//!     let id = src.gread_with(offset, endian)?;</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!     let id = src.gread_with(offset, ctx.0)?;</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!     // In a more serious application you would validate data here of course.</span>
+<span class="doccomment">//!     let namelen: u16 = src.gread_with(offset, ctx.0)?;</span>
+<span class="doccomment">//!     let name = src.gread_with::&lt;&amp;str&gt;(offset, StrCtx::Length(namelen as usize))?;</span>
+<span class="doccomment">//!</span>
 <span class="doccomment">//!     Ok((Data { name: name, id: id }, *offset))</span>
 <span class="doccomment">//!   }</span>
 <span class="doccomment">//! }</span>
-<span class="doccomment">//! </span>
-<span class="doccomment">//! let bytes = b&quot;UserName\x00\x01\x02\x03\x04&quot;;</span>
-<span class="doccomment">//! let data = bytes.pread_with::&lt;Data&gt;(0, BE).unwrap();</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! // In lieu of a complex byte buffer we hearken back to a simple &amp;[u8]; the default source</span>
+<span class="doccomment">//! // of TryFromCtx. However, any type that implements Pread to produce a &amp;[u8] can now read</span>
+<span class="doccomment">//! // `Data` thanks to it&#39;s implementation of TryFromCtx.</span>
+<span class="doccomment">//! let bytes = b&quot;\x01\x02\x03\x04\x00\x08UserName&quot;;</span>
+<span class="doccomment">//! let data: Data = bytes.pread_with(0, Context(Endian::Big)).unwrap();</span>
+<span class="doccomment">//!</span>
 <span class="doccomment">//! assert_eq!(data.id, 0x01020304);</span>
 <span class="doccomment">//! assert_eq!(data.name.to_string(), &quot;UserName&quot;.to_string());</span>
 <span class="doccomment">//! ```</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! Please see the [Pread documentation examples](trait.Pread.html#implementing-your-own-reader)</span>
+<span class="doccomment">//! For further explanation of the traits and how to implement them manually refer to</span>
+<span class="doccomment">//! [Pread](trait.Pread.html) and [TryFromCtx](ctx/trait.TryFromCtx.html).</span>
 
 <span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>), <span class="ident">no_std</span>)]</span>
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;derive&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_imports</span>)]</span>
-<span class="attribute">#[<span class="ident">macro_use</span>]</span>
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">scroll_derive</span>;
-
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;derive&quot;</span>)]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">scroll_derive</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">scroll_derive</span>::{<span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>, <span class="ident">IOread</span>, <span class="ident">IOwrite</span>};
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">core</span>;
@@ -698,20 +845,33 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
 <span class="kw">mod</span> <span class="ident">lesser</span>;
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">endian</span>::<span class="kw-2">*</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">pread</span>::<span class="kw-2">*</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">pwrite</span>::<span class="kw-2">*</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">greater</span>::<span class="kw-2">*</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">error</span>::<span class="kw-2">*</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">leb128</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">endian</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">pread</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">pwrite</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">greater</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">error</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">leb128</span>::<span class="kw-2">*</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">lesser</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">lesser</span>::<span class="kw-2">*</span>;
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">export</span> {
     <span class="kw">pub</span> <span class="kw">use</span> ::<span class="ident">core</span>::<span class="ident">result</span>;
     <span class="kw">pub</span> <span class="kw">use</span> ::<span class="ident">core</span>::<span class="ident">mem</span>;
 }
+
+
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused</span>)]</span>
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">doc_comment</span> {
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> {
+        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>]</span>
+        <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
+        <span class="kw">mod</span> <span class="ident">readme_tests</span> {}
+    };
+}
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;derive&quot;</span>)]</span>
+<span class="macro">doc_comment</span><span class="macro">!</span>(<span class="macro">include_str</span><span class="macro">!</span>(<span class="string">&quot;../README.md&quot;</span>));
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
@@ -736,7 +896,7 @@
     <span class="comment">//////////////////////////////////////////////////////////////</span>
 
     <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">pwrite_test</span> {
-        (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">write</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">read</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">deadbeef</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {
+        (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">write</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">read</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">deadbeef</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> {
             <span class="attribute">#[<span class="ident">test</span>]</span>
             <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">write</span>() {
                 <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">Pwrite</span>, <span class="ident">Pread</span>, <span class="ident">BE</span>};
@@ -862,23 +1022,23 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExternalError</span> {}
 
     <span class="kw">impl</span> <span class="ident">Display</span> <span class="kw">for</span> <span class="ident">ExternalError</span> {
-        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fmt</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fmt</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
             <span class="macro">write</span><span class="macro">!</span>(<span class="ident">fmt</span>, <span class="string">&quot;ExternalError&quot;</span>)
         }
     }
 
     <span class="kw">impl</span> <span class="ident">error</span>::<span class="ident">Error</span> <span class="kw">for</span> <span class="ident">ExternalError</span> {
-        <span class="kw">fn</span> <span class="ident">description</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
+        <span class="kw">fn</span> <span class="ident">description</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
             <span class="string">&quot;ExternalError&quot;</span>
         }
-        <span class="kw">fn</span> <span class="ident">cause</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">error</span>::<span class="ident">Error</span><span class="op">&gt;</span> { <span class="prelude-val">None</span>}
+        <span class="kw">fn</span> <span class="ident">cause</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">error</span>::<span class="ident">Error</span><span class="op">&gt;</span> { <span class="prelude-val">None</span>}
     }
 
     <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw">super</span>::<span class="ident">Error</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ExternalError</span> {
-        <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">err</span>: <span class="kw">super</span>::<span class="ident">Error</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">err</span>: <span class="kw">super</span>::<span class="ident">Error</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
             <span class="comment">//use super::Error::*;</span>
             <span class="kw">match</span> <span class="ident">err</span> {
-                <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ExternalError</span>{},
+                <span class="kw">_</span> <span class="op">=&gt;</span> <span class="ident">ExternalError</span>{},
             }
         }
     }
@@ -888,8 +1048,7 @@
 
     <span class="kw">impl</span> <span class="kw">super</span>::<span class="ident">ctx</span>::<span class="ident">TryIntoCtx</span><span class="op">&lt;</span><span class="kw">super</span>::<span class="ident">Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Foo</span> {
         <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">ExternalError</span>;
-        <span class="kw">type</span> <span class="ident">Size</span> <span class="op">=</span> <span class="ident">usize</span>;
-        <span class="kw">fn</span> <span class="ident">try_into_ctx</span>(<span class="self">self</span>, <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>], <span class="ident">le</span>: <span class="kw">super</span>::<span class="ident">Endian</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Size</span>, <span class="self">Self</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+        <span class="kw">fn</span> <span class="ident">try_into_ctx</span>(<span class="self">self</span>, <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>], <span class="ident">le</span>: <span class="kw">super</span>::<span class="ident">Endian</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="self">Self</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
             <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">Pwrite</span>;
             <span class="kw">if</span> <span class="ident">this</span>.<span class="ident">len</span>() <span class="op">&lt;</span> <span class="number">2</span> { <span class="kw">return</span> <span class="prelude-val">Err</span>((<span class="ident">ExternalError</span> {}).<span class="ident">into</span>()) }
             <span class="ident">this</span>.<span class="ident">pwrite_with</span>(<span class="self">self</span>.<span class="number">0</span>, <span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>;
@@ -899,8 +1058,7 @@
 
     <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">super</span>::<span class="ident">ctx</span>::<span class="ident">TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="kw">super</span>::<span class="ident">Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Foo</span> {
         <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">ExternalError</span>;
-        <span class="kw">type</span> <span class="ident">Size</span> <span class="op">=</span> <span class="ident">usize</span>;
-        <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">le</span>: <span class="kw">super</span>::<span class="ident">Endian</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="self">Self</span>::<span class="ident">Size</span>), <span class="self">Self</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+        <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">le</span>: <span class="kw">super</span>::<span class="ident">Endian</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>), <span class="self">Self</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
             <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">Pread</span>;
             <span class="kw">if</span> <span class="ident">this</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="number">2</span> { <span class="kw">return</span> <span class="prelude-val">Err</span>((<span class="ident">ExternalError</span> {}).<span class="ident">into</span>()) }
             <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> <span class="ident">this</span>.<span class="ident">pread_with</span>(<span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>;
@@ -929,7 +1087,7 @@
     <span class="comment">// begin gread_with</span>
     <span class="comment">//////////////////////////////////////////////////////////////</span>
     <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">g_test</span> {
-        (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">read</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">deadbeef</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>:<span class="ident">ty</span>) <span class="op">=</span><span class="op">&gt;</span> {
+        (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">read</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">deadbeef</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>:<span class="ident">ty</span>) <span class="op">=&gt;</span> {
             <span class="attribute">#[<span class="ident">test</span>]</span>
             <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">read</span>() {
                 <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">Pread</span>;
@@ -948,7 +1106,7 @@
     <span class="macro">g_test</span><span class="macro">!</span>(<span class="ident">simple_gread_i64</span>, <span class="number">940700423303335439</span>, <span class="ident">i64</span>);
 
     <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">simple_float_test</span> {
-        (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">read</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">deadbeef</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>:<span class="ident">ty</span>) <span class="op">=</span><span class="op">&gt;</span> {
+        (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">read</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">deadbeef</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>:<span class="ident">ty</span>) <span class="op">=&gt;</span> {
             <span class="attribute">#[<span class="ident">test</span>]</span>
             <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">read</span>() {
                 <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">Pread</span>;
@@ -965,7 +1123,7 @@
     <span class="macro">simple_float_test</span><span class="macro">!</span>(<span class="ident">gread_f64</span>, <span class="number">0.5</span>, <span class="ident">f64</span>);
 
     <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">g_read_write_test</span> {
-        (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">read</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">val</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>:<span class="ident">ty</span>) <span class="op">=</span><span class="op">&gt;</span> {
+        (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">read</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">val</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>:<span class="ident">ty</span>) <span class="op">=&gt;</span> {
             <span class="attribute">#[<span class="ident">test</span>]</span>
             <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">read</span>() {
                 <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">LE</span>, <span class="ident">BE</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>};
@@ -1053,8 +1211,8 @@
         <span class="kw">let</span> <span class="ident">astring</span>: [<span class="ident">u8</span>; <span class="number">3</span>] <span class="op">=</span> [<span class="number">0x45</span>, <span class="number">042</span>, <span class="number">0x44</span>];
         <span class="kw">let</span> <span class="ident">string</span> <span class="op">=</span> <span class="ident">astring</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>(<span class="ident">offset</span>, <span class="ident">StrCtx</span>::<span class="ident">Length</span>(<span class="number">2</span>));
         <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">string</span> {
-            <span class="kw-2">&amp;</span><span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {},
-            <span class="kw-2">&amp;</span><span class="prelude-val">Err</span>(<span class="kw-2">ref</span> <span class="ident">err</span>) <span class="op">=</span><span class="op">&gt;</span> {<span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">err</span>); <span class="macro">panic</span><span class="macro">!</span>();}
+            <span class="kw-2">&amp;</span><span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=&gt;</span> {},
+            <span class="kw-2">&amp;</span><span class="prelude-val">Err</span>(<span class="kw-2">ref</span> <span class="ident">err</span>) <span class="op">=&gt;</span> {<span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">err</span>); <span class="macro">panic</span><span class="macro">!</span>();}
         }
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">string</span>.<span class="ident">unwrap</span>(), <span class="string">&quot;E*&quot;</span>);
         <span class="kw-2">*</span><span class="ident">offset</span> <span class="op">=</span> <span class="number">0</span>;
