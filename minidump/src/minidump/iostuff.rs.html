@@ -24,8 +24,8 @@
 
 <span class="doccomment">//! General-purpose I/O routines.</span>
 
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
 
 <span class="doccomment">/// Shorthand for Read + Seek</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Readable</span>: <span class="ident">Read</span> <span class="op">+</span> <span class="ident">Seek</span> {}

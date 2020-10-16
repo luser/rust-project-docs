@@ -659,6 +659,29 @@
 <span id="658">658</span>
 <span id="659">659</span>
 <span id="660">660</span>
+<span id="661">661</span>
+<span id="662">662</span>
+<span id="663">663</span>
+<span id="664">664</span>
+<span id="665">665</span>
+<span id="666">666</span>
+<span id="667">667</span>
+<span id="668">668</span>
+<span id="669">669</span>
+<span id="670">670</span>
+<span id="671">671</span>
+<span id="672">672</span>
+<span id="673">673</span>
+<span id="674">674</span>
+<span id="675">675</span>
+<span id="676">676</span>
+<span id="677">677</span>
+<span id="678">678</span>
+<span id="679">679</span>
+<span id="680">680</span>
+<span id="681">681</span>
+<span id="682">682</span>
+<span id="683">683</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class="comment">// file at the top-level directory of this distribution.</span>
@@ -666,15 +689,15 @@
 <span class="doccomment">//! CPU contexts.</span>
 
 <span class="kw">use</span> <span class="ident">scroll</span>::{<span class="self">self</span>, <span class="ident">Pread</span>};
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">collections</span>::<span class="ident">HashSet</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">mem</span>;
 
+<span class="kw">use</span> <span class="ident">iostuff</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">minidump_common</span>::<span class="ident">format</span> <span class="kw">as</span> <span class="ident">md</span>;
 <span class="kw">use</span> <span class="ident">minidump_common</span>::<span class="ident">format</span>::<span class="ident">ContextFlagsCpu</span>;
-<span class="kw">use</span> <span class="ident">iostuff</span>::<span class="kw-2">*</span>;
 
 <span class="doccomment">/// The CPU-specific context structure.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
@@ -898,7 +921,7 @@
 
 <span class="doccomment">/// General-purpose registers for x86.</span>
 <span class="kw">static</span> <span class="ident">X86_REGS</span>: [<span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>; <span class="number">10</span>] <span class="op">=</span> [
-    <span class="string">&quot;eip&quot;</span>, <span class="string">&quot;esp&quot;</span>, <span class="string">&quot;ebp&quot;</span>, <span class="string">&quot;ebx&quot;</span>, <span class="string">&quot;esi&quot;</span>, <span class="string">&quot;edi&quot;</span>, <span class="string">&quot;eax&quot;</span>, <span class="string">&quot;ecx&quot;</span>, <span class="string">&quot;edx&quot;</span>, <span class="string">&quot;efl&quot;</span>
+    <span class="string">&quot;eip&quot;</span>, <span class="string">&quot;esp&quot;</span>, <span class="string">&quot;ebp&quot;</span>, <span class="string">&quot;ebx&quot;</span>, <span class="string">&quot;esi&quot;</span>, <span class="string">&quot;edi&quot;</span>, <span class="string">&quot;eax&quot;</span>, <span class="string">&quot;ecx&quot;</span>, <span class="string">&quot;edx&quot;</span>, <span class="string">&quot;efl&quot;</span>,
 ];
 
 <span class="doccomment">/// General-purpose registers for x86-64.</span>
@@ -909,11 +932,9 @@
 
 <span class="doccomment">/// General-purpose registers for aarch64.</span>
 <span class="kw">static</span> <span class="ident">ARM64_REGS</span>: [<span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>; <span class="number">33</span>] <span class="op">=</span> [
-    <span class="string">&quot;x0&quot;</span>, <span class="string">&quot;x1&quot;</span>, <span class="string">&quot;x2&quot;</span>, <span class="string">&quot;x3&quot;</span>, <span class="string">&quot;x4&quot;</span>, <span class="string">&quot;x5&quot;</span>, <span class="string">&quot;x6&quot;</span>, <span class="string">&quot;x7&quot;</span>,
-    <span class="string">&quot;x8&quot;</span>, <span class="string">&quot;x9&quot;</span>, <span class="string">&quot;x10&quot;</span>, <span class="string">&quot;x11&quot;</span>, <span class="string">&quot;x12&quot;</span>, <span class="string">&quot;x13&quot;</span>, <span class="string">&quot;x14&quot;</span>, <span class="string">&quot;x15&quot;</span>,
-    <span class="string">&quot;x16&quot;</span>, <span class="string">&quot;x17&quot;</span>, <span class="string">&quot;x18&quot;</span>, <span class="string">&quot;x19&quot;</span>, <span class="string">&quot;x20&quot;</span>, <span class="string">&quot;x21&quot;</span>, <span class="string">&quot;x22&quot;</span>, <span class="string">&quot;x23&quot;</span>,
-    <span class="string">&quot;x24&quot;</span>, <span class="string">&quot;x25&quot;</span>, <span class="string">&quot;x26&quot;</span>, <span class="string">&quot;x27&quot;</span>, <span class="string">&quot;x28&quot;</span>, <span class="string">&quot;x29&quot;</span>, <span class="string">&quot;x30&quot;</span>, <span class="string">&quot;x31&quot;</span>,
-    <span class="string">&quot;pc&quot;</span>,
+    <span class="string">&quot;x0&quot;</span>, <span class="string">&quot;x1&quot;</span>, <span class="string">&quot;x2&quot;</span>, <span class="string">&quot;x3&quot;</span>, <span class="string">&quot;x4&quot;</span>, <span class="string">&quot;x5&quot;</span>, <span class="string">&quot;x6&quot;</span>, <span class="string">&quot;x7&quot;</span>, <span class="string">&quot;x8&quot;</span>, <span class="string">&quot;x9&quot;</span>, <span class="string">&quot;x10&quot;</span>, <span class="string">&quot;x11&quot;</span>, <span class="string">&quot;x12&quot;</span>, <span class="string">&quot;x13&quot;</span>, <span class="string">&quot;x14&quot;</span>,
+    <span class="string">&quot;x15&quot;</span>, <span class="string">&quot;x16&quot;</span>, <span class="string">&quot;x17&quot;</span>, <span class="string">&quot;x18&quot;</span>, <span class="string">&quot;x19&quot;</span>, <span class="string">&quot;x20&quot;</span>, <span class="string">&quot;x21&quot;</span>, <span class="string">&quot;x22&quot;</span>, <span class="string">&quot;x23&quot;</span>, <span class="string">&quot;x24&quot;</span>, <span class="string">&quot;x25&quot;</span>, <span class="string">&quot;x26&quot;</span>, <span class="string">&quot;x27&quot;</span>,
+    <span class="string">&quot;x28&quot;</span>, <span class="string">&quot;x29&quot;</span>, <span class="string">&quot;x30&quot;</span>, <span class="string">&quot;x31&quot;</span>, <span class="string">&quot;pc&quot;</span>,
 ];
 <span class="comment">//======================================================</span>
 <span class="comment">// Implementations</span>
@@ -933,7 +954,8 @@
         <span class="comment">// so special-case them by size.</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0</span>;
         <span class="kw">if</span> <span class="ident">bytes</span>.<span class="ident">len</span>() <span class="op">==</span> <span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">md</span>::<span class="ident">CONTEXT_AMD64</span><span class="op">&gt;</span>() {
-            <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">CONTEXT_AMD64</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
+            <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">CONTEXT_AMD64</span> <span class="op">=</span> <span class="ident">bytes</span>
+                .<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
                 .<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>))<span class="question-mark">?</span>;
             <span class="kw">if</span> <span class="ident">ContextFlagsCpu</span>::<span class="ident">from_flags</span>(<span class="ident">ctx</span>.<span class="ident">context_flags</span>) <span class="op">!=</span> <span class="ident">ContextFlagsCpu</span>::<span class="ident">CONTEXT_AMD64</span> {
                 <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>);
@@ -941,17 +963,23 @@
                 <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">MinidumpContext</span>::<span class="ident">from_raw</span>(<span class="ident">MinidumpRawContext</span>::<span class="ident">AMD64</span>(<span class="ident">ctx</span>)));
             }
         } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">bytes</span>.<span class="ident">len</span>() <span class="op">==</span> <span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">md</span>::<span class="ident">CONTEXT_PPC64</span><span class="op">&gt;</span>() {
-            <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">CONTEXT_PPC64</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
+            <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">CONTEXT_PPC64</span> <span class="op">=</span> <span class="ident">bytes</span>
+                .<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
                 .<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>))<span class="question-mark">?</span>;
-            <span class="kw">if</span> <span class="ident">ContextFlagsCpu</span>::<span class="ident">from_flags</span>(<span class="ident">ctx</span>.<span class="ident">context_flags</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">!=</span> <span class="ident">ContextFlagsCpu</span>::<span class="ident">CONTEXT_PPC64</span> {
+            <span class="kw">if</span> <span class="ident">ContextFlagsCpu</span>::<span class="ident">from_flags</span>(<span class="ident">ctx</span>.<span class="ident">context_flags</span> <span class="kw">as</span> <span class="ident">u32</span>)
+                <span class="op">!=</span> <span class="ident">ContextFlagsCpu</span>::<span class="ident">CONTEXT_PPC64</span>
+            {
                 <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>);
             } <span class="kw">else</span> {
                 <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">MinidumpContext</span>::<span class="ident">from_raw</span>(<span class="ident">MinidumpRawContext</span>::<span class="ident">PPC64</span>(<span class="ident">ctx</span>)));
             }
         } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">bytes</span>.<span class="ident">len</span>() <span class="op">==</span> <span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">md</span>::<span class="ident">CONTEXT_ARM64_OLD</span><span class="op">&gt;</span>() {
-            <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">CONTEXT_ARM64_OLD</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
+            <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">CONTEXT_ARM64_OLD</span> <span class="op">=</span> <span class="ident">bytes</span>
+                .<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
                 .<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>))<span class="question-mark">?</span>;
-            <span class="kw">if</span> <span class="ident">ContextFlagsCpu</span>::<span class="ident">from_flags</span>(<span class="ident">ctx</span>.<span class="ident">context_flags</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">!=</span> <span class="ident">ContextFlagsCpu</span>::<span class="ident">CONTEXT_ARM64_OLD</span> {
+            <span class="kw">if</span> <span class="ident">ContextFlagsCpu</span>::<span class="ident">from_flags</span>(<span class="ident">ctx</span>.<span class="ident">context_flags</span> <span class="kw">as</span> <span class="ident">u32</span>)
+                <span class="op">!=</span> <span class="ident">ContextFlagsCpu</span>::<span class="ident">CONTEXT_ARM64_OLD</span>
+            {
                 <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>);
             } <span class="kw">else</span> {
                 <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">MinidumpContext</span>::<span class="ident">from_raw</span>(<span class="ident">MinidumpRawContext</span>::<span class="ident">OLDARM64</span>(<span class="ident">ctx</span>)));
@@ -960,38 +988,46 @@
 
         <span class="comment">// For everything else, read the flags and determine context</span>
         <span class="comment">// type from that.</span>
-        <span class="kw">let</span> <span class="ident">flags</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>).<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>))<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">flags</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">bytes</span>
+            .<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
+            .<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>))<span class="question-mark">?</span>;
         <span class="comment">// Seek back, the flags are also part of the RawContext structs.</span>
         <span class="ident">offset</span> <span class="op">=</span> <span class="number">0</span>;
         <span class="comment">// TODO: handle dumps with MD_CONTEXT_ARM_OLD</span>
         <span class="kw">match</span> <span class="ident">ContextFlagsCpu</span>::<span class="ident">from_flags</span>(<span class="ident">flags</span>) {
             <span class="ident">ContextFlagsCpu</span>::<span class="ident">CONTEXT_X86</span> <span class="op">=&gt;</span> {
-                <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">CONTEXT_X86</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
+                <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">CONTEXT_X86</span> <span class="op">=</span> <span class="ident">bytes</span>
+                    .<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
                     .<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>))<span class="question-mark">?</span>;
                 <span class="prelude-val">Ok</span>(<span class="ident">MinidumpContext</span>::<span class="ident">from_raw</span>(<span class="ident">MinidumpRawContext</span>::<span class="ident">X86</span>(<span class="ident">ctx</span>)))
             }
             <span class="ident">ContextFlagsCpu</span>::<span class="ident">CONTEXT_PPC</span> <span class="op">=&gt;</span> {
-                <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">CONTEXT_PPC</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
+                <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">CONTEXT_PPC</span> <span class="op">=</span> <span class="ident">bytes</span>
+                    .<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
                     .<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>))<span class="question-mark">?</span>;
                 <span class="prelude-val">Ok</span>(<span class="ident">MinidumpContext</span>::<span class="ident">from_raw</span>(<span class="ident">MinidumpRawContext</span>::<span class="ident">PPC</span>(<span class="ident">ctx</span>)))
             }
             <span class="ident">ContextFlagsCpu</span>::<span class="ident">CONTEXT_SPARC</span> <span class="op">=&gt;</span> {
-                <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">CONTEXT_SPARC</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
+                <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">CONTEXT_SPARC</span> <span class="op">=</span> <span class="ident">bytes</span>
+                    .<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
                     .<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>))<span class="question-mark">?</span>;
                 <span class="prelude-val">Ok</span>(<span class="ident">MinidumpContext</span>::<span class="ident">from_raw</span>(<span class="ident">MinidumpRawContext</span>::<span class="ident">SPARC</span>(<span class="ident">ctx</span>)))
             }
             <span class="ident">ContextFlagsCpu</span>::<span class="ident">CONTEXT_ARM</span> <span class="op">=&gt;</span> {
-                <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">CONTEXT_ARM</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
+                <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">CONTEXT_ARM</span> <span class="op">=</span> <span class="ident">bytes</span>
+                    .<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
                     .<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>))<span class="question-mark">?</span>;
                 <span class="prelude-val">Ok</span>(<span class="ident">MinidumpContext</span>::<span class="ident">from_raw</span>(<span class="ident">MinidumpRawContext</span>::<span class="ident">ARM</span>(<span class="ident">ctx</span>)))
             }
             <span class="ident">ContextFlagsCpu</span>::<span class="ident">CONTEXT_MIPS</span> <span class="op">=&gt;</span> {
-                <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">CONTEXT_MIPS</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
+                <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">CONTEXT_MIPS</span> <span class="op">=</span> <span class="ident">bytes</span>
+                    .<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
                     .<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>))<span class="question-mark">?</span>;
                 <span class="prelude-val">Ok</span>(<span class="ident">MinidumpContext</span>::<span class="ident">from_raw</span>(<span class="ident">MinidumpRawContext</span>::<span class="ident">MIPS</span>(<span class="ident">ctx</span>)))
             }
             <span class="ident">ContextFlagsCpu</span>::<span class="ident">CONTEXT_ARM64</span> <span class="op">=&gt;</span> {
-                <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">CONTEXT_ARM64</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
+                <span class="kw">let</span> <span class="ident">ctx</span>: <span class="ident">md</span>::<span class="ident">CONTEXT_ARM64</span> <span class="op">=</span> <span class="ident">bytes</span>
+                    .<span class="ident">gread_with</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">offset</span>, <span class="ident">endian</span>)
                     .<span class="ident">or</span>(<span class="prelude-val">Err</span>(<span class="ident">ContextError</span>::<span class="ident">ReadFailure</span>))<span class="question-mark">?</span>;
                 <span class="prelude-val">Ok</span>(<span class="ident">MinidumpContext</span>::<span class="ident">from_raw</span>(<span class="ident">MinidumpRawContext</span>::<span class="ident">ARM64</span>(<span class="ident">ctx</span>)))
             }
@@ -1002,8 +1038,9 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_instruction_pointer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u64</span> {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">raw</span> {
             <span class="ident">MinidumpRawContext</span>::<span class="ident">AMD64</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span> <span class="ident">ctx</span>.<span class="ident">rip</span>,
-            <span class="ident">MinidumpRawContext</span>::<span class="ident">ARM</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span>
-                <span class="ident">ctx</span>.<span class="ident">iregs</span>[<span class="ident">md</span>::<span class="ident">ArmRegisterNumbers</span>::<span class="ident">ProgramCounter</span> <span class="kw">as</span> <span class="ident">usize</span>] <span class="kw">as</span> <span class="ident">u64</span>,
+            <span class="ident">MinidumpRawContext</span>::<span class="ident">ARM</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span> {
+                <span class="ident">ctx</span>.<span class="ident">iregs</span>[<span class="ident">md</span>::<span class="ident">ArmRegisterNumbers</span>::<span class="ident">ProgramCounter</span> <span class="kw">as</span> <span class="ident">usize</span>] <span class="kw">as</span> <span class="ident">u64</span>
+            }
             <span class="ident">MinidumpRawContext</span>::<span class="ident">ARM64</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span> <span class="ident">ctx</span>.<span class="ident">pc</span>,
             <span class="ident">MinidumpRawContext</span>::<span class="ident">OLDARM64</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span> <span class="ident">ctx</span>.<span class="ident">pc</span>,
             <span class="ident">MinidumpRawContext</span>::<span class="ident">PPC</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span> <span class="ident">ctx</span>.<span class="ident">srr0</span> <span class="kw">as</span> <span class="ident">u64</span>,
@@ -1017,21 +1054,28 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_stack_pointer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u64</span> {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">raw</span> {
             <span class="ident">MinidumpRawContext</span>::<span class="ident">AMD64</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span> <span class="ident">ctx</span>.<span class="ident">rsp</span>,
-            <span class="ident">MinidumpRawContext</span>::<span class="ident">ARM</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span>
-                <span class="ident">ctx</span>.<span class="ident">iregs</span>[<span class="ident">md</span>::<span class="ident">ArmRegisterNumbers</span>::<span class="ident">StackPointer</span> <span class="kw">as</span> <span class="ident">usize</span>] <span class="kw">as</span> <span class="ident">u64</span>,
-            <span class="ident">MinidumpRawContext</span>::<span class="ident">ARM64</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span>
-                <span class="ident">ctx</span>.<span class="ident">iregs</span>[<span class="ident">md</span>::<span class="ident">Arm64RegisterNumbers</span>::<span class="ident">StackPointer</span> <span class="kw">as</span> <span class="ident">usize</span>],
-            <span class="ident">MinidumpRawContext</span>::<span class="ident">OLDARM64</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span>
-                <span class="ident">ctx</span>.<span class="ident">iregs</span>[<span class="ident">md</span>::<span class="ident">Arm64RegisterNumbers</span>::<span class="ident">StackPointer</span> <span class="kw">as</span> <span class="ident">usize</span>],
-            <span class="ident">MinidumpRawContext</span>::<span class="ident">PPC</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span>
-                <span class="ident">ctx</span>.<span class="ident">gpr</span>[<span class="ident">md</span>::<span class="ident">PpcRegisterNumbers</span>::<span class="ident">StackPointer</span> <span class="kw">as</span> <span class="ident">usize</span>] <span class="kw">as</span> <span class="ident">u64</span>,
-            <span class="ident">MinidumpRawContext</span>::<span class="ident">PPC64</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span>
-                <span class="ident">ctx</span>.<span class="ident">gpr</span>[<span class="ident">md</span>::<span class="ident">Ppc64RegisterNumbers</span>::<span class="ident">StackPointer</span> <span class="kw">as</span> <span class="ident">usize</span>],
-            <span class="ident">MinidumpRawContext</span>::<span class="ident">SPARC</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span>
-                <span class="ident">ctx</span>.<span class="ident">g_r</span>[<span class="ident">md</span>::<span class="ident">SparcRegisterNumbers</span>::<span class="ident">StackPointer</span> <span class="kw">as</span> <span class="ident">usize</span>],
+            <span class="ident">MinidumpRawContext</span>::<span class="ident">ARM</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span> {
+                <span class="ident">ctx</span>.<span class="ident">iregs</span>[<span class="ident">md</span>::<span class="ident">ArmRegisterNumbers</span>::<span class="ident">StackPointer</span> <span class="kw">as</span> <span class="ident">usize</span>] <span class="kw">as</span> <span class="ident">u64</span>
+            }
+            <span class="ident">MinidumpRawContext</span>::<span class="ident">ARM64</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span> {
+                <span class="ident">ctx</span>.<span class="ident">iregs</span>[<span class="ident">md</span>::<span class="ident">Arm64RegisterNumbers</span>::<span class="ident">StackPointer</span> <span class="kw">as</span> <span class="ident">usize</span>]
+            }
+            <span class="ident">MinidumpRawContext</span>::<span class="ident">OLDARM64</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span> {
+                <span class="ident">ctx</span>.<span class="ident">iregs</span>[<span class="ident">md</span>::<span class="ident">Arm64RegisterNumbers</span>::<span class="ident">StackPointer</span> <span class="kw">as</span> <span class="ident">usize</span>]
+            }
+            <span class="ident">MinidumpRawContext</span>::<span class="ident">PPC</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span> {
+                <span class="ident">ctx</span>.<span class="ident">gpr</span>[<span class="ident">md</span>::<span class="ident">PpcRegisterNumbers</span>::<span class="ident">StackPointer</span> <span class="kw">as</span> <span class="ident">usize</span>] <span class="kw">as</span> <span class="ident">u64</span>
+            }
+            <span class="ident">MinidumpRawContext</span>::<span class="ident">PPC64</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span> {
+                <span class="ident">ctx</span>.<span class="ident">gpr</span>[<span class="ident">md</span>::<span class="ident">Ppc64RegisterNumbers</span>::<span class="ident">StackPointer</span> <span class="kw">as</span> <span class="ident">usize</span>]
+            }
+            <span class="ident">MinidumpRawContext</span>::<span class="ident">SPARC</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span> {
+                <span class="ident">ctx</span>.<span class="ident">g_r</span>[<span class="ident">md</span>::<span class="ident">SparcRegisterNumbers</span>::<span class="ident">StackPointer</span> <span class="kw">as</span> <span class="ident">usize</span>]
+            }
             <span class="ident">MinidumpRawContext</span>::<span class="ident">X86</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span> <span class="ident">ctx</span>.<span class="ident">esp</span> <span class="kw">as</span> <span class="ident">u64</span>,
-            <span class="ident">MinidumpRawContext</span>::<span class="ident">MIPS</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span>
-                <span class="ident">ctx</span>.<span class="ident">iregs</span>[<span class="ident">md</span>::<span class="ident">MipsRegisterNumbers</span>::<span class="ident">StackPointer</span> <span class="kw">as</span> <span class="ident">usize</span>],
+            <span class="ident">MinidumpRawContext</span>::<span class="ident">MIPS</span>(<span class="kw-2">ref</span> <span class="ident">ctx</span>) <span class="op">=&gt;</span> {
+                <span class="ident">ctx</span>.<span class="ident">iregs</span>[<span class="ident">md</span>::<span class="ident">MipsRegisterNumbers</span>::<span class="ident">StackPointer</span> <span class="kw">as</span> <span class="ident">usize</span>]
+            }
         }
     }
 
@@ -1295,21 +1339,23 @@
                     <span class="string">r#&quot;CONTEXT_ARM64
   context_flags        = {:#x}
 &quot;#</span>,
-                    {<span class="ident">raw</span>.<span class="ident">context_flags</span>}
+                    { <span class="ident">raw</span>.<span class="ident">context_flags</span> }
                 )<span class="question-mark">?</span>;
-                <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">reg</span>) <span class="kw">in</span> {<span class="ident">raw</span>.<span class="ident">iregs</span>}.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
+                <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">reg</span>) <span class="kw">in</span> { <span class="ident">raw</span>.<span class="ident">iregs</span> }.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
                     <span class="macro">writeln</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;  iregs[{:2}]            = {:#x}&quot;</span>, <span class="ident">i</span>, <span class="ident">reg</span>)<span class="question-mark">?</span>;
                 }
-                <span class="macro">writeln</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;  pc                   = {:#x}&quot;</span>, {<span class="ident">raw</span>.<span class="ident">pc</span>})<span class="question-mark">?</span>;
+                <span class="macro">writeln</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;  pc                   = {:#x}&quot;</span>, { <span class="ident">raw</span>.<span class="ident">pc</span> })<span class="question-mark">?</span>;
                 <span class="macro">write</span><span class="macro">!</span>(
                     <span class="ident">f</span>,
                     <span class="string">r#&quot;  cpsr                 = {:#x}
   float_save.fpsr     = {:#x}
   float_save.fpcr     = {:#x}
 &quot;#</span>,
-                    {<span class="ident">raw</span>.<span class="ident">cpsr</span>}, {<span class="ident">raw</span>.<span class="ident">float_save</span>}.<span class="ident">fpsr</span>, {<span class="ident">raw</span>.<span class="ident">float_save</span>}.<span class="ident">fpcr</span>
+                    { <span class="ident">raw</span>.<span class="ident">cpsr</span> },
+                    { <span class="ident">raw</span>.<span class="ident">float_save</span> }.<span class="ident">fpsr</span>,
+                    { <span class="ident">raw</span>.<span class="ident">float_save</span> }.<span class="ident">fpcr</span>
                 )<span class="question-mark">?</span>;
-                <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">reg</span>) <span class="kw">in</span> {<span class="ident">raw</span>.<span class="ident">float_save</span>}.<span class="ident">regs</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
+                <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">reg</span>) <span class="kw">in</span> { <span class="ident">raw</span>.<span class="ident">float_save</span> }.<span class="ident">regs</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
                     <span class="macro">writeln</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;  float_save.regs[{:2}] = {:#x}&quot;</span>, <span class="ident">i</span>, <span class="ident">reg</span>)<span class="question-mark">?</span>;
                 }
             }

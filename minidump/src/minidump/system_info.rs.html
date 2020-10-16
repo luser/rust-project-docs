@@ -133,6 +133,8 @@
 <span id="132">132</span>
 <span id="133">133</span>
 <span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2015 Ted Mielczarek. See the COPYRIGHT</span>
 <span class="comment">// file at the top-level directory of this distribution.</span>
@@ -168,7 +170,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_platform_id</span>(<span class="ident">id</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="ident">Os</span> {
         <span class="kw">match</span> <span class="ident">PlatformId</span>::<span class="ident">from_u32</span>(<span class="ident">id</span>) {
             <span class="prelude-val">Some</span>(<span class="ident">PlatformId</span>::<span class="ident">VER_PLATFORM_WIN32_WINDOWS</span>)
-                <span class="op">|</span> <span class="prelude-val">Some</span>(<span class="ident">PlatformId</span>::<span class="ident">VER_PLATFORM_WIN32_NT</span>) <span class="op">=&gt;</span> <span class="ident">Os</span>::<span class="ident">Windows</span>,
+            <span class="op">|</span> <span class="prelude-val">Some</span>(<span class="ident">PlatformId</span>::<span class="ident">VER_PLATFORM_WIN32_NT</span>) <span class="op">=&gt;</span> <span class="ident">Os</span>::<span class="ident">Windows</span>,
             <span class="prelude-val">Some</span>(<span class="ident">PlatformId</span>::<span class="ident">MacOs</span>) <span class="op">=&gt;</span> <span class="ident">Os</span>::<span class="ident">MacOs</span>,
             <span class="prelude-val">Some</span>(<span class="ident">PlatformId</span>::<span class="ident">Ios</span>) <span class="op">=&gt;</span> <span class="ident">Os</span>::<span class="ident">Ios</span>,
             <span class="prelude-val">Some</span>(<span class="ident">PlatformId</span>::<span class="ident">Linux</span>) <span class="op">=&gt;</span> <span class="ident">Os</span>::<span class="ident">Linux</span>,
@@ -236,15 +238,17 @@
     <span class="doccomment">/// Get a `Cpu` value matching the `processor_architecture` value from `MINIDUMP_SYSTEM_INFO`</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_processor_architecture</span>(<span class="ident">arch</span>: <span class="ident">u16</span>) <span class="op">-&gt;</span> <span class="ident">Cpu</span> {
         <span class="kw">match</span> <span class="ident">md</span>::<span class="ident">ProcessorArchitecture</span>::<span class="ident">from_u16</span>(<span class="ident">arch</span>) {
-            <span class="prelude-val">Some</span>(<span class="ident">PROCESSOR_ARCHITECTURE_INTEL</span>) <span class="op">|</span> <span class="prelude-val">Some</span>(<span class="ident">PROCESSOR_ARCHITECTURE_IA32_ON_WIN64</span>) <span class="op">=&gt;</span>
-                <span class="ident">Cpu</span>::<span class="ident">X86</span>,
+            <span class="prelude-val">Some</span>(<span class="ident">PROCESSOR_ARCHITECTURE_INTEL</span>) <span class="op">|</span> <span class="prelude-val">Some</span>(<span class="ident">PROCESSOR_ARCHITECTURE_IA32_ON_WIN64</span>) <span class="op">=&gt;</span> {
+                <span class="ident">Cpu</span>::<span class="ident">X86</span>
+            }
             <span class="prelude-val">Some</span>(<span class="ident">PROCESSOR_ARCHITECTURE_AMD64</span>) <span class="op">=&gt;</span> <span class="ident">Cpu</span>::<span class="ident">X86_64</span>,
             <span class="prelude-val">Some</span>(<span class="ident">PROCESSOR_ARCHITECTURE_PPC</span>) <span class="op">=&gt;</span> <span class="ident">Cpu</span>::<span class="ident">Ppc</span>,
             <span class="prelude-val">Some</span>(<span class="ident">PROCESSOR_ARCHITECTURE_PPC64</span>) <span class="op">=&gt;</span> <span class="ident">Cpu</span>::<span class="ident">Ppc64</span>,
             <span class="prelude-val">Some</span>(<span class="ident">PROCESSOR_ARCHITECTURE_SPARC</span>) <span class="op">=&gt;</span> <span class="ident">Cpu</span>::<span class="ident">Sparc</span>,
             <span class="prelude-val">Some</span>(<span class="ident">PROCESSOR_ARCHITECTURE_ARM</span>) <span class="op">=&gt;</span> <span class="ident">Cpu</span>::<span class="ident">Arm</span>,
-            <span class="prelude-val">Some</span>(<span class="ident">PROCESSOR_ARCHITECTURE_ARM64</span>) <span class="op">|</span> <span class="prelude-val">Some</span>(<span class="ident">PROCESSOR_ARCHITECTURE_ARM64_OLD</span>) <span class="op">=&gt;</span>
-                <span class="ident">Cpu</span>::<span class="ident">Arm64</span>,
+            <span class="prelude-val">Some</span>(<span class="ident">PROCESSOR_ARCHITECTURE_ARM64</span>) <span class="op">|</span> <span class="prelude-val">Some</span>(<span class="ident">PROCESSOR_ARCHITECTURE_ARM64_OLD</span>) <span class="op">=&gt;</span> {
+                <span class="ident">Cpu</span>::<span class="ident">Arm64</span>
+            }
             <span class="kw">_</span> <span class="op">=&gt;</span> <span class="ident">Cpu</span>::<span class="ident">Unknown</span>(<span class="ident">arch</span>),
         }
     }

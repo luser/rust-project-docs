@@ -102,6 +102,11 @@
 <span id="101">101</span>
 <span id="102">102</span>
 <span id="103">103</span>
+<span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Some common traits used by minidump-related crates.</span>
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">borrow</span>::<span class="ident">Cow</span>;
@@ -173,8 +178,9 @@
 <span class="doccomment">/// The `RangeMap` struct will panic if you attempt to initialize it with overlapping data,</span>
 <span class="doccomment">/// and we deal with many sources of untrusted input data that could run afoul of this.</span>
 <span class="doccomment">/// [Upstream issue](https://github.com/jneem/range-map/issues/1)</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">IntoRangeMapSafe</span><span class="op">&lt;</span><span class="ident">V</span><span class="op">&gt;</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">=</span>(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>, <span class="ident">V</span>)<span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Sized</span>
-    <span class="kw">where</span> <span class="ident">V</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">Eq</span>,
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">IntoRangeMapSafe</span><span class="op">&lt;</span><span class="ident">V</span><span class="op">&gt;</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> (<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>, <span class="ident">V</span>)<span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Sized</span>
+<span class="kw">where</span>
+    <span class="ident">V</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">Eq</span>,
 {
     <span class="kw">fn</span> <span class="ident">into_rangemap_safe</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">RangeMap</span><span class="op">&lt;</span><span class="ident">u64</span>, <span class="ident">V</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">input</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">into_iter</span>().<span class="ident">collect</span>();
@@ -185,8 +191,10 @@
                 <span class="kw">if</span> <span class="ident">range</span>.<span class="ident">start</span> <span class="op">&lt;=</span> <span class="ident">last_range</span>.<span class="ident">end</span> <span class="op">&amp;&amp;</span> <span class="kw-2">&amp;</span><span class="ident">val</span> <span class="op">!=</span> <span class="ident">last_val</span> {
                     <span class="comment">//TODO: add a way for callers to do custom logging here? Perhaps</span>
                     <span class="comment">// a callback function?</span>
-                    <span class="macro">warn</span><span class="macro">!</span>(<span class="string">&quot;overlapping ranges {:?} and {:?} map to values {:?} and {:?}&quot;</span>,
-                          <span class="ident">last_range</span>, <span class="ident">range</span>, <span class="ident">last_val</span>, <span class="ident">val</span>);
+                    <span class="macro">warn</span><span class="macro">!</span>(
+                        <span class="string">&quot;overlapping ranges {:?} and {:?} map to values {:?} and {:?}&quot;</span>,
+                        <span class="ident">last_range</span>, <span class="ident">range</span>, <span class="ident">last_val</span>, <span class="ident">val</span>
+                    );
                     <span class="kw">continue</span>;
                 }
 
@@ -203,8 +211,10 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">I</span>, <span class="ident">V</span><span class="op">&gt;</span> <span class="ident">IntoRangeMapSafe</span><span class="op">&lt;</span><span class="ident">V</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">I</span>
-    <span class="kw">where</span> <span class="ident">I</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">=</span>(<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>, <span class="ident">V</span>)<span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Sized</span>,
-          <span class="ident">V</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">Eq</span>,
-{}
+<span class="kw">where</span>
+    <span class="ident">I</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> (<span class="ident">Range</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>, <span class="ident">V</span>)<span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Sized</span>,
+    <span class="ident">V</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">Eq</span>,
+{
+}
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "minidump_common";</script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
